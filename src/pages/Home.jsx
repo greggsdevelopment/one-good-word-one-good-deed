@@ -7,9 +7,13 @@ import PillarsSection from '@/components/home/PillarsSection';
 import PledgeSection from '@/components/home/PledgeSection';
 import GetInvolvedSection from '@/components/home/GetInvolvedSection';
 import MomentumBand from '@/components/home/MomentumBand';
-import ImpactCounters from '@/components/home/ImpactCounters';
 import ContactSection from '@/components/home/ContactSection';
 import FooterSection from '@/components/home/FooterSection';
+import FeaturedProducts from '@/components/home/FeaturedProducts';
+import NewsletterSection from '@/components/home/NewsletterSection';
+import TestimonialsSection from '@/components/home/TestimonialsSection';
+import BookJasonBanner from '@/components/home/BookJasonBanner';
+import FAQSection from '@/components/home/FAQSection';
 
 const LOGO_URL = 'https://media.base44.com/images/public/6a19e1fc6c5eb736a0763b09/1824cf861_IMG_5119.png';
 
@@ -45,7 +49,6 @@ export default function Home() {
       <StickyNav logoUrl={LOGO_URL} />
       <HeroSection logoUrl={LOGO_URL} pledgeCount={pledgeCount} />
       <MissionSection />
-      <ImpactCounters />
       <PillarsSection />
       <PledgeSection
         pledgeCount={pledgeCount}
@@ -53,7 +56,12 @@ export default function Home() {
         onPledgeCreated={handlePledgeCreated}
       />
       <GetInvolvedSection />
+      <TestimonialsSection />
+      <BookJasonBanner />
+      <FeaturedProducts />
       <MomentumBand pledgeCount={pledgeCount} />
+      <NewsletterSection />
+      <FAQSection />
       <ContactSection />
       <FooterSection logoUrl={LOGO_URL} />
     </div>

@@ -1,0 +1,14 @@
+{
+  "name": "NewsletterSubscriber",
+  "type": "object",
+  "properties": {
+    "email": {
+      "type": "string",
+      "description": "Subscriber email address"
+    }
+  },
+  "required": [
+    "email"
+  ],
+  "allowPublicCreate": true
+}
