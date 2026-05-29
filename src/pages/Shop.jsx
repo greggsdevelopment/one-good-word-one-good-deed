@@ -39,6 +39,14 @@ const PRODUCTS = [
     sizes: ['S', 'M', 'L', 'XL', '2XL'],
   },
   {
+    id: 'bw-letters-shirt',
+    name: 'Black White ONE GOOD WORD T-Shirt',
+    description: 'Bold ONE GOOD WORD ONE GOOD DEED lettering in black and white. Wear the message.',
+    price: 25,
+    image: 'https://jim-catalog-api.jim.com/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsiZGF0YSI6Mzk0ODQwLCJwdXIiOiJibG9iX2lkIn19--afc8497e7685f986908e121f4db41331ddd1ce30/scaled_1000005645.jpg',
+    sizes: ['S', 'M', 'L', 'XL', '2XL'],
+  },
+  {
     id: 'blue-black-shirt',
     name: 'Blue Black T-Shirt',
     description: 'Stop Bullying. Stop Racism. Blue and black design with the One Good Word movement logo.',
