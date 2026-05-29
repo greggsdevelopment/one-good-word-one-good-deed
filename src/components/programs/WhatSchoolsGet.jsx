@@ -21,7 +21,7 @@ const INCLUSIONS = [
   {
     icon: Camera,
     title: 'Photo Opportunities',
-    description: 'Staff and students can take photos with Jason. Shareable content for your school's social media.',
+    description: "Staff and students can take photos with Jason. Shareable content for your school's social media.",
   },
   {
     icon: Award,
@@ -31,7 +31,7 @@ const INCLUSIONS = [
   {
     icon: TrendingUp,
     title: 'Measurable Culture Impact',
-    description: 'Schools report a visible shift in student attitude and behavior following Jason's visits. The message sticks.',
+    description: "Schools report a visible shift in student attitude and behavior following Jason's visits. The message sticks.",
   },
 ];
 

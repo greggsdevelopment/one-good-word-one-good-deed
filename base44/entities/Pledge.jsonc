@@ -2,21 +2,25 @@
   "name": "Pledge",
   "type": "object",
   "properties": {
-    "name": {
+    "first_name": {
       "type": "string",
       "description": "First name of the person pledging"
     },
-    "location": {
+    "last_initial": {
       "type": "string",
-      "description": "Last initial or city (optional)"
+      "description": "Last initial only (for privacy)"
     },
-    "message": {
+    "city": {
       "type": "string",
-      "description": "Optional short message"
+      "description": "City of the person pledging"
+    },
+    "pledge_statement": {
+      "type": "string",
+      "description": "Their personal pledge statement"
     }
   },
   "required": [
-    "name"
+    "first_name"
   ],
   "allowPublicCreate": true,
   "allowPublicRead": true
