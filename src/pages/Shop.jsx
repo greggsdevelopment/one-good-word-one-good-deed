@@ -250,11 +250,10 @@ function ProductCard({ product, index, onAddToCart }) {
     >
       {/* Product visual */}
       <div className="relative h-64 bg-white/[0.03] flex items-center justify-center overflow-hidden">
-        <img
-          src={product.image}
-          alt={product.name}
-          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-        />
+        <div className="flex flex-col items-center gap-2">
+          <p className="font-anton text-cream/20 text-3xl tracking-widest uppercase">Coming Soon</p>
+          <div className="w-12 h-px bg-gold/30" />
+        </div>
       </div>
 
       {/* Info */}
