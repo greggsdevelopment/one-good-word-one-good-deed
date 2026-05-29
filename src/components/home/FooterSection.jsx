@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+
 export default function FooterSection({ logoUrl }) {
   const scrollTo = (id) => {
     const el = document.querySelector(id);
@@ -48,13 +50,19 @@ export default function FooterSection({ logoUrl }) {
               </button>
             ))}
             <a
-              href="https://facebook.com/groups/PLACEHOLDER"
+              href="https://www.facebook.com/groups/1332878885346719"
               target="_blank"
               rel="noopener noreferrer"
               className="font-barlow-condensed text-cream/40 hover:text-gold text-sm tracking-wider uppercase transition-colors"
             >
               Facebook
             </a>
+            <Link
+              to="/shop"
+              className="font-barlow-condensed text-cream/40 hover:text-gold text-sm tracking-wider uppercase transition-colors"
+            >
+              Shop
+            </Link>
           </div>
         </div>
 

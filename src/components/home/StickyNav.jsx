@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { Link } from 'react-router-dom';
 
 const NAV_LINKS = [
   { label: 'Mission', href: '#mission' },
@@ -72,6 +73,12 @@ export default function StickyNav({ logoUrl }) {
                   {link.label}
                 </a>
               ))}
+              <Link
+                to="/shop"
+                className="font-barlow-condensed text-sm text-cream/70 hover:text-gold tracking-wider uppercase transition-colors duration-300 min-h-[44px] flex items-center"
+              >
+                Shop
+              </Link>
               <a
                 href="#pledge"
                 onClick={(e) => handleNav(e, '#pledge')}
@@ -135,16 +142,27 @@ export default function StickyNav({ logoUrl }) {
                 </motion.a>
               ))}
             </div>
-            <motion.a
-              href="#pledge"
+            <motion.div
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.35 }}
-              onClick={(e) => handleNav(e, '#pledge')}
-              className="block text-center px-6 py-4 bg-gold hover:bg-gold-dark text-ink font-barlow-condensed font-bold text-xl uppercase tracking-wider rounded-sm transition-all min-h-[56px] flex items-center justify-center"
+              className="flex flex-col gap-3"
             >
-              Join the Movement
-            </motion.a>
+              <Link
+                to="/shop"
+                onClick={() => setMenuOpen(false)}
+                className="block text-center px-6 py-4 border-2 border-gold/40 text-gold font-barlow-condensed font-bold text-xl uppercase tracking-wider rounded-sm transition-all min-h-[56px] flex items-center justify-center"
+              >
+                Shop Merch
+              </Link>
+              <a
+                href="#pledge"
+                onClick={(e) => handleNav(e, '#pledge')}
+                className="block text-center px-6 py-4 bg-gold hover:bg-gold-dark text-ink font-barlow-condensed font-bold text-xl uppercase tracking-wider rounded-sm transition-all min-h-[56px] flex items-center justify-center"
+              >
+                Join the Movement
+              </a>
+            </motion.div>
           </motion.div>
         )}
       </AnimatePresence>
