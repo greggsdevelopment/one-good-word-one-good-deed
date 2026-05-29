@@ -22,7 +22,7 @@ export default function FooterSection({ logoUrl }) {
           <div className="text-center md:text-left">
             <div className="flex items-center gap-3 justify-center md:justify-start mb-4">
               {logoUrl && (
-                <img src={logoUrl} alt="Logo" className="h-10 w-10 rounded-full object-cover" />
+                <img src={logoUrl} alt="Logo" className="h-10 w-10 rounded-full object-cover shrink-0" />
               )}
               <div>
                 <p className="font-barlow-condensed text-cream text-sm font-semibold tracking-wide">

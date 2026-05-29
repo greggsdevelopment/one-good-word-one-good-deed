@@ -57,7 +57,7 @@ export default function HeroSection({ logoUrl, pledgeCount }) {
           <motion.img
             src={logoUrl}
             alt="One Good Word One Good Deed"
-            className="relative w-44 h-44 sm:w-60 sm:h-60 md:w-80 md:h-80 object-contain"
+            className="relative w-44 h-44 sm:w-60 sm:h-60 md:w-80 md:h-80 object-cover rounded-full"
             style={{ filter: 'drop-shadow(0 0 32px rgba(230,180,80,0.30))' }}
             animate={{ y: [0, -12, 0] }}
             transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
