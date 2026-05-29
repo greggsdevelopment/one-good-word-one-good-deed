@@ -1,0 +1,52 @@
+{
+  "name": "BookingRequest",
+  "type": "object",
+  "properties": {
+    "school_name": {
+      "type": "string",
+      "description": "Name of the school"
+    },
+    "contact_name": {
+      "type": "string",
+      "description": "Name of the contact person"
+    },
+    "email": {
+      "type": "string",
+      "description": "Contact email"
+    },
+    "phone": {
+      "type": "string",
+      "description": "Contact phone number"
+    },
+    "preferred_date": {
+      "type": "string",
+      "format": "date",
+      "description": "Preferred date for the visit"
+    },
+    "num_students": {
+      "type": "number",
+      "description": "Number of students"
+    },
+    "message": {
+      "type": "string",
+      "description": "Additional message or notes"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "new",
+        "contacted",
+        "confirmed",
+        "completed"
+      ],
+      "default": "new",
+      "description": "Status of the booking request"
+    }
+  },
+  "required": [
+    "school_name",
+    "contact_name",
+    "email"
+  ],
+  "allowPublicCreate": true
+}
