@@ -12,7 +12,6 @@ import About from '@/pages/About';
 import Programs from '@/pages/Programs';
 import Donate from '@/pages/Donate';
 import PledgeWall from '@/pages/PledgeWall';
-import Admin from '@/pages/Admin';
 import Login from '@/pages/Login';
 import Register from '@/pages/Register';
 import ForgotPassword from '@/pages/ForgotPassword';

@@ -70,6 +70,18 @@ export default function FooterSection({ logoUrl }) {
               Programs
             </Link>
             <Link
+              to="/pledge"
+              className="font-barlow-condensed text-cream/40 hover:text-gold text-sm tracking-wider uppercase transition-colors"
+            >
+              Pledge Wall
+            </Link>
+            <Link
+              to="/stories"
+              className="font-barlow-condensed text-cream/40 hover:text-gold text-sm tracking-wider uppercase transition-colors"
+            >
+              Stories
+            </Link>
+            <Link
               to="/about"
               className="font-barlow-condensed text-cream/40 hover:text-gold text-sm tracking-wider uppercase transition-colors"
             >

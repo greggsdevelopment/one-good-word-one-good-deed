@@ -7,6 +7,7 @@ import PillarsSection from '@/components/home/PillarsSection';
 import PledgeSection from '@/components/home/PledgeSection';
 import GetInvolvedSection from '@/components/home/GetInvolvedSection';
 import MomentumBand from '@/components/home/MomentumBand';
+import ImpactCounters from '@/components/home/ImpactCounters';
 import ContactSection from '@/components/home/ContactSection';
 import FooterSection from '@/components/home/FooterSection';
 
@@ -44,6 +45,7 @@ export default function Home() {
       <StickyNav logoUrl={LOGO_URL} />
       <HeroSection logoUrl={LOGO_URL} pledgeCount={pledgeCount} />
       <MissionSection />
+      <ImpactCounters />
       <PillarsSection />
       <PledgeSection
         pledgeCount={pledgeCount}

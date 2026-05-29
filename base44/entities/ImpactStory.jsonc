@@ -1,0 +1,45 @@
+{
+  "name": "ImpactStory",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string",
+      "description": "Story title"
+    },
+    "date": {
+      "type": "string",
+      "format": "date",
+      "description": "Publication date"
+    },
+    "excerpt": {
+      "type": "string",
+      "description": "Short summary shown on the card"
+    },
+    "content": {
+      "type": "string",
+      "description": "Full story content"
+    },
+    "photo_url": {
+      "type": "string",
+      "description": "Photo URL"
+    },
+    "category": {
+      "type": "string",
+      "enum": [
+        "Student Story",
+        "School Partnership",
+        "Community Impact",
+        "News"
+      ],
+      "default": "Student Story"
+    },
+    "published": {
+      "type": "boolean",
+      "default": true
+    }
+  },
+  "required": [
+    "title",
+    "content"
+  ]
+}

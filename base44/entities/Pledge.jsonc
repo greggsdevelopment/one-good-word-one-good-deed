@@ -4,15 +4,15 @@
   "properties": {
     "first_name": {
       "type": "string",
-      "description": "First name of the person pledging"
+      "description": "First name"
     },
     "last_initial": {
       "type": "string",
-      "description": "Last initial only (for privacy)"
+      "description": "Last initial only (privacy)"
     },
     "city": {
       "type": "string",
-      "description": "City of the person pledging"
+      "description": "City"
     },
     "pledge_statement": {
       "type": "string",
@@ -20,7 +20,9 @@
     }
   },
   "required": [
-    "first_name"
+    "first_name",
+    "last_initial",
+    "pledge_statement"
   ],
   "allowPublicCreate": true,
   "allowPublicRead": true
