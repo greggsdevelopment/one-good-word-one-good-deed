@@ -14,6 +14,7 @@ import NewsletterSection from '@/components/home/NewsletterSection';
 import TestimonialsSection from '@/components/home/TestimonialsSection';
 import BookJasonBanner from '@/components/home/BookJasonBanner';
 import FAQSection from '@/components/home/FAQSection';
+import VoicesOfChange from '@/components/home/VoicesOfChange';
 
 const LOGO_URL = 'https://media.base44.com/images/public/6a19e1fc6c5eb736a0763b09/1824cf861_IMG_5119.png';
 
@@ -56,6 +57,7 @@ export default function Home() {
         onPledgeCreated={handlePledgeCreated}
       />
       <GetInvolvedSection />
+      <VoicesOfChange />
       <TestimonialsSection />
       <BookJasonBanner />
       <FeaturedProducts />
