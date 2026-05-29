@@ -58,6 +58,12 @@ export default function FooterSection({ logoUrl }) {
               Facebook
             </a>
             <Link
+              to="/about"
+              className="font-barlow-condensed text-cream/40 hover:text-gold text-sm tracking-wider uppercase transition-colors"
+            >
+              About
+            </Link>
+            <Link
               to="/shop"
               className="font-barlow-condensed text-cream/40 hover:text-gold text-sm tracking-wider uppercase transition-colors"
             >

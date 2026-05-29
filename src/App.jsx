@@ -8,6 +8,7 @@ import UserNotRegisteredError from '@/components/UserNotRegisteredError';
 import ProtectedRoute from '@/components/ProtectedRoute';
 import Home from '@/pages/Home';
 import Shop from '@/pages/Shop';
+import About from '@/pages/About';
 import Admin from '@/pages/Admin';
 import Login from '@/pages/Login';
 import Register from '@/pages/Register';
@@ -36,6 +37,7 @@ const AuthenticatedApp = () => {
       {/* Public pages */}
       <Route path="/" element={<Home />} />
       <Route path="/shop" element={<Shop />} />
+      <Route path="/about" element={<About />} />
 
       {/* Auth pages */}
       <Route path="/login" element={<Login />} />

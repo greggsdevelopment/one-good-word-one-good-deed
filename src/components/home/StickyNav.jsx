@@ -79,6 +79,12 @@ export default function StickyNav({ logoUrl }) {
                 </a>
               ))}
               <Link
+                to="/about"
+                className="font-barlow-condensed text-sm text-cream/70 hover:text-gold tracking-wider uppercase transition-colors duration-300 min-h-[44px] flex items-center"
+              >
+                About
+              </Link>
+              <Link
                 to="/shop"
                 className="font-barlow-condensed text-sm text-cream/70 hover:text-gold tracking-wider uppercase transition-colors duration-300 min-h-[44px] flex items-center"
               >
@@ -150,6 +156,19 @@ export default function StickyNav({ logoUrl }) {
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: NAV_LINKS.length * 0.07 }}
+              >
+                <Link
+                  to="/about"
+                  onClick={() => setMenuOpen(false)}
+                  className="font-anton text-cream/80 hover:text-gold text-4xl leading-tight tracking-wide uppercase transition-colors py-2 min-h-[56px] flex items-center"
+                >
+                  About
+                </Link>
+              </motion.div>
+              <motion.div
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: (NAV_LINKS.length + 1) * 0.07 }}
               >
                 <Link
                   to="/shop"
