@@ -127,7 +127,7 @@ export default function ContactSection() {
 
         <div className="mt-12 text-center space-y-2">
           <p className="font-barlow text-ink/40 text-sm">
-            Email: <a href="mailto:contact@onegoodword.org" className="text-gold-dark hover:text-gold transition-colors">contact@onegoodword.org</a>
+            Email: <a href="mailto:1goodword1gooddeedllc@gmail.com" className="text-gold-dark hover:text-gold transition-colors">1goodword1gooddeedllc@gmail.com</a>
           </p>
           <p className="font-barlow text-ink/40 text-sm">
             Facebook: <a href="https://www.facebook.com/groups/1332878885346719" target="_blank" rel="noopener noreferrer" className="text-gold-dark hover:text-gold transition-colors">Join our community</a>
