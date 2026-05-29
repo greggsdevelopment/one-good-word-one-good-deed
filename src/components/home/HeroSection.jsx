@@ -108,6 +108,48 @@ export default function HeroSection({ logoUrl, pledgeCount }) {
           </a>
         </motion.div>
 
+        {/* Philippians 4:13 Flashcard */}
+        <motion.div
+          initial={{ opacity: 0, y: 24, rotateX: 15 }}
+          animate={{ opacity: 1, y: 0, rotateX: 0 }}
+          transition={{ duration: 1, delay: 1.2, ease: 'easeOut' }}
+          className="relative mx-auto mb-10 w-full max-w-sm"
+          style={{ perspective: '800px' }}
+        >
+          {/* Golden glow pool beneath */}
+          <div
+            className="absolute -bottom-3 left-1/2 -translate-x-1/2 w-4/5 h-8 rounded-full pointer-events-none"
+            style={{
+              background: 'radial-gradient(ellipse, rgba(230,180,80,0.75) 0%, rgba(201,146,47,0.35) 55%, transparent 80%)',
+              filter: 'blur(14px)',
+            }}
+          />
+          {/* Card */}
+          <motion.div
+            animate={{ y: [0, -8, 0], rotateX: [0, 3, 0] }}
+            transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut' }}
+            className="relative rounded-sm border border-gold/30 bg-white/[0.04] backdrop-blur-sm px-7 py-6 text-center"
+            style={{
+              boxShadow: '0 0 30px rgba(230,180,80,0.18), inset 0 1px 0 rgba(230,180,80,0.15)',
+              transformStyle: 'preserve-3d',
+            }}
+          >
+            {/* Top ornament */}
+            <div className="flex items-center justify-center gap-3 mb-3">
+              <div className="h-px w-10 bg-gold/40" />
+              <span className="text-gold text-lg">✦</span>
+              <div className="h-px w-10 bg-gold/40" />
+            </div>
+            <p className="font-barlow-condensed text-gold text-[10px] tracking-[0.35em] uppercase mb-3">Scripture</p>
+            <p className="font-anton text-cream text-xl sm:text-2xl leading-tight mb-3">
+              "I can do all things through Christ who strengthens me."
+            </p>
+            <p className="font-barlow-condensed text-gold/70 text-sm tracking-widest uppercase">
+              Philippians 4:13
+            </p>
+          </motion.div>
+        </motion.div>
+
         {/* Pledge count */}
         <motion.p
           initial={{ opacity: 0 }}
