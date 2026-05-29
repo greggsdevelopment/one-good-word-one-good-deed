@@ -1,0 +1,27 @@
+{
+  "name": "Story",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Person's name"
+    },
+    "location": {
+      "type": "string",
+      "description": "Person's location"
+    },
+    "story": {
+      "type": "string",
+      "description": "The story text"
+    },
+    "approved": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether the story is approved for public display"
+    }
+  },
+  "required": [
+    "name",
+    "story"
+  ]
+}

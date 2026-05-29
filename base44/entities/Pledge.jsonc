@@ -1,0 +1,23 @@
+{
+  "name": "Pledge",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "First name of the person pledging"
+    },
+    "location": {
+      "type": "string",
+      "description": "Last initial or city (optional)"
+    },
+    "message": {
+      "type": "string",
+      "description": "Optional short message"
+    }
+  },
+  "required": [
+    "name"
+  ],
+  "allowPublicCreate": true,
+  "allowPublicRead": true
+}
