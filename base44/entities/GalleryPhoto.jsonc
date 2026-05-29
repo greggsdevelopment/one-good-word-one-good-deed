@@ -1,0 +1,52 @@
+{
+  "name": "GalleryPhoto",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string",
+      "description": "Photo title or caption"
+    },
+    "description": {
+      "type": "string",
+      "description": "Longer description of the photo"
+    },
+    "image_url": {
+      "type": "string",
+      "description": "URL of the uploaded photo"
+    },
+    "category": {
+      "type": "string",
+      "enum": [
+        "School Visit",
+        "Community Event",
+        "Workshop",
+        "Speaking Engagement",
+        "Other"
+      ],
+      "default": "School Visit",
+      "description": "Event category"
+    },
+    "location": {
+      "type": "string",
+      "description": "School or event location"
+    },
+    "event_date": {
+      "type": "string",
+      "format": "date",
+      "description": "Date of the event"
+    },
+    "featured": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether to feature this photo prominently"
+    },
+    "sort_order": {
+      "type": "number",
+      "description": "Manual sort order"
+    }
+  },
+  "required": [
+    "title",
+    "image_url"
+  ]
+}

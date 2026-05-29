@@ -8,6 +8,7 @@ const PAGE_LINKS = [
   { label: 'Donate', to: '/donate' },
   { label: 'Pledge', to: '/pledge' },
   { label: 'Shop', to: '/shop' },
+  { label: 'Gallery', to: '/gallery' },
 ];
 
 const SCROLL_LINKS = [

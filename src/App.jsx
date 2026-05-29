@@ -14,6 +14,7 @@ import Programs from '@/pages/Programs';
 import Donate from '@/pages/Donate';
 import PledgeWall from '@/pages/PledgeWall';
 import Admin from '@/pages/Admin';
+import Gallery from '@/pages/Gallery';
 import Login from '@/pages/Login';
 import Register from '@/pages/Register';
 import ForgotPassword from '@/pages/ForgotPassword';
@@ -45,6 +46,7 @@ const AuthenticatedApp = () => {
       <Route path="/programs" element={<Programs />} />
       <Route path="/donate" element={<Donate />} />
       <Route path="/pledge" element={<PledgeWall />} />
+      <Route path="/gallery" element={<Gallery />} />
 
       {/* Auth pages */}
       <Route path="/login" element={<Login />} />
