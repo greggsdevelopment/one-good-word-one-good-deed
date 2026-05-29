@@ -11,7 +11,14 @@ Deno.serve(async (req) => {
     const stripe = new Stripe(Deno.env.get('STRIPE_SECRET_KEY'));
 
     const lineItems = items.map((item) => ({
-      price: item.priceId,
+      price_data: {
+        currency: 'usd',
+        product_data: {
+          name: item.name,
+          ...(item.image ? { images: [item.image] } : {}),
+        },
+        unit_amount: item.price,
+      },
       quantity: item.quantity || 1,
     }));
 

@@ -7,59 +7,76 @@ import CartDrawer from '@/components/shop/CartDrawer';
 
 const PRODUCTS = [
   {
-    id: 'tshirt',
-    name: 'Stand Up T-Shirt',
-    tagline: '"Stand Up. Speak Love."',
-    description: 'Unisex heavyweight cotton tee. Available in S–2XL.',
-    price: 28,
-    priceId: 'price_1TcVzRK1VNI2XyV9sCa1ItDQ',
-    emoji: '👕',
-    color: 'Black',
+    id: 'bw-dove-shirt',
+    name: 'Black & White Dove Shirt',
+    description: 'One Good Word One Good Deed dove logo design on black shirt. Stand up against bullying and racism.',
+    price: 25,
+    image: 'https://jim-catalog-api.jim.com/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsiZGF0YSI6Mzk0ODUwLCJwdXIiOiJibG9iX2lkIn19--ea2a89155cd66f708ebe3915fc4218705ad8225c/scaled_1000004465.png',
     sizes: ['S', 'M', 'L', 'XL', '2XL'],
   },
   {
-    id: 'hoodie',
-    name: 'One Good Word Hoodie',
-    tagline: 'One Good Word...One Good Deed',
-    description: 'Premium pullover hoodie, fleece-lined. Available in S–2XL.',
-    price: 45,
-    priceId: 'price_1TcVzRK1VNI2XyV9JxqlgsgQ',
-    emoji: '🧥',
-    color: 'Black',
+    id: 'blue-yellow-logo-shirt',
+    name: 'Blue & Yellow T-Shirt Logo',
+    description: 'Stop Bullying. Stop Racism. Blue and yellow circular logo design. One Good Word, One Good Deed.',
+    price: 25,
+    image: 'https://jim-catalog-api.jim.com/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsiZGF0YSI6Mzk0ODQ3LCJwdXIiOiJibG9iX2lkIn19--159e72f4d5de7284389fa53b72e4555d12dc906c/scaled_1000005788.png',
     sizes: ['S', 'M', 'L', 'XL', '2XL'],
   },
   {
-    id: 'hat',
-    name: 'Love Over Hate Hat',
-    tagline: 'Love Over Hate',
-    description: 'Structured snapback with embroidered gold logo. One size fits most.',
-    price: 22,
-    priceId: 'price_1TcVzRK1VNI2XyV9PNxbbrFn',
-    emoji: '🧢',
-    color: 'Black / Gold',
-    sizes: ['One Size'],
+    id: 'blue-white-letters-shirt',
+    name: 'Blue & White T-Shirt Letters',
+    description: 'Blue t-shirt with bold ONE GOOD WORD lettering. Wear the movement.',
+    price: 25,
+    image: 'https://jim-catalog-api.jim.com/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsiZGF0YSI6Mzk0ODQ1LCJwdXIiOiJibG9iX2lkIn19--8f6aedb7b4692f29d04c938e29e3beaec387bb7b/scaled_1000004624.jpg',
+    sizes: ['S', 'M', 'L', 'XL', '2XL'],
   },
   {
-    id: 'tote',
-    name: "God's Love Tote Bag",
-    tagline: "Carry God's Love",
-    description: 'Heavy canvas tote with gold screen print. 15" x 16".',
-    price: 15,
-    priceId: 'price_1TcVzRK1VNI2XyV91Nrnleey',
-    emoji: '👜',
-    color: 'Natural / Gold',
-    sizes: ['One Size'],
+    id: 'bw-hoodie',
+    name: 'Black & White Hoodie Front & Back',
+    description: 'Premium black hoodie with One Good Word design on front and back. Make a statement.',
+    price: 60,
+    image: 'https://jim-catalog-api.jim.com/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsiZGF0YSI6Mzk0ODQ0LCJwdXIiOiJibG9iX2lkIn19--460b2114e575ffd498248e91cffc2d8386f96dc8/scaled_1000005359.png',
+    sizes: ['S', 'M', 'L', 'XL', '2XL'],
   },
   {
-    id: 'wristband',
-    name: 'Movement Wristband',
-    tagline: 'Wear the Movement',
-    description: 'Silicone wristband with debossed text. Pack of 3.',
-    price: 5,
-    priceId: 'price_1TcVzRK1VNI2XyV99q1Bsmbg',
-    emoji: '📿',
-    color: 'Gold',
-    sizes: ['One Size'],
+    id: 'blue-black-shirt',
+    name: 'Blue Black T-Shirt',
+    description: 'Stop Bullying. Stop Racism. Blue and black design with the One Good Word movement logo.',
+    price: 25,
+    image: 'https://jim-catalog-api.jim.com/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsiZGF0YSI6Mzk0ODMzLCJwdXIiOiJibG9iX2lkIn19--e02449b1ccbeeecc3efb8348670af1235b4fd92f/scaled_1000005772.png',
+    sizes: ['S', 'M', 'L', 'XL', '2XL'],
+  },
+  {
+    id: 'wool-coat-silver',
+    name: 'Wool Coat – Silver & Black Logo',
+    description: 'Premium wool coat with silver and black One Good Word One Good Deed logo. Make a bold statement.',
+    price: 120,
+    image: 'https://jim-catalog-api.jim.com/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsiZGF0YSI6Mzk0ODMwLCJwdXIiOiJibG9iX2lkIn19--12976cbb61d96214d913fe9d83c9446ca868c0b1/scaled_1000005762.png',
+    sizes: ['S', 'M', 'L', 'XL', '2XL'],
+  },
+  {
+    id: 'wool-coat-varsity',
+    name: 'Wool Coat – One Good Word One Good Deed',
+    description: 'Varsity-style wool coat with red trim and the One Good Word One Good Deed logo patch. Premium outerwear.',
+    price: 120,
+    image: 'https://jim-catalog-api.jim.com/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsiZGF0YSI6Mzk0ODI2LCJwdXIiOiJibG9iX2lkIn19--b6b52733bb8a9da1a5821a22ad6868b8036d2d87/scaled_1000005835.png',
+    sizes: ['S', 'M', 'L', 'XL', '2XL'],
+  },
+  {
+    id: 'red-black-shirt',
+    name: 'Red Black T-Shirt',
+    description: 'Stop Bullying. Stop Racism. Red and black circular design. One Good Word, One Good Deed.',
+    price: 25,
+    image: 'https://jim-catalog-api.jim.com/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsiZGF0YSI6Mzk0ODIyLCJwdXIiOiJibG9iX2lkIn19--7eef1ac795abc37562a086352a299d0693f7efc4/scaled_1000005289.png',
+    sizes: ['S', 'M', 'L', 'XL', '2XL'],
+  },
+  {
+    id: 'wristbands',
+    name: 'Awareness Wristbands',
+    description: 'Black silicone wristbands with ONE GOOD WORD and ONE GOOD DEED engraved text. Raise awareness.',
+    price: 2,
+    image: 'https://jim-catalog-api.jim.com/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsiZGF0YSI6Mzk0ODE4LCJwdXIiOiJibG9iX2lkIn19--db123867164ff150d78029c2c77f5a561bcb9bb7/scaled_1000005717.jpg',
+    sizes: [],
   },
 ];
 
@@ -103,7 +120,7 @@ export default function Shop() {
       return;
     }
     setLoadingCheckout(true);
-    const items = cart.map((i) => ({ priceId: i.product.priceId, quantity: i.quantity }));
+    const items = cart.map((i) => ({ name: i.product.name, price: Math.round(i.product.price * 100), quantity: i.quantity, image: i.product.image }));
     const res = await base44.functions.invoke('createCheckout', {
       items,
       successUrl: `${window.location.origin}/shop?success=true`,
@@ -224,31 +241,21 @@ function ProductCard({ product, index, onAddToCart }) {
       className="group bg-white/[0.03] border border-white/[0.07] rounded-sm overflow-hidden hover:border-gold/25 hover:bg-white/[0.05] transition-all duration-400"
     >
       {/* Product visual */}
-      <div className="relative h-52 bg-gradient-to-br from-white/[0.05] to-transparent flex items-center justify-center overflow-hidden">
-        <div
-          className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-          style={{ background: 'radial-gradient(ellipse at center, rgba(230,180,80,0.10) 0%, transparent 70%)' }}
+      <div className="relative h-64 bg-white/[0.03] flex items-center justify-center overflow-hidden">
+        <img
+          src={product.image}
+          alt={product.name}
+          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
         />
-        <span className="text-7xl select-none group-hover:scale-110 transition-transform duration-400">
-          {product.emoji}
-        </span>
-        <div className="absolute bottom-3 right-3">
-          <span className="font-barlow-condensed text-xs text-cream/30 tracking-wider uppercase bg-white/[0.06] px-2 py-1 rounded-sm">
-            {product.color}
-          </span>
-        </div>
       </div>
 
       {/* Info */}
       <div className="p-6">
-        <p className="font-barlow-condensed text-gold text-xs tracking-[0.25em] uppercase mb-1">
-          {product.tagline}
-        </p>
         <h3 className="font-anton text-cream text-2xl leading-tight mb-2">{product.name}</h3>
         <p className="font-barlow text-cream/50 text-sm leading-relaxed mb-5">{product.description}</p>
 
         {/* Size selector */}
-        {product.sizes.length > 1 && (
+        {product.sizes.length > 0 && (
           <div className="flex flex-wrap gap-2 mb-5">
             {product.sizes.map((size) => (
               <button
