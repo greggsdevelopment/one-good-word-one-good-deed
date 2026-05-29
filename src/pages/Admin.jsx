@@ -1,59 +1,51 @@
-import { useState } from 'react';
+import { useQuery } from '@tanstack/react-query';
 import { base44 } from '@/api/base44Client';
-import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { LogOut, Mail, MessageSquare, BookOpen, Check, X, Trash2 } from 'lucide-react';
+import { LogOut, CalendarCheck, Heart, BookOpen, ShoppingBag, Mail } from 'lucide-react';
+import BookingTab from '@/components/admin/BookingTab';
+import PledgesTab from '@/components/admin/PledgesTab';
+import StoriesTab from '@/components/admin/StoriesTab';
+import MarketplaceTab from '@/components/admin/MarketplaceTab';
+import MessagesTab from '@/components/admin/MessagesTab';
 
 export default function Admin() {
-  const queryClient = useQueryClient();
-
-  const { data: messages = [], isLoading: loadingMessages } = useQuery({
-    queryKey: ['contactMessages'],
-    queryFn: () => base44.entities.ContactMessage.list('-created_date', 100),
+  const { data: bookings = [] } = useQuery({
+    queryKey: ['bookings'],
+    queryFn: () => base44.entities.BookingRequest.list('-created_date', 100),
   });
-
-  const { data: pledges = [], isLoading: loadingPledges } = useQuery({
+  const { data: pledges = [] } = useQuery({
     queryKey: ['pledges'],
-    queryFn: () => base44.entities.Pledge.list('-created_date', 100),
+    queryFn: () => base44.entities.Pledge.list('-created_date', 200),
   });
-
-  const { data: stories = [], isLoading: loadingStories } = useQuery({
+  const { data: stories = [] } = useQuery({
     queryKey: ['stories'],
     queryFn: () => base44.entities.Story.list('-created_date', 100),
   });
-
-  const approveStory = useMutation({
-    mutationFn: ({ id, approved }) => base44.entities.Story.update(id, { approved }),
-    onSuccess: () => queryClient.invalidateQueries({ queryKey: ['stories'] }),
+  const { data: messages = [] } = useQuery({
+    queryKey: ['contactMessages'],
+    queryFn: () => base44.entities.ContactMessage.list('-created_date', 100),
+  });
+  const { data: products = [] } = useQuery({
+    queryKey: ['admin-products'],
+    queryFn: () => base44.entities.Product.list('sort_order', 200),
   });
 
-  const deleteRecord = useMutation({
-    mutationFn: ({ entity, id }) => base44.entities[entity].delete(id),
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['contactMessages'] });
-      queryClient.invalidateQueries({ queryKey: ['pledges'] });
-      queryClient.invalidateQueries({ queryKey: ['stories'] });
-    },
-  });
-
-  const handleLogout = () => {
-    base44.auth.logout('/');
-  };
+  const pendingStories = stories.filter(s => !s.approved).length;
 
   return (
     <div className="min-h-screen bg-cream">
-      <div className="bg-ink text-cream p-4 sm:p-6 flex items-center justify-between">
+      {/* Header */}
+      <div className="bg-ink text-cream px-4 sm:px-8 py-5 flex items-center justify-between">
         <div>
-          <h1 className="font-anton text-2xl sm:text-3xl">ADMIN DASHBOARD</h1>
-          <p className="font-barlow text-cream/50 text-sm">One Good Word...One Good Deed</p>
+          <h1 className="font-anton text-2xl sm:text-3xl tracking-wider">ADMIN DASHBOARD</h1>
+          <p className="font-barlow text-cream/40 text-sm mt-0.5">One Good Word...One Good Deed</p>
         </div>
-        <div className="flex items-center gap-3">
-          <a href="/" className="font-barlow-condensed text-cream/50 hover:text-gold text-sm tracking-wider uppercase transition-colors">
+        <div className="flex items-center gap-4">
+          <a href="/" className="font-barlow-condensed text-cream/50 hover:text-gold text-sm tracking-wider uppercase transition-colors hidden sm:block">
             View Site
           </a>
-          <Button variant="outline" size="sm" onClick={handleLogout} className="text-cream border-cream/20 hover:bg-cream/10">
+          <Button variant="outline" size="sm" onClick={() => base44.auth.logout('/')} className="text-cream border-cream/20 hover:bg-cream/10 font-barlow-condensed uppercase tracking-wider text-xs">
             <LogOut className="w-4 h-4 mr-1" /> Logout
           </Button>
         </div>
@@ -61,136 +53,52 @@ export default function Admin() {
 
       <div className="max-w-6xl mx-auto p-4 sm:p-8">
         {/* Stats */}
-        <div className="grid grid-cols-3 gap-4 mb-8">
-          <div className="bg-white rounded-sm p-5 border border-ink/5">
-            <p className="font-anton text-3xl text-ink">{pledges.length}</p>
-            <p className="font-barlow text-ash text-sm">Total Pledges</p>
-          </div>
-          <div className="bg-white rounded-sm p-5 border border-ink/5">
-            <p className="font-anton text-3xl text-ink">{messages.length}</p>
-            <p className="font-barlow text-ash text-sm">Messages</p>
-          </div>
-          <div className="bg-white rounded-sm p-5 border border-ink/5">
-            <p className="font-anton text-3xl text-ink">{stories.length}</p>
-            <p className="font-barlow text-ash text-sm">Stories</p>
-          </div>
+        <div className="grid grid-cols-2 sm:grid-cols-5 gap-3 mb-8">
+          {[
+            { label: 'Bookings', value: bookings.length, icon: CalendarCheck, color: 'text-blue-600' },
+            { label: 'Pledges', value: pledges.length, icon: Heart, color: 'text-pink-600' },
+            { label: 'Stories', value: stories.length, extra: pendingStories > 0 ? `${pendingStories} pending` : null, icon: BookOpen, color: 'text-purple-600' },
+            { label: 'Messages', value: messages.length, icon: Mail, color: 'text-green-600' },
+            { label: 'Products', value: products.length, icon: ShoppingBag, color: 'text-gold-dark' },
+          ].map(({ label, value, extra, icon: Icon, color }) => (
+            <div key={label} className="bg-white rounded-sm p-4 border border-ink/5 flex flex-col gap-1">
+              <div className="flex items-center justify-between">
+                <p className={`font-anton text-3xl text-ink`}>{value}</p>
+                <Icon className={`w-5 h-5 ${color} opacity-60`} />
+              </div>
+              <p className="font-barlow text-ash text-xs">{label}</p>
+              {extra && <p className="font-barlow text-amber-500 text-xs">{extra}</p>}
+            </div>
+          ))}
         </div>
 
-        <Tabs defaultValue="messages">
-          <TabsList className="bg-white border border-ink/5 mb-6">
-            <TabsTrigger value="messages" className="font-barlow-condensed uppercase tracking-wider text-xs">
-              <Mail className="w-4 h-4 mr-1.5" /> Messages
+        {/* Tabs */}
+        <Tabs defaultValue="bookings">
+          <TabsList className="bg-white border border-ink/5 mb-6 h-auto flex-wrap gap-1 p-1">
+            <TabsTrigger value="bookings" className="font-barlow-condensed uppercase tracking-wider text-xs data-[state=active]:bg-ink data-[state=active]:text-cream gap-1.5">
+              <CalendarCheck className="w-3.5 h-3.5" /> Bookings
+              {bookings.length > 0 && <span className="ml-1 bg-blue-100 text-blue-700 rounded-full text-[10px] px-1.5">{bookings.length}</span>}
             </TabsTrigger>
-            <TabsTrigger value="pledges" className="font-barlow-condensed uppercase tracking-wider text-xs">
-              <MessageSquare className="w-4 h-4 mr-1.5" /> Pledges
+            <TabsTrigger value="pledges" className="font-barlow-condensed uppercase tracking-wider text-xs data-[state=active]:bg-ink data-[state=active]:text-cream gap-1.5">
+              <Heart className="w-3.5 h-3.5" /> Pledges
             </TabsTrigger>
-            <TabsTrigger value="stories" className="font-barlow-condensed uppercase tracking-wider text-xs">
-              <BookOpen className="w-4 h-4 mr-1.5" /> Stories
+            <TabsTrigger value="stories" className="font-barlow-condensed uppercase tracking-wider text-xs data-[state=active]:bg-ink data-[state=active]:text-cream gap-1.5">
+              <BookOpen className="w-3.5 h-3.5" /> Stories
+              {pendingStories > 0 && <span className="ml-1 bg-amber-100 text-amber-700 rounded-full text-[10px] px-1.5">{pendingStories}</span>}
+            </TabsTrigger>
+            <TabsTrigger value="messages" className="font-barlow-condensed uppercase tracking-wider text-xs data-[state=active]:bg-ink data-[state=active]:text-cream gap-1.5">
+              <Mail className="w-3.5 h-3.5" /> Messages
+            </TabsTrigger>
+            <TabsTrigger value="marketplace" className="font-barlow-condensed uppercase tracking-wider text-xs data-[state=active]:bg-ink data-[state=active]:text-cream gap-1.5">
+              <ShoppingBag className="w-3.5 h-3.5" /> Marketplace
             </TabsTrigger>
           </TabsList>
 
-          <TabsContent value="messages">
-            <div className="space-y-3">
-              {loadingMessages && <p className="font-barlow text-ash">Loading...</p>}
-              {messages.map((msg) => (
-                <div key={msg.id} className="bg-white rounded-sm p-5 border border-ink/5">
-                  <div className="flex items-start justify-between gap-4">
-                    <div className="flex-1">
-                      <div className="flex items-center gap-3 mb-2">
-                        <p className="font-barlow font-semibold text-ink">{msg.name}</p>
-                        <p className="font-barlow text-ash text-sm">{msg.email}</p>
-                      </div>
-                      <p className="font-barlow-condensed text-ink/70 text-sm uppercase tracking-wider mb-1">{msg.subject}</p>
-                      <p className="font-barlow text-ink/60 text-sm leading-relaxed">{msg.message}</p>
-                      <p className="font-barlow text-ash text-xs mt-2">{new Date(msg.created_date).toLocaleString()}</p>
-                    </div>
-                    <Button
-                      variant="ghost"
-                      size="icon"
-                      onClick={() => deleteRecord.mutate({ entity: 'ContactMessage', id: msg.id })}
-                      className="text-ash hover:text-red-500 shrink-0"
-                    >
-                      <Trash2 className="w-4 h-4" />
-                    </Button>
-                  </div>
-                </div>
-              ))}
-              {!loadingMessages && messages.length === 0 && (
-                <p className="font-barlow text-ash text-center py-8">No messages yet.</p>
-              )}
-            </div>
-          </TabsContent>
-
-          <TabsContent value="pledges">
-            <div className="space-y-2">
-              {loadingPledges && <p className="font-barlow text-ash">Loading...</p>}
-              {pledges.map((pledge) => (
-                <div key={pledge.id} className="bg-white rounded-sm p-4 border border-ink/5 flex items-center justify-between">
-                  <div>
-                    <span className="font-barlow font-semibold text-ink">{pledge.name}</span>
-                    {pledge.location && <span className="font-barlow text-ash text-sm ml-2">from {pledge.location}</span>}
-                    {pledge.message && <p className="font-barlow text-ink/50 text-sm mt-1">"{pledge.message}"</p>}
-                    <p className="font-barlow text-ash text-xs mt-1">{new Date(pledge.created_date).toLocaleString()}</p>
-                  </div>
-                  <Button
-                    variant="ghost"
-                    size="icon"
-                    onClick={() => deleteRecord.mutate({ entity: 'Pledge', id: pledge.id })}
-                    className="text-ash hover:text-red-500"
-                  >
-                    <Trash2 className="w-4 h-4" />
-                  </Button>
-                </div>
-              ))}
-              {!loadingPledges && pledges.length === 0 && (
-                <p className="font-barlow text-ash text-center py-8">No pledges yet.</p>
-              )}
-            </div>
-          </TabsContent>
-
-          <TabsContent value="stories">
-            <div className="space-y-3">
-              {loadingStories && <p className="font-barlow text-ash">Loading...</p>}
-              {stories.map((story) => (
-                <div key={story.id} className="bg-white rounded-sm p-5 border border-ink/5">
-                  <div className="flex items-start justify-between gap-4">
-                    <div className="flex-1">
-                      <div className="flex items-center gap-3 mb-2">
-                        <p className="font-barlow font-semibold text-ink">{story.name}</p>
-                        {story.location && <p className="font-barlow text-ash text-sm">{story.location}</p>}
-                        <Badge variant={story.approved ? 'default' : 'secondary'} className="text-xs">
-                          {story.approved ? 'Approved' : 'Pending'}
-                        </Badge>
-                      </div>
-                      <p className="font-barlow text-ink/60 text-sm leading-relaxed">{story.story}</p>
-                      <p className="font-barlow text-ash text-xs mt-2">{new Date(story.created_date).toLocaleString()}</p>
-                    </div>
-                    <div className="flex gap-1 shrink-0">
-                      <Button
-                        variant="ghost"
-                        size="icon"
-                        onClick={() => approveStory.mutate({ id: story.id, approved: !story.approved })}
-                        className={story.approved ? 'text-ash hover:text-red-500' : 'text-ash hover:text-green-600'}
-                      >
-                        {story.approved ? <X className="w-4 h-4" /> : <Check className="w-4 h-4" />}
-                      </Button>
-                      <Button
-                        variant="ghost"
-                        size="icon"
-                        onClick={() => deleteRecord.mutate({ entity: 'Story', id: story.id })}
-                        className="text-ash hover:text-red-500"
-                      >
-                        <Trash2 className="w-4 h-4" />
-                      </Button>
-                    </div>
-                  </div>
-                </div>
-              ))}
-              {!loadingStories && stories.length === 0 && (
-                <p className="font-barlow text-ash text-center py-8">No stories yet.</p>
-              )}
-            </div>
-          </TabsContent>
+          <TabsContent value="bookings"><BookingTab /></TabsContent>
+          <TabsContent value="pledges"><PledgesTab /></TabsContent>
+          <TabsContent value="stories"><StoriesTab /></TabsContent>
+          <TabsContent value="messages"><MessagesTab /></TabsContent>
+          <TabsContent value="marketplace"><MarketplaceTab /></TabsContent>
         </Tabs>
       </div>
     </div>
