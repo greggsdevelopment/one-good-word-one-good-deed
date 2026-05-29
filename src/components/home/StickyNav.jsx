@@ -146,6 +146,19 @@ export default function StickyNav({ logoUrl }) {
                   {link.label}
                 </motion.a>
               ))}
+              <motion.div
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: NAV_LINKS.length * 0.07 }}
+              >
+                <Link
+                  to="/shop"
+                  onClick={() => setMenuOpen(false)}
+                  className="font-anton text-cream/80 hover:text-gold text-4xl leading-tight tracking-wide uppercase transition-colors py-2 min-h-[56px] flex items-center"
+                >
+                  Shop
+                </Link>
+              </motion.div>
             </div>
             <motion.div
               initial={{ opacity: 0, y: 10 }}
