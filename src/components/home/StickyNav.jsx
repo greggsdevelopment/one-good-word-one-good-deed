@@ -27,6 +27,11 @@ export default function StickyNav({ logoUrl }) {
     return () => window.removeEventListener('resize', onResize);
   }, []);
 
+  useEffect(() => {
+    document.body.style.overflow = menuOpen ? 'hidden' : '';
+    return () => { document.body.style.overflow = ''; };
+  }, [menuOpen]);
+
   const handleNav = (e, href) => {
     e.preventDefault();
     setMenuOpen(false);
