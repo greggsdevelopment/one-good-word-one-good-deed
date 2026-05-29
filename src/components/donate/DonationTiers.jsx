@@ -17,7 +17,7 @@ const TIERS = [
     amount: 25,
     emoji: '📣',
     tagline: 'Sponsor one classroom presentation',
-    description: 'Your $25 sponsors a full classroom presentation, giving 30 students a powerful message they won\'t forget.',
+    description: "Your $25 sponsors a full classroom presentation, giving 30 students a powerful message they won't forget.",
     featured: true,
   },
   {
