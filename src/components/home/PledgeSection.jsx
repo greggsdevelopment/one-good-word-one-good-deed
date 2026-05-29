@@ -14,27 +14,25 @@ export default function PledgeSection({ pledgeCount, recentPledges, onPledgeCrea
     e.preventDefault();
     if (!formData.name.trim()) return;
     setSubmitting(true);
-
     const payload = { name: formData.name.trim() };
     if (formData.location.trim()) payload.location = formData.location.trim();
     if (formData.message.trim()) payload.message = formData.message.trim();
-
     await base44.entities.Pledge.create(payload);
     setSubmitting(false);
     setSubmitted(true);
     onPledgeCreated();
   };
 
-  return (
-    <section id="pledge" className="relative bg-ink py-24 md:py-32 px-6 overflow-hidden" ref={ref}>
-      <div className="grain-overlay" />
+  const displayPledges = recentPledges.slice(0, 12);
 
-      {/* Subtle gold glow */}
+  return (
+    <section id="pledge" className="relative bg-ink py-24 md:py-32 px-4 sm:px-6 overflow-hidden" ref={ref}>
+      <div className="grain-overlay" style={{ opacity: 0.09 }} />
+
+      {/* Gold glow top */}
       <div
         className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] pointer-events-none"
-        style={{
-          background: 'radial-gradient(ellipse, rgba(230,180,80,0.08) 0%, transparent 70%)',
-        }}
+        style={{ background: 'radial-gradient(ellipse, rgba(230,180,80,0.10) 0%, transparent 70%)' }}
       />
 
       <div className="relative z-10 max-w-4xl mx-auto">
@@ -56,7 +54,7 @@ export default function PledgeSection({ pledgeCount, recentPledges, onPledgeCrea
           SPEAK IT. LIVE IT.
         </motion.h2>
 
-        {/* Pledge text */}
+        {/* Pledge quote */}
         <motion.blockquote
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
@@ -86,26 +84,26 @@ export default function PledgeSection({ pledgeCount, recentPledges, onPledgeCrea
                 value={formData.name}
                 onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                 required
-                className="w-full bg-white/[0.06] border border-white/10 rounded-sm px-5 py-4 text-cream placeholder:text-cream/30 font-barlow focus:outline-none focus:border-gold/50 transition-colors"
+                className="w-full bg-white/[0.06] border border-white/10 rounded-sm px-5 py-4 text-cream placeholder:text-cream/30 font-barlow focus:outline-none focus:border-gold/50 transition-colors text-base min-h-[52px]"
               />
               <input
                 type="text"
                 placeholder="Last initial or city (optional)"
                 value={formData.location}
                 onChange={(e) => setFormData({ ...formData, location: e.target.value })}
-                className="w-full bg-white/[0.06] border border-white/10 rounded-sm px-5 py-4 text-cream placeholder:text-cream/30 font-barlow focus:outline-none focus:border-gold/50 transition-colors"
+                className="w-full bg-white/[0.06] border border-white/10 rounded-sm px-5 py-4 text-cream placeholder:text-cream/30 font-barlow focus:outline-none focus:border-gold/50 transition-colors text-base min-h-[52px]"
               />
               <textarea
                 placeholder="A short message (optional)"
                 value={formData.message}
                 onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                 rows={3}
-                className="w-full bg-white/[0.06] border border-white/10 rounded-sm px-5 py-4 text-cream placeholder:text-cream/30 font-barlow focus:outline-none focus:border-gold/50 transition-colors resize-none"
+                className="w-full bg-white/[0.06] border border-white/10 rounded-sm px-5 py-4 text-cream placeholder:text-cream/30 font-barlow focus:outline-none focus:border-gold/50 transition-colors resize-none text-base"
               />
               <button
                 type="submit"
                 disabled={submitting || !formData.name.trim()}
-                className="w-full py-4 bg-gold hover:bg-gold-dark disabled:opacity-50 text-ink font-barlow-condensed font-bold text-lg uppercase tracking-wider rounded-sm transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xl hover:shadow-gold/25"
+                className="w-full py-4 bg-gold hover:bg-gold-dark disabled:opacity-50 text-ink font-barlow-condensed font-bold text-xl uppercase tracking-wider rounded-sm transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xl hover:shadow-gold/25 min-h-[56px]"
               >
                 {submitting ? 'Submitting...' : 'I Take the Pledge'}
               </button>
@@ -125,37 +123,52 @@ export default function PledgeSection({ pledgeCount, recentPledges, onPledgeCrea
           )}
         </AnimatePresence>
 
-        {/* Live counter */}
-        <div className="text-center mt-10">
-          <p className="font-barlow-condensed text-ash text-sm tracking-wider uppercase">
-            <span className="text-gold font-bold text-2xl">{pledgeCount.toLocaleString()}</span>
-            <span className="ml-2">pledges and counting</span>
+        {/* BIG live counter */}
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6, delay: 0.5 }}
+          className="text-center mt-14"
+        >
+          <p className="font-anton text-gold text-7xl sm:text-8xl leading-none mb-2">
+            {pledgeCount.toLocaleString()}
           </p>
-        </div>
+          <p className="font-barlow-condensed text-cream/40 text-sm tracking-[0.25em] uppercase">
+            Pledges and Counting
+          </p>
+        </motion.div>
 
-        {/* Pledge wall */}
-        {recentPledges.length > 0 && (
+        {/* Pledge wall — recent 12, slide in at top */}
+        {displayPledges.length > 0 && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={inView ? { opacity: 1 } : {}}
-            transition={{ duration: 0.8, delay: 0.5 }}
+            transition={{ duration: 0.8, delay: 0.7 }}
             className="mt-12"
           >
-            <p className="font-barlow-condensed text-cream/40 text-xs tracking-[0.2em] uppercase text-center mb-6">
+            <p className="font-barlow-condensed text-cream/30 text-xs tracking-[0.25em] uppercase text-center mb-6">
               Recent Pledges
             </p>
-            <div className="flex flex-wrap justify-center gap-3">
-              {recentPledges.map((pledge) => (
-                <div
-                  key={pledge.id}
-                  className="bg-white/[0.04] border border-white/[0.06] rounded-sm px-4 py-2"
-                >
-                  <span className="font-barlow text-cream/80 text-sm font-medium">{pledge.name}</span>
-                  {pledge.location && (
-                    <span className="font-barlow text-cream/40 text-sm ml-1.5">from {pledge.location}</span>
-                  )}
-                </div>
-              ))}
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
+              <AnimatePresence initial={false}>
+                {displayPledges.map((pledge) => (
+                  <motion.div
+                    key={pledge.id}
+                    initial={{ opacity: 0, y: -16, scale: 0.95 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0.9 }}
+                    transition={{ duration: 0.4, ease: 'easeOut' }}
+                    className="bg-white/[0.05] border border-white/[0.08] rounded-sm px-4 py-3 text-center"
+                  >
+                    <p className="font-barlow-condensed text-cream font-semibold text-sm tracking-wide truncate">
+                      {pledge.name}
+                    </p>
+                    {pledge.location && (
+                      <p className="font-barlow text-cream/40 text-xs mt-0.5 truncate">{pledge.location}</p>
+                    )}
+                  </motion.div>
+                ))}
+              </AnimatePresence>
             </div>
           </motion.div>
         )}
