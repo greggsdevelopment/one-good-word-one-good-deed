@@ -10,7 +10,7 @@ import MomentumBand from '@/components/home/MomentumBand';
 import ContactSection from '@/components/home/ContactSection';
 import FooterSection from '@/components/home/FooterSection';
 
-const LOGO_URL = 'https://media.base44.com/images/public/6a19e1fc6c5eb736a0763b09/b968c3f75_generated_c8b03e5a.png';
+const LOGO_URL = 'https://media.base44.com/images/public/6a19e1fc6c5eb736a0763b09/29d2b5be7_image.png';
 
 export default function Home() {
   const [pledgeCount, setPledgeCount] = useState(0);
