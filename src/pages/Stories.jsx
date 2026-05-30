@@ -103,7 +103,7 @@ export default function Stories() {
   }, []);
 
   const loadStories = async () => {
-    const dbStories = await base44.entities.ImpactStory.filter({ published: true }, '-date', 50);
+    const dbStories = await base44.entities.Story.filter({ approved: true }, '-created_date', 50);
     // Merge sample + db stories, db stories first
     const all = [...dbStories, ...SAMPLE_STORIES];
     setStories(all);
@@ -116,7 +116,7 @@ export default function Stories() {
   const handleSave = async (e) => {
     e.preventDefault();
     setSaving(true);
-    await base44.entities.ImpactStory.create({ ...form, published: true });
+    await base44.entities.Story.create({ ...form, approved: true });
     setSaving(false);
     setShowForm(false);
     setForm({ title: '', date: '', category: 'Student Story', excerpt: '', content: '' });
