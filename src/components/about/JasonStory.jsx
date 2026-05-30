@@ -86,6 +86,36 @@ export default function JasonStory() {
             This story is why Jason Lewis walks into schools, gyms, and auditoriums — so no young person ever feels as alone as he did on that concrete floor.
           </p>
         </motion.div>
+
+        {/* Family photos */}
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.7, delay: 1.1 }}
+          className="mt-20"
+        >
+          <p className="font-barlow-condensed text-gold text-xs tracking-[0.3em] uppercase mb-2 text-center">The Reason He Fights</p>
+          <p className="font-anton text-cream text-3xl sm:text-4xl text-center mb-10">HIS FAMILY.</p>
+          <div className="grid grid-cols-2 gap-4">
+            <div className="rounded-sm overflow-hidden aspect-[3/4]">
+              <img
+                src="https://media.base44.com/images/public/6a19e1fc6c5eb736a0763b09/cada78518_attIsmxPI7jtNCkKpbV3ppbxbINx0RWVZrfihBogYOoHYAdat.jpg"
+                alt="Jason with his daughters"
+                className="w-full h-full object-cover"
+              />
+            </div>
+            <div className="rounded-sm overflow-hidden aspect-[3/4]">
+              <img
+                src="https://media.base44.com/images/public/6a19e1fc6c5eb736a0763b09/568d1bbd9_attysi1vemRmZPULSef0NF0hQzYSAkySINEev8acHNtOgE.jpg"
+                alt="Jason's kids"
+                className="w-full h-full object-cover"
+              />
+            </div>
+          </div>
+          <p className="font-barlow text-cream/30 text-sm text-center mt-6 italic">
+            Every word he speaks. Every school he visits. Every life he touches — it's all for them.
+          </p>
+        </motion.div>
       </div>
     </section>
   );
