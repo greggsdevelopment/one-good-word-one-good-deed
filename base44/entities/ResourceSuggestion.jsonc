@@ -1,0 +1,39 @@
+{
+  "name": "ResourceSuggestion",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Name of the resource or organization"
+    },
+    "phone": {
+      "type": "string",
+      "description": "Phone number"
+    },
+    "website": {
+      "type": "string",
+      "description": "Website URL"
+    },
+    "category": {
+      "type": "string",
+      "enum": [
+        "Crisis",
+        "Mental Health",
+        "After-School",
+        "Anti-Bullying",
+        "Faith",
+        "Substance Abuse",
+        "Other"
+      ],
+      "description": "Resource category"
+    },
+    "notes": {
+      "type": "string",
+      "description": "Additional notes about the resource"
+    }
+  },
+  "required": [
+    "name"
+  ],
+  "allowPublicCreate": true
+}

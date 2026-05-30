@@ -63,8 +63,27 @@ const HOTLINES = [
   },
 ];
 
-export default function CrisisHotlines() {
+// Map hotline names to filter categories
+const HOTLINE_CATEGORY_MAP = {
+  '988 Suicide & Crisis Lifeline': 'Crisis',
+  'Crisis Text Line': 'Crisis',
+  'Trevor Project (LGBTQ+)': 'Crisis',
+  'SAMHSA National Helpline': 'Substance Abuse',
+  'Bullying Prevention Hotline': 'Anti-Bullying',
+  'National Domestic Violence Hotline': 'Crisis',
+};
+
+export default function CrisisHotlines({ search = '', activeCategory = 'All' }) {
   const [ref, inView] = useInView({ threshold: 0.1 });
+
+  const filtered = HOTLINES.filter(line => {
+    const matchesSearch = !search.trim() ||
+      line.name.toLowerCase().includes(search.toLowerCase()) ||
+      line.description.toLowerCase().includes(search.toLowerCase());
+    const cat = HOTLINE_CATEGORY_MAP[line.name] || 'Crisis';
+    const matchesCategory = activeCategory === 'All' || cat === activeCategory;
+    return matchesSearch && matchesCategory;
+  });
 
   return (
     <section ref={ref} className="py-20 px-6 bg-black/20">
@@ -82,8 +101,11 @@ export default function CrisisHotlines() {
           </p>
         </motion.div>
 
+        {filtered.length === 0 ? (
+          <p className="font-barlow text-cream/30 text-sm py-8">No hotlines match your search.</p>
+        ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-          {HOTLINES.map((line, i) => (
+          {filtered.map((line, i) => (
             <motion.div
               key={line.name}
               initial={{ opacity: 0, y: 24 }}
@@ -134,6 +156,7 @@ export default function CrisisHotlines() {
             </motion.div>
           ))}
         </div>
+        )}
       </div>
     </section>
   );

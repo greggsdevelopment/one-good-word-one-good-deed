@@ -149,9 +149,26 @@ const CATEGORY_COLORS = {
   'Faith-Based': 'bg-violet-500/20 text-violet-300',
 };
 
-export default function LocalServices() {
+export default function LocalServices({ search = '', activeCategory = 'All' }) {
   const [zip, setZip] = useState('');
   const [ref, inView] = useInView({ threshold: 0.1 });
+
+  const matchesSearch = (item) => !search.trim() ||
+    item.name.toLowerCase().includes(search.toLowerCase()) ||
+    item.description.toLowerCase().includes(search.toLowerCase()) ||
+    (item.category || '').toLowerCase().includes(search.toLowerCase()) ||
+    (item.location || '').toLowerCase().includes(search.toLowerCase());
+
+  // Map local categories to tab categories
+  const matchesCategory = (item) => {
+    if (activeCategory === 'All') return true;
+    const c = item.category || '';
+    if (activeCategory === 'Faith') return c === 'Faith-Based';
+    return c === activeCategory;
+  };
+
+  const filteredFinders = FINDER_TOOLS.filter(t => matchesSearch(t) && matchesCategory(t));
+  const filteredMichigan = MICHIGAN_RESOURCES.filter(r => matchesSearch(r) && matchesCategory(r));
 
   const handleSearch = (e) => {
     e.preventDefault();
@@ -206,7 +223,10 @@ export default function LocalServices() {
 
         {/* Finder cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-          {FINDER_TOOLS.map((tool, i) => (
+          {filteredFinders.length === 0 && filteredMichigan.length === 0 && (
+            <p className="font-barlow text-cream/30 text-sm col-span-3 py-4">No resources match your search.</p>
+          )}
+          {filteredFinders.map((tool, i) => (
             <motion.a
               key={tool.name}
               href={tool.url}
@@ -240,7 +260,7 @@ export default function LocalServices() {
         >
           <p className="font-barlow-condensed text-gold text-xs tracking-[0.3em] uppercase mb-5">Michigan Resources</p>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-            {MICHIGAN_RESOURCES.map((resource, i) => (
+            {filteredMichigan.map((resource, i) => (
               <div
                 key={resource.name}
                 className="bg-white/3 border border-cream/10 rounded-sm p-6 flex flex-col gap-3"
