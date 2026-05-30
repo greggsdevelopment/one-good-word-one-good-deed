@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
 
 const PAGE_LINKS = [
+  { label: 'Home', to: '/' },
   { label: 'About', to: '/about' },
   { label: 'Programs', to: '/programs' },
   { label: 'Stories', to: '/stories' },
