@@ -15,6 +15,7 @@ export default function FooterSection({ logoUrl }) {
     { label: 'Donate', to: '/donate' },
     { label: 'Pledge Wall', to: '/pledge' },
     { label: 'Shop', to: '/shop' },
+    { label: 'Events', to: '/events' },
     { label: 'Gallery', to: '/gallery' },
   ];
 

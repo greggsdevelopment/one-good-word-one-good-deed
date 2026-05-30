@@ -8,6 +8,7 @@ const PAGE_LINKS = [
   { label: 'Programs', to: '/programs' },
   { label: 'Stories', to: '/stories' },
   { label: 'Resources', to: '/resources' },
+  { label: 'Events', to: '/events' },
   { label: 'Donate', to: '/donate' },
   { label: 'Pledge', to: '/pledge' },
   { label: 'Shop', to: '/shop' },
