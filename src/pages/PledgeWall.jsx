@@ -1,9 +1,38 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowLeft, Heart, CheckCircle, MapPin, Clock } from 'lucide-react';
+import { ArrowLeft, Heart, MapPin, Clock, Search, X } from 'lucide-react';
 import { base44 } from '@/api/base44Client';
 import { format } from 'date-fns';
+import PledgeCard from '@/components/pledge/PledgeCard';
+import FeaturedQuotes from '@/components/pledge/FeaturedQuotes';
+
+// Animated counter hook
+function useCountUp(target, duration = 1800) {
+  const [count, setCount] = useState(0);
+  const started = useRef(false);
+  useEffect(() => {
+    if (!target || started.current) return;
+    started.current = true;
+    const steps = 60;
+    const increment = target / steps;
+    let current = 0;
+    const interval = setInterval(() => {
+      current += increment;
+      if (current >= target) { setCount(target); clearInterval(interval); }
+      else setCount(Math.floor(current));
+    }, duration / steps);
+    return () => clearInterval(interval);
+  }, [target, duration]);
+  return count;
+}
+
+const COLORS = [
+  'border-gold/30 bg-gold/5',
+  'border-white/10 bg-white/[0.03]',
+  'border-gold/20 bg-gold/[0.04]',
+  'border-white/[0.08] bg-white/[0.02]',
+];
 
 export default function PledgeWall() {
   const [pledges, setPledges] = useState([]);
@@ -11,6 +40,10 @@ export default function PledgeWall() {
   const [form, setForm] = useState({ first_name: '', last_initial: '', city: '', pledge_statement: '' });
   const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [submittedPledge, setSubmittedPledge] = useState(null);
+  const [search, setSearch] = useState('');
+
+  const animatedCount = useCountUp(loading ? 0 : pledges.length);
 
   const fetchPledges = async () => {
     const data = await base44.entities.Pledge.list('-created_date', 200);
@@ -29,17 +62,26 @@ export default function PledgeWall() {
     await base44.entities.Pledge.create(clean);
     setSubmitting(false);
     setSubmitted(true);
+    setSubmittedPledge(clean);
     fetchPledges();
   };
 
-  const inputClass = "w-full bg-white/[0.05] border border-white/[0.1] rounded-sm px-4 py-3 text-cream placeholder:text-cream/25 font-barlow text-sm focus:outline-none focus:border-gold/40 transition-colors";
+  const handleShareDone = () => {
+    setSubmitted(false);
+    setSubmittedPledge(null);
+    setForm({ first_name: '', last_initial: '', city: '', pledge_statement: '' });
+  };
 
-  const COLORS = [
-    'border-gold/30 bg-gold/5',
-    'border-white/10 bg-white/[0.03]',
-    'border-gold/20 bg-gold/[0.04]',
-    'border-white/[0.08] bg-white/[0.02]',
-  ];
+  const filteredPledges = pledges.filter(p => {
+    if (!search.trim()) return true;
+    const q = search.toLowerCase();
+    return (
+      p.first_name?.toLowerCase().includes(q) ||
+      p.city?.toLowerCase().includes(q)
+    );
+  });
+
+  const inputClass = "w-full bg-white/[0.05] border border-white/[0.1] rounded-sm px-4 py-3 text-cream placeholder:text-cream/25 font-barlow text-sm focus:outline-none focus:border-gold/40 transition-colors";
 
   return (
     <div className="min-h-screen bg-ink relative">
@@ -61,8 +103,8 @@ export default function PledgeWall() {
 
       <main className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 py-16">
 
-        {/* Hero counter */}
-        <div className="text-center mb-16">
+        {/* Hero counter — animated */}
+        <div className="text-center mb-12">
           <motion.p
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
@@ -78,7 +120,7 @@ export default function PledgeWall() {
           >
             <div className="w-12 h-px bg-gold/40" />
             <span className="font-anton text-gold text-7xl sm:text-9xl leading-none">
-              {loading ? '...' : pledges.length.toLocaleString()}
+              {loading ? '…' : animatedCount.toLocaleString()}
             </span>
             <div className="w-12 h-px bg-gold/40" />
           </motion.div>
@@ -100,17 +142,45 @@ export default function PledgeWall() {
           </motion.p>
         </div>
 
-        <div className="grid lg:grid-cols-[1fr_380px] gap-12 items-start">
+        {/* Featured quotes */}
+        <FeaturedQuotes />
 
-          {/* Pledge grid */}
+        <div className="grid lg:grid-cols-[1fr_380px] gap-12 items-start mt-12">
+
+          {/* Left: search + pledge grid */}
           <div>
+            {/* Search bar */}
+            <div className="relative mb-6">
+              <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-cream/30 pointer-events-none" />
+              <input
+                type="text"
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+                placeholder="Search by name or city..."
+                className="w-full pl-11 pr-10 py-3 bg-white/[0.04] border border-cream/10 rounded-sm text-cream placeholder:text-cream/25 font-barlow text-sm focus:outline-none focus:border-gold/30 transition-colors"
+              />
+              {search && (
+                <button onClick={() => setSearch('')} className="absolute right-3 top-1/2 -translate-y-1/2 text-cream/30 hover:text-cream transition-colors">
+                  <X className="w-4 h-4" />
+                </button>
+              )}
+            </div>
+
+            {search && (
+              <p className="font-barlow text-cream/30 text-xs mb-4">
+                {filteredPledges.length} result{filteredPledges.length !== 1 ? 's' : ''} for "{search}"
+              </p>
+            )}
+
             {loading ? (
               <div className="flex justify-center py-20">
                 <div className="w-8 h-8 border-2 border-gold/20 border-t-gold rounded-full animate-spin" />
               </div>
+            ) : filteredPledges.length === 0 ? (
+              <div className="text-center py-16 text-cream/30 font-barlow">No pledges found matching your search.</div>
             ) : (
-              <div className="columns-1 sm:columns-2 lg:columns-2 gap-4 space-y-4">
-                {pledges.map((pledge, i) => (
+              <div className="columns-1 sm:columns-2 gap-4 space-y-4">
+                {filteredPledges.map((pledge, i) => (
                   <motion.div
                     key={pledge.id}
                     initial={{ opacity: 0, y: 20 }}
@@ -131,8 +201,7 @@ export default function PledgeWall() {
                         </p>
                         {pledge.city && (
                           <p className="flex items-center gap-1 font-barlow text-cream/35 text-xs mt-0.5">
-                            <MapPin className="w-3 h-3" />
-                            {pledge.city}
+                            <MapPin className="w-3 h-3" />{pledge.city}
                           </p>
                         )}
                       </div>
@@ -147,7 +216,7 @@ export default function PledgeWall() {
             )}
           </div>
 
-          {/* Pledge form — sticky */}
+          {/* Right: form — sticky */}
           <div className="lg:sticky lg:top-24">
             <div className="bg-white/[0.03] border border-gold/20 rounded-sm p-8">
               <div className="w-10 h-1 bg-gold mb-6" />
@@ -181,20 +250,14 @@ export default function PledgeWall() {
                     </button>
                   </motion.form>
                 ) : (
-                  <motion.div
-                    key="done"
-                    initial={{ opacity: 0, scale: 0.95 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    className="text-center py-8"
-                  >
-                    <CheckCircle className="w-14 h-14 text-gold mx-auto mb-4" />
-                    <h3 className="font-anton text-cream text-2xl mb-2">PLEDGE ADDED!</h3>
-                    <p className="font-barlow text-cream/50 text-sm">Your name is now on the wall.</p>
+                  <motion.div key="card" initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+                    <PledgeCard pledge={submittedPledge} onClose={handleShareDone} />
                   </motion.div>
                 )}
               </AnimatePresence>
             </div>
           </div>
+
         </div>
       </main>
     </div>
