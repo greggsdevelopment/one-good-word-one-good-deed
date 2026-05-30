@@ -98,6 +98,33 @@ const MICHIGAN_RESOURCES = [
     location: 'Pontiac, MI',
   },
   {
+    name: 'NAACP Detroit Youth Council',
+    description: 'Youth empowerment, leadership & civil rights programs.',
+    url: 'https://naacpdetroit.org',
+    phone: '3138712087',
+    phoneDisplay: '(313) 871-2087',
+    category: 'Anti-Bullying',
+    location: 'Detroit, MI',
+  },
+  {
+    name: 'Oakland Schools SAVE Program',
+    description: 'Suicide awareness & bullying prevention for Oakland County youth.',
+    url: 'https://oaisd.org',
+    phone: '2482092000',
+    phoneDisplay: '(248) 209-2000',
+    category: 'Anti-Bullying',
+    location: 'Waterford, MI',
+  },
+  {
+    name: 'Covenant Community Care',
+    description: 'Faith-based counseling & wellness for youth regardless of ability to pay.',
+    url: 'https://covenantcommunitycare.org',
+    phone: '3138615400',
+    phoneDisplay: '(313) 861-5400',
+    category: 'Faith-Based',
+    location: 'Detroit, MI',
+  },
+  {
     name: 'Boys & Girls Club of Troy',
     description: 'Safe after-school programs, sports, arts & homework help for ages 6–18.',
     url: 'https://bgcdetroit.org',
@@ -118,6 +145,8 @@ const CATEGORY_COLORS = {
   'After-School': 'bg-pink-500/20 text-pink-300',
   'Crisis': 'bg-red-500/20 text-red-300',
   'Substance Abuse': 'bg-orange-500/20 text-orange-300',
+  'Anti-Bullying': 'bg-teal-500/20 text-teal-300',
+  'Faith-Based': 'bg-violet-500/20 text-violet-300',
 };
 
 export default function LocalServices() {
