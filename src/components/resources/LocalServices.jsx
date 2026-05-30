@@ -44,6 +44,15 @@ const FINDER_TOOLS = [
 
 const MICHIGAN_RESOURCES = [
   {
+    name: 'Henry Ford Maplegrove',
+    description: 'Adolescent substance abuse treatment in a confidential environment.',
+    url: 'https://henryford.com/maplegrove',
+    phone: '8004221183',
+    phoneDisplay: '(800) 422-1183',
+    category: 'Substance Abuse',
+    location: 'West Bloomfield, MI',
+  },
+  {
     name: 'Spaulding for Children',
     description: 'Trauma therapy & family support for Southeast Michigan youth.',
     url: 'https://spaulding.org',
@@ -108,6 +117,7 @@ const CATEGORY_COLORS = {
   'School Support': 'bg-gold/20 text-gold',
   'After-School': 'bg-pink-500/20 text-pink-300',
   'Crisis': 'bg-red-500/20 text-red-300',
+  'Substance Abuse': 'bg-orange-500/20 text-orange-300',
 };
 
 export default function LocalServices() {
