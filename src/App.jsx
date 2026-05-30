@@ -16,6 +16,7 @@ import PledgeWall from '@/pages/PledgeWall';
 import Admin from '@/pages/Admin';
 import Gallery from '@/pages/Gallery';
 import Stories from '@/pages/Stories';
+import Resources from '@/pages/Resources';
 import Login from '@/pages/Login';
 import Register from '@/pages/Register';
 import ForgotPassword from '@/pages/ForgotPassword';
@@ -49,6 +50,7 @@ const AuthenticatedApp = () => {
       <Route path="/pledge" element={<PledgeWall />} />
       <Route path="/gallery" element={<Gallery />} />
       <Route path="/stories" element={<Stories />} />
+      <Route path="/resources" element={<Resources />} />
 
       {/* Auth pages */}
       <Route path="/login" element={<Login />} />
