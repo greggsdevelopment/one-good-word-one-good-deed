@@ -2,6 +2,7 @@ import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import AboutHero from '@/components/about/AboutHero';
 import FoundingStory from '@/components/about/FoundingStory';
+import JasonStory from '@/components/about/JasonStory';
 import MilestoneTimeline from '@/components/about/MilestoneTimeline';
 import PhotoSection from '@/components/about/PhotoSection';
 import BookingCTA from '@/components/about/BookingCTA';
@@ -17,6 +18,7 @@ export default function About() {
       <StickyNav logoUrl={LOGO_URL} />
       <AboutHero />
       <FoundingStory />
+      <JasonStory />
       <MilestoneTimeline />
       <PhotoSection />
       <BookingCTA />
