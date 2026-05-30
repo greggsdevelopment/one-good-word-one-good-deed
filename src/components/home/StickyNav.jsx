@@ -132,7 +132,7 @@ export default function StickyNav({ logoUrl }) {
                   <Link
                     to={link.to}
                     onClick={() => setMenuOpen(false)}
-                    className="font-anton text-cream/80 hover:text-gold text-4xl leading-tight tracking-wide uppercase transition-colors py-2 min-h-[56px] flex items-center"
+                    className="font-anton text-cream hover:text-gold text-4xl leading-tight tracking-wide uppercase transition-colors py-2 min-h-[56px] flex items-center"
                   >
                     {link.label}
                   </Link>
@@ -146,7 +146,7 @@ export default function StickyNav({ logoUrl }) {
                 <a
                   href="#contact"
                   onClick={(e) => handleScroll(e, '#contact')}
-                  className="font-anton text-cream/80 hover:text-gold text-4xl leading-tight tracking-wide uppercase transition-colors py-2 min-h-[56px] flex items-center"
+                  className="font-anton text-cream hover:text-gold text-4xl leading-tight tracking-wide uppercase transition-colors py-2 min-h-[56px] flex items-center"
                 >
                   Contact
                 </a>
