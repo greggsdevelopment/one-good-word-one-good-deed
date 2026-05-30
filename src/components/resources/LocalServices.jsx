@@ -44,6 +44,15 @@ const FINDER_TOOLS = [
 
 const MICHIGAN_RESOURCES = [
   {
+    name: 'YMCA of Metropolitan Detroit',
+    description: 'Teen fitness, swim, college prep & after-school programs.',
+    url: 'https://ymcadetroit.org',
+    phone: '3132675300',
+    phoneDisplay: '(313) 267-5300',
+    category: 'After-School',
+    location: 'Detroit, MI',
+  },
+  {
     name: 'Lighthouse MI',
     description: 'Counseling, crisis services & youth programs for Oakland County.',
     url: 'https://lighthousemi.org',
