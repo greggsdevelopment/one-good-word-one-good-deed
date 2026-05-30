@@ -44,6 +44,15 @@ const FINDER_TOOLS = [
 
 const MICHIGAN_RESOURCES = [
   {
+    name: 'Detroit Wayne Mental Health Authority',
+    description: 'Behavioral health & crisis services for Wayne County teens.',
+    url: 'https://dwmha.com',
+    phone: '18002414949',
+    phoneDisplay: '1-800-241-4949',
+    category: 'Mental Health',
+    location: 'Detroit, MI',
+  },
+  {
     name: 'Common Ground Crisis Center',
     description: 'Oakland County 24/7 mental health crisis support & counseling.',
     url: 'https://commongroundhelps.org',
