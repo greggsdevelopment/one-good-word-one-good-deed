@@ -17,7 +17,7 @@ import FAQSection from '@/components/home/FAQSection';
 import VoicesOfChange from '@/components/home/VoicesOfChange';
 import BackgroundMusic from '@/components/home/BackgroundMusic';
 
-const LOGO_URL = 'https://storage.googleapis.com/base44-prod-app-files/f95001f6c/9bf3a28b-6e4c-4c4b-9534-a0781c77e54f_ChatGPT Image May 13, 2025, 10_43_21 AM.png';
+const LOGO_URL = 'https://media.base44.com/images/public/6a19e1fc6c5eb736a0763b09/1824cf861_IMG_5119.png';
 
 export default function Home() {
   const [pledgeCount, setPledgeCount] = useState(0);

@@ -8,7 +8,7 @@ import BookingCTA from '@/components/about/BookingCTA';
 import StickyNav from '@/components/home/StickyNav';
 import FooterSection from '@/components/home/FooterSection';
 
-const LOGO_URL = 'https://storage.googleapis.com/base44-prod-app-files/f95001f6c/9bf3a28b-6e4c-4c4b-9534-a0781c77e54f_ChatGPT Image May 13, 2025, 10_43_21 AM.png';
+const LOGO_URL = 'https://media.base44.com/images/public/6a19e1fc6c5eb736a0763b09/1824cf861_IMG_5119.png';
 
 export default function About() {
   return (
