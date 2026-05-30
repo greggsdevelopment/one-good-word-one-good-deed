@@ -127,7 +127,7 @@ export default function PledgeWall() {
                     <div className="flex items-center justify-between gap-2 flex-wrap">
                       <div>
                         <p className="font-barlow-condensed text-cream font-semibold tracking-wide text-sm">
-                          {pledge.first_name} {pledge.last_initial}.
+                          {pledge.first_name}{pledge.last_initial ? ` ${pledge.last_initial}.` : ''}
                         </p>
                         {pledge.city && (
                           <p className="flex items-center gap-1 font-barlow text-cream/35 text-xs mt-0.5">
