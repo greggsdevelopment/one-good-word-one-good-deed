@@ -44,6 +44,15 @@ const FINDER_TOOLS = [
 
 const MICHIGAN_RESOURCES = [
   {
+    name: 'Spaulding for Children',
+    description: 'Trauma therapy & family support for Southeast Michigan youth.',
+    url: 'https://spaulding.org',
+    phone: '2484430300',
+    phoneDisplay: '(248) 443-0300',
+    category: 'Mental Health',
+    location: 'Southfield, MI',
+  },
+  {
     name: 'YMCA of Metropolitan Detroit',
     description: 'Teen fitness, swim, college prep & after-school programs.',
     url: 'https://ymcadetroit.org',
