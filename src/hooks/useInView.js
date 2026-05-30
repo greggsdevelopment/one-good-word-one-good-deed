@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 
-export function useInView(threshold = 0.2) {
+export function useInView(options = 0.2) {
+  const threshold = typeof options === 'object' ? (options.threshold ?? 0.2) : options;
   const ref = useRef(null);
   const [inView, setInView] = useState(false);
 
