@@ -44,6 +44,15 @@ const FINDER_TOOLS = [
 
 const MICHIGAN_RESOURCES = [
   {
+    name: 'Lighthouse MI',
+    description: 'Counseling, crisis services & youth programs for Oakland County.',
+    url: 'https://lighthousemi.org',
+    phone: '2489200430',
+    phoneDisplay: '(248) 920-0430',
+    category: 'Mental Health',
+    location: 'Pontiac, MI',
+  },
+  {
     name: 'Detroit Wayne Mental Health Authority',
     description: 'Behavioral health & crisis services for Wayne County teens.',
     url: 'https://dwmha.com',
