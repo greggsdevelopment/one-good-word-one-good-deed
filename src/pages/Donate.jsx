@@ -3,6 +3,9 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowLeft, CheckCircle } from 'lucide-react';
 import DonateHero from '@/components/donate/DonateHero';
 import DonationTiers from '@/components/donate/DonationTiers';
+import DonationProgressBar from '@/components/donate/DonationProgressBar';
+import WhyWeNeedSupport from '@/components/donate/WhyWeNeedSupport';
+import DonorWall from '@/components/donate/DonorWall';
 
 export default function Donate() {
   const [searchParams] = useSearchParams();
@@ -27,7 +30,6 @@ export default function Donate() {
       </header>
 
       <main className="relative z-10">
-        {/* Success banner */}
         <AnimatePresence>
           {success && (
             <motion.div
@@ -43,6 +45,9 @@ export default function Donate() {
         </AnimatePresence>
 
         <DonateHero />
+        <DonationProgressBar />
+        <WhyWeNeedSupport />
+        <DonorWall />
         <DonationTiers />
       </main>
     </div>
