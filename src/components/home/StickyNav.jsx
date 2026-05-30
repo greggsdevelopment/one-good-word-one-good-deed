@@ -67,6 +67,7 @@ export default function StickyNav({ logoUrl }) {
                   src={logoUrl}
                   alt="One Good Word One Good Deed"
                   className="h-11 w-11 md:h-12 md:w-12 rounded-full object-cover shrink-0 ring-2 ring-gold/60"
+                  onError={(e) => { e.target.style.display = 'none'; }}
                 />
               )}
               <span className="font-barlow-condensed text-cream text-sm md:text-base font-semibold tracking-wide leading-tight hidden sm:block">
