@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 const PAGE_LINKS = [
   { label: 'About', to: '/about' },
   { label: 'Programs', to: '/programs' },
+  { label: 'Stories', to: '/stories' },
   { label: 'Donate', to: '/donate' },
   { label: 'Pledge', to: '/pledge' },
   { label: 'Shop', to: '/shop' },

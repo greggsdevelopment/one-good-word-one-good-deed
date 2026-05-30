@@ -10,6 +10,7 @@ export default function FooterSection({ logoUrl }) {
   const pageLinks = [
     { label: 'About', to: '/about' },
     { label: 'Programs', to: '/programs' },
+    { label: 'Stories', to: '/stories' },
     { label: 'Donate', to: '/donate' },
     { label: 'Pledge Wall', to: '/pledge' },
     { label: 'Shop', to: '/shop' },
