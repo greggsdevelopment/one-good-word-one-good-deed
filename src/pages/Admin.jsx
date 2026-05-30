@@ -8,6 +8,7 @@ import PledgesTab from '@/components/admin/PledgesTab';
 import StoriesTab from '@/components/admin/StoriesTab';
 import MarketplaceTab from '@/components/admin/MarketplaceTab';
 import MessagesTab from '@/components/admin/MessagesTab';
+import SummaryDashboard from '@/components/admin/SummaryDashboard';
 
 export default function Admin() {
   const { data: bookings = [] } = useQuery({
@@ -54,7 +55,7 @@ export default function Admin() {
       <div className="max-w-6xl mx-auto p-4 sm:p-8">
         {/* Stats */}
         <div className="grid grid-cols-2 sm:grid-cols-5 gap-3 mb-8">
-          {[
+           {[
             { label: 'Bookings', value: bookings.length, icon: CalendarCheck, color: 'text-blue-600' },
             { label: 'Pledges', value: pledges.length, icon: Heart, color: 'text-pink-600' },
             { label: 'Stories', value: stories.length, extra: pendingStories > 0 ? `${pendingStories} pending` : null, icon: BookOpen, color: 'text-purple-600' },
@@ -71,6 +72,9 @@ export default function Admin() {
             </div>
           ))}
         </div>
+
+        {/* Summary Dashboard Chart */}
+        <SummaryDashboard bookings={bookings} pledges={pledges} />
 
         {/* Tabs */}
         <Tabs defaultValue="bookings">
