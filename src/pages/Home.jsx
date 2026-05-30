@@ -16,6 +16,8 @@ import BookJasonBanner from '@/components/home/BookJasonBanner';
 import FAQSection from '@/components/home/FAQSection';
 import VoicesOfChange from '@/components/home/VoicesOfChange';
 import BackgroundMusic from '@/components/home/BackgroundMusic';
+import MarqueeTicker from '@/components/home/MarqueeTicker';
+import UpcomingAppearance from '@/components/home/UpcomingAppearance';
 
 const LOGO_URL = 'https://media.base44.com/images/public/6a19e1fc6c5eb736a0763b09/1824cf861_IMG_5119.png';
 
@@ -51,6 +53,8 @@ export default function Home() {
       <BackgroundMusic />
       <StickyNav logoUrl={LOGO_URL} />
       <HeroSection logoUrl={LOGO_URL} pledgeCount={pledgeCount} />
+      <MarqueeTicker />
+      <UpcomingAppearance />
       <MissionSection />
       <PillarsSection />
       <PledgeSection
