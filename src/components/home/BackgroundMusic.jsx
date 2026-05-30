@@ -69,7 +69,7 @@ export default function BackgroundMusic() {
       />
 
       {/* Floating control button */}
-      <div className="fixed bottom-6 right-6 z-[9999] flex flex-col items-end gap-2">
+      <div className="fixed bottom-6 left-6 z-[9999] flex flex-col items-start gap-2">
         {/* Tooltip */}
         {showTooltip && ready && (
           <div className="bg-ink/90 border border-white/10 text-cream text-xs font-barlow px-3 py-1.5 rounded-sm whitespace-nowrap shadow-lg">
