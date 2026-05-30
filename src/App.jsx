@@ -7,6 +7,7 @@ import { AuthProvider, useAuth } from '@/lib/AuthContext';
 import UserNotRegisteredError from '@/components/UserNotRegisteredError';
 import ProtectedRoute from '@/components/ProtectedRoute';
 import ScrollToTop from '@/components/ScrollToTop';
+import BackgroundMusic from '@/components/home/BackgroundMusic';
 import Home from '@/pages/Home';
 import Shop from '@/pages/Shop';
 import About from '@/pages/About';
@@ -76,6 +77,7 @@ function App() {
       <QueryClientProvider client={queryClientInstance}>
         <Router>
           <ScrollToTop />
+          <BackgroundMusic />
           <AuthenticatedApp />
         </Router>
         <Toaster />
