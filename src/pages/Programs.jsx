@@ -5,6 +5,9 @@ import WhatWeDoSection from '@/components/programs/WhatWeDoSection';
 import WhatSchoolsGet from '@/components/programs/WhatSchoolsGet';
 import SchoolTestimonials from '@/components/programs/SchoolTestimonials';
 import BookingForm from '@/components/programs/BookingForm';
+import PricingTiers from '@/components/programs/PricingTiers';
+import ImpactStatsBanner from '@/components/programs/ImpactStatsBanner';
+import FAQSection from '@/components/programs/FAQSection';
 
 export default function Programs() {
   return (
@@ -27,9 +30,12 @@ export default function Programs() {
 
       <main className="relative z-10">
         <ProgramsHero />
+        <ImpactStatsBanner />
         <WhatWeDoSection />
         <WhatSchoolsGet />
+        <PricingTiers />
         <SchoolTestimonials />
+        <FAQSection />
         <BookingForm />
       </main>
     </div>

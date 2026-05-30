@@ -1,159 +1,131 @@
 import { motion } from 'framer-motion';
+import { Check, Star } from 'lucide-react';
 import { useInView } from '@/hooks/useInView';
-import { Check } from 'lucide-react';
 
 const TIERS = [
   {
-    name: 'Assembly',
-    tagline: 'Full School Impact',
-    price: 'Contact for Pricing',
+    name: 'School Assembly',
+    price: '$500',
     highlight: false,
+    description: 'A powerful, high-energy keynote that leaves students inspired to choose kindness.',
     features: [
-      '30–60 minute assembly',
-      'Up to entire school population',
-      'Wristbands for all students',
-      'Q&A session included',
-      'Photo opportunities',
-      'Take-home pledge cards',
+      'Up to 300 students',
+      '60-minute keynote address',
+      'Live Q&A with Jason',
+      'Digital resource pack for students',
+      'Post-visit follow-up email',
     ],
-    cta: 'Book Assembly',
   },
   {
-    name: 'Classroom',
-    tagline: 'Deep Engagement',
-    price: 'Contact for Pricing',
+    name: 'Half-Day Workshop',
+    price: '$1,200',
     highlight: true,
     badge: 'Most Popular',
+    description: 'A deeper dive with interactive activities and small-group sessions.',
     features: [
-      '30-minute classroom sessions',
-      'Up to 3 classrooms per visit',
-      'Interactive discussion format',
-      'Wristbands for all students',
-      'Reflection worksheets',
-      'Follow-up resources for teachers',
+      'Up to 150 students',
+      '3-hour immersive session',
+      'Interactive group activities',
+      'Anti-bullying curriculum materials',
+      'Follow-up resource toolkit',
+      'Teacher debrief included',
     ],
-    cta: 'Book Classroom Visit',
   },
   {
-    name: 'Full Day',
-    tagline: 'Complete Transformation',
-    price: 'Contact for Pricing',
+    name: 'Full Partnership',
+    price: '$3,500',
+    period: '/ semester',
     highlight: false,
+    description: 'Full school integration — ongoing presence, training, and curriculum alignment.',
     features: [
-      'Morning assembly + afternoon workshops',
-      'Student leader workshop included',
-      'Staff training session',
-      'Wristbands + merch bundle',
-      'Custom program curriculum',
-      'Ongoing support resources',
+      'Unlimited school visits',
+      'Curriculum integration support',
+      'Teacher & staff training session',
+      'Monthly check-in calls',
+      'Custom messaging for your school',
+      'Priority scheduling',
     ],
-    cta: 'Book Full Day',
   },
 ];
 
 export default function PricingTiers() {
-  const [ref, inView] = useInView(0.1);
+  const [ref, inView] = useInView({ threshold: 0.1 });
 
-  const scrollToForm = () => {
-    document.querySelector('#booking-form')?.scrollIntoView({ behavior: 'smooth' });
+  const scrollToBooking = () => {
+    const el = document.getElementById('booking-form');
+    if (el) el.scrollIntoView({ behavior: 'smooth' });
   };
 
   return (
-    <section className="relative bg-cream py-24 md:py-32 px-6" ref={ref}>
+    <section ref={ref} className="py-24 px-6 bg-black/20">
       <div className="max-w-6xl mx-auto">
-        <div className="text-center mb-16">
-          <motion.div
-            initial={{ scaleX: 0 }}
-            animate={inView ? { scaleX: 1 } : {}}
-            transition={{ duration: 0.8 }}
-            className="w-16 h-1 bg-gold-dark mb-10 mx-auto origin-center"
-          />
-          <motion.p
-            initial={{ opacity: 0, y: 16 }}
-            animate={inView ? { opacity: 1, y: 0 } : {}}
-            className="font-barlow-condensed text-gold-dark text-xs tracking-[0.35em] uppercase mb-4"
-          >
-            Programs &amp; Pricing
-          </motion.p>
-          <motion.h2
-            initial={{ opacity: 0, y: 24 }}
-            animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ delay: 0.1 }}
-            className="font-anton text-ink text-5xl sm:text-6xl leading-[0.92] mb-6"
-          >
-            FIND THE RIGHT<br />FIT FOR YOUR SCHOOL.
-          </motion.h2>
-          <motion.p
-            initial={{ opacity: 0, y: 16 }}
-            animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ delay: 0.2 }}
-            className="font-barlow text-ink/60 text-lg max-w-xl mx-auto"
-          >
-            Every school is different. Jason works with you to create the right program 
-            at the right budget. Reach out to get a custom quote.
-          </motion.p>
-        </div>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-14"
+        >
+          <p className="font-barlow-condensed text-gold text-xs tracking-[0.3em] uppercase mb-3">Investment in Your Students</p>
+          <h2 className="font-anton text-cream text-4xl sm:text-5xl tracking-wide mb-4">PROGRAM PACKAGES</h2>
+          <p className="font-barlow text-cream/40 max-w-xl mx-auto">
+            Every package is tailored to your school's needs. Title I schools may qualify for fee waivers — just ask.
+          </p>
+        </motion.div>
 
-        <div className="grid sm:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {TIERS.map((tier, i) => (
             <motion.div
               key={tier.name}
               initial={{ opacity: 0, y: 32 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: 0.15 + i * 0.1 }}
-              className={`relative rounded-sm p-8 flex flex-col ${
+              transition={{ duration: 0.5, delay: i * 0.12 }}
+              className={`relative flex flex-col rounded-sm border p-8 transition-all ${
                 tier.highlight
-                  ? 'bg-ink border-2 border-gold/50 shadow-xl shadow-gold/10'
-                  : 'bg-white border border-ink/10'
+                  ? 'bg-gold/10 border-gold/40 shadow-xl shadow-gold/10'
+                  : 'bg-white/[0.03] border-cream/10 hover:border-cream/20'
               }`}
             >
               {tier.badge && (
-                <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-4 py-1 bg-gold text-ink font-barlow-condensed font-bold text-xs uppercase tracking-wider rounded-full">
-                  {tier.badge}
+                <div className="absolute -top-3 left-1/2 -translate-x-1/2">
+                  <span className="flex items-center gap-1 bg-gold text-ink text-xs font-barlow-condensed font-bold px-3 py-1 rounded-full uppercase tracking-wider">
+                    <Star className="w-3 h-3 fill-ink" /> {tier.badge}
+                  </span>
                 </div>
               )}
 
-              <p className={`font-barlow-condensed text-xs tracking-[0.25em] uppercase mb-2 ${tier.highlight ? 'text-gold/70' : 'text-ink/40'}`}>
-                {tier.tagline}
-              </p>
-              <h3 className={`font-anton text-4xl mb-2 ${tier.highlight ? 'text-cream' : 'text-ink'}`}>
-                {tier.name}
-              </h3>
-              <p className={`font-barlow-condensed text-lg font-bold uppercase tracking-wide mb-8 ${tier.highlight ? 'text-gold' : 'text-gold-dark'}`}>
-                {tier.price}
-              </p>
+              <div className="mb-6">
+                <p className={`font-barlow-condensed text-xs tracking-[0.3em] uppercase mb-2 ${tier.highlight ? 'text-gold' : 'text-cream/40'}`}>
+                  {tier.name}
+                </p>
+                <div className="flex items-end gap-1 mb-3">
+                  <span className="font-anton text-cream text-5xl leading-none">{tier.price}</span>
+                  {tier.period && <span className="font-barlow text-cream/40 text-sm pb-1">{tier.period}</span>}
+                </div>
+                <p className="font-barlow text-cream/50 text-sm leading-relaxed">{tier.description}</p>
+              </div>
 
-              <ul className="space-y-3 mb-8 flex-1">
+              <ul className="flex-1 space-y-3 mb-8">
                 {tier.features.map((f) => (
                   <li key={f} className="flex items-start gap-3">
-                    <Check className={`w-4 h-4 mt-0.5 shrink-0 ${tier.highlight ? 'text-gold' : 'text-gold-dark'}`} />
-                    <span className={`font-barlow text-sm leading-snug ${tier.highlight ? 'text-cream/70' : 'text-ink/70'}`}>{f}</span>
+                    <Check className={`w-4 h-4 mt-0.5 shrink-0 ${tier.highlight ? 'text-gold' : 'text-cream/40'}`} />
+                    <span className="font-barlow text-cream/70 text-sm">{f}</span>
                   </li>
                 ))}
               </ul>
 
               <button
-                onClick={scrollToForm}
-                className={`w-full py-3.5 font-barlow-condensed font-bold text-sm uppercase tracking-wider rounded-sm transition-all duration-300 hover:-translate-y-0.5 ${
+                onClick={scrollToBooking}
+                className={`w-full py-3.5 font-barlow-condensed font-bold text-sm uppercase tracking-wider rounded-sm transition-all hover:-translate-y-0.5 ${
                   tier.highlight
-                    ? 'bg-gold hover:bg-gold-dark text-ink hover:shadow-lg hover:shadow-gold/20'
-                    : 'bg-ink hover:bg-ink/85 text-cream'
+                    ? 'bg-gold hover:bg-gold-dark text-ink shadow-lg shadow-gold/20'
+                    : 'bg-gold/15 hover:bg-gold/25 text-gold border border-gold/30'
                 }`}
               >
-                {tier.cta}
+                Book Now
               </button>
             </motion.div>
           ))}
         </div>
-
-        <motion.p
-          initial={{ opacity: 0 }}
-          animate={inView ? { opacity: 1 } : {}}
-          transition={{ delay: 0.5 }}
-          className="text-center font-barlow text-ink/40 text-sm mt-8"
-        >
-          Non-profit and Title I school discounts available. Jason never turns a school away due to budget.
-        </motion.p>
       </div>
     </section>
   );
