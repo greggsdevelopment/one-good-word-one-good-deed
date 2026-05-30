@@ -44,6 +44,15 @@ const FINDER_TOOLS = [
 
 const MICHIGAN_RESOURCES = [
   {
+    name: 'Common Ground Crisis Center',
+    description: 'Oakland County 24/7 mental health crisis support & counseling.',
+    url: 'https://commongroundhelps.org',
+    phone: '18002311127',
+    phoneDisplay: '1-800-231-1127',
+    category: 'Crisis',
+    location: 'Pontiac, MI',
+  },
+  {
     name: 'Boys & Girls Club of Troy',
     description: 'Safe after-school programs, sports, arts & homework help for ages 6–18.',
     url: 'https://bgcdetroit.org',
@@ -62,6 +71,7 @@ const CATEGORY_COLORS = {
   'All Services': 'bg-purple-500/20 text-purple-300',
   'School Support': 'bg-gold/20 text-gold',
   'After-School': 'bg-pink-500/20 text-pink-300',
+  'Crisis': 'bg-red-500/20 text-red-300',
 };
 
 export default function LocalServices() {
