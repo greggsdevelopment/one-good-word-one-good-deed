@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { MapPin, Search, ExternalLink } from 'lucide-react';
+import { MapPin, Search, ExternalLink, Phone } from 'lucide-react';
 import { useState } from 'react';
 import { useInView } from '@/hooks/useInView';
 
@@ -42,6 +42,18 @@ const FINDER_TOOLS = [
   },
 ];
 
+const MICHIGAN_RESOURCES = [
+  {
+    name: 'Boys & Girls Club of Troy',
+    description: 'Safe after-school programs, sports, arts & homework help for ages 6–18.',
+    url: 'https://bgcdetroit.org',
+    phone: '2486890400',
+    phoneDisplay: '(248) 689-0400',
+    category: 'After-School',
+    location: 'Troy, MI',
+  },
+];
+
 const CATEGORY_COLORS = {
   'Mental Health': 'bg-blue-500/20 text-blue-300',
   'Treatment': 'bg-green-500/20 text-green-300',
@@ -49,6 +61,7 @@ const CATEGORY_COLORS = {
   'Food & Basic Needs': 'bg-yellow-500/20 text-yellow-300',
   'All Services': 'bg-purple-500/20 text-purple-300',
   'School Support': 'bg-gold/20 text-gold',
+  'After-School': 'bg-pink-500/20 text-pink-300',
 };
 
 export default function LocalServices() {
@@ -132,6 +145,57 @@ export default function LocalServices() {
             </motion.a>
           ))}
         </div>
+
+        {/* Michigan-specific resources */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.5, delay: 0.5 }}
+          className="mt-12"
+        >
+          <p className="font-barlow-condensed text-gold text-xs tracking-[0.3em] uppercase mb-5">Michigan Resources</p>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+            {MICHIGAN_RESOURCES.map((resource, i) => (
+              <div
+                key={resource.name}
+                className="bg-white/3 border border-cream/10 rounded-sm p-6 flex flex-col gap-3"
+              >
+                <div className="flex items-start justify-between gap-2">
+                  <span className={`text-xs font-barlow-condensed px-2 py-1 rounded-full tracking-wide shrink-0 ${CATEGORY_COLORS[resource.category]}`}>
+                    {resource.category}
+                  </span>
+                  {resource.location && (
+                    <span className="flex items-center gap-1 text-cream/30 text-xs font-barlow shrink-0">
+                      <MapPin className="w-3 h-3" />{resource.location}
+                    </span>
+                  )}
+                </div>
+                <h3 className="font-barlow-condensed text-cream font-bold text-lg leading-tight">{resource.name}</h3>
+                <p className="font-barlow text-cream/40 text-sm leading-relaxed flex-1">{resource.description}</p>
+                <div className="flex items-center gap-3 pt-1">
+                  {resource.phone && (
+                    <a
+                      href={`tel:${resource.phone}`}
+                      className="flex items-center gap-1.5 text-gold hover:text-gold-dark text-sm font-barlow-condensed tracking-wide transition-colors"
+                    >
+                      <Phone className="w-3.5 h-3.5" />{resource.phoneDisplay}
+                    </a>
+                  )}
+                  {resource.url && (
+                    <a
+                      href={resource.url.startsWith('http') ? resource.url : `https://${resource.url}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-1 text-cream/40 hover:text-cream text-xs font-barlow transition-colors ml-auto"
+                    >
+                      <ExternalLink className="w-3.5 h-3.5" />Website
+                    </a>
+                  )}
+                </div>
+              </div>
+            ))}
+          </div>
+        </motion.div>
 
         {/* Bottom note */}
         <motion.div
