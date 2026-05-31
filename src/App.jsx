@@ -20,7 +20,6 @@ import Stories from '@/pages/Stories';
 import Resources from '@/pages/Resources';
 import Events from '@/pages/Events';
 import Checkout from '@/pages/Checkout';
-import Checkout from '@/pages/Checkout';
 import Login from '@/pages/Login';
 import Register from '@/pages/Register';
 import ForgotPassword from '@/pages/ForgotPassword';
