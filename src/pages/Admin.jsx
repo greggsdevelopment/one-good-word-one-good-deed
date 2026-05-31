@@ -2,13 +2,14 @@ import { useQuery } from '@tanstack/react-query';
 import { base44 } from '@/api/base44Client';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Button } from '@/components/ui/button';
-import { LogOut, CalendarCheck, Heart, BookOpen, ShoppingBag, Mail, ClipboardList } from 'lucide-react';
+import { LogOut, CalendarCheck, Heart, BookOpen, ShoppingBag, Mail, ClipboardList, Users } from 'lucide-react';
 import BookingTab from '@/components/admin/BookingTab';
 import PledgesTab from '@/components/admin/PledgesTab';
 import StoriesTab from '@/components/admin/StoriesTab';
 import MarketplaceTab from '@/components/admin/MarketplaceTab';
 import MessagesTab from '@/components/admin/MessagesTab';
 import OrdersTab from '@/components/admin/OrdersTab';
+import NewsletterTab from '@/components/admin/NewsletterTab';
 import SummaryDashboard from '@/components/admin/SummaryDashboard';
 
 export default function Admin() {

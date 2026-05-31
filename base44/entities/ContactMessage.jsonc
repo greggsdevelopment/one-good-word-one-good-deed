@@ -17,6 +17,11 @@
     "message": {
       "type": "string",
       "description": "Message body"
+    },
+    "read": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether the message has been read"
     }
   },
   "required": [
