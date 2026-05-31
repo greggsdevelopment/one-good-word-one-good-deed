@@ -51,6 +51,7 @@ const PRODUCTS = [
     featured: true,
     image: 'https://jim-catalog-api.jim.com/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsiZGF0YSI6Mzk0ODQ0LCJwdXIiOiJibG9iX2lkIn19--460b2114e575ffd498248e91cffc2d8386f96dc8/scaled_1000005359.png',
     sizes: ['S', 'M', 'L', 'XL', '2XL'],
+    imageZoom: 2.2, imageOrigin: 'center 35%',
   },
   {
     id: 'bw-letters-shirt',
