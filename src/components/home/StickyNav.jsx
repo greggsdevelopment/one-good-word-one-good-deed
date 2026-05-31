@@ -99,10 +99,14 @@ export default function StickyNav({ logoUrl }) {
 
   useEffect(() => {
     const loadUser = async () => {
-      const authed = await base44.auth.isAuthenticated();
-      if (authed) {
-        const me = await base44.auth.me();
-        setUser(me);
+      try {
+        const authed = await base44.auth.isAuthenticated();
+        if (authed) {
+          const me = await base44.auth.me();
+          setUser(me);
+        }
+      } catch (err) {
+        // User not authenticated or error fetching user
       }
     };
     loadUser();
