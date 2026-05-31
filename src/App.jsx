@@ -19,6 +19,8 @@ import Gallery from '@/pages/Gallery';
 import Stories from '@/pages/Stories';
 import Resources from '@/pages/Resources';
 import Events from '@/pages/Events';
+import Checkout from '@/pages/Checkout';
+import Checkout from '@/pages/Checkout';
 import Login from '@/pages/Login';
 import Register from '@/pages/Register';
 import ForgotPassword from '@/pages/ForgotPassword';
@@ -54,6 +56,8 @@ const AuthenticatedApp = () => {
       <Route path="/stories" element={<Stories />} />
       <Route path="/resources" element={<Resources />} />
       <Route path="/events" element={<Events />} />
+      <Route path="/checkout" element={<Checkout />} />
+      <Route path="/checkout" element={<Checkout />} />
 
       {/* Auth pages */}
       <Route path="/login" element={<Login />} />

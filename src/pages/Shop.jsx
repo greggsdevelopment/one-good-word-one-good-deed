@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Link, useSearchParams } from 'react-router-dom';
+import { Link, useSearchParams, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ShoppingCart, X, Plus, Minus, ArrowLeft, CheckCircle, AlertCircle, Truck, Eye, Ruler } from 'lucide-react';
 import { base44 } from '@/api/base44Client';
@@ -116,6 +116,7 @@ const PRODUCTS = [
 ];
 
 export default function Shop() {
+  const navigate = useNavigate();
   const [cart, setCart] = useState([]);
   const [cartOpen, setCartOpen] = useState(false);
   const [loadingCheckout, setLoadingCheckout] = useState(false);
@@ -146,20 +147,9 @@ export default function Shop() {
   const cartCount = cart.reduce((sum, i) => sum + i.quantity, 0);
   const cartTotal = cart.reduce((sum, i) => sum + i.product.price * i.quantity, 0);
 
-  const handleCheckout = async () => {
-    if (window.self !== window.top) {
-      alert('Checkout is only available from the published app. Please open the app in a new tab.');
-      return;
-    }
-    setLoadingCheckout(true);
-    const items = cart.map((i) => ({ name: i.product.name, price: Math.round(i.product.price * 100), quantity: i.quantity, image: i.product.image }));
-    const res = await base44.functions.invoke('createCheckout', {
-      items,
-      successUrl: `${window.location.origin}/shop?success=true`,
-      cancelUrl: `${window.location.origin}/shop?canceled=true`,
-    });
-    setLoadingCheckout(false);
-    if (res.data?.url) window.location.href = res.data.url;
+  const handleCheckout = () => {
+    if (cart.length === 0) return;
+    navigate('/checkout', { state: { cart } });
   };
 
   // Filter + Sort

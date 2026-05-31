@@ -125,7 +125,7 @@ export default function CartDrawer({ open, onClose, cart, onUpdateQty, onRemove,
                       Redirecting...
                     </>
                   ) : (
-                    'Checkout with Stripe'
+                    'Proceed to Checkout'
                   )}
                 </button>
               </div>

@@ -1,0 +1,59 @@
+{
+  "name": "Order",
+  "type": "object",
+  "properties": {
+    "order_number": {
+      "type": "string",
+      "description": "Unique order reference number"
+    },
+    "customer_name": {
+      "type": "string",
+      "description": "Customer full name"
+    },
+    "email": {
+      "type": "string",
+      "description": "Customer email"
+    },
+    "address": {
+      "type": "string",
+      "description": "Street address"
+    },
+    "city": {
+      "type": "string",
+      "description": "City"
+    },
+    "state": {
+      "type": "string",
+      "description": "State"
+    },
+    "zip": {
+      "type": "string",
+      "description": "ZIP code"
+    },
+    "items": {
+      "type": "string",
+      "description": "JSON string of cart items"
+    },
+    "total": {
+      "type": "number",
+      "description": "Order total in USD"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "pending",
+        "processing",
+        "shipped",
+        "delivered"
+      ],
+      "default": "pending",
+      "description": "Order status"
+    }
+  },
+  "required": [
+    "customer_name",
+    "email",
+    "order_number"
+  ],
+  "allowPublicCreate": true
+}
