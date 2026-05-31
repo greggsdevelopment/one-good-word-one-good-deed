@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { ChevronDown } from 'lucide-react';
+import { base44 } from '@/api/base44Client';
 
 // Grouped nav sections for desktop dropdown menus
 const NAV_GROUPS = [
@@ -76,13 +77,13 @@ function DropdownGroup({ group }) {
           >
             {group.links.map((link) => (
               <Link
-                key={link.to}
-                to={link.to}
-                onClick={() => setOpen(false)}
-                className="block px-4 py-2.5 font-barlow-condensed text-sm text-cream/70 hover:text-gold hover:bg-white/5 tracking-wider uppercase transition-colors"
-              >
-                {link.label}
-              </Link>
+                 key={link.to}
+                 to={link.to}
+                 onClick={() => setOpen(false)}
+                 className="block px-4 py-2.5 font-barlow-condensed text-sm text-gold hover:bg-white/5 tracking-wider uppercase transition-colors"
+               >
+                 {link.label}
+               </Link>
             ))}
           </motion.div>
         )}
@@ -94,6 +95,18 @@ function DropdownGroup({ group }) {
 export default function StickyNav({ logoUrl }) {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    const loadUser = async () => {
+      const authed = await base44.auth.isAuthenticated();
+      if (authed) {
+        const me = await base44.auth.me();
+        setUser(me);
+      }
+    };
+    loadUser();
+  }, []);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 80);
@@ -162,13 +175,21 @@ export default function StickyNav({ logoUrl }) {
                 Contact
               </a>
               <a
-                href="#pledge"
-                onClick={(e) => handleScroll(e, '#pledge')}
-                className="ml-1 px-5 py-3 bg-gold hover:bg-gold-dark text-ink font-barlow-condensed font-bold text-sm uppercase tracking-wider rounded-sm transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-gold/20 min-h-[44px] flex items-center"
-              >
-                Join the Movement
-              </a>
-            </div>
+                 href="#pledge"
+                 onClick={(e) => handleScroll(e, '#pledge')}
+                 className="ml-1 px-5 py-3 bg-gold hover:bg-gold-dark text-ink font-barlow-condensed font-bold text-sm uppercase tracking-wider rounded-sm transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-gold/20 min-h-[44px] flex items-center"
+               >
+                 Join the Movement
+               </a>
+               {user?.role === 'admin' && (
+                 <Link
+                   to="/admin"
+                   className="ml-2 px-4 py-2.5 border border-gold/40 hover:border-gold hover:bg-gold/10 text-gold font-barlow-condensed text-sm uppercase tracking-wider rounded-sm transition-all duration-300 min-h-[44px] flex items-center"
+                 >
+                   Admin
+                 </Link>
+               )}
+              </div>
 
             {/* Mobile hamburger */}
             <button
