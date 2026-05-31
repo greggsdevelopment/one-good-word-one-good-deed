@@ -1,9 +1,10 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowLeft, X, ChevronLeft, ChevronRight, MapPin, Calendar, Filter } from 'lucide-react';
+import { ArrowLeft, X, ChevronLeft, ChevronRight, MapPin, Calendar, Upload } from 'lucide-react';
 import { base44 } from '@/api/base44Client';
 import { format } from 'date-fns';
+import UploadPhotoModal from '@/components/gallery/UploadPhotoModal';
 
 const LOGO_URL = 'https://media.base44.com/images/public/6a19e1fc6c5eb736a0763b09/1824cf861_IMG_5119.png';
 
@@ -78,6 +79,7 @@ export default function Gallery() {
   const [loading, setLoading] = useState(true);
   const [activeCategory, setActiveCategory] = useState('All');
   const [lightboxIndex, setLightboxIndex] = useState(null);
+  const [uploadOpen, setUploadOpen] = useState(false);
 
   useEffect(() => {
     const load = async () => {
@@ -133,9 +135,12 @@ export default function Gallery() {
             <img src={LOGO_URL} alt="Logo" className="h-8 w-8 rounded-full object-cover ring-2 ring-gold/40" />
             <p className="font-anton text-cream text-lg tracking-wider hidden sm:block">IMPACT GALLERY</p>
           </div>
-          <Link to="/programs" className="font-barlow-condensed text-sm text-cream/50 hover:text-gold uppercase tracking-wider transition-colors">
-            Book a Visit
-          </Link>
+          <button
+            onClick={() => setUploadOpen(true)}
+            className="flex items-center gap-2 px-4 py-2 border border-white/10 hover:border-gold/40 rounded-sm text-cream/60 hover:text-gold transition-all font-barlow-condensed text-sm tracking-wider uppercase"
+          >
+            <Upload className="w-4 h-4" /> Upload
+          </button>
         </div>
       </header>
 
@@ -247,6 +252,15 @@ export default function Gallery() {
           </Link>
         </motion.div>
       </main>
+
+      <UploadPhotoModal
+        open={uploadOpen}
+        onClose={() => setUploadOpen(false)}
+        onUploaded={async () => {
+          const data = await base44.entities.GalleryPhoto.list('-event_date', 200);
+          setPhotos(data);
+        }}
+      />
 
       {/* Lightbox */}
       <AnimatePresence>
