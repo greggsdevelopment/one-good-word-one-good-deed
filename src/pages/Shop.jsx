@@ -17,6 +17,7 @@ const PRODUCTS = [
     price: 25,
     category: 'T-Shirts',
     featured: true,
+        imageZoom: 2.0, imageOrigin: 'center 40%',
     image: 'https://jim-catalog-api.jim.com/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsiZGF0YSI6Mzk0ODUwLCJwdXIiOiJibG9iX2lkIn19--ea2a89155cd66f708ebe3915fc4218705ad8225c/scaled_1000004465.png',
     sizes: ['S', 'M', 'L', 'XL', '2XL'],
   },
@@ -29,6 +30,7 @@ const PRODUCTS = [
     featured: false,
     image: 'https://jim-catalog-api.jim.com/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsiZGF0YSI6Mzk0ODQ3LCJwdXIiOiJibG9iX2lkIn19--159e72f4d5de7284389fa53b72e4555d12dc906c/scaled_1000005788.png',
     sizes: ['S', 'M', 'L', 'XL', '2XL'],
+        imageZoom: 2.2, imageOrigin: 'center 45%',
   },
   {
     id: 'blue-white-letters-shirt',
@@ -89,6 +91,7 @@ const PRODUCTS = [
     featured: false,
     image: 'https://jim-catalog-api.jim.com/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsiZGF0YSI6Mzk0ODI2LCJwdXIiOiJibG9iX2lkIn19--b6b52733bb8a9da1a5821a22ad6868b8036d2d87/scaled_1000005835.png',
     sizes: ['S', 'M', 'L', 'XL', '2XL'],
+        imageZoom: 2.0, imageOrigin: 'center 40%',
   },
   {
     id: 'red-black-shirt',
@@ -345,7 +348,7 @@ function ProductCard({ product, index, onAddToCart, onQuickView, compact }) {
             <img
               src={product.image}
               alt={product.name}
-              className="w-full h-full object-contain object-center p-2 group-hover:scale-105 transition-transform duration-500"
+              className="w-full h-full object-cover transition-transform duration-500"                  style={{ transform: `scale(${product.imageZoom || 1})`, transformOrigin: product.imageOrigin || 'center center' }}
             />
           ) : (
             <div className="w-full h-full bg-white/[0.03] flex items-center justify-center">
