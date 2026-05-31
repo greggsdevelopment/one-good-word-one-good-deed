@@ -1,6 +1,26 @@
-import { motion } from 'framer-motion';
+import { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+
+const SCRIPTURES = [
+  {
+    verse: '"I can do all things through Christ who strengthens me."',
+    ref: 'Philippians 4:13',
+  },
+  {
+    verse: '"Let your light so shine before men, that they may see your good works, and glorify your Father which is in heaven."',
+    ref: 'Matthew 5:16 (KJV)',
+  },
+];
 
 export default function HeroSection({ logoUrl, pledgeCount }) {
+  const [scriptureIndex, setScriptureIndex] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setScriptureIndex(i => (i + 1) % SCRIPTURES.length);
+    }, 3000);
+    return () => clearInterval(timer);
+  }, []);
   const scrollTo = (id) => {
     const el = document.querySelector(id);
     if (el) el.scrollIntoView({ behavior: 'smooth' });
@@ -141,12 +161,22 @@ export default function HeroSection({ logoUrl, pledgeCount }) {
               <div className="h-px w-10 bg-gold/40" />
             </div>
             <p className="font-barlow-condensed text-gold text-[10px] tracking-[0.35em] uppercase mb-3">Scripture</p>
-            <p className="font-anton text-cream text-xl sm:text-2xl leading-tight mb-3">
-              "I can do all things through Christ who strengthens me."
-            </p>
-            <p className="font-barlow-condensed text-gold/70 text-sm tracking-widest uppercase">
-              Philippians 4:13
-            </p>
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={scriptureIndex}
+                initial={{ opacity: 0, y: 8 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -8 }}
+                transition={{ duration: 0.4 }}
+              >
+                <p className="font-anton text-cream text-xl sm:text-2xl leading-tight mb-3">
+                  {SCRIPTURES[scriptureIndex].verse}
+                </p>
+                <p className="font-barlow-condensed text-gold/70 text-sm tracking-widest uppercase">
+                  {SCRIPTURES[scriptureIndex].ref}
+                </p>
+              </motion.div>
+            </AnimatePresence>
           </motion.div>
         </motion.div>
 
