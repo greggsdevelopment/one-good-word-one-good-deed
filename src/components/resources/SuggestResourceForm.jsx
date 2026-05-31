@@ -47,16 +47,13 @@ export default function SuggestResourceForm() {
           ) : (
             <form onSubmit={handleSubmit} className="space-y-4">
               <input required placeholder="Resource / Organization Name *" value={form.name} onChange={set('name')} className={inputClass} />
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <input placeholder="Phone Number" value={form.phone} onChange={set('phone')} className={inputClass} />
-                <input placeholder="Website URL" value={form.website} onChange={set('website')} className={inputClass} />
-              </div>
+              <input placeholder="Website URL" value={form.website} onChange={set('website')} className={inputClass} />
               <select value={form.category} onChange={set('category')} className={`${inputClass} appearance-none`}>
                 <option value="" disabled>Select a Category</option>
                 {CATEGORIES.map(c => <option key={c} value={c}>{c}</option>)}
               </select>
               <textarea
-                placeholder="Additional notes (optional)"
+                placeholder="Description (optional)"
                 value={form.notes}
                 onChange={set('notes')}
                 rows={3}
