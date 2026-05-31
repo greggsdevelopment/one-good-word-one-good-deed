@@ -266,6 +266,15 @@ export default function StickyNav({ logoUrl }) {
               >
                 Join the Movement
               </a>
+              {user?.role === 'admin' && (
+                <Link
+                  to="/admin"
+                  onClick={() => setMenuOpen(false)}
+                  className="block text-center px-6 py-4 border border-gold/40 hover:border-gold hover:bg-gold/10 text-gold font-barlow-condensed font-bold text-xl uppercase tracking-wider rounded-sm transition-all min-h-[56px] flex items-center justify-center"
+                >
+                  Admin
+                </Link>
+              )}
             </motion.div>
           </motion.div>
         )}
