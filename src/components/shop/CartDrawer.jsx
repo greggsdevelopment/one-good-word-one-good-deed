@@ -47,8 +47,14 @@ export default function CartDrawer({ open, onClose, cart, onUpdateQty, onRemove,
               {cart.length === 0 ? (
                 <div className="flex flex-col items-center justify-center h-full text-center pb-20">
                   <ShoppingBag className="w-14 h-14 text-white/10 mb-4" />
-                  <p className="font-anton text-cream/30 text-2xl mb-2">CART IS EMPTY</p>
-                  <p className="font-barlow text-cream/20 text-sm">Add some items to get started.</p>
+                  <p className="font-anton text-cream/30 text-2xl mb-2">YOUR CART IS EMPTY</p>
+                  <p className="font-barlow text-cream/30 text-sm mb-6">Start shopping!</p>
+                  <button
+                    onClick={onClose}
+                    className="font-barlow-condensed text-sm uppercase tracking-wider text-gold border border-gold/30 hover:border-gold hover:bg-gold/10 px-5 py-2.5 rounded-sm transition-all"
+                  >
+                    Browse Products
+                  </button>
                 </div>
               ) : (
                 <AnimatePresence initial={false}>
