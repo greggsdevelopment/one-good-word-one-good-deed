@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useInView } from '@/hooks/useInView';
 import { base44 } from '@/api/base44Client';
-import { CheckCircle } from 'lucide-react';
+import { CheckCircle, CalendarCheck, Mail, Phone } from 'lucide-react';
 
 const PROGRAM_TYPES = [
   'School Assembly ($500)',
@@ -32,7 +32,7 @@ export default function BookingForm() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setSubmitting(true);
-    await base44.entities.BookingRequest.create({
+    const record = await base44.entities.BookingRequest.create({
       school_name: form.school_name,
       contact_name: form.contact_name,
       email: form.email,
@@ -42,7 +42,7 @@ export default function BookingForm() {
       message: `Program Type: ${form.program_type}\nPrincipal: ${form.principal_name}\n\n${form.message}`,
     });
     setSubmitting(false);
-    setSubmitted(true);
+    setSubmitted(record);
   };
 
   const inputClass = "w-full bg-ink border border-white/[0.1] rounded-sm px-5 py-4 text-cream placeholder:text-cream/25 font-barlow focus:outline-none focus:border-gold/40 transition-colors";
@@ -144,11 +144,53 @@ export default function BookingForm() {
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.5 }}
-              className="text-center py-12"
+              className="py-10"
             >
-              <CheckCircle className="w-16 h-16 text-gold-dark mx-auto mb-4" />
-              <h3 className="font-anton text-ink text-4xl mb-3">REQUEST RECEIVED.</h3>
-              <p className="font-barlow text-ink/60 text-lg">Jason will be in touch within 48 hours.</p>
+              <div className="text-center mb-8">
+                <div className="w-16 h-16 bg-gold/10 border border-gold/30 rounded-full flex items-center justify-center mx-auto mb-5">
+                  <CheckCircle className="w-8 h-8 text-gold-dark" />
+                </div>
+                <h3 className="font-anton text-ink text-4xl mb-2">REQUEST RECEIVED.</h3>
+                <p className="font-barlow text-ink/60 text-base">Your booking request has been submitted successfully.</p>
+                {submitted?.id && (
+                  <p className="font-barlow-condensed text-ink/40 text-xs tracking-widest uppercase mt-2">
+                    Reference: <span className="text-ink/60">{submitted.id.slice(0, 8).toUpperCase()}</span>
+                  </p>
+                )}
+              </div>
+
+              {/* Next steps */}
+              <div className="bg-ink rounded-sm border border-ink/10 p-6 space-y-4 mb-6">
+                <p className="font-barlow-condensed text-cream/50 text-xs tracking-widest uppercase mb-4">What Happens Next</p>
+                <div className="flex items-start gap-3">
+                  <div className="w-6 h-6 rounded-full bg-gold/20 flex items-center justify-center shrink-0 mt-0.5">
+                    <span className="font-barlow-condensed text-gold text-xs font-bold">1</span>
+                  </div>
+                  <p className="font-barlow text-cream/60 text-sm leading-relaxed">Jason reviews your request and checks availability for your preferred date.</p>
+                </div>
+                <div className="flex items-start gap-3">
+                  <div className="w-6 h-6 rounded-full bg-gold/20 flex items-center justify-center shrink-0 mt-0.5">
+                    <span className="font-barlow-condensed text-gold text-xs font-bold">2</span>
+                  </div>
+                  <p className="font-barlow text-cream/60 text-sm leading-relaxed">You'll receive a follow-up email or call within <strong className="text-cream/80">48 hours</strong> to confirm details.</p>
+                </div>
+                <div className="flex items-start gap-3">
+                  <div className="w-6 h-6 rounded-full bg-gold/20 flex items-center justify-center shrink-0 mt-0.5">
+                    <span className="font-barlow-condensed text-gold text-xs font-bold">3</span>
+                  </div>
+                  <p className="font-barlow text-cream/60 text-sm leading-relaxed">Once confirmed, you'll get a full program overview and preparation guide for your school.</p>
+                </div>
+              </div>
+
+              {/* Contact info */}
+              <div className="flex flex-col sm:flex-row gap-3 text-center">
+                <a href="mailto:1goodword1gooddeedllc@gmail.com" className="flex-1 flex items-center justify-center gap-2 px-4 py-3 border border-ink/15 hover:border-gold-dark/40 rounded-sm text-ink/50 hover:text-gold-dark font-barlow-condensed text-xs tracking-wider uppercase transition-all">
+                  <Mail className="w-3.5 h-3.5" /> Email Us
+                </a>
+                <a href="tel:2488089373" className="flex-1 flex items-center justify-center gap-2 px-4 py-3 border border-ink/15 hover:border-gold-dark/40 rounded-sm text-ink/50 hover:text-gold-dark font-barlow-condensed text-xs tracking-wider uppercase transition-all">
+                  <Phone className="w-3.5 h-3.5" /> (248) 808-9373
+                </a>
+              </div>
             </motion.div>
           )}
         </AnimatePresence>
