@@ -22,29 +22,24 @@ export default function QuickViewModal({ product, onClose, onAddToCart }) {
 
   const modalContent = (
     <AnimatePresence>
-      {/* Full-screen flex container for centering */}
+      {/* Overlay */}
       <motion.div
         key="quickview-overlay"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
-        className="fixed inset-0 z-[9999] flex items-center justify-center p-4"
-        style={{ position: 'fixed', top: 0, left: 0, right: 0, bottom: 0 }}
+        className="fixed inset-0 bg-black/50 z-[9998] flex items-center justify-center p-4"
+        onClick={onClose}
       >
-        {/* Backdrop */}
-        <div
-          className="absolute inset-0 bg-black/75 backdrop-blur-sm"
-          onClick={onClose}
-        />
-
-        {/* Modal — centered by flex parent */}
+        {/* Modal — centered by flex parent, stop click propagation */}
         <motion.div
           key="quickview-modal"
           initial={{ opacity: 0, scale: 0.95, y: 24 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.95, y: 24 }}
           transition={{ duration: 0.25 }}
-          className="relative z-10 w-full max-w-2xl max-h-[85vh] overflow-y-auto bg-[#0f0f12] border border-cream/10 rounded-sm shadow-2xl"
+          onClick={(e) => e.stopPropagation()}
+          className="relative z-[9999] w-full max-w-2xl max-h-[90vh] overflow-y-auto bg-[#0f0f12] border border-cream/10 rounded-sm shadow-2xl"
         >
           <button
             onClick={onClose}
