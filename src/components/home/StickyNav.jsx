@@ -178,21 +178,21 @@ export default function StickyNav({ logoUrl }) {
               >
                 Contact
               </a>
-              <a
-                 href="#pledge"
-                 onClick={(e) => handleScroll(e, '#pledge')}
-                 className="ml-1 px-5 py-3 bg-gold hover:bg-gold-dark text-ink font-barlow-condensed font-bold text-sm uppercase tracking-wider rounded-sm transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-gold/20 min-h-[44px] flex items-center"
-               >
-                 Join the Movement
-               </a>
-               {user?.role === 'admin' && (
+              {user?.role === 'admin' && (
                  <Link
                    to="/admin"
-                   className="ml-2 px-4 py-2.5 border border-gold/40 hover:border-gold hover:bg-gold/10 text-gold font-barlow-condensed text-sm uppercase tracking-wider rounded-sm transition-all duration-300 min-h-[44px] flex items-center"
+                   className="px-4 py-2.5 border border-gold/40 hover:border-gold hover:bg-gold/10 text-gold font-barlow-condensed text-sm uppercase tracking-wider rounded-sm transition-all duration-300 min-h-[44px] flex items-center"
                  >
                    Admin
                  </Link>
                )}
+              <a
+                 href="#pledge"
+                 onClick={(e) => handleScroll(e, '#pledge')}
+                 className="px-5 py-3 bg-gold hover:bg-gold-dark text-ink font-barlow-condensed font-bold text-sm uppercase tracking-wider rounded-sm transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-gold/20 min-h-[44px] flex items-center"
+               >
+                 Join the Movement
+               </a>
               </div>
 
             {/* Mobile hamburger */}
