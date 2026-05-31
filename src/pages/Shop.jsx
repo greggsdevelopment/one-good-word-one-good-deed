@@ -345,7 +345,7 @@ function ProductCard({ product, index, onAddToCart, onQuickView, compact }) {
             <img
               src={product.image}
               alt={product.name}
-              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              className="w-full h-full object-contain object-center p-2 group-hover:scale-105 transition-transform duration-500"
             />
           ) : (
             <div className="w-full h-full bg-white/[0.03] flex items-center justify-center">
