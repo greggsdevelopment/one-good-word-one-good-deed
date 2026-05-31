@@ -75,10 +75,15 @@ export default function NewsletterSection() {
               key="success"
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
-              className="flex items-center justify-center gap-3 text-ink font-barlow text-lg"
+              className="flex flex-col items-center gap-3 text-ink"
             >
-              <CheckCircle className="w-6 h-6" />
-              <span>You're in! Welcome to the movement.</span>
+              <div className="flex items-center gap-2 font-barlow text-lg font-semibold">
+                <CheckCircle className="w-6 h-6" />
+                <span>Thank you for subscribing!</span>
+              </div>
+              <p className="font-barlow text-ink/60 text-sm">
+                A confirmation has been sent to <strong className="text-ink/80">{email}</strong>
+              </p>
             </motion.div>
           )}
         </AnimatePresence>
