@@ -2,23 +2,7 @@ import { motion } from 'framer-motion';
 import { useInView } from '@/hooks/useInView';
 import { Quote } from 'lucide-react';
 
-const TESTIMONIALS = [
-  {
-    quote: "Jason's assembly was one of the most powerful things we've done for our students this year. Kids who never speak up were standing and crying. It was real.",
-    name: 'Principal Sandra T.',
-    school: 'Wayne-Westland Community Schools',
-  },
-  {
-    quote: "We had him back three times. Every time he comes, the energy in the building shifts. Students hold each other accountable for a week after.",
-    name: 'Mrs. Johnson',
-    school: 'Detroit Area Middle School',
-  },
-  {
-    quote: "The wristbands became a symbol in our school. Kids still wear them months later. Jason planted something that keeps growing.",
-    name: 'School Counselor, Ms. Rivera',
-    school: 'Southeast Michigan Elementary',
-  },
-];
+const TESTIMONIALS = [];
 
 export default function SchoolTestimonials() {
   const [ref, inView] = useInView(0.1);

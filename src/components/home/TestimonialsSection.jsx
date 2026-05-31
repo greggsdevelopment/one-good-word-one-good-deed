@@ -2,26 +2,7 @@ import { motion } from 'framer-motion';
 import { useInView } from '@/hooks/useInView';
 import { Quote } from 'lucide-react';
 
-const TESTIMONIALS = [
-  {
-    quote: "Jason's presentation left our entire student body in tears — in the best possible way. The conversations that followed were unlike anything we'd seen in 20 years of school assemblies.",
-    name: "Ms. Patricia Williams",
-    role: "Principal, Lincoln Middle School",
-    location: "Detroit, MI",
-  },
-  {
-    quote: "Our students still quote One Good Word three months later. Jason has a rare gift for connecting with young people on a deeply personal level. We're booking him again for next year.",
-    name: "Mr. David Okafor",
-    role: "Dean of Students, Westview High School",
-    location: "Pontiac, MI",
-  },
-  {
-    quote: "The bullying incidents on our campus dropped noticeably after Jason's visit. His message isn't just inspiring — it creates lasting behavioral change. Every school needs this program.",
-    name: "Mrs. Angela Torres",
-    role: "Counselor, Jefferson Elementary",
-    location: "Flint, MI",
-  },
-];
+const TESTIMONIALS = [];
 
 export default function TestimonialsSection() {
   const [ref, inView] = useInView(0.1);
