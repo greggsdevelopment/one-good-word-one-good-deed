@@ -21,34 +21,30 @@ export default function QuickViewModal({ product, onClose, onAddToCart }) {
   };
 
   const modalContent = (
-    <>
-      <AnimatePresence>
+    <AnimatePresence>
+      {/* Full-screen flex container for centering */}
+      <motion.div
+        key="quickview-overlay"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        className="fixed inset-0 z-[9999] flex items-center justify-center p-4"
+        style={{ position: 'fixed', top: 0, left: 0, right: 0, bottom: 0 }}
+      >
         {/* Backdrop */}
-        <motion.div
-          key="backdrop"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
+        <div
+          className="absolute inset-0 bg-black/75 backdrop-blur-sm"
           onClick={onClose}
-          className="fixed inset-0 z-[9998] bg-black/75 backdrop-blur-sm"
         />
 
-        {/* Modal */}
+        {/* Modal — centered by flex parent */}
         <motion.div
-          key="modal"
+          key="quickview-modal"
           initial={{ opacity: 0, scale: 0.95, y: 24 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.95, y: 24 }}
           transition={{ duration: 0.25 }}
-          className="fixed z-[9999] bg-[#0f0f12] border border-cream/10 rounded-sm shadow-2xl overflow-y-auto"
-          style={{
-            top: '50%',
-            left: '50%',
-            transform: 'translate(-50%, -50%)',
-            width: 'calc(100vw - 2rem)',
-            maxWidth: '672px',
-            maxHeight: '90vh',
-          }}
+          className="relative z-10 w-full max-w-2xl max-h-[85vh] overflow-y-auto bg-[#0f0f12] border border-cream/10 rounded-sm shadow-2xl"
         >
           <button
             onClick={onClose}
@@ -59,13 +55,12 @@ export default function QuickViewModal({ product, onClose, onAddToCart }) {
 
           <div className="flex flex-col sm:flex-row">
             {/* Image */}
-            <div className="sm:w-1/2 h-64 sm:h-auto bg-white/[0.03] flex items-center justify-center overflow-hidden shrink-0">
+            <div className="sm:w-1/2 h-64 sm:h-80 bg-white/[0.03] flex items-center justify-center overflow-hidden shrink-0">
               {product.image ? (
                 <img
                   src={product.image}
                   alt={product.name}
                   className="w-full h-full object-contain object-center"
-                  style={{ maxHeight: '400px' }}
                 />
               ) : (
                 <div className="w-full h-full flex items-center justify-center bg-white/5">
@@ -148,10 +143,10 @@ export default function QuickViewModal({ product, onClose, onAddToCart }) {
             </div>
           </div>
         </motion.div>
-      </AnimatePresence>
+      </motion.div>
 
       <SizeGuideModal open={sizeGuideOpen} onClose={() => setSizeGuideOpen(false)} />
-    </>
+    </AnimatePresence>
   );
 
   return createPortal(modalContent, document.body);
