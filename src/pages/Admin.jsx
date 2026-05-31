@@ -2,12 +2,13 @@ import { useQuery } from '@tanstack/react-query';
 import { base44 } from '@/api/base44Client';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Button } from '@/components/ui/button';
-import { LogOut, CalendarCheck, Heart, BookOpen, ShoppingBag, Mail } from 'lucide-react';
+import { LogOut, CalendarCheck, Heart, BookOpen, ShoppingBag, Mail, ClipboardList } from 'lucide-react';
 import BookingTab from '@/components/admin/BookingTab';
 import PledgesTab from '@/components/admin/PledgesTab';
 import StoriesTab from '@/components/admin/StoriesTab';
 import MarketplaceTab from '@/components/admin/MarketplaceTab';
 import MessagesTab from '@/components/admin/MessagesTab';
+import OrdersTab from '@/components/admin/OrdersTab';
 import SummaryDashboard from '@/components/admin/SummaryDashboard';
 
 export default function Admin() {
@@ -30,6 +31,10 @@ export default function Admin() {
   const { data: products = [] } = useQuery({
     queryKey: ['admin-products'],
     queryFn: () => base44.entities.Product.list('sort_order', 200),
+  });
+  const { data: events = [] } = useQuery({
+    queryKey: ['admin-events'],
+    queryFn: () => base44.entities.Event.list('event_date', 200),
   });
 
   const pendingStories = stories.filter(s => !s.approved).length;
@@ -74,7 +79,7 @@ export default function Admin() {
         </div>
 
         {/* Summary Dashboard Chart */}
-        <SummaryDashboard bookings={bookings} pledges={pledges} />
+        <SummaryDashboard bookings={bookings} pledges={pledges} messages={messages} events={events} />
 
         {/* Tabs */}
         <Tabs defaultValue="bookings">
@@ -96,6 +101,10 @@ export default function Admin() {
             <TabsTrigger value="marketplace" className="font-barlow-condensed uppercase tracking-wider text-xs data-[state=active]:bg-ink data-[state=active]:text-cream gap-1.5">
               <ShoppingBag className="w-3.5 h-3.5" /> Marketplace
             </TabsTrigger>
+            <TabsTrigger value="orders" className="font-barlow-condensed uppercase tracking-wider text-xs data-[state=active]:bg-ink data-[state=active]:text-cream gap-1.5">
+              <ClipboardList className="w-3.5 h-3.5" /> Orders
+              {bookings.length > 0 && <span className="ml-1 bg-amber-100 text-amber-700 rounded-full text-[10px] px-1.5">{bookings.length}</span>}
+            </TabsTrigger>
           </TabsList>
 
           <TabsContent value="bookings"><BookingTab /></TabsContent>
@@ -103,6 +112,7 @@ export default function Admin() {
           <TabsContent value="stories"><StoriesTab /></TabsContent>
           <TabsContent value="messages"><MessagesTab /></TabsContent>
           <TabsContent value="marketplace"><MarketplaceTab /></TabsContent>
+          <TabsContent value="orders"><OrdersTab /></TabsContent>
         </Tabs>
       </div>
     </div>

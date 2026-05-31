@@ -8,7 +8,7 @@
     },
     "contact_name": {
       "type": "string",
-      "description": "Name of the contact person"
+      "description": "Contact person's name"
     },
     "email": {
       "type": "string",
@@ -21,26 +21,25 @@
     "preferred_date": {
       "type": "string",
       "format": "date",
-      "description": "Preferred date for the visit"
+      "description": "Preferred visit date"
     },
     "num_students": {
       "type": "number",
-      "description": "Number of students"
+      "description": "Estimated number of students"
     },
     "message": {
       "type": "string",
-      "description": "Additional message or notes"
+      "description": "Additional notes or questions"
     },
     "status": {
       "type": "string",
       "enum": [
-        "new",
-        "contacted",
+        "pending",
         "confirmed",
-        "completed"
+        "cancelled"
       ],
-      "default": "new",
-      "description": "Status of the booking request"
+      "default": "pending",
+      "description": "Booking status"
     }
   },
   "required": [
