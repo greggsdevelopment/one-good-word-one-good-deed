@@ -7,6 +7,7 @@ import CrisisHotlines from '@/components/resources/CrisisHotlines';
 import LocalServices from '@/components/resources/LocalServices';
 import ResourceCategories from '@/components/resources/ResourceCategories';
 import SuggestResourceForm from '@/components/resources/SuggestResourceForm';
+import PrayerRequestForm from '@/components/resources/PrayerRequestForm';
 import BackToTopButton from '@/components/BackToTopButton';
 
 const LOGO_URL = 'https://media.base44.com/images/public/6a19e1fc6c5eb736a0763b09/1824cf861_IMG_5119.png';
@@ -81,6 +82,7 @@ export default function Resources() {
       <CrisisHotlines search={search} activeCategory={activeCategory} />
       <ResourceCategories />
       <LocalServices search={search} activeCategory={activeCategory} />
+      <PrayerRequestForm />
       <SuggestResourceForm />
       <FooterSection logoUrl={LOGO_URL} />
       <BackToTopButton />
