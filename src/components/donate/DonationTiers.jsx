@@ -47,7 +47,7 @@ export default function DonationTiers() {
     const label = frequency === 'monthly' ? 'Monthly Donation' : 'Donation';
     const res = await base44.functions.invoke('createCheckout', {
       items: [{ name: `${label} — One Good Word One Good Deed`, price: Math.round(amount * 100), quantity: 1, image: '' }],
-      successUrl: `${window.location.origin}/donate?success=true`,
+      successUrl: `${window.location.origin}/donate?success=true&amount=${amount}`,
       cancelUrl: `${window.location.origin}/donate`,
     });
     setLoading(null);
