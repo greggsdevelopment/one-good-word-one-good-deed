@@ -14,9 +14,12 @@ export default function PledgeSection({ pledgeCount, recentPledges, onPledgeCrea
     e.preventDefault();
     if (!formData.name.trim()) return;
     setSubmitting(true);
-    const payload = { name: formData.name.trim() };
-    if (formData.location.trim()) payload.location = formData.location.trim();
-    if (formData.message.trim()) payload.message = formData.message.trim();
+    const nameParts = formData.name.trim().split(' ');
+    const first_name = nameParts[0];
+    const last_initial = nameParts[1] ? nameParts[1][0] : '';
+    const payload = { first_name, last_initial };
+    if (formData.location.trim()) payload.city = formData.location.trim();
+    if (formData.message.trim()) payload.pledge_statement = formData.message.trim();
     await base44.entities.Pledge.create(payload);
     setSubmitting(false);
     setSubmitted(true);
@@ -117,8 +120,10 @@ export default function PledgeSection({ pledgeCount, recentPledges, onPledgeCrea
               className="text-center py-8"
             >
               <CheckCircle className="w-16 h-16 text-gold mx-auto mb-4" />
-              <h3 className="font-anton text-cream text-3xl md:text-4xl mb-2">YOU'RE IN.</h3>
-              <p className="font-barlow text-cream/70 text-lg">Welcome to the movement.</p>
+              <h3 className="font-anton text-cream text-3xl md:text-4xl mb-2">
+                THANK YOU, {formData.name.trim().split(' ')[0].toUpperCase()}!
+              </h3>
+              <p className="font-barlow text-cream/70 text-lg">Your pledge has been added to the wall!</p>
             </motion.div>
           )}
         </AnimatePresence>
