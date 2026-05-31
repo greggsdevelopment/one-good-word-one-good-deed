@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowLeft, Plus, X, Calendar, Tag, BookOpen } from 'lucide-react';
+import { ArrowLeft, Plus, X, Calendar, Tag, BookOpen, CheckCircle } from 'lucide-react';
 import { base44 } from '@/api/base44Client';
 import { format } from 'date-fns';
 
@@ -94,6 +94,9 @@ export default function Stories() {
   const [selected, setSelected] = useState(null);
   const [form, setForm] = useState({ title: '', date: '', category: 'Student Story', excerpt: '', content: '' });
   const [saving, setSaving] = useState(false);
+  const [shareForm, setShareForm] = useState({ name: '', email: '', story: '' });
+  const [shareSaving, setShareSaving] = useState(false);
+  const [shareSubmitted, setShareSubmitted] = useState(false);
 
   useEffect(() => {
     loadStories();
@@ -241,6 +244,81 @@ export default function Stories() {
           </div>
         )}
       </main>
+
+      {/* Share Your Story section */}
+      <section className="relative z-10 max-w-2xl mx-auto px-4 sm:px-6 pb-24">
+        <div className="border border-white/[0.08] rounded-sm p-8 bg-white/[0.02]">
+          <h2 className="font-anton text-cream text-3xl mb-2">SHARE YOUR STORY</h2>
+          <p className="font-barlow text-cream/40 text-sm mb-8">Has One Good Word made a difference in your life? We'd love to hear it.</p>
+
+          <AnimatePresence mode="wait">
+            {shareSubmitted ? (
+              <motion.div
+                key="success"
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                className="flex flex-col items-center gap-3 py-8 text-center"
+              >
+                <CheckCircle className="w-10 h-10 text-gold" />
+                <p className="font-anton text-cream text-2xl">THANK YOU!</p>
+                <p className="font-barlow text-cream/60 text-sm max-w-sm">
+                  Thank you for sharing your story! It will be reviewed before publishing.
+                </p>
+              </motion.div>
+            ) : (
+              <motion.form
+                key="form"
+                initial={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                onSubmit={async (e) => {
+                  e.preventDefault();
+                  setShareSaving(true);
+                  await base44.entities.Story.create({
+                    name: shareForm.name,
+                    story: shareForm.story,
+                    approved: false,
+                  });
+                  setShareSaving(false);
+                  setShareSubmitted(true);
+                }}
+                className="space-y-4"
+              >
+                <div className="grid sm:grid-cols-2 gap-4">
+                  <input
+                    required
+                    placeholder="Your Name *"
+                    value={shareForm.name}
+                    onChange={(e) => setShareForm(p => ({ ...p, name: e.target.value }))}
+                    className="w-full bg-white/[0.05] border border-white/[0.1] rounded-sm px-4 py-3 text-cream placeholder:text-cream/25 font-barlow focus:outline-none focus:border-gold/40 transition-colors"
+                  />
+                  <input
+                    type="email"
+                    placeholder="Email Address"
+                    value={shareForm.email}
+                    onChange={(e) => setShareForm(p => ({ ...p, email: e.target.value }))}
+                    className="w-full bg-white/[0.05] border border-white/[0.1] rounded-sm px-4 py-3 text-cream placeholder:text-cream/25 font-barlow focus:outline-none focus:border-gold/40 transition-colors"
+                  />
+                </div>
+                <textarea
+                  required
+                  placeholder="Share your story... *"
+                  value={shareForm.story}
+                  onChange={(e) => setShareForm(p => ({ ...p, story: e.target.value }))}
+                  rows={6}
+                  className="w-full bg-white/[0.05] border border-white/[0.1] rounded-sm px-4 py-3 text-cream placeholder:text-cream/25 font-barlow focus:outline-none focus:border-gold/40 transition-colors resize-none"
+                />
+                <button
+                  type="submit"
+                  disabled={shareSaving}
+                  className="w-full py-4 bg-gold hover:bg-gold-dark disabled:opacity-50 text-ink font-barlow-condensed font-bold text-lg uppercase tracking-wider rounded-sm transition-all hover:-translate-y-0.5"
+                >
+                  {shareSaving ? 'Submitting...' : 'Submit Your Story'}
+                </button>
+              </motion.form>
+            )}
+          </AnimatePresence>
+        </div>
+      </section>
 
       {/* Story modal */}
       <AnimatePresence>
