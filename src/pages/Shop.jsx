@@ -77,7 +77,7 @@ const PRODUCTS = [
     price: 120,
     category: 'Coats',
     featured: true,
-    image: 'https://jim-catalog-api.jim.com/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsiZGF0YSI6Mzk0ODM3LCJwdXIiOiJibG9iX2lkIn19--0a3046c2ded1e7e5c44e59e44f3f83a4c5f67e28/scaled_1000005645.jpg',
+    image: 'https://jim-catalog-api.jim.com/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsiZGF0YSI6Mzk0ODMwLCJwdXIiOiJibG9iX2lkIn19--12976cbb61d96214d913fe9d83c9446ca868c0b1/scaled_1000005762.png',
     sizes: ['S', 'M', 'L', 'XL', '2XL'],
   },
   {
