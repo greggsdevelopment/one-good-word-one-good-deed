@@ -37,6 +37,10 @@ export default function Admin() {
     queryKey: ['admin-events'],
     queryFn: () => base44.entities.Event.list('event_date', 200),
   });
+  const { data: subscribers = [] } = useQuery({
+    queryKey: ['newsletter-subscribers'],
+    queryFn: () => base44.entities.NewsletterSubscriber.list('-created_date', 500),
+  });
 
   const pendingStories = stories.filter(s => !s.approved).length;
 
@@ -106,6 +110,10 @@ export default function Admin() {
               <ClipboardList className="w-3.5 h-3.5" /> Orders
               {bookings.length > 0 && <span className="ml-1 bg-amber-100 text-amber-700 rounded-full text-[10px] px-1.5">{bookings.length}</span>}
             </TabsTrigger>
+            <TabsTrigger value="newsletter" className="font-barlow-condensed uppercase tracking-wider text-xs data-[state=active]:bg-ink data-[state=active]:text-cream gap-1.5">
+              <Users className="w-3.5 h-3.5" /> Newsletter
+              {subscribers.length > 0 && <span className="ml-1 bg-green-100 text-green-700 rounded-full text-[10px] px-1.5">{subscribers.length}</span>}
+            </TabsTrigger>
           </TabsList>
 
           <TabsContent value="bookings"><BookingTab /></TabsContent>
@@ -114,6 +122,7 @@ export default function Admin() {
           <TabsContent value="messages"><MessagesTab /></TabsContent>
           <TabsContent value="marketplace"><MarketplaceTab /></TabsContent>
           <TabsContent value="orders"><OrdersTab /></TabsContent>
+          <TabsContent value="newsletter"><NewsletterTab /></TabsContent>
         </Tabs>
       </div>
     </div>
