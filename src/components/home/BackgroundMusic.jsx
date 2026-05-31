@@ -12,7 +12,7 @@ export default function BackgroundMusic() {
   const [interacted, setInteracted] = useState(false);
   const inIframe = checkInIframe();
 
-  const VIDEO_ID = 'A8dH4cKGa6s';
+  const VIDEO_ID = 'LPn0KFlbqX8';
   const src = `https://www.youtube.com/embed/${VIDEO_ID}?autoplay=1&loop=1&playlist=${VIDEO_ID}&enablejsapi=1&controls=0&mute=1&playsinline=1`;
 
   useEffect(() => {
