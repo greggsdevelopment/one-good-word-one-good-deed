@@ -120,7 +120,13 @@ export default function ContactSection() {
             >
               <CheckCircle className="w-16 h-16 text-gold-dark mx-auto mb-4" />
               <h3 className="font-anton text-ink text-3xl mb-2">MESSAGE SENT.</h3>
-              <p className="font-barlow text-ink/60 text-lg">Thank you. We will be in touch.</p>
+              <p className="font-barlow text-ink/60 text-lg mb-6">Thank you! We'll be in touch with you shortly.</p>
+              <button
+                onClick={() => { setSubmitted(false); setFormData({ name: '', email: '', subject: '', message: '' }); }}
+                className="px-6 py-3 border border-ink/20 hover:border-gold-dark/50 text-ink/50 hover:text-gold-dark font-barlow-condensed text-sm uppercase tracking-wider rounded-sm transition-all"
+              >
+                Send Another Message
+              </button>
             </motion.div>
           )}
         </AnimatePresence>
