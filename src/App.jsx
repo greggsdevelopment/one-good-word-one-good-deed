@@ -2,7 +2,7 @@ import { Toaster } from "@/components/ui/toaster"
 import { QueryClientProvider } from '@tanstack/react-query'
 import { queryClientInstance } from '@/lib/query-client'
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
-import PageNotFound from './lib/PageNotFound';
+import NotFound from '@/pages/NotFound';
 import { AuthProvider, useAuth } from '@/lib/AuthContext';
 import UserNotRegisteredError from '@/components/UserNotRegisteredError';
 import ProtectedRoute from '@/components/ProtectedRoute';
@@ -56,7 +56,6 @@ const AuthenticatedApp = () => {
       <Route path="/resources" element={<Resources />} />
       <Route path="/events" element={<Events />} />
       <Route path="/checkout" element={<Checkout />} />
-      <Route path="/checkout" element={<Checkout />} />
 
       {/* Auth pages */}
       <Route path="/login" element={<Login />} />
@@ -69,7 +68,7 @@ const AuthenticatedApp = () => {
         <Route path="/admin" element={<Admin />} />
       </Route>
 
-      <Route path="*" element={<PageNotFound />} />
+      <Route path="*" element={<NotFound />} />
     </Routes>
   );
 };
