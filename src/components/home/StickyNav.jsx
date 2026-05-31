@@ -101,12 +101,14 @@ export default function StickyNav({ logoUrl }) {
     const loadUser = async () => {
       try {
         const authed = await base44.auth.isAuthenticated();
+        console.log('Admin nav - authenticated:', authed);
         if (authed) {
           const me = await base44.auth.me();
+          console.log('Admin nav - user:', me);
           setUser(me);
         }
       } catch (err) {
-        // User not authenticated or error fetching user
+        console.error('Admin nav - error:', err);
       }
     };
     loadUser();
