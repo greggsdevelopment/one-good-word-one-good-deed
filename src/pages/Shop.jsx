@@ -67,7 +67,7 @@ const PRODUCTS = [
     price: 25,
     category: 'T-Shirts',
     featured: false,
-    image: 'https://jim-catalog-api.jim.com/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsiZGF0YSI6Mzk0ODMzLCJwdXIiOiJibG9iX2lkIn19--e02449b1ccbeeecc3efb8348670af1235b4fd92f/scaled_1000005772.png',
+    image: 'https://jim-catalog-api.jim.com/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsiZGF0YSI6Mzk0ODM5LCJwdXIiOiJibG9iX2lkIn19--fc5a0dce0fe3f37f5085e7da1b5cfc019d05ce57/scaled_1000005869.png',
     sizes: ['S', 'M', 'L', 'XL', '2XL'],
   },
   {
