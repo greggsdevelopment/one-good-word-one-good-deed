@@ -79,11 +79,8 @@ export default function NewsletterSection() {
             >
               <div className="flex items-center gap-2 font-barlow text-lg font-semibold">
                 <CheckCircle className="w-6 h-6" />
-                <span>Thank you for subscribing!</span>
+                <span>Thanks for subscribing! Check your email.</span>
               </div>
-              <p className="font-barlow text-ink/60 text-sm">
-                A confirmation has been sent to <strong className="text-ink/80">{email}</strong>
-              </p>
             </motion.div>
           )}
         </AnimatePresence>
