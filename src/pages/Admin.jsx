@@ -41,6 +41,10 @@ export default function Admin() {
     queryKey: ['newsletter-subscribers'],
     queryFn: () => base44.entities.NewsletterSubscriber.list('-created_date', 500),
   });
+  const { data: orders = [] } = useQuery({
+    queryKey: ['admin-orders'],
+    queryFn: () => base44.entities.Order.list('-created_date', 500),
+  });
 
   const pendingStories = stories.filter(s => !s.approved).length;
 
@@ -84,7 +88,7 @@ export default function Admin() {
         </div>
 
         {/* Summary Dashboard Chart */}
-        <SummaryDashboard bookings={bookings} pledges={pledges} messages={messages} events={events} />
+        <SummaryDashboard bookings={bookings} pledges={pledges} messages={messages} events={events} orders={orders} />
 
         {/* Tabs */}
         <Tabs defaultValue="bookings">

@@ -3,7 +3,7 @@ import {
   BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer,
 } from 'recharts';
 import { subMonths, format, parseISO, isSameMonth } from 'date-fns';
-import { DollarSign, CalendarCheck, Heart, Mail, CalendarDays, TrendingUp } from 'lucide-react';
+import { DollarSign, CalendarCheck, Heart, Mail, CalendarDays, TrendingUp, ShoppingBag } from 'lucide-react';
 
 const StatCard = ({ icon: Icon, label, value, sub, accent }) => (
   <div className="bg-ink border border-cream/10 rounded-sm p-5 flex flex-col gap-2">
@@ -30,7 +30,7 @@ const CustomTooltip = ({ active, payload, label }) => {
   );
 };
 
-export default function SummaryDashboard({ bookings = [], pledges = [], messages = [], events = [] }) {
+export default function SummaryDashboard({ bookings = [], pledges = [], messages = [], events = [], orders = [] }) {
   // Last 6 months booking counts
   const monthlyData = useMemo(() => {
     const months = Array.from({ length: 6 }, (_, i) => subMonths(new Date(), 5 - i));
@@ -51,6 +51,7 @@ export default function SummaryDashboard({ bookings = [], pledges = [], messages
 
   const confirmedBookings = bookings.filter((b) => b.status === 'confirmed').length;
   const pendingBookings = bookings.filter((b) => !b.status || b.status === 'pending').length;
+  const totalRevenue = orders.reduce((sum, o) => sum + (o.total || 0), 0);
 
   // Recent bookings (last 5)
   const recentBookings = [...bookings].slice(0, 5);
@@ -58,12 +59,13 @@ export default function SummaryDashboard({ bookings = [], pledges = [], messages
   return (
     <div className="mb-8 space-y-6">
       {/* Stat cards */}
-      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
-        <StatCard icon={CalendarCheck} label="Total Bookings" value={bookings.length} sub={`${confirmedBookings} confirmed · ${pendingBookings} pending`} />
+      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
+        <StatCard icon={ShoppingBag} label="Total Orders" value={orders.length} sub={orders.length === 1 ? '1 order' : `${orders.length} orders`} accent="text-orange-400" />
+        <StatCard icon={DollarSign} label="Revenue" value={`$${totalRevenue.toLocaleString()}`} sub="all time" accent="text-green-400" />
+        <StatCard icon={CalendarCheck} label="Bookings" value={bookings.length} sub={`${confirmedBookings} confirmed · ${pendingBookings} pending`} />
         <StatCard icon={Heart} label="Pledges" value={pledges.length} accent="text-pink-400" />
         <StatCard icon={Mail} label="Messages" value={messages.length} accent="text-blue-400" />
         <StatCard icon={CalendarDays} label="Upcoming Events" value={upcomingEvents} accent="text-teal-400" />
-        <StatCard icon={TrendingUp} label="This Month" value={monthlyData[5]?.Bookings ?? 0} sub="new bookings" accent="text-purple-400" />
       </div>
 
       {/* Monthly bar chart */}
