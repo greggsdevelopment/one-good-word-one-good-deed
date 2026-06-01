@@ -20,6 +20,7 @@ import Stories from '@/pages/Stories';
 import Resources from '@/pages/Resources';
 import Events from '@/pages/Events';
 import Checkout from '@/pages/Checkout';
+import Contact from '@/pages/Contact';
 import Login from '@/pages/Login';
 import Register from '@/pages/Register';
 import ForgotPassword from '@/pages/ForgotPassword';
@@ -56,6 +57,8 @@ const AuthenticatedApp = () => {
       <Route path="/resources" element={<Resources />} />
       <Route path="/events" element={<Events />} />
       <Route path="/checkout" element={<Checkout />} />
+      <Route path="/contact" element={<Contact />} />
+      <Route path="/pledge" element={<Navigate to="/pledge-wall" replace />} />
 
       {/* Auth pages */}
       <Route path="/login" element={<Login />} />
