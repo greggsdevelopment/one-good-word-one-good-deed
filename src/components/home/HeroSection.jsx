@@ -27,7 +27,7 @@ export default function HeroSection({ logoUrl, pledgeCount }) {
   };
 
   return (
-    <section id="hero" className="relative min-h-screen flex items-center justify-center bg-ink overflow-hidden">
+    <section id="hero" className="relative min-h-screen flex items-center justify-center bg-ink overflow-hidden pt-16">
       {/* Grain overlay */}
       <div className="grain-overlay" style={{ opacity: 0.09 }} />
 
