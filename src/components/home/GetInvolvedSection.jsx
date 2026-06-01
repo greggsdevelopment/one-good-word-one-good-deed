@@ -7,7 +7,7 @@ const ACTIONS = [
     icon: Users,
     title: 'Join the Group',
     text: 'Connect with hundreds of people who believe love wins. Join our Facebook community and be part of the conversation.',
-    link: 'https://facebook.com/groups/PLACEHOLDER',
+    link: 'https://www.facebook.com/groups/1332878885346719',
     linkLabel: 'Join on Facebook',
   },
   {

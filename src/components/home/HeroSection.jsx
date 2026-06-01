@@ -119,7 +119,7 @@ export default function HeroSection({ logoUrl, pledgeCount }) {
             Take the Pledge
           </button>
           <a
-            href="https://facebook.com/groups/PLACEHOLDER"
+            href="https://www.facebook.com/groups/1332878885346719"
             target="_blank"
             rel="noopener noreferrer"
             className="px-10 py-4 border-2 border-cream/40 hover:border-gold text-cream hover:text-gold font-barlow-condensed font-bold text-xl uppercase tracking-wider rounded-sm transition-all duration-300 hover:-translate-y-1 w-full sm:w-auto text-center min-h-[56px] flex items-center justify-center"
