@@ -26,7 +26,7 @@ export default function PledgeSection({ pledgeCount, recentPledges, onPledgeCrea
     onPledgeCreated();
   };
 
-  const displayPledges = recentPledges.slice(0, 12);
+  const displayPledges = recentPledges.filter(p => p.approved).slice(0, 12);
 
   return (
     <section id="pledge" className="relative bg-ink py-24 md:py-32 px-4 sm:px-6 overflow-hidden" ref={ref}>

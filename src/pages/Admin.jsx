@@ -47,6 +47,7 @@ export default function Admin() {
   });
 
   const pendingStories = stories.filter(s => !s.approved).length;
+  const pendingPledges = pledges.filter(p => !p.approved).length;
 
   return (
     <div className="min-h-screen bg-cream">
@@ -70,9 +71,9 @@ export default function Admin() {
         {/* Stats */}
         <div className="grid grid-cols-2 sm:grid-cols-5 gap-3 mb-8">
            {[
-            { label: 'Bookings', value: bookings.length, icon: CalendarCheck, color: 'text-blue-600' },
-            { label: 'Pledges', value: pledges.length, icon: Heart, color: 'text-pink-600' },
-            { label: 'Stories', value: stories.length, extra: pendingStories > 0 ? `${pendingStories} pending` : null, icon: BookOpen, color: 'text-purple-600' },
+             { label: 'Bookings', value: bookings.length, icon: CalendarCheck, color: 'text-blue-600' },
+             { label: 'Pledges', value: pledges.length, extra: pendingPledges > 0 ? `${pendingPledges} pending` : null, icon: Heart, color: 'text-pink-600' },
+             { label: 'Stories', value: stories.length, extra: pendingStories > 0 ? `${pendingStories} pending` : null, icon: BookOpen, color: 'text-purple-600' },
             { label: 'Messages', value: messages.length, icon: Mail, color: 'text-green-600' },
             { label: 'Products', value: products.length, icon: ShoppingBag, color: 'text-gold-dark' },
           ].map(({ label, value, extra, icon: Icon, color }) => (

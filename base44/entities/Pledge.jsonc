@@ -4,26 +4,29 @@
   "properties": {
     "first_name": {
       "type": "string",
-      "description": "First name"
+      "description": "First name of the person pledging"
     },
     "last_initial": {
       "type": "string",
-      "description": "Last initial only (privacy)"
+      "description": "Last initial only (for privacy)"
     },
     "city": {
       "type": "string",
-      "description": "City"
+      "description": "City of the person pledging"
     },
     "pledge_statement": {
       "type": "string",
       "description": "Their personal pledge statement"
+    },
+    "approved": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether the pledge has been approved by admin"
     }
   },
   "required": [
-    "first_name",
-    "last_initial",
-    "pledge_statement"
+    "first_name"
   ],
   "allowPublicCreate": true,
-  "allowPublicRead": true
+  "allowPublicRead": false
 }
