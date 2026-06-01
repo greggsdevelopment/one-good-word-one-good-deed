@@ -166,10 +166,10 @@ export default function PledgeSection({ pledgeCount, recentPledges, onPledgeCrea
                     className="bg-white/[0.05] border border-white/[0.08] rounded-sm px-4 py-3 text-center"
                   >
                     <p className="font-barlow-condensed text-cream font-semibold text-sm tracking-wide truncate">
-                      {pledge.name}
+                      {pledge.first_name}{pledge.last_initial ? ` ${pledge.last_initial}.` : ''}
                     </p>
-                    {pledge.location && (
-                      <p className="font-barlow text-cream/40 text-xs mt-0.5 truncate">{pledge.location}</p>
+                    {pledge.city && (
+                      <p className="font-barlow text-cream/40 text-xs mt-0.5 truncate">{pledge.city}</p>
                     )}
                   </motion.div>
                 ))}
