@@ -50,7 +50,7 @@ const AuthenticatedApp = () => {
       <Route path="/about" element={<About />} />
       <Route path="/programs" element={<Programs />} />
       <Route path="/donate" element={<Donate />} />
-      <Route path="/pledge" element={<PledgeWall />} />
+      <Route path="/pledge-wall" element={<PledgeWall />} />
       <Route path="/gallery" element={<Gallery />} />
       <Route path="/stories" element={<Stories />} />
       <Route path="/resources" element={<Resources />} />
