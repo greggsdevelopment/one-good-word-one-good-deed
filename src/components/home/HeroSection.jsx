@@ -67,17 +67,17 @@ export default function HeroSection({ logoUrl, pledgeCount }) {
           />
           {/* Outer halo */}
           <div
-            className="absolute rounded-full pointer-events-none w-[260px] h-[260px] sm:w-[340px] sm:h-[340px] md:w-[420px] md:h-[420px]"
+            className="absolute rounded-full pointer-events-none w-[320px] h-[320px] sm:w-[400px] sm:h-[400px] md:w-[480px] md:h-[480px]"
             style={{
               background: 'radial-gradient(circle, rgba(230,180,80,0.22) 0%, rgba(230,180,80,0.06) 55%, transparent 75%)',
             }}
           />
 
           {/* Floating logo */}
-          <motion.img
-            src={logoUrl}
-            alt="One Good Word One Good Deed"
-            className="relative w-44 h-44 sm:w-60 sm:h-60 md:w-80 md:h-80 object-cover rounded-full"
+           <motion.img
+             src={logoUrl}
+             alt="One Good Word One Good Deed"
+             className="relative w-56 h-56 sm:w-72 sm:h-72 md:w-96 md:h-96 object-cover rounded-full"
             style={{ filter: 'drop-shadow(0 0 32px rgba(230,180,80,0.30))' }}
             animate={{ y: [0, -12, 0] }}
             transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
