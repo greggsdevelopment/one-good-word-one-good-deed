@@ -73,6 +73,7 @@ export default function PledgeWall() {
   };
 
   const filteredPledges = pledges.filter(p => {
+    if (!p.approved) return false;
     if (!search.trim()) return true;
     const q = search.toLowerCase();
     return (
