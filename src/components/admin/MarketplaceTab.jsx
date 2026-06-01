@@ -14,7 +14,10 @@ export default function MarketplaceTab() {
 
   const { data: products = [], isLoading } = useQuery({
     queryKey: ['admin-products'],
-    queryFn: () => base44.entities.Product.list('sort_order', 200),
+    queryFn: async () => {
+      const allProducts = await base44.entities.Product.list('-created_date', 500);
+      return allProducts || [];
+    },
   });
 
   const saveProduct = useMutation({
