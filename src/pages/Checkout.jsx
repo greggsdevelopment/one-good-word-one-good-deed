@@ -5,7 +5,7 @@ import { ArrowLeft, CheckCircle, Package, Truck } from 'lucide-react';
 import { base44 } from '@/api/base44Client';
 import { format, addDays } from 'date-fns';
 
-const inputClass = "w-full bg-white border border-ink/15 rounded-sm px-4 py-3 text-ink placeholder:text-ash font-barlow text-sm focus:outline-none focus:border-gold-dark/50 focus:ring-1 focus:ring-gold/20 transition-colors";
+const inputClass = "w-full bg-white/[0.05] border border-white/[0.1] rounded-sm px-4 py-3 text-cream placeholder:text-cream/25 font-barlow text-sm focus:outline-none focus:border-gold/40 transition-colors";
 
 function generateOrderNumber() {
   return 'OGW-' + Date.now().toString(36).toUpperCase().slice(-6);
@@ -25,9 +25,9 @@ export default function Checkout() {
 
   if (cart.length === 0 && !order) {
     return (
-      <div className="min-h-screen bg-cream flex flex-col items-center justify-center gap-4">
-        <p className="font-barlow text-ink/60">Your cart is empty.</p>
-        <Link to="/shop" className="font-barlow-condensed text-gold-dark uppercase tracking-wider text-sm hover:underline">
+      <div className="min-h-screen bg-ink flex flex-col items-center justify-center gap-4">
+        <p className="font-barlow text-cream/60">Your cart is empty.</p>
+        <Link to="/shop" className="font-barlow-condensed text-gold uppercase tracking-wider text-sm hover:underline">
           ← Back to Shop
         </Link>
       </div>
@@ -56,58 +56,58 @@ export default function Checkout() {
 
   if (order) {
     return (
-      <div className="min-h-screen bg-cream px-4 py-16">
+      <div className="min-h-screen bg-ink px-4 py-16">
         <div className="max-w-lg mx-auto">
           <motion.div initial={{ opacity: 0, scale: 0.96 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.5 }}>
             {/* Success header */}
             <div className="text-center mb-8">
-              <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <CheckCircle className="w-8 h-8 text-green-600" />
+              <div className="w-16 h-16 bg-green-900/30 border border-green-500/30 rounded-full flex items-center justify-center mx-auto mb-4">
+                <CheckCircle className="w-8 h-8 text-green-400" />
               </div>
-              <h1 className="font-anton text-ink text-4xl mb-1">ORDER CONFIRMED</h1>
-              <p className="font-barlow text-ash text-sm">A confirmation will be sent to <strong className="text-ink">{form.email}</strong></p>
+              <h1 className="font-anton text-cream text-4xl mb-1">ORDER CONFIRMED</h1>
+              <p className="font-barlow text-cream/60 text-sm">A confirmation will be sent to <strong className="text-cream">{form.email}</strong></p>
             </div>
 
             {/* Order number */}
-            <div className="bg-ink rounded-sm px-6 py-4 text-center mb-6">
+            <div className="bg-white/[0.05] border border-white/[0.1] rounded-sm px-6 py-4 text-center mb-6">
               <p className="font-barlow-condensed text-cream/40 text-xs tracking-widest uppercase mb-1">Order Number</p>
               <p className="font-anton text-gold text-2xl tracking-wider">{order.orderNumber}</p>
             </div>
 
             {/* Items */}
-            <div className="bg-white border border-ink/8 rounded-sm p-5 mb-4">
-              <p className="font-barlow-condensed text-ash text-xs tracking-widest uppercase mb-4">Items Ordered</p>
+            <div className="bg-white/[0.03] border border-white/[0.07] rounded-sm p-5 mb-4">
+              <p className="font-barlow-condensed text-cream/40 text-xs tracking-widest uppercase mb-4">Items Ordered</p>
               <div className="space-y-3">
                 {order.cartSnapshot.map((item) => (
                   <div key={item.key} className="flex items-center justify-between gap-3">
                     <div className="flex-1">
-                      <p className="font-barlow font-semibold text-ink text-sm">{item.product.name}</p>
-                      <p className="font-barlow text-ash text-xs">{item.size ? `Size: ${item.size} · ` : ''}Qty: {item.quantity}</p>
+                      <p className="font-barlow font-semibold text-cream text-sm">{item.product.name}</p>
+                      <p className="font-barlow text-cream/40 text-xs">{item.size ? `Size: ${item.size} · ` : ''}Qty: {item.quantity}</p>
                     </div>
-                    <p className="font-barlow-condensed text-ink font-semibold text-sm shrink-0">
+                    <p className="font-barlow-condensed text-gold font-semibold text-sm shrink-0">
                       ${(item.product.price * item.quantity).toFixed(2)}
                     </p>
                   </div>
                 ))}
               </div>
-              <div className="border-t border-ink/8 mt-4 pt-4 flex justify-between">
-                <p className="font-barlow-condensed text-ash text-xs tracking-wider uppercase">Total</p>
-                <p className="font-anton text-ink text-xl">${order.total.toFixed(2)}</p>
+              <div className="border-t border-white/[0.07] mt-4 pt-4 flex justify-between">
+                <p className="font-barlow-condensed text-cream/40 text-xs tracking-wider uppercase">Total</p>
+                <p className="font-anton text-gold text-xl">${order.total.toFixed(2)}</p>
               </div>
             </div>
 
             {/* Delivery */}
             <div className="flex items-center gap-3 bg-gold/10 border border-gold/20 rounded-sm px-5 py-4 mb-8">
-              <Truck className="w-5 h-5 text-gold-dark shrink-0" />
+              <Truck className="w-5 h-5 text-gold shrink-0" />
               <div>
-                <p className="font-barlow-condensed text-ink text-sm font-semibold">Estimated Delivery</p>
-                <p className="font-barlow text-ink/60 text-xs">{order.estimatedDelivery}</p>
+                <p className="font-barlow-condensed text-gold text-sm font-semibold">Estimated Delivery</p>
+                <p className="font-barlow text-gold/60 text-xs">{order.estimatedDelivery}</p>
               </div>
             </div>
 
             <Link
               to="/shop"
-              className="block text-center w-full py-3.5 bg-ink hover:bg-ink/80 text-cream font-barlow-condensed font-bold text-sm uppercase tracking-wider rounded-sm transition-all"
+              className="block text-center w-full py-3.5 bg-gold hover:bg-gold-dark text-ink font-barlow-condensed font-bold text-sm uppercase tracking-wider rounded-sm transition-all"
             >
               Continue Shopping
             </Link>
@@ -118,15 +118,17 @@ export default function Checkout() {
   }
 
   return (
-    <div className="min-h-screen bg-cream">
-      <div className="grain-overlay fixed inset-0 pointer-events-none z-0" style={{ opacity: 0.04 }} />
+    <div className="min-h-screen bg-ink">
+      <div className="grain-overlay fixed inset-0 pointer-events-none z-0" style={{ opacity: 0.07 }} />
 
       {/* Header */}
-      <header className="bg-ink text-cream px-4 sm:px-6 py-4 flex items-center gap-4">
-        <button onClick={() => navigate(-1)} className="text-cream/50 hover:text-gold transition-colors">
-          <ArrowLeft className="w-5 h-5" />
-        </button>
-        <h1 className="font-anton text-xl tracking-wider">CHECKOUT</h1>
+      <header className="sticky top-0 z-50 bg-ink/95 backdrop-blur-md border-b border-white/[0.06]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 flex items-center gap-4 h-16">
+          <button onClick={() => navigate(-1)} className="text-cream/50 hover:text-gold transition-colors">
+            <ArrowLeft className="w-5 h-5" />
+          </button>
+          <h1 className="font-anton text-cream text-lg tracking-wider">CHECKOUT</h1>
+        </div>
       </header>
 
       <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 py-10 grid lg:grid-cols-[1fr_360px] gap-8">
@@ -134,8 +136,8 @@ export default function Checkout() {
         <div>
           <form onSubmit={handleSubmit} className="space-y-6">
             {/* Contact */}
-            <div className="bg-white border border-ink/8 rounded-sm p-6">
-              <h2 className="font-barlow-condensed text-ink text-sm tracking-widest uppercase mb-5">Contact Information</h2>
+            <div className="bg-white/[0.03] border border-white/[0.07] rounded-sm p-6">
+              <h2 className="font-barlow-condensed text-cream/60 text-sm tracking-widest uppercase mb-5">Contact Information</h2>
               <div className="space-y-4">
                 <input required placeholder="Full Name *" value={form.name} onChange={set('name')} className={inputClass} />
                 <input required type="email" placeholder="Email Address *" value={form.email} onChange={set('email')} className={inputClass} />
@@ -143,8 +145,8 @@ export default function Checkout() {
             </div>
 
             {/* Shipping */}
-            <div className="bg-white border border-ink/8 rounded-sm p-6">
-              <h2 className="font-barlow-condensed text-ink text-sm tracking-widest uppercase mb-5">Shipping Address</h2>
+            <div className="bg-white/[0.03] border border-white/[0.07] rounded-sm p-6">
+              <h2 className="font-barlow-condensed text-cream/60 text-sm tracking-widest uppercase mb-5">Shipping Address</h2>
               <div className="space-y-4">
                 <input required placeholder="Street Address *" value={form.address} onChange={set('address')} className={inputClass} />
                 <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
@@ -166,7 +168,7 @@ export default function Checkout() {
         </div>
 
         {/* Order summary */}
-        <div className="bg-ink rounded-sm border border-cream/10 p-6 h-fit sticky top-6">
+        <div className="bg-white/[0.03] rounded-sm border border-white/[0.07] p-6 h-fit sticky top-24">
           <div className="flex items-center gap-2 mb-5">
             <Package className="w-4 h-4 text-gold" />
             <p className="font-barlow-condensed text-cream/50 text-xs tracking-widest uppercase">Order Summary</p>
@@ -182,15 +184,15 @@ export default function Checkout() {
                   {item.size && <p className="font-barlow text-cream/30 text-[10px]">Size: {item.size}</p>}
                   <p className="font-barlow text-cream/30 text-[10px]">Qty: {item.quantity}</p>
                 </div>
-                <p className="font-barlow-condensed text-gold text-sm shrink-0">${(item.product.price * item.quantity).toFixed(0)}</p>
+                <p className="font-barlow-condensed text-gold text-sm shrink-0">${(item.product.price * item.quantity).toFixed(2)}</p>
               </div>
             ))}
           </div>
-          <div className="border-t border-cream/10 pt-4 flex justify-between items-center">
+          <div className="border-t border-white/[0.07] pt-4 flex justify-between items-center">
             <p className="font-barlow-condensed text-cream/40 text-xs tracking-wider uppercase">Total</p>
             <p className="font-anton text-gold text-2xl">${total.toFixed(2)}</p>
           </div>
-          <p className="font-barlow text-cream/20 text-xs mt-3">Shipping & taxes included. Estimated delivery: 5–7 business days.</p>
+          <p className="font-barlow text-cream/20 text-xs mt-3">Shipping included. Estimated delivery: 5–7 business days.</p>
         </div>
       </div>
     </div>

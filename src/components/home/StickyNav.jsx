@@ -31,7 +31,7 @@ const NAV_GROUPS = [
         },
 ];
 
-export default function StickyNav() {
+export default function StickyNav({ logoUrl }) {
     const [scrolled, setScrolled] = useState(false);
       const [mobileOpen, setMobileOpen] = useState(false);
         const [openGroup, setOpenGroup] = useState(null);
@@ -85,12 +85,13 @@ export default function StickyNav() {
 
                                                                 {/* Logo */}
                                                                           <Link to="/" className="flex items-center gap-2 flex-shrink-0">
-                                                                                      <img
-                                                                                                    src="https://i.imgur.com/placeholder.png"
-                                                                                                                  alt="One Good Word"
-                                                                                                                                className="h-10 w-10 rounded-full object-cover"
-                                                                                                                                              onError={(e) => { e.target.style.display = 'none'; }}
+                                                                                      {logoUrl && (
+                                                                                                                                                          <img
+                                                                                                                                                              src={logoUrl}
+                                                                                                                                                              alt="One Good Word"
+                                                                                                                                                              className="h-10 w-10 rounded-full object-cover"
                                                                                                                                                           />
+                                                                                                                                                      )}
                                                                                                                                                                       <span className="text-white font-bold text-sm hidden sm:block leading-tight">
                                                                                                                                                                                     ONE GOOD WORD<br />
                                                                                                                                                                                                   <span className="text-[#C9A84C] text-xs font-normal">ONE GOOD DEED</span>
