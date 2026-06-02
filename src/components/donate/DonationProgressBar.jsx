@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import { useInView } from '@/hooks/useInView';
 
-const RAISED = 2340;
+const RAISED = 0;
 const GOAL = 10000;
 const PCT = Math.round((RAISED / GOAL) * 100);
 
