@@ -1,10 +1,8 @@
 import { motion } from 'framer-motion';
 
-export default function DonateHero() {
-  const scrollToTiers = () => {
-    document.getElementById('donation-tiers')?.scrollIntoView({ behavior: 'smooth' });
-  };
+const GOFUNDME_URL = 'https://www.gofundme.com/manage/support-one-good-word-one-good-deeds-mission';
 
+export default function DonateHero() {
   return (
     <section className="relative bg-ink pt-28 pb-20 px-6 overflow-hidden">
       <div className="absolute inset-0 pointer-events-none">
@@ -48,15 +46,17 @@ export default function DonateHero() {
           "If we can change how one child thinks about another child, we can change a generation."
           <br /><span className="text-gold/60 text-sm">— Jason Lewis</span>
         </motion.p>
-        <motion.button
+        <motion.a
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.35 }}
-          onClick={scrollToTiers}
-          className="px-8 py-4 bg-gold hover:bg-gold-dark text-ink font-barlow-condensed font-bold text-lg uppercase tracking-wider rounded-sm transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-gold/20"
+          href={GOFUNDME_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-block px-8 py-4 bg-gold hover:bg-gold-dark text-ink font-barlow-condensed font-bold text-lg uppercase tracking-wider rounded-sm transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-gold/20"
         >
           Make a Donation
-        </motion.button>
+        </motion.a>
       </div>
     </section>
   );

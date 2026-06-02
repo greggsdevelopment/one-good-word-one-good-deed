@@ -12,7 +12,7 @@ export default function FooterSection({ logoUrl }) {
     { label: 'Programs', to: '/programs' },
     { label: 'Stories', to: '/stories' },
     { label: 'Resources', to: '/resources' },
-    { label: 'Donate', to: '/donate' },
+    { label: 'Donate', to: 'https://www.gofundme.com/manage/support-one-good-word-one-good-deeds-mission', external: true },
     { label: 'Pledge Wall', to: '/pledge' },
     { label: 'Shop', to: '/shop' },
     { label: 'Events', to: '/events' },
@@ -70,13 +70,25 @@ export default function FooterSection({ logoUrl }) {
             <p className="font-barlow-condensed text-cream/30 text-xs tracking-[0.3em] uppercase mb-4">Pages</p>
             <div className="flex flex-col gap-2">
               {pageLinks.map((link) => (
-                <Link
-                  key={link.to}
-                  to={link.to}
-                  className="font-barlow-condensed text-cream/50 hover:text-gold text-sm tracking-wider uppercase transition-colors"
-                >
-                  {link.label}
-                </Link>
+                link.external ? (
+                  <a
+                    key={link.to}
+                    href={link.to}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="font-barlow-condensed text-cream/50 hover:text-gold text-sm tracking-wider uppercase transition-colors"
+                  >
+                    {link.label}
+                  </a>
+                ) : (
+                  <Link
+                    key={link.to}
+                    to={link.to}
+                    className="font-barlow-condensed text-cream/50 hover:text-gold text-sm tracking-wider uppercase transition-colors"
+                  >
+                    {link.label}
+                  </Link>
+                )
               ))}
             </div>
           </div>
