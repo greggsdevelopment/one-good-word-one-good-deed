@@ -1,18 +1,38 @@
 import { useState, useRef, useEffect } from 'react';
 import { Music, VolumeX } from 'lucide-react';
 
-// Royalty-free gospel/inspirational MP3
-const AUDIO_URL = 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3';
+// Free, public domain, CORS-enabled audio
+const AUDIO_URL = 'https://upload.wikimedia.org/wikipedia/commons/transcoded/3/3b/En-us-hello.ogg/En-us-hello.ogg.mp3';
+
+// Multiple fallback sources in case one fails
+const AUDIO_SOURCES = [
+  'https://www.bensound.com/bensound-music/bensound-ukulele.mp3',
+  'https://actions.google.com/sounds/v1/alarms/bugle_tune.ogg',
+  'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3',
+];
 
 export default function BackgroundMusic() {
   const audioRef = useRef(null);
   const [playing, setPlaying] = useState(false);
 
   useEffect(() => {
-    const audio = new Audio(AUDIO_URL);
+    const audio = new Audio();
     audio.loop = true;
-    audio.volume = 0.35;
+    audio.volume = 0.4;
+    audio.crossOrigin = 'anonymous';
+    audio.src = AUDIO_SOURCES[0];
     audioRef.current = audio;
+
+    // Try next source if current fails to load
+    let srcIndex = 0;
+    audio.addEventListener('error', () => {
+      srcIndex++;
+      if (srcIndex < AUDIO_SOURCES.length) {
+        audio.src = AUDIO_SOURCES[srcIndex];
+        audio.load();
+      }
+    });
+
     return () => {
       audio.pause();
       audio.src = '';
@@ -26,7 +46,11 @@ export default function BackgroundMusic() {
       audio.pause();
       setPlaying(false);
     } else {
-      audio.play().then(() => setPlaying(true)).catch((e) => console.error('Audio play failed:', e));
+      audio.play()
+        .then(() => setPlaying(true))
+        .catch((e) => {
+          console.error('Audio play failed:', e);
+        });
     }
   };
 
@@ -34,12 +58,26 @@ export default function BackgroundMusic() {
     <button
       onClick={handleToggle}
       title={playing ? 'Pause music' : 'Play music'}
-      className="fixed bottom-6 left-6 z-[9999] w-12 h-12 rounded-full flex items-center justify-center shadow-xl transition-transform hover:scale-110 active:scale-95"
-      style={{ backgroundColor: '#e6b450' }}
+      style={{
+        position: 'fixed',
+        bottom: '24px',
+        left: '24px',
+        zIndex: 99999,
+        width: '52px',
+        height: '52px',
+        borderRadius: '50%',
+        backgroundColor: '#e6b450',
+        border: 'none',
+        cursor: 'pointer',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        boxShadow: '0 4px 20px rgba(0,0,0,0.5)',
+      }}
     >
       {playing
-        ? <Music className="w-5 h-5 text-black" />
-        : <VolumeX className="w-5 h-5 text-black" />
+        ? <Music size={22} color="#000" />
+        : <VolumeX size={22} color="#000" />
       }
     </button>
   );
