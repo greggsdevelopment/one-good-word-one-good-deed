@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import StickyNav from "@/components/home/StickyNav";
 
-const LOGO_URL = "https://storage.googleapis.com/base44-prod-assets/apps/6781f83b-be76-4c6b-bc53-5f1dd1f37041/assets/Logo_OneGoodWord_highres-5FV5j2.png";
+const LOGO_URL = "https://media.base44.com/images/public/6a19e1fc6c5eb736a0763b09/1824cf861_IMG_5119.png";
 
 export default function WristbandBros() {
   const [visible, setVisible] = useState(false);

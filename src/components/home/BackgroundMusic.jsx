@@ -5,9 +5,10 @@ function checkInIframe() {
   try { return window.self !== window.top; } catch { return true; }
 }
 
+// YouTube iframe fallback with reliable mute toggle via src swap
 const VIDEO_ID = '2ecaYj14z3M';
-const MUTED_SRC = `https://www.youtube.com/embed/${VIDEO_ID}?autoplay=1&loop=1&playlist=${VIDEO_ID}&controls=0&mute=1&playsinline=1&rel=0&modestbranding=1`;
-const UNMUTED_SRC = `https://www.youtube.com/embed/${VIDEO_ID}?autoplay=1&loop=1&playlist=${VIDEO_ID}&controls=0&mute=0&playsinline=1&rel=0&modestbranding=1`;
+const buildSrc = (muted) =>
+  `https://www.youtube.com/embed/${VIDEO_ID}?autoplay=1&loop=1&playlist=${VIDEO_ID}&controls=0&mute=${muted ? 1 : 0}&playsinline=1&rel=0&modestbranding=1`;
 
 export default function BackgroundMusic() {
   const iframeRef = useRef(null);
@@ -16,21 +17,22 @@ export default function BackgroundMusic() {
   const [showHint, setShowHint] = useState(false);
   const inIframe = checkInIframe();
 
-  // Show hint after 3s
   useEffect(() => {
     if (inIframe) return;
     const t = setTimeout(() => setShowHint(true), 3000);
     return () => clearTimeout(t);
   }, [inIframe]);
 
-  // Auto-unmute on first interaction
+  // Auto-unmute on first user interaction
   useEffect(() => {
     if (inIframe || interacted) return;
-    const autoUnmute = () => {
+    const autoUnmute = (e) => {
+      // Don't trigger from the music button itself (it handles its own click)
+      if (e.target?.closest?.('[data-music-btn]')) return;
       setInteracted(true);
       setShowHint(false);
       setMuted(false);
-      if (iframeRef.current) iframeRef.current.src = UNMUTED_SRC;
+      if (iframeRef.current) iframeRef.current.src = buildSrc(false);
     };
     window.addEventListener('click', autoUnmute, { once: true });
     window.addEventListener('keydown', autoUnmute, { once: true });
@@ -47,9 +49,7 @@ export default function BackgroundMusic() {
     setMuted(nowMuted);
     setInteracted(true);
     setShowHint(false);
-    if (iframeRef.current) {
-      iframeRef.current.src = nowMuted ? MUTED_SRC : UNMUTED_SRC;
-    }
+    if (iframeRef.current) iframeRef.current.src = buildSrc(nowMuted);
   };
 
   if (inIframe) return null;
@@ -58,9 +58,17 @@ export default function BackgroundMusic() {
     <>
       <iframe
         ref={iframeRef}
-        src={MUTED_SRC}
+        src={buildSrc(true)}
         allow="autoplay; encrypted-media"
-        style={{ position: 'fixed', left: '-9999px', top: '-9999px', width: '1px', height: '1px', pointerEvents: 'none', border: 'none' }}
+        style={{
+          position: 'fixed',
+          left: '-9999px',
+          top: '-9999px',
+          width: '1px',
+          height: '1px',
+          pointerEvents: 'none',
+          border: 'none',
+        }}
         title="Background Music"
       />
       <div className="fixed bottom-6 left-6 z-[9999] flex flex-col items-start gap-2">
@@ -70,6 +78,7 @@ export default function BackgroundMusic() {
           </div>
         )}
         <button
+          data-music-btn
           onClick={handleToggle}
           title={muted ? 'Unmute music' : 'Mute music'}
           className={`w-11 h-11 rounded-full flex items-center justify-center shadow-lg transition-transform hover:scale-110 active:scale-95 ${showHint && !interacted ? 'animate-pulse' : ''}`}
