@@ -1,35 +1,23 @@
 import { useState, useRef, useEffect } from 'react';
 import { Music, VolumeX } from 'lucide-react';
 
-// Direct MP3 from a publicly accessible source
-// This is a royalty-free gospel/inspirational track
+// Royalty-free gospel/inspirational MP3
 const AUDIO_URL = 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3';
-
-function checkInIframe() {
-  try { return window.self !== window.top; } catch { return true; }
-}
 
 export default function BackgroundMusic() {
   const audioRef = useRef(null);
   const [playing, setPlaying] = useState(false);
-  const [ready, setReady] = useState(false);
-  const inIframe = checkInIframe();
 
   useEffect(() => {
-    if (inIframe) return;
     const audio = new Audio(AUDIO_URL);
     audio.loop = true;
     audio.volume = 0.35;
     audioRef.current = audio;
-
-    audio.addEventListener('canplay', () => setReady(true));
-    audio.load();
-
     return () => {
       audio.pause();
       audio.src = '';
     };
-  }, [inIframe]);
+  }, []);
 
   const handleToggle = () => {
     const audio = audioRef.current;
@@ -38,11 +26,9 @@ export default function BackgroundMusic() {
       audio.pause();
       setPlaying(false);
     } else {
-      audio.play().then(() => setPlaying(true)).catch(() => {});
+      audio.play().then(() => setPlaying(true)).catch((e) => console.error('Audio play failed:', e));
     }
   };
-
-  if (inIframe) return null;
 
   return (
     <button
