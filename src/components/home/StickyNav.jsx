@@ -27,6 +27,7 @@ const NAV_GROUPS = [
                           { label: 'Donate', to: 'https://www.gofundme.com/manage/support-one-good-word-one-good-deeds-mission', external: true },
                                 { label: 'Pledge Wall', to: '/pledge-wall' },
                                       { label: 'Shop', to: '/shop' },
+                                      { label: 'Wristband Bros', to: '/wristband-bros' },
                   ],
         },
 ];

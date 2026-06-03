@@ -21,6 +21,7 @@ import Resources from '@/pages/Resources';
 import Events from '@/pages/Events';
 import Checkout from '@/pages/Checkout';
 import Contact from '@/pages/Contact';
+import WristbandBros from '@/pages/WristbandBros';
 import Login from '@/pages/Login';
 import Register from '@/pages/Register';
 import ForgotPassword from '@/pages/ForgotPassword';
@@ -58,6 +59,7 @@ const AuthenticatedApp = () => {
       <Route path="/events" element={<Events />} />
       <Route path="/checkout" element={<Checkout />} />
       <Route path="/contact" element={<Contact />} />
+      <Route path="/wristband-bros" element={<WristbandBros />} />
       <Route path="/pledge" element={<Navigate to="/pledge-wall" replace />} />
 
       {/* Auth pages */}
