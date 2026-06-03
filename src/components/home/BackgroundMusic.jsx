@@ -1,51 +1,94 @@
-import { useState, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Music, VolumeX } from 'lucide-react';
 
-// Your song: https://youtu.be/u-4QARnU77A
 const VIDEO_ID = 'u-4QARnU77A';
 
 export default function BackgroundMusic() {
-  const iframeRef = useRef(null);
   const [playing, setPlaying] = useState(false);
+  const playerRef = useRef(null);
+  const containerRef = useRef(null);
+  const readyRef = useRef(false);
+
+  useEffect(() => {
+    // Load YouTube IFrame API script if not already loaded
+    if (!window.YT) {
+      const tag = document.createElement('script');
+      tag.src = 'https://www.youtube.com/iframe_api';
+      document.head.appendChild(tag);
+    }
+
+    const initPlayer = () => {
+      playerRef.current = new window.YT.Player(containerRef.current, {
+        videoId: VIDEO_ID,
+        playerVars: {
+          autoplay: 0,
+          loop: 1,
+          playlist: VIDEO_ID,
+          controls: 0,
+          disablekb: 1,
+          fs: 0,
+          iv_load_policy: 3,
+          modestbranding: 1,
+          rel: 0,
+        },
+        events: {
+          onReady: () => {
+            readyRef.current = true;
+            playerRef.current.setVolume(50);
+          },
+        },
+      });
+    };
+
+    if (window.YT && window.YT.Player) {
+      initPlayer();
+    } else {
+      const prev = window.onYouTubeIframeAPIReady;
+      window.onYouTubeIframeAPIReady = () => {
+        if (prev) prev();
+        initPlayer();
+      };
+    }
+
+    return () => {
+      if (playerRef.current) {
+        playerRef.current.destroy();
+        playerRef.current = null;
+      }
+    };
+  }, []);
 
   const handleToggle = () => {
-    const iframe = iframeRef.current;
-    if (!iframe) return;
+    const player = playerRef.current;
+    if (!player || !readyRef.current) return;
 
     if (playing) {
-      iframe.contentWindow.postMessage(
-        JSON.stringify({ event: 'command', func: 'pauseVideo', args: [] }),
-        '*'
-      );
+      player.pauseVideo();
       setPlaying(false);
     } else {
-      iframe.contentWindow.postMessage(
-        JSON.stringify({ event: 'command', func: 'playVideo', args: [] }),
-        '*'
-      );
+      player.playVideo();
       setPlaying(true);
     }
   };
 
   return (
     <>
-      {/* Hidden YouTube iframe player */}
-      <iframe
-        ref={iframeRef}
-        src={`https://www.youtube.com/embed/${VIDEO_ID}?enablejsapi=1&autoplay=0&loop=1&playlist=${VIDEO_ID}&controls=0&mute=0`}
-        allow="autoplay"
+      {/* Hidden YouTube player container */}
+      <div
         style={{
           position: 'fixed',
           width: '1px',
           height: '1px',
           bottom: 0,
           left: 0,
+          overflow: 'hidden',
           opacity: 0,
           pointerEvents: 'none',
           zIndex: -1,
         }}
-        title="background-music"
-      />
+      >
+        <div ref={containerRef} />
+      </div>
 
       {/* Gold music toggle button */}
       <button
