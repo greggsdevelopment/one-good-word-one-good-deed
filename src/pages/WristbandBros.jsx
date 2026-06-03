@@ -181,7 +181,6 @@ export default function WristbandBros() {
             <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(270px, 1fr))", gap: "3px" }}>
               {[
                 { num: "01", title: "Fully Custom Design", body: "Your message. Your colors. Your cause. Every wristband is built exactly the way the movement needs it." },
-                { num: "02", title: "Free Shipping", body: "No hidden fees. More of every dollar goes toward the mission, not the mailbox." },
                 { num: "03", title: "Fast Turnaround", body: "Super rush options available. Get your order when you need it without cutting corners on quality." },
               ].map((f) => (
                 <div key={f.num} className="wb-feature-card" style={{ padding: "52px 40px", background: "#111", borderTop: "2px solid #e6b450" }}>
@@ -205,7 +204,7 @@ export default function WristbandBros() {
             Visit WristbandBros.com
           </a>
           <p style={{ marginTop: "22px", fontFamily: "'Barlow Condensed', sans-serif", fontSize: "13px", letterSpacing: "2px", color: "#3a3630" }}>
-            Custom Wristbands &nbsp;|&nbsp; Free Shipping &nbsp;|&nbsp; Happiness Guaranteed
+            Custom Wristbands &nbsp;|&nbsp; Happiness Guaranteed
           </p>
         </section>
 
