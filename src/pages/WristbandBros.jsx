@@ -1,4 +1,7 @@
 import { useEffect, useState } from "react";
+import StickyNav from "@/components/home/StickyNav";
+
+const LOGO_URL = "https://storage.googleapis.com/base44-prod-assets/apps/6781f83b-be76-4c6b-bc53-5f1dd1f37041/assets/Logo_OneGoodWord_highres-5FV5j2.png";
 
 export default function WristbandBros() {
   const [visible, setVisible] = useState(false);
@@ -81,7 +84,9 @@ export default function WristbandBros() {
 
       <div className="wb-grain-layer" />
 
-      <div style={{ fontFamily: "'Barlow', sans-serif", background: "#080808", minHeight: "100vh", color: "#f5f1e8", overflowX: "hidden" }}>
+      <StickyNav logoUrl={LOGO_URL} />
+
+      <div style={{ fontFamily: "'Barlow', sans-serif", background: "#080808", minHeight: "100vh", color: "#f5f1e8", overflowX: "hidden", paddingTop: "64px" }}>
 
         {/* ─── HERO ─────────────────────────────────────────── */}
         <section style={{ position: "relative", minHeight: "100vh", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", padding: "100px 24px 80px", overflow: "hidden", textAlign: "center" }}>
