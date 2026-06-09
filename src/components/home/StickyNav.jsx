@@ -34,6 +34,7 @@ const NAV_GROUPS = [
                   links: [
                           { label: 'Wristband Bros', to: '/wristband-bros' },
                           { label: 'Goosehead Insurance', to: '/goosehead-insurance' },
+                          { label: 'Dog N Suds Pet Grooming', to: '/dog-n-suds' },
                   ],
         },
 ];

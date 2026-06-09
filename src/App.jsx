@@ -23,6 +23,7 @@ import Checkout from '@/pages/Checkout';
 import Contact from '@/pages/Contact';
 import WristbandBros from '@/pages/WristbandBros';
 import GooseheadInsurance from '@/pages/GooseheadInsurance';
+import DogNSuds from '@/pages/DogNSuds';
 import Login from '@/pages/Login';
 import Register from '@/pages/Register';
 import ForgotPassword from '@/pages/ForgotPassword';
@@ -62,6 +63,7 @@ const AuthenticatedApp = () => {
       <Route path="/contact" element={<Contact />} />
       <Route path="/wristband-bros" element={<WristbandBros />} />
       <Route path="/goosehead-insurance" element={<GooseheadInsurance />} />
+      <Route path="/dog-n-suds" element={<DogNSuds />} />
       <Route path="/pledge" element={<Navigate to="/pledge-wall" replace />} />
 
       {/* Auth pages */}
