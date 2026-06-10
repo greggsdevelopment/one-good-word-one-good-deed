@@ -1,0 +1,38 @@
+{
+  "name": "PartnerInquiry",
+  "type": "object",
+  "properties": {
+    "business_name": {
+      "type": "string",
+      "description": "Name of the business"
+    },
+    "contact_person": {
+      "type": "string",
+      "description": "Name of the contact person"
+    },
+    "email": {
+      "type": "string",
+      "description": "Contact email address"
+    },
+    "website": {
+      "type": "string",
+      "description": "Business website URL"
+    },
+    "message": {
+      "type": "string",
+      "description": "Partnership inquiry message"
+    },
+    "read": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether the inquiry has been reviewed"
+    }
+  },
+  "required": [
+    "business_name",
+    "contact_person",
+    "email",
+    "message"
+  ],
+  "allowPublicCreate": true
+}

@@ -15,6 +15,7 @@ import TestimonialsSection from '@/components/home/TestimonialsSection';
 import BookJasonBanner from '@/components/home/BookJasonBanner';
 import FAQSection from '@/components/home/FAQSection';
 import VoicesOfChange from '@/components/home/VoicesOfChange';
+import SponsorInquiryForm from '@/components/home/SponsorInquiryForm';
 import MarqueeTicker from '@/components/home/MarqueeTicker';
 import UpcomingAppearance from '@/components/home/UpcomingAppearance';
 
@@ -61,6 +62,7 @@ export default function Home() {
         onPledgeCreated={handlePledgeCreated}
       />
       <GetInvolvedSection />
+      <SponsorInquiryForm />
       <VoicesOfChange />
       <TestimonialsSection />
       <BookJasonBanner />
