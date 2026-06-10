@@ -164,6 +164,52 @@ export default function TDKeleman() {
           </div>
         </section>
 
+        {/* ─── FLEET PHOTOS ──────────────────────────────────── */}
+        <section style={{ padding: "90px 24px", background: "#080808" }}>
+          <div style={{ maxWidth: "1060px", margin: "0 auto" }}>
+            <p style={{ fontFamily: "'Barlow Condensed', sans-serif", fontSize: "12px", letterSpacing: "5px", color: "#e6b450", textTransform: "uppercase", textAlign: "center", marginBottom: "16px" }}>The Fleet</p>
+            <h2 style={{ fontFamily: "'Anton', sans-serif", fontSize: "clamp(28px, 4vw, 46px)", textTransform: "uppercase", textAlign: "center", marginBottom: "48px" }}>FLEET PHOTOS</h2>
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: "3px" }}>
+              {[1, 2].map((n) => (
+                <div
+                  key={n}
+                  style={{
+                    aspectRatio: "16/9",
+                    background: "#111",
+                    border: "1px solid rgba(230,180,80,0.2)",
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    gap: "16px",
+                    position: "relative",
+                    overflow: "hidden",
+                  }}
+                >
+                  {/* Corner accents */}
+                  <div style={{ position: "absolute", top: "12px", left: "12px", width: "20px", height: "20px", borderTop: "2px solid rgba(230,180,80,0.5)", borderLeft: "2px solid rgba(230,180,80,0.5)" }} />
+                  <div style={{ position: "absolute", top: "12px", right: "12px", width: "20px", height: "20px", borderTop: "2px solid rgba(230,180,80,0.5)", borderRight: "2px solid rgba(230,180,80,0.5)" }} />
+                  <div style={{ position: "absolute", bottom: "12px", left: "12px", width: "20px", height: "20px", borderBottom: "2px solid rgba(230,180,80,0.5)", borderLeft: "2px solid rgba(230,180,80,0.5)" }} />
+                  <div style={{ position: "absolute", bottom: "12px", right: "12px", width: "20px", height: "20px", borderBottom: "2px solid rgba(230,180,80,0.5)", borderRight: "2px solid rgba(230,180,80,0.5)" }} />
+                  {/* Truck icon */}
+                  <svg viewBox="0 0 60 40" width="64" height="42" opacity="0.25">
+                    <rect x="2"  y="17" width="40" height="10" rx="1" fill="#e6b450" />
+                    <rect x="2"  y="13" width="40" height="4"  rx="1" fill="#e6b450" opacity="0.6" />
+                    <rect x="42" y="11" width="16" height="16" rx="2" fill="#e6b450" />
+                    <rect x="45" y="14" width="8"  height="8"  rx="1" fill="#080808" opacity="0.6" />
+                    <circle cx="12" cy="29" r="4" fill="none" stroke="#e6b450" strokeWidth="2" />
+                    <circle cx="28" cy="29" r="4" fill="none" stroke="#e6b450" strokeWidth="2" />
+                    <circle cx="52" cy="29" r="4" fill="none" stroke="#e6b450" strokeWidth="2" />
+                  </svg>
+                  <p style={{ fontFamily: "'Barlow Condensed', sans-serif", fontSize: "11px", letterSpacing: "4px", color: "rgba(230,180,80,0.4)", textTransform: "uppercase" }}>
+                    Photo {n} — Coming Soon
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
         {/* ─── PARTNER COMPANY ───────────────────────────────── */}
         <section style={{ padding: "90px 24px", textAlign: "center" }}>
           <div style={{ maxWidth: "700px", margin: "0 auto", border: "1px solid rgba(230,180,80,0.25)", padding: "60px 48px", borderRadius: "2px", background: "#0d0c0a" }}>
