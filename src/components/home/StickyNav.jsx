@@ -37,7 +37,8 @@ const NAV_GROUPS = [
                           { label: 'Goosehead Insurance', to: '/goosehead-insurance' },
                           { label: 'Dog N Suds Pet Grooming', to: '/dog-n-suds' },
                           { label: 'T.D. Keleman Trucking', to: '/td-keleman-trucking' },
-                  ],
+                          { label: 'Subway — Taylor, MI', to: '/subway-taylor' },
+                          ],
         },
 ];
 
