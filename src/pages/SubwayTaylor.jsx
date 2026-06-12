@@ -74,25 +74,18 @@ export default function SubwayTaylor() {
 
           <div className="subway-glow" style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%,-50%)", width: "700px", height: "700px", background: "radial-gradient(circle, rgba(255,199,0,0.14) 0%, transparent 68%)", pointerEvents: "none" }} />
 
-          {/* Subway-style sandwich icon */}
+          {/* TikTok / Collectibles icon */}
           <div className="subway-float" style={{ marginBottom: "48px" }}>
-            <svg viewBox="0 0 260 140" width="300" height="162" style={{ filter: "drop-shadow(0 0 36px rgba(230,180,80,0.55))" }}>
+            <svg viewBox="0 0 160 160" width="140" height="140" style={{ filter: "drop-shadow(0 0 36px rgba(230,180,80,0.55))" }}>
               <defs>
-                <radialGradient id="breadGold" cx="38%" cy="22%" r="72%">
+                <radialGradient id="tikGold" cx="38%" cy="22%" r="72%">
                   <stop offset="0%"   stopColor="#f5d070" />
                   <stop offset="55%"  stopColor="#e6b450" />
                   <stop offset="100%" stopColor="#7a4e0a" />
                 </radialGradient>
               </defs>
-              {/* Top bun */}
-              <ellipse cx="130" cy="52" rx="118" ry="40" fill="url(#breadGold)" />
-              <ellipse cx="130" cy="48" rx="100" ry="22" fill="rgba(255,255,255,0.08)" />
-              {/* Filling layers */}
-              <rect x="14" y="82" width="232" height="10" rx="3" fill="#4a8c3f" opacity="0.9" />
-              <rect x="14" y="91" width="232" height="7"  rx="2" fill="#e8403a" opacity="0.8" />
-              <rect x="14" y="97" width="232" height="6"  rx="2" fill="#f5d88a" opacity="0.85" />
-              {/* Bottom bun */}
-              <rect x="12" y="101" width="236" height="26" rx="6" fill="url(#breadGold)" />
+              {/* TikTok-style music note shape */}
+              <path d="M100,20 L100,95 A25,25 0 1,1 75,70 L75,45 A50,50 0 0,0 125,95 A50,50 0 0,1 100,20 Z" fill="url(#tikGold)" />
             </svg>
           </div>
 
@@ -103,8 +96,8 @@ export default function SubwayTaylor() {
           </div>
 
           <h1 style={{ ...fadeStyle(0.22), fontFamily: "'Anton', sans-serif", fontSize: "clamp(38px, 7.5vw, 78px)", lineHeight: 0.95, textTransform: "uppercase", letterSpacing: "2px", marginBottom: "20px" }}>
-            SUBWAY<br />
-            <span style={{ color: "#e6b450" }}>TAYLOR, MI</span>
+            AD COLLECTIBLES<br />
+            <span style={{ color: "#e6b450" }}>BY ALI</span>
           </h1>
 
           {/* BIG THANK YOU TO ALI */}
@@ -113,35 +106,27 @@ export default function SubwayTaylor() {
               🙏 A HUGE THANK YOU TO ALI!
             </p>
             <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: "15px", color: "#f5f1e8", lineHeight: 1.6 }}>
-              Owner Ali's generous support and belief in our mission means the world to us. We are beyond grateful.
+              Ali's generous support and belief in our mission means the world to us. We are beyond grateful for everything he does.
             </p>
           </div>
 
           <p style={{ ...fadeStyle(0.38), fontFamily: "'Barlow', sans-serif", fontSize: "18px", color: "#8a857c", maxWidth: "560px", lineHeight: 1.7, marginBottom: "16px" }}>
-            One Good Word...One Good Deed LLC is proud to partner with Subway — 23475 Eureka Rd, Taylor, MI. Fresh, fast, and rooted in the community.
+            One Good Word...One Good Deed LLC is proud to partner with Ali — entrepreneur, collector, and community champion. Follow his TikTok for exclusive collectibles drops and more.
           </p>
 
           <p style={{ ...fadeStyle(0.45), fontFamily: "'Barlow Condensed', sans-serif", fontSize: "15px", color: "#e6b450", letterSpacing: "2px", marginBottom: "44px" }}>
-            📍 23475 Eureka Rd, Taylor, MI 48180
+            🎵 @adcollectibles on TikTok
           </p>
 
           <div style={{ ...fadeStyle(0.52), display: "flex", gap: "16px", flexWrap: "wrap", justifyContent: "center" }}>
             <a
-              href="https://www.google.com/maps/search/23475+Eureka+Rd+Taylor+MI+48180"
+              href="https://www.tiktok.com/@adcollectibles"
               target="_blank"
               rel="noopener noreferrer"
               className="subway-shimmer-btn"
               style={{ fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 700, fontSize: "15px", letterSpacing: "3px", textTransform: "uppercase", color: "#080808", background: "linear-gradient(135deg, #f0c060 0%, #e6b450 50%, #c9922f 100%)", padding: "16px 40px", borderRadius: "2px", boxShadow: "0 0 40px rgba(230,180,80,0.3), 0 8px 28px rgba(0,0,0,0.6)" }}
             >
-              Get Directions
-            </a>
-            <a
-              href="https://www.subway.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{ fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 700, fontSize: "15px", letterSpacing: "3px", textTransform: "uppercase", color: "#e6b450", background: "transparent", border: "1px solid rgba(230,180,80,0.45)", padding: "16px 40px", borderRadius: "2px", textDecoration: "none" }}
-            >
-              Visit Subway.com
+              Follow on TikTok
             </a>
           </div>
 
@@ -157,10 +142,10 @@ export default function SubwayTaylor() {
         <section style={{ padding: "110px 24px", maxWidth: "860px", margin: "0 auto", textAlign: "center" }}>
           <p style={{ fontFamily: "'Barlow Condensed', sans-serif", fontSize: "12px", letterSpacing: "5px", color: "#e6b450", textTransform: "uppercase", marginBottom: "24px" }}>Why This Partnership Matters</p>
           <h2 style={{ fontFamily: "'Anton', sans-serif", fontSize: "clamp(32px, 5.5vw, 58px)", lineHeight: 1.05, textTransform: "uppercase", marginBottom: "36px" }}>
-            FRESH FOOD.<br />STRONGER COMMUNITIES.
+            RARE FINDS.<br />REAL COMMUNITY.
           </h2>
           <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: "19px", color: "#8a857c", lineHeight: 1.85, maxWidth: "660px", margin: "0 auto" }}>
-            Great communities are built by great people. Ali and his team at Subway Taylor demonstrate every day that a local business can be more than a place to eat — it can be a place where people feel seen, welcomed, and valued. That's exactly what we stand for.
+            Ali built AD Collectibles from passion — a love for the rare, the special, and the stories behind every piece. That same passion is what drives this movement. When you support entrepreneurs like Ali, you're investing in the kind of community that lifts everyone up.
           </p>
         </section>
 
@@ -170,12 +155,12 @@ export default function SubwayTaylor() {
         {/* ─── FEATURES ─── */}
         <section style={{ padding: "90px 24px", background: "#0b0b0b" }}>
           <div style={{ maxWidth: "1060px", margin: "0 auto" }}>
-            <p style={{ fontFamily: "'Barlow Condensed', sans-serif", fontSize: "12px", letterSpacing: "5px", color: "#e6b450", textTransform: "uppercase", textAlign: "center", marginBottom: "64px" }}>What Makes This Location Special</p>
+            <p style={{ fontFamily: "'Barlow Condensed', sans-serif", fontSize: "12px", letterSpacing: "5px", color: "#e6b450", textTransform: "uppercase", textAlign: "center", marginBottom: "64px" }}>What Ali Brings to the Table</p>
             <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(270px, 1fr))", gap: "3px" }}>
               {[
-                { num: "01", title: "Community First", body: "Locally owned and operated by Ali, who puts community and connection at the heart of every interaction." },
-                { num: "02", title: "Taylor, MI Strong", body: "Proudly serving Taylor, Michigan — a city built on hard work, family, and looking out for one another." },
-                { num: "03", title: "Fresh Every Day", body: "Subway Taylor keeps it fresh — in the food they serve and the values they live by." },
+                { num: "01", title: "Exclusive Collectibles", body: "Ali sources rare and unique finds that you won't see anywhere else. Follow @adcollectibles on TikTok to catch every drop." },
+                { num: "02", title: "Entrepreneur Spirit", body: "From Subway owner to TikTok collectibles entrepreneur — Ali embodies the hustle, heart, and community values we champion." },
+                { num: "03", title: "Taylor, MI Proud", body: "Rooted in Taylor, Michigan. Ali represents the best of what a local entrepreneur can be — driven, generous, and community-first." },
               ].map((f) => (
                 <div key={f.num} className="subway-feature-card" style={{ padding: "52px 40px", background: "#111", borderTop: "2px solid #e6b450" }}>
                   <p style={{ fontFamily: "'Barlow Condensed', sans-serif", fontSize: "11px", letterSpacing: "4px", color: "#e6b450", marginBottom: "16px" }}>{f.num}</p>
@@ -189,39 +174,60 @@ export default function SubwayTaylor() {
 
         {/* ─── LOCATION CARD ─── */}
         <section style={{ padding: "90px 24px", textAlign: "center" }}>
-          <div style={{ maxWidth: "700px", margin: "0 auto", border: "1px solid rgba(230,180,80,0.25)", padding: "60px 48px", borderRadius: "2px", background: "#0d0c0a" }}>
-            <p style={{ fontFamily: "'Barlow Condensed', sans-serif", fontSize: "11px", letterSpacing: "5px", color: "#e6b450", textTransform: "uppercase", marginBottom: "20px" }}>Visit Us</p>
-            <h3 style={{ fontFamily: "'Anton', sans-serif", fontSize: "clamp(28px, 4vw, 42px)", textTransform: "uppercase", letterSpacing: "1px", marginBottom: "24px" }}>
-              Subway — Taylor, MI
-            </h3>
-            <div style={{ display: "flex", flexDirection: "column", gap: "12px", alignItems: "center" }}>
-              <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: "16px", color: "#8a857c", lineHeight: 1.7 }}>
-                📍 23475 Eureka Rd, Taylor, MI 48180
-              </p>
-              <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: "15px", color: "#8a857c" }}>
-                🕐 Open · Closes 9 PM
-              </p>
-              <p style={{ fontFamily: "'Barlow Condensed', sans-serif", fontSize: "16px", letterSpacing: "1px", color: "#e6b450" }}>
-                Owner: <strong>Ali</strong>
+          <div style={{ maxWidth: "700px", margin: "0 auto", display: "flex", flexDirection: "column", gap: "24px" }}>
+
+            {/* TikTok card */}
+            <div style={{ border: "1px solid rgba(230,180,80,0.45)", padding: "48px", borderRadius: "2px", background: "#0d0c0a" }}>
+              <p style={{ fontFamily: "'Barlow Condensed', sans-serif", fontSize: "11px", letterSpacing: "5px", color: "#e6b450", textTransform: "uppercase", marginBottom: "16px" }}>Follow Ali's Business</p>
+              <h3 style={{ fontFamily: "'Anton', sans-serif", fontSize: "clamp(26px, 4vw, 40px)", textTransform: "uppercase", letterSpacing: "1px", marginBottom: "20px" }}>
+                AD Collectibles
+              </h3>
+              <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: "15px", color: "#8a857c", marginBottom: "24px" }}>
+                🎵 @adcollectibles on TikTok
               </p>
               <a
-                href="https://www.google.com/maps/search/23475+Eureka+Rd+Taylor+MI+48180"
+                href="https://www.tiktok.com/@adcollectibles"
                 target="_blank"
                 rel="noopener noreferrer"
-                style={{ fontFamily: "'Barlow Condensed', sans-serif", fontSize: "15px", fontWeight: 700, letterSpacing: "2px", color: "#e6b450", textDecoration: "none", marginTop: "8px", transition: "opacity 0.2s" }}
-                onMouseOver={e => e.target.style.opacity = "0.75"}
-                onMouseOut={e => e.target.style.opacity = "1"}
+                style={{ fontFamily: "'Barlow Condensed', sans-serif", fontSize: "15px", fontWeight: 700, letterSpacing: "2px", color: "#080808", background: "linear-gradient(135deg, #f0c060 0%, #e6b450 50%, #c9922f 100%)", textDecoration: "none", padding: "14px 36px", borderRadius: "2px", display: "inline-block" }}
               >
-                📍 Get Directions →
+                Follow on TikTok →
               </a>
             </div>
+
+            {/* Subway card */}
+            <div style={{ border: "1px solid rgba(230,180,80,0.15)", padding: "40px 48px", borderRadius: "2px", background: "#0a0908" }}>
+              <p style={{ fontFamily: "'Barlow Condensed', sans-serif", fontSize: "11px", letterSpacing: "5px", color: "#8a857c", textTransform: "uppercase", marginBottom: "14px" }}>Also Visit Ali's Subway</p>
+              <h3 style={{ fontFamily: "'Anton', sans-serif", fontSize: "clamp(22px, 3vw, 32px)", textTransform: "uppercase", letterSpacing: "1px", marginBottom: "18px", color: "#f5f1e8" }}>
+                Subway — Taylor, MI
+              </h3>
+              <div style={{ display: "flex", flexDirection: "column", gap: "8px", alignItems: "center" }}>
+                <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: "15px", color: "#8a857c" }}>
+                  📍 23475 Eureka Rd, Taylor, MI 48180
+                </p>
+                <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: "14px", color: "#8a857c" }}>
+                  🕐 Open · Closes 9 PM
+                </p>
+                <a
+                  href="https://www.google.com/maps/search/23475+Eureka+Rd+Taylor+MI+48180"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{ fontFamily: "'Barlow Condensed', sans-serif", fontSize: "14px", fontWeight: 700, letterSpacing: "2px", color: "#8a857c", textDecoration: "none", marginTop: "6px" }}
+                  onMouseOver={e => e.target.style.color = "#e6b450"}
+                  onMouseOut={e => e.target.style.color = "#8a857c"}
+                >
+                  Get Directions →
+                </a>
+              </div>
+            </div>
+
           </div>
         </section>
 
         {/* ─── FOOTER BAR ─── */}
         <div style={{ borderTop: "1px solid #141414", padding: "30px 24px", textAlign: "center" }}>
           <p style={{ fontFamily: "'Barlow Condensed', sans-serif", fontSize: "11px", letterSpacing: "3px", color: "#2a2620", textTransform: "uppercase" }}>
-            One Good Word...One Good Deed LLC &nbsp;|&nbsp; In Partnership with Subway Taylor, MI &nbsp;|&nbsp; ogwogd.org
+            One Good Word...One Good Deed LLC &nbsp;|&nbsp; In Partnership with Ali — AD Collectibles &amp; Subway Taylor, MI &nbsp;|&nbsp; ogwogd.org
           </p>
         </div>
       </div>
