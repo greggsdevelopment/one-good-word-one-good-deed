@@ -26,6 +26,7 @@ import GooseheadInsurance from '@/pages/GooseheadInsurance';
 import DogNSuds from '@/pages/DogNSuds';
 import TDKeleman from '@/pages/TDKeleman';
 import SubwayTaylor from '@/pages/SubwayTaylor';
+import PapasPizza from '@/pages/PapasPizza';
 import Login from '@/pages/Login';
 import Register from '@/pages/Register';
 import ForgotPassword from '@/pages/ForgotPassword';
@@ -68,6 +69,7 @@ const AuthenticatedApp = () => {
       <Route path="/dog-n-suds" element={<DogNSuds />} />
       <Route path="/td-keleman-trucking" element={<TDKeleman />} />
       <Route path="/subway-taylor" element={<SubwayTaylor />} />
+      <Route path="/papas-pizza" element={<PapasPizza />} />
       <Route path="/pledge" element={<Navigate to="/pledge-wall" replace />} />
 
       {/* Auth pages */}
