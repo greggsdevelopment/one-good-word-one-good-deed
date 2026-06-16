@@ -28,6 +28,7 @@ import TDKeleman from '@/pages/TDKeleman';
 import SubwayTaylor from '@/pages/SubwayTaylor';
 import PapasPizza from '@/pages/PapasPizza';
 import PlymouthsAutoRepair from '@/pages/PlymouthsAutoRepair';
+import FullyPromoted from '@/pages/FullyPromoted';
 import Login from '@/pages/Login';
 import Register from '@/pages/Register';
 import ForgotPassword from '@/pages/ForgotPassword';
@@ -72,6 +73,7 @@ const AuthenticatedApp = () => {
       <Route path="/subway-taylor" element={<SubwayTaylor />} />
       <Route path="/papas-pizza" element={<PapasPizza />} />
       <Route path="/plymouths-auto-repair" element={<PlymouthsAutoRepair />} />
+      <Route path="/fully-promoted" element={<FullyPromoted />} />
       <Route path="/pledge" element={<Navigate to="/pledge-wall" replace />} />
 
       {/* Auth pages */}

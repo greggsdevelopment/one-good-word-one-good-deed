@@ -40,6 +40,7 @@ const NAV_GROUPS = [
                           { label: 'AD Collectibles (Ali)', to: '/subway-taylor' },
                           { label: "Papa's Pizza & BBQ", to: '/papas-pizza' },
                           { label: "Plymouth's Auto Repair", to: '/plymouths-auto-repair' },
+                          { label: "Fully Promoted", to: '/fully-promoted' },
                           ],
         },
 ];
