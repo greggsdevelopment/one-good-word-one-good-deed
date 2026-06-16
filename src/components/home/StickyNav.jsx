@@ -39,6 +39,7 @@ const NAV_GROUPS = [
                           { label: 'T.D. Keleman Trucking', to: '/td-keleman-trucking' },
                           { label: 'AD Collectibles (Ali)', to: '/subway-taylor' },
                           { label: "Papa's Pizza & BBQ", to: '/papas-pizza' },
+                          { label: "Plymouth's Auto Repair", to: '/plymouths-auto-repair' },
                           ],
         },
 ];
