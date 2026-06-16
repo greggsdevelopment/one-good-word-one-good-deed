@@ -157,9 +157,24 @@ export default function PlymouthsAutoRepair() {
           <h2 style={{ fontFamily: "'Anton', sans-serif", fontSize: "clamp(32px, 5.5vw, 58px)", lineHeight: 1.05, textTransform: "uppercase", marginBottom: "36px" }}>
             HONEST WORK.<br /><span style={{ color: "#e6b450" }}>REAL COMMUNITY.</span>
           </h2>
-          <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: "19px", color: "#8a857c", lineHeight: 1.85, maxWidth: "660px", margin: "0 auto" }}>
+          <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: "19px", color: "#8a857c", lineHeight: 1.85, maxWidth: "660px", margin: "0 auto 48px" }}>
             Abraham built Plymouth's Auto Repair on one principle — treat every customer the way you'd want your own family treated. No upselling, no phantom repairs, no surprises. That kind of integrity is exactly what this movement is about. When honest people show up for each other, communities change.
           </p>
+
+          {/* Shout out cards */}
+          <div style={{ display: "flex", gap: "24px", flexWrap: "wrap", justifyContent: "center", maxWidth: "760px", margin: "0 auto" }}>
+            {[
+              { name: "Abraham", emoji: "🔧", title: "The Heart of the Shop", body: "Abraham is the reason 235+ Plymouth drivers trust this shop with their cars. His honesty, his skill, and his genuine care for people is rare — and it's exactly what this mission stands on." },
+              { name: "Sam", emoji: "🤝", title: "The Partner in the Movement", body: "Sam, your support of One Good Word...One Good Deed means more than words can say. You believed in this mission and showed up — and that is what changing a community looks like." },
+            ].map((person) => (
+              <div key={person.name} style={{ flex: "1", minWidth: "280px", border: "1px solid rgba(230,180,80,0.4)", borderRadius: "2px", padding: "36px 32px", background: "#0d0c0a", textAlign: "center" }}>
+                <div style={{ fontSize: "36px", marginBottom: "12px" }}>{person.emoji}</div>
+                <p style={{ fontFamily: "'Barlow Condensed', sans-serif", fontSize: "11px", letterSpacing: "4px", color: "#e6b450", textTransform: "uppercase", marginBottom: "10px" }}>{person.title}</p>
+                <h3 style={{ fontFamily: "'Anton', sans-serif", fontSize: "32px", textTransform: "uppercase", color: "#f5f1e8", marginBottom: "16px" }}>{person.name}</h3>
+                <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: "15px", color: "#8a857c", lineHeight: 1.75 }}>{person.body}</p>
+              </div>
+            ))}
+          </div>
         </section>
 
         {/* ─── DIVIDER ─── */}
