@@ -41,7 +41,7 @@ const NAV_GROUPS = [
                           { label: "Papa's Pizza & BBQ", to: '/papas-pizza' },
                           { label: "Plymouth's Auto Repair", to: '/plymouths-auto-repair' },
                           { label: "Fully Promoted", to: '/fully-promoted' },
-                          { label: "Liv Rite Recovery", to: '/liv-rite-recovery' },
+                          // { label: "Liv Rite Recovery", to: '/liv-rite-recovery', hidden: true }, // not official yet
                           { label: "Classic State Wayne Theater", to: '/classic-state-wayne' },
                           ],
         },
