@@ -3,6 +3,7 @@ import StickyNav from "@/components/home/StickyNav";
 
 const LOGO_URL = "https://media.base44.com/images/public/6a19e1fc6c5eb736a0763b09/1824cf861_IMG_5119.png";
 const THEATER_BANNER = "https://cdn.phoenixmovies.net/theatres/003/banner1.jpg";
+const JASON_AUTUMN_PHOTO = "https://media.base44.com/images/public/6a19e1fc6c5eb736a0763b09/d186489c7_image.png";
 
 export default function ClassicStateWayne() {
   const [visible, setVisible] = useState(false);
@@ -161,11 +162,19 @@ export default function ClassicStateWayne() {
         {/* ─── DIVIDER ─── */}
         <div style={{ height: "1px", background: "linear-gradient(90deg, transparent, rgba(230,180,80,0.35), transparent)", margin: "0 10%" }} />
 
-        {/* ─── THEATER BANNER IMAGE ─── */}
+        {/* ─── PHOTOS ─── */}
         <section style={{ padding: "80px 24px", maxWidth: "1060px", margin: "0 auto" }}>
-          <div style={{ borderRadius: "2px", overflow: "hidden", border: "1px solid rgba(230,180,80,0.2)" }}>
-            <img src={THEATER_BANNER} alt="Classic State Wayne Theater" style={{ width: "100%", display: "block", objectFit: "cover" }} />
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: "3px" }}>
+            <div style={{ borderRadius: "2px", overflow: "hidden", border: "1px solid rgba(230,180,80,0.3)" }}>
+              <img src={JASON_AUTUMN_PHOTO} alt="Jason and Autumn at Classic State Wayne Theater" style={{ width: "100%", display: "block", objectFit: "cover" }} />
+            </div>
+            <div style={{ borderRadius: "2px", overflow: "hidden", border: "1px solid rgba(230,180,80,0.2)" }}>
+              <img src={THEATER_BANNER} alt="Classic State Wayne Theater" style={{ width: "100%", display: "block", objectFit: "cover", height: "100%", minHeight: "250px" }} />
+            </div>
           </div>
+          <p style={{ fontFamily: "'Barlow Condensed', sans-serif", fontSize: "12px", letterSpacing: "3px", color: "#8a857c", textAlign: "center", marginTop: "16px", textTransform: "uppercase" }}>
+            Jason &amp; Autumn — Classic State Wayne Theater, Wayne, MI
+          </p>
         </section>
 
         {/* ─── MISSION COPY ─── */}
