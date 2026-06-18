@@ -172,7 +172,7 @@ export default function TDKeleman() {
             <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: "3px" }}>
                 {[
                 { src: "https://media.base44.com/images/public/6a19e1fc6c5eb736a0763b09/00ee3dcf0_truck_photo_1.png", alt: "T.D. Keleman Trucking — Flatbed Rig" },
-                { src: "https://media.base44.com/images/public/6a19e1fc6c5eb736a0763b09/e734f9c72_truck_photo_2.png", alt: "Capital Trucking Inc. — Fleet Shot" },
+                { src: "https://media.base44.com/images/public/6a19e1fc6c5eb736a0763b09/e734f9c72_truck_photo_2.png", alt: "T.D. Keleman Trucking — Fleet Shot" },
               ].map((photo) => (
                 <div
                   key={photo.src}
@@ -194,28 +194,7 @@ export default function TDKeleman() {
           </div>
         </section>
 
-        {/* ─── PARTNER COMPANY ───────────────────────────────── */}
-        <section style={{ padding: "90px 24px", textAlign: "center" }}>
-          <div style={{ maxWidth: "700px", margin: "0 auto", border: "1px solid rgba(230,180,80,0.25)", padding: "60px 48px", borderRadius: "2px", background: "#0d0c0a" }}>
-            <p style={{ fontFamily: "'Barlow Condensed', sans-serif", fontSize: "11px", letterSpacing: "5px", color: "#e6b450", textTransform: "uppercase", marginBottom: "20px" }}>Partner Company</p>
-            <h3 style={{ fontFamily: "'Anton', sans-serif", fontSize: "clamp(28px, 4vw, 42px)", textTransform: "uppercase", letterSpacing: "1px", marginBottom: "24px" }}>
-              Capital Trucking Inc.
-            </h3>
-            <div style={{ display: "flex", flexDirection: "column", gap: "10px", alignItems: "center" }}>
-              <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: "16px", color: "#8a857c", lineHeight: 1.7 }}>
-                📍 20911 Gladwin St, Taylor, MI 48180
-              </p>
-              <a
-                href="tel:3138436000"
-                style={{ fontFamily: "'Barlow Condensed', sans-serif", fontSize: "20px", fontWeight: 700, letterSpacing: "2px", color: "#e6b450", textDecoration: "none", transition: "opacity 0.2s" }}
-                onMouseOver={e => e.target.style.opacity = "0.75"}
-                onMouseOut={e => e.target.style.opacity = "1"}
-              >
-                📞 (313) 843-6000
-              </a>
-            </div>
-          </div>
-        </section>
+
 
         {/* ─── FOOTER BAR ────────────────────────────────────── */}
         <div style={{ borderTop: "1px solid #141414", padding: "30px 24px", textAlign: "center" }}>
