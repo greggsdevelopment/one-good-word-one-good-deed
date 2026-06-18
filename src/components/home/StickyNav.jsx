@@ -42,6 +42,7 @@ const NAV_GROUPS = [
                           { label: "Plymouth's Auto Repair", to: '/plymouths-auto-repair' },
                           { label: "Fully Promoted", to: '/fully-promoted' },
                           { label: "Liv Rite Recovery", to: '/liv-rite-recovery' },
+                          { label: "Classic State Wayne Theater", to: '/classic-state-wayne' },
                           ],
         },
 ];
