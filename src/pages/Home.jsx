@@ -16,6 +16,7 @@ import BookJasonBanner from '@/components/home/BookJasonBanner';
 import FAQSection from '@/components/home/FAQSection';
 import VoicesOfChange from '@/components/home/VoicesOfChange';
 import SponsorInquiryForm from '@/components/home/SponsorInquiryForm';
+import CongressEndorsement from '@/components/home/CongressEndorsement';
 import MarqueeTicker from '@/components/home/MarqueeTicker';
 import UpcomingAppearance from '@/components/home/UpcomingAppearance';
 
@@ -64,6 +65,7 @@ export default function Home() {
       <GetInvolvedSection />
       <SponsorInquiryForm />
       <VoicesOfChange />
+      <CongressEndorsement />
       <TestimonialsSection />
       <BookJasonBanner />
       <FeaturedProducts />
