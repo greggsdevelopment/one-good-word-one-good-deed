@@ -31,6 +31,7 @@ import PlymouthsAutoRepair from '@/pages/PlymouthsAutoRepair';
 import FullyPromoted from '@/pages/FullyPromoted';
 import LivRiteRecovery from '@/pages/LivRiteRecovery';
 import ClassicStateWayne from '@/pages/ClassicStateWayne';
+import TreeFortBikes from '@/pages/TreeFortBikes';
 import Login from '@/pages/Login';
 import Register from '@/pages/Register';
 import ForgotPassword from '@/pages/ForgotPassword';
@@ -78,6 +79,7 @@ const AuthenticatedApp = () => {
       <Route path="/fully-promoted" element={<FullyPromoted />} />
       <Route path="/liv-rite-recovery" element={<LivRiteRecovery />} />
       <Route path="/classic-state-wayne" element={<ClassicStateWayne />} />
+      <Route path="/tree-fort-bikes" element={<TreeFortBikes />} />
       <Route path="/pledge" element={<Navigate to="/pledge-wall" replace />} />
 
       {/* Auth pages */}

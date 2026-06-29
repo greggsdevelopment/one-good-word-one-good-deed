@@ -43,6 +43,7 @@ const NAV_GROUPS = [
                           { label: "Fully Promoted", to: '/fully-promoted' },
                           // { label: "Liv Rite Recovery", to: '/liv-rite-recovery', hidden: true }, // not official yet
                           { label: "Classic State Wayne Theater", to: '/classic-state-wayne' },
+                          { label: "Tree Fort Bikes", to: '/tree-fort-bikes' },
                           ],
         },
 ];
