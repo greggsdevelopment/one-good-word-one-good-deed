@@ -114,6 +114,17 @@ const PRODUCTS = [
     image: 'https://jim-catalog-api.jim.com/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsiZGF0YSI6Mzk0ODE4LCJwdXIiOiJibG9iX2lkIn19--db123867164ff150d78029c2c77f5a561bcb9bb7/scaled_1000005717.jpg',
     sizes: [],
   },
+    {
+          id: 'ogw-ogd-colorful-shirt',
+              name: 'One Good Word One Good Deed T-Shirt',
+                  description: 'Stop Bullying. Stop Racism. One Good Word, One Good Deed. Colorful tie-dye border design on black shirt.',
+                      price: 25,
+                          category: 'T-Shirts',
+                              featured: false,
+                                  image: 'https://media.base44.com/images/public/6a19e1fc6c5eb736a0763b09/5a2443586_shirt.png',
+                                      sizes: ['S', 'M', 'L', 'XL', '2XL'],
+                                          imageZoom: 1.5, imageOrigin: 'center',
+    },
 ];
 
 export default function Shop() {
