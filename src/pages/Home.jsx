@@ -17,6 +17,7 @@ import FAQSection from '@/components/home/FAQSection';
 import VoicesOfChange from '@/components/home/VoicesOfChange';
 import SponsorInquiryForm from '@/components/home/SponsorInquiryForm';
 import CongressEndorsement from '@/components/home/CongressEndorsement';
+import RaffleSection from '@/components/home/RaffleSection';
 import MarqueeTicker from '@/components/home/MarqueeTicker';
 import UpcomingAppearance from '@/components/home/UpcomingAppearance';
 
@@ -64,6 +65,7 @@ export default function Home() {
       />
       <GetInvolvedSection />
       <SponsorInquiryForm />
+              <RaffleSection />
       <VoicesOfChange />
       <CongressEndorsement />
       <TestimonialsSection />
