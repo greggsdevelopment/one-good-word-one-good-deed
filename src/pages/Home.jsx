@@ -5,7 +5,7 @@ import HeroSection from '@/components/home/HeroSection';
 import MissionSection from '@/components/home/MissionSection';
 import PillarsSection from '@/components/home/PillarsSection';
 import PledgeSection from '@/components/home/PledgeSection';
-import GetInvolvedSection from '@/components/home/GetInvolvedSection';
+import GetInvolvedsSection from '@/components/home/GetInvolvedSection';
 import MomentumBand from '@/components/home/MomentumBand';
 import ContactSection from '@/components/home/ContactSection';
 import FooterSection from '@/components/home/FooterSection';
