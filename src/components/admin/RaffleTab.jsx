@@ -1,17 +1,105 @@
 import { useState } from 'react';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { base44 } from '@/api/base44Client';
-import { Ticket, CheckCircle, Clock, Phone, Mail, User } from 'lucide-react';
+import { Ticket, CheckCircle, Clock, Phone, Mail, User, Copy, Check, ExternalLink } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+
+const GOFUNDME_LINK = 'https://www.gofundme.com/f/support-one-good-word-one-good-deeds-mission';
 
 function generateTicketNumber() {
   return String(Math.floor(1000 + Math.random() * 9000));
 }
 
-function EntryCard({ entry, onMarkPaid }) {
+function CopyableTicket({ ticketNumber }) {
+  const [copied, setCopied] = useState(false);
+
+  const handleCopy = async () => {
+    try {
+      await navigator.clipboard.writeText(ticketNumber);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch {
+      // fallback select
+    }
+  };
+
+  return (
+    <div className="flex items-center gap-2 mt-2">
+      <Ticket className="w-4 h-4 text-gold shrink-0" />
+      <input
+        readOnly
+        value={`Ticket #${ticketNumber}`}
+        className="font-barlow-condensed text-gold font-semibold tracking-widest text-lg bg-transparent border-0 outline-none w-28 cursor-default"
+        onFocus={(e) => e.target.select()}
+      />
+      <Button
+        size="sm"
+        variant="outline"
+        onClick={handleCopy}
+        className="font-barlow-condensed uppercase tracking-wider text-xs gap-1.5"
+      >
+        {copied ? <Check className="w-3.5 h-3.5 text-green-600" /> : <Copy className="w-3.5 h-3.5" />}
+        {copied ? 'Copied' : 'Copy'}
+      </Button>
+    </div>
+  );
+}
+
+function NotesField({ entry, onSave }) {
+  const [editing, setEditing] = useState(false);
+  const [text, setText] = useState(entry.notes || '');
+
+  const handleSave = () => {
+    onSave(entry.id, text);
+    setEditing(false);
+  };
+
+  if (editing) {
+    return (
+      <div className="mt-2 flex gap-2">
+        <textarea
+          value={text}
+          onChange={(e) => setText(e.target.value)}
+          rows={2}
+          placeholder="Add a note..."
+          className="flex-1 bg-ink/5 border border-ink/10 rounded-sm px-3 py-2 text-sm font-barlow text-ink focus:outline-none focus:border-gold/60 resize-none"
+        />
+        <div className="flex flex-col gap-1">
+          <Button size="sm" onClick={handleSave} className="bg-ink text-cream hover:bg-ink/80 font-barlow-condensed text-xs px-3">Save</Button>
+          <Button size="sm" variant="outline" onClick={() => setEditing(false)} className="font-barlow-condensed text-xs px-3">Cancel</Button>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="mt-2">
+      {entry.notes ? (
+        <button
+          onClick={() => setEditing(true)}
+          className="text-left text-xs font-barlow text-ink/60 italic hover:text-ink transition-colors"
+        >
+          📝 {entry.notes}
+          <span className="text-ink/30 ml-2">(click to edit)</span>
+        </button>
+      ) : (
+        <Button
+          size="sm"
+          variant="ghost"
+          onClick={() => setEditing(true)}
+          className="font-barlow-condensed text-xs text-ink/40 hover:text-ink gap-1 h-7 px-2"
+        >
+          + Add note
+        </Button>
+      )}
+    </div>
+  );
+}
+
+function EntryCard({ entry, onMarkPaid, onSaveNote }) {
   const isPaid = entry.status === 'paid';
   return (
-    <div className={`bg-white border rounded-sm p-4 flex flex-col sm:flex-row sm:items-center gap-4 ${isPaid ? 'border-green-200' : 'border-ink/10'}`}>
+    <div className={`bg-white border rounded-sm p-4 flex flex-col sm:flex-row sm:items-start gap-4 ${isPaid ? 'border-green-200' : 'border-ink/10'}`}>
       <div className="flex-1 space-y-1">
         <div className="flex items-center gap-2">
           <User className="w-4 h-4 text-ink/40" />
@@ -37,19 +125,28 @@ function EntryCard({ entry, onMarkPaid }) {
             Prefers: {entry.preferred_contact === 'email' ? 'Email' : 'Text'}
           </span>
         </div>
-        {isPaid && entry.ticket_number && (
-          <div className="flex items-center gap-2 mt-1">
-            <Ticket className="w-4 h-4 text-gold" />
-            <span className="font-barlow-condensed text-gold font-semibold tracking-widest text-lg">
-              Ticket #{entry.ticket_number}
-            </span>
+        {!isPaid && (
+          <div className="mt-2 flex items-center gap-2 bg-amber-50/60 border border-amber-200 rounded-sm px-3 py-2">
+            <ExternalLink className="w-3.5 h-3.5 text-amber-600 shrink-0" />
+            <a
+              href={GOFUNDME_LINK}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-xs font-barlow text-amber-700 hover:text-amber-900 underline break-all"
+            >
+              GoFundMe payment link sent to entrant
+            </a>
           </div>
         )}
+        {isPaid && entry.ticket_number && (
+          <CopyableTicket ticketNumber={entry.ticket_number} />
+        )}
         {entry.created_date && (
-          <p className="text-xs text-ink/30 font-barlow">
+          <p className="text-xs text-ink/30 font-barlow mt-1">
             Entered: {new Date(entry.created_date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric', hour: '2-digit', minute: '2-digit' })}
           </p>
         )}
+        <NotesField entry={entry} onSave={onSaveNote} />
       </div>
       <div className="flex flex-col items-end gap-2">
         <p className="font-barlow-condensed text-ink/60 text-sm">$5.00</p>
@@ -88,6 +185,11 @@ export default function RaffleTab() {
       queryClient.invalidateQueries({ queryKey: ['raffleEntries'] });
       setConfirmEntry(null);
     },
+  });
+
+  const saveNote = useMutation({
+    mutationFn: ({ id, notes }) => base44.entities.RaffleEntry.update(id, { notes }),
+    onSuccess: () => queryClient.invalidateQueries({ queryKey: ['raffleEntries'] }),
   });
 
   const pending = entries.filter((e) => e.status !== 'paid');
@@ -161,7 +263,7 @@ export default function RaffleTab() {
           </p>
           <div className="space-y-3">
             {pending.map((entry) => (
-              <EntryCard key={entry.id} entry={entry} onMarkPaid={setConfirmEntry} />
+              <EntryCard key={entry.id} entry={entry} onMarkPaid={setConfirmEntry} onSaveNote={(id, notes) => saveNote.mutate({ id, notes })} />
             ))}
           </div>
         </div>
@@ -175,7 +277,7 @@ export default function RaffleTab() {
           </p>
           <div className="space-y-3">
             {paid.map((entry) => (
-              <EntryCard key={entry.id} entry={entry} onMarkPaid={setConfirmEntry} />
+              <EntryCard key={entry.id} entry={entry} onMarkPaid={setConfirmEntry} onSaveNote={(id, notes) => saveNote.mutate({ id, notes })} />
             ))}
           </div>
         </div>

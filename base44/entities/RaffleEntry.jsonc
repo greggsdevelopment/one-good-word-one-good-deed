@@ -39,6 +39,10 @@
       "type": "number",
       "default": 5,
       "description": "Ticket price in dollars"
+    },
+    "notes": {
+      "type": "string",
+      "description": "Admin notes/memo for this entry"
     }
   },
   "required": [
