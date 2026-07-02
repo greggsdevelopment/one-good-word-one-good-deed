@@ -83,7 +83,7 @@ export default function RaffleSection() {
                 rel="noopener noreferrer"
                 className="inline-block bg-gold text-ink font-bold px-8 py-3 rounded-full hover:bg-gold/90 transition-colors mb-4"
               >
-                Pay $5 via PayPal →
+                Pay $5 via GoFundMe Donation →
               </a>
               <p className="text-cream/50 text-xs">
                 In the payment notes, include your name and "Raffle Ticket"
