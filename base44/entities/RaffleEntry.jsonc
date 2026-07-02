@@ -1,0 +1,51 @@
+{
+  "name": "RaffleEntry",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Full name of the raffle entrant"
+    },
+    "email": {
+      "type": "string",
+      "description": "Email address"
+    },
+    "phone": {
+      "type": "string",
+      "description": "Phone number"
+    },
+    "preferred_contact": {
+      "type": "string",
+      "enum": [
+        "email",
+        "text"
+      ],
+      "description": "Preferred contact method"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "pending",
+        "paid"
+      ],
+      "default": "pending",
+      "description": "Payment status of the raffle entry"
+    },
+    "ticket_number": {
+      "type": "string",
+      "description": "4-digit ticket number assigned after payment"
+    },
+    "amount": {
+      "type": "number",
+      "default": 5,
+      "description": "Ticket price in dollars"
+    }
+  },
+  "required": [
+    "name",
+    "email",
+    "phone",
+    "preferred_contact"
+  ],
+  "allowPublicCreate": true
+}
