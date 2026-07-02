@@ -65,7 +65,7 @@ export default function Home() {
       />
       <GetInvolvedSection />
       <SponsorInquiryForm />
-              <RaffleSection />
+      <RaffleSection />
       <VoicesOfChange />
       <CongressEndorsement />
       <TestimonialsSection />
