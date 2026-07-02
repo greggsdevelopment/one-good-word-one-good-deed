@@ -8,7 +8,7 @@ import PledgeSection from '@/components/home/PledgeSection';
 import GetInvolvedSection from '@/components/home/GetInvolvedSection';
 import MomentumBand from '@/components/home/MomentumBand';
 import ContactSection from '@/components/home/ContactSection';
-import FooterSectison from '@/components/home/FooterSection';
+import FooterSection from '@/components/home/FooterSection';
 import FeaturedProducts from '@/components/home/FeaturedProducts';
 import NewsletterSection from '@/components/home/NewsletterSection';
 import TestimonialsSection from '@/components/home/TestimonialsSection';
