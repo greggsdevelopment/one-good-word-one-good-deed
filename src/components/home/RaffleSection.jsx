@@ -1,3 +1,4 @@
+// Raffle section component
 import { useState } from 'react';
 import { base44 } from '@/api/base44Client';
 import { motion } from 'framer-motion';
