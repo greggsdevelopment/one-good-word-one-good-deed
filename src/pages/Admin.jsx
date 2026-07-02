@@ -3,7 +3,7 @@ import { useQuery } from '@tanstack/react-query';
 import { base44 } from '@/api/base44Client';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Button } from '@/components/ui/button';
-import { LogOut, CalendarCheck, Heart, BookOpen, ShoppingBag, Mail, ClipboardList, Users, Ticket } from 'lucide-react';
+import { LogOut, CalendarCheck, Heart, BookOpen, ShoppingBag, Mail, ClipboardList, Users, Ticket, Handshake } from 'lucide-react';
 import BookingTab from '@/components/admin/BookingTab';
 import PledgesTab from '@/components/admin/PledgesTab';
 import StoriesTab from '@/components/admin/StoriesTab';
@@ -13,6 +13,7 @@ import OrdersTab from '@/components/admin/OrdersTab';
 import NewsletterTab from '@/components/admin/NewsletterTab';
 import SummaryDashboard from '@/components/admin/SummaryDashboard';
 import RaffleTab from '@/components/admin/RaffleTab';
+import SponsorTab from '@/components/admin/SponsorTab';
 
 export default function Admin() {
   const { data: bookings = [] } = useQuery({
@@ -54,6 +55,7 @@ export default function Admin() {
 
   const pendingStories = stories.filter(s => !s.approved).length;
   const pendingPledges = pledges.filter(p => !p.approved).length;
+  const pendingRaffle = raffleEntries.filter(e => e.status === 'pending').length;
 
   return (
     <div className="min-h-screen bg-cream">
@@ -82,7 +84,7 @@ export default function Admin() {
              { label: 'Stories', value: stories.length, extra: pendingStories > 0 ? `${pendingStories} pending` : null, icon: BookOpen, color: 'text-purple-600' },
             { label: 'Messages', value: messages.length, icon: Mail, color: 'text-green-600' },
             { label: 'Products', value: products.length, icon: ShoppingBag, color: 'text-gold-dark' },
-             { label: 'Raffle', value: raffleEntries.length, icon: Ticket, color: 'text-amber-600' },
+             { label: 'Raffle', value: raffleEntries.length, extra: pendingRaffle > 0 ? `${pendingRaffle} pending` : null, icon: Ticket, color: 'text-amber-600' },
           ].map(({ label, value, extra, icon: Icon, color }) => (
             <div key={label} className="bg-white rounded-sm p-4 border border-ink/5 flex flex-col gap-1">
               <div className="flex items-center justify-between">
@@ -124,6 +126,10 @@ export default function Admin() {
             </TabsTrigger>
             <TabsTrigger value="raffle" className="font-barlow-condensed uppercase tracking-wider text-xs data-[state=active]:bg-ink data-[state=active]:text-cream gap-1.5">
               <Ticket className="w-3.5 h-3.5" /> Raffle
+              {pendingRaffle > 0 && <span className="ml-1 bg-amber-100 text-amber-700 rounded-full text-[10px] px-1.5">{pendingRaffle}</span>}
+            </TabsTrigger>
+            <TabsTrigger value="sponsors" className="font-barlow-condensed uppercase tracking-wider text-xs data-[state=active]:bg-ink data-[state=active]:text-cream gap-1.5">
+              <Handshake className="w-3.5 h-3.5" /> Sponsors
             </TabsTrigger>
             <TabsTrigger value="newsletter" className="font-barlow-condensed uppercase tracking-wider text-xs data-[state=active]:bg-ink data-[state=active]:text-cream gap-1.5">
               <Users className="w-3.5 h-3.5" /> Newsletter
@@ -138,6 +144,7 @@ export default function Admin() {
           <TabsContent value="marketplace"><MarketplaceTab /></TabsContent>
           <TabsContent value="orders"><OrdersTab /></TabsContent>
           <TabsContent value="raffle"><RaffleTab /></TabsContent>
+          <TabsContent value="sponsors"><SponsorTab /></TabsContent>
           <TabsContent value="newsletter"><NewsletterTab /></TabsContent>
         </Tabs>
       </div>
