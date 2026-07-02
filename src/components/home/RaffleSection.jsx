@@ -77,7 +77,7 @@ export default function RaffleSection() {
                 Once your payment is marked as received, {form.preferred_contact === 'email' ? 'an email' : 'a text message'} will be sent to you with your unique 4-digit ticket number. Good luck!
               </p>
               <a
-                href="https://www.paypal.me/onegoodword5"
+                href="https://www.gofundme.com/f/support-one-good-word-one-good-deeds-mission"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-block bg-gold text-ink font-bold px-8 py-3 rounded-full hover:bg-gold/90 transition-colors mb-4"
