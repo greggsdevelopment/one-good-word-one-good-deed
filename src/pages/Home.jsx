@@ -1,3 +1,4 @@
+// Home page
 import { useState, useEffect, useCallback } from 'react';
 import { base44 } from '@/api/base44Client';
 import StickyNav from '@/components/home/StickyNav';
