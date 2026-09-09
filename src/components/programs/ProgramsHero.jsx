@@ -1,8 +1,10 @@
 import { motion } from 'framer-motion';
 
+const PILLS = ['Assembly', 'Workshops', 'Student Leaders', 'Staff Training', 'Family Night'];
+
 export default function ProgramsHero() {
-  const scrollToForm = () => {
-    document.querySelector('#booking-form')?.scrollIntoView({ behavior: 'smooth' });
+  const scrollTo = (selector) => {
+    document.querySelector(selector)?.scrollIntoView({ behavior: 'smooth' });
   };
 
   return (
@@ -19,7 +21,7 @@ export default function ProgramsHero() {
           transition={{ duration: 0.6 }}
           className="font-barlow-condensed text-gold text-xs tracking-[0.35em] uppercase mb-6"
         >
-          School Programs &amp; Speaking Engagements
+          School Program Guide
         </motion.p>
 
         <motion.h1
@@ -28,21 +30,36 @@ export default function ProgramsHero() {
           transition={{ duration: 0.7, delay: 0.1 }}
           className="font-anton text-cream text-6xl sm:text-8xl md:text-9xl leading-[0.9] mb-8"
         >
-          CHANGING<br />
-          <span className="text-gold">SCHOOLS.</span><br />
-          ONE WORD<br />AT A TIME.
+          KINDNESS<br />
+          <span className="text-gold">IS A SKILL.</span><br />
+          WE TEACH IT.
         </motion.h1>
 
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.25 }}
-          className="font-barlow text-cream/60 text-xl max-w-2xl mx-auto mb-10 leading-relaxed"
+          className="font-barlow text-cream/60 text-xl max-w-2xl mx-auto mb-8 leading-relaxed"
         >
-          Jason Lewis brings an authentic, faith-driven anti-bullying and anti-racism 
-          message directly into schools — through assemblies, classroom visits, and 
-          leadership workshops that students actually remember.
+          A bullying and racism prevention program for Michigan public middle schools.
+          Five steps across one school year, built to move students from watching to acting.
         </motion.p>
+
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.3 }}
+          className="flex flex-wrap justify-center gap-2 mb-10"
+        >
+          {PILLS.map((pill) => (
+            <span
+              key={pill}
+              className="px-4 py-1.5 border border-cream/20 rounded-full font-barlow-condensed text-cream/70 text-sm tracking-wider uppercase"
+            >
+              {pill}
+            </span>
+          ))}
+        </motion.div>
 
         <motion.div
           initial={{ opacity: 0, y: 16 }}
@@ -51,17 +68,17 @@ export default function ProgramsHero() {
           className="flex flex-col sm:flex-row gap-4 justify-center"
         >
           <button
-            onClick={scrollToForm}
+            onClick={() => scrollTo('#booking-form')}
             className="px-10 py-4 bg-gold hover:bg-gold-dark text-ink font-barlow-condensed font-bold text-lg uppercase tracking-wider rounded-sm transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-gold/20"
           >
             Book a Program
           </button>
           <a
-            href="#what-we-do"
-            onClick={(e) => { e.preventDefault(); document.querySelector('#what-we-do')?.scrollIntoView({ behavior: 'smooth' }); }}
+            href="#the-program"
+            onClick={(e) => { e.preventDefault(); scrollTo('#the-program'); }}
             className="px-10 py-4 border-2 border-cream/20 hover:border-gold/40 text-cream/70 hover:text-gold font-barlow-condensed font-bold text-lg uppercase tracking-wider rounded-sm transition-all duration-300"
           >
-            Learn More
+            See the Five Steps
           </a>
         </motion.div>
       </div>

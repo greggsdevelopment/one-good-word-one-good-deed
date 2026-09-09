@@ -2,13 +2,14 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useInView } from '@/hooks/useInView';
 import { base44 } from '@/api/base44Client';
-import { CheckCircle, CalendarCheck, Mail, Phone } from 'lucide-react';
+import { CheckCircle, Mail, Phone } from 'lucide-react';
 
 const PROGRAM_TYPES = [
-  'School Assembly ($500)',
-  'Half-Day Workshop ($1,200)',
-  'Full Partnership Package ($3,500/semester)',
-  'Other / Not Sure Yet',
+  'Whole School Assembly ($1,500)',
+  'Starter Package ($3,200)',
+  'Full Year Package ($6,500)',
+  'Individual steps (10 Second Lab, Group Chat Check, Ambassadors, Staff PD, Family Night)',
+  'Not sure yet, let\'s talk',
 ];
 
 export default function BookingForm() {
@@ -22,6 +23,7 @@ export default function BookingForm() {
     phone: '',
     preferred_date: '',
     num_students: '',
+    grade_span: '',
     message: '',
   });
   const [submitting, setSubmitting] = useState(false);
@@ -39,7 +41,7 @@ export default function BookingForm() {
       phone: form.phone,
       preferred_date: form.preferred_date,
       num_students: form.num_students ? Number(form.num_students) : undefined,
-      message: `Program Type: ${form.program_type}\nPrincipal: ${form.principal_name}\n\n${form.message}`,
+      message: `Program Type: ${form.program_type}\nPrincipal: ${form.principal_name}\nGrade Span: ${form.grade_span}\n\n${form.message}`,
     });
     setSubmitting(false);
     setSubmitted(record);
@@ -57,7 +59,7 @@ export default function BookingForm() {
           transition={{ duration: 0.6 }}
           className="font-anton text-ink text-4xl sm:text-5xl text-center mb-4"
         >
-          BOOK A VISIT
+          BOOK A PROGRAM
         </motion.h2>
         <motion.p
           initial={{ opacity: 0 }}
@@ -65,7 +67,8 @@ export default function BookingForm() {
           transition={{ duration: 0.6, delay: 0.1 }}
           className="font-barlow text-ink/50 text-center text-lg max-w-xl mx-auto mb-12"
         >
-          Fill out the form below and Jason will get back to you within 48 hours to discuss scheduling.
+          Next step is a 20 minute call. Tell us your enrollment, your grade span, and what you are seeing in
+          your building. We will send back a one-page plan and two available dates.
         </motion.p>
 
         <AnimatePresence mode="wait">
@@ -111,20 +114,28 @@ export default function BookingForm() {
                 </div>
               </div>
 
-              {/* Attendance */}
-              <input
-                type="number"
-                placeholder="Expected Attendance (# of students)"
-                value={form.num_students}
-                onChange={set('num_students')}
-                className={inputClass}
-                min={1}
-              />
+              {/* Enrollment + Grade Span */}
+              <div className="grid sm:grid-cols-2 gap-4">
+                <input
+                  type="number"
+                  placeholder="Building Enrollment (# of students)"
+                  value={form.num_students}
+                  onChange={set('num_students')}
+                  className={inputClass}
+                  min={1}
+                />
+                <input
+                  placeholder="Grade Span (e.g. 6 to 8)"
+                  value={form.grade_span}
+                  onChange={set('grade_span')}
+                  className={inputClass}
+                />
+              </div>
 
               {/* Notes */}
               <textarea
                 rows={5}
-                placeholder="Budget considerations, special requests, or notes about your school..."
+                placeholder="What are you seeing in your building? Which fund are you working from (Title I, Section 31a, general)? Anything else we should know."
                 value={form.message}
                 onChange={set('message')}
                 className={`${inputClass} resize-none`}
@@ -166,34 +177,51 @@ export default function BookingForm() {
                   <div className="w-6 h-6 rounded-full bg-gold/20 flex items-center justify-center shrink-0 mt-0.5">
                     <span className="font-barlow-condensed text-gold text-xs font-bold">1</span>
                   </div>
-                  <p className="font-barlow text-cream/60 text-sm leading-relaxed">Jason reviews your request and checks availability for your preferred date.</p>
+                  <p className="font-barlow text-cream/60 text-sm leading-relaxed">We review your enrollment, grade span, and notes, and check dates around your preferred window.</p>
                 </div>
                 <div className="flex items-start gap-3">
                   <div className="w-6 h-6 rounded-full bg-gold/20 flex items-center justify-center shrink-0 mt-0.5">
                     <span className="font-barlow-condensed text-gold text-xs font-bold">2</span>
                   </div>
-                  <p className="font-barlow text-cream/60 text-sm leading-relaxed">You'll receive a follow-up email or call within <strong className="text-cream/80">48 hours</strong> to confirm details.</p>
+                  <p className="font-barlow text-cream/60 text-sm leading-relaxed">We reach out to set up a <strong className="text-cream/80">20 minute call</strong> about what you are seeing in your building.</p>
                 </div>
                 <div className="flex items-start gap-3">
                   <div className="w-6 h-6 rounded-full bg-gold/20 flex items-center justify-center shrink-0 mt-0.5">
                     <span className="font-barlow-condensed text-gold text-xs font-bold">3</span>
                   </div>
-                  <p className="font-barlow text-cream/60 text-sm leading-relaxed">Once confirmed, you'll get a full program overview and preparation guide for your school.</p>
+                  <p className="font-barlow text-cream/60 text-sm leading-relaxed">You get a one-page plan and two available dates. A signed agreement and a purchase order hold your date.</p>
                 </div>
               </div>
 
               {/* Contact info */}
               <div className="flex flex-col sm:flex-row gap-3 text-center">
-                <a href="mailto:1goodword1gooddeedllc@gmail.com" className="flex-1 flex items-center justify-center gap-2 px-4 py-3 border border-ink/15 hover:border-gold-dark/40 rounded-sm text-ink/50 hover:text-gold-dark font-barlow-condensed text-xs tracking-wider uppercase transition-all">
+                <a href="mailto:greggsdevelopment@gmail.com" className="flex-1 flex items-center justify-center gap-2 px-4 py-3 border border-ink/15 hover:border-gold-dark/40 rounded-sm text-ink/50 hover:text-gold-dark font-barlow-condensed text-xs tracking-wider uppercase transition-all">
                   <Mail className="w-3.5 h-3.5" /> Email Us
                 </a>
-                <a href="tel:2488089373" className="flex-1 flex items-center justify-center gap-2 px-4 py-3 border border-ink/15 hover:border-gold-dark/40 rounded-sm text-ink/50 hover:text-gold-dark font-barlow-condensed text-xs tracking-wider uppercase transition-all">
-                  <Phone className="w-3.5 h-3.5" /> (248) 808-9373
+                <a href="tel:7343833865" className="flex-1 flex items-center justify-center gap-2 px-4 py-3 border border-ink/15 hover:border-gold-dark/40 rounded-sm text-ink/50 hover:text-gold-dark font-barlow-condensed text-xs tracking-wider uppercase transition-all">
+                  <Phone className="w-3.5 h-3.5" /> (734) 383-3865
                 </a>
               </div>
             </motion.div>
           )}
         </AnimatePresence>
+
+        {/* Direct contact, always visible */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={inView ? { opacity: 1 } : {}}
+          transition={{ duration: 0.6, delay: 0.3 }}
+          className="mt-10 pt-8 border-t border-ink/10 text-center"
+        >
+          <p className="font-barlow-condensed text-ink/40 text-xs tracking-widest uppercase mb-3">Prefer to talk first?</p>
+          <p className="font-barlow text-ink/70 text-base">
+            <span className="font-semibold text-ink">Cody Greggs-Dorsey</span>
+            <span className="mx-2 text-ink/30">|</span>
+            <a href="tel:7343833865" className="hover:text-gold-dark transition-colors">(734) 383-3865</a>
+            <span className="mx-2 text-ink/30">|</span>
+            <a href="mailto:greggsdevelopment@gmail.com" className="hover:text-gold-dark transition-colors">greggsdevelopment@gmail.com</a>
+          </p>
+        </motion.div>
       </div>
     </section>
   );

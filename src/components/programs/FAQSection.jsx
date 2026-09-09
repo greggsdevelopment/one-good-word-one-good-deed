@@ -5,34 +5,46 @@ import { useInView } from '@/hooks/useInView';
 
 const FAQS = [
   {
-    q: 'What grades does Jason speak to?',
-    a: 'Jason speaks to students in grades 3–12. His messaging is adapted for each age group — elementary presentations focus on kindness and inclusion, while middle and high school sessions go deeper into racism, bullying, identity, and resilience.',
+    q: 'What grades is this built for?',
+    a: 'Middle school, grades 6 to 8. The assembly runs for the whole building; the 10 Second Lab and Group Chat Check run one grade level at a time so the examples fit the room. Flat rates cover buildings up to 900 students. If you are a K-8 or a high school, tell us on the call and we will be honest about whether it fits.',
   },
   {
-    q: 'How far does Jason travel?',
-    a: 'Jason is based in Troy, MI and regularly visits schools throughout Southeast Michigan, including Oakland, Wayne, Macomb, and Washtenaw counties. Travel outside of Michigan is available for select engagements — contact us to discuss.',
+    q: 'Is this appropriate for public school instructional time?',
+    a: 'Yes. This is a secular program. It contains no religious content, and it is designed to run during the school day in a public building. Any student-submitted material used in the Group Chat Check is anonymized, name-scrubbed, and reviewed with your staff in advance.',
   },
   {
-    q: 'What topics does he cover?',
-    a: 'Jason covers anti-bullying, anti-racism, empathy, the power of words, God\'s love, forgiveness, peer leadership, and personal accountability — all rooted in real-life stories and interactive discussion.',
+    q: 'Do we have to buy the whole program?',
+    a: 'No. Schools can start with the assembly alone and add steps later. Most buildings run steps one through three in the fall and carry steps four and five through spring. We will tell you plainly, though, that a single assembly does not change behavior on its own. The Starter and Full Year packages exist because sustained, multi-level work is what the research supports.',
+  },
+  {
+    q: 'What do students walk away with?',
+    a: 'Four rehearsed things to say or do when they see it happen, a clear line between reporting and "snitching," language for naming racist behavior without escalating it, a wristband, and a signed pledge. Every student who signs adds their name to a wall in your building and to the public pledge wall at ogwogd.org.',
+  },
+  {
+    q: 'How do you measure whether it worked?',
+    a: 'Students complete a short anonymous survey before the assembly and again 60 days later: how often they see it, how safe they feel in hallways and on the bus, and whether they believe stepping in works. You receive a plain-language summary you can put in front of your board. Every option includes the survey and the report.',
+  },
+  {
+    q: 'How do schools pay for this?',
+    a: 'Bullying prevention programming, staff training, and family engagement events are commonly funded through Title I and Section 31a at-risk dollars rather than a building\'s general budget. Tell us which fund you are working from and we will format the invoice to match. If budget is the obstacle, ask about sponsor underwriting. We are backed by local businesses across the region and have covered buildings that way before.',
+  },
+  {
+    q: 'Do you charge for travel?',
+    a: 'No. Every rate is quoted flat, with no travel or setup charges anywhere in metro Detroit. For buildings outside the region, ask and we will quote it straight.',
+  },
+  {
+    q: 'What does the school need to provide?',
+    a: 'Space and a sound system, a staff contact, staff supervision during all sessions, advance review of any student-submitted material, and five minutes at the start to distribute the survey.',
   },
   {
     q: 'How far in advance should we book?',
-    a: 'We recommend booking at least 4–6 weeks in advance to secure your preferred date. For the Full Partnership Package or end-of-year assemblies, 8–10 weeks advance notice is ideal.',
-  },
-  {
-    q: 'Is there a fee waiver for Title I schools?',
-    a: 'Yes! Jason is passionate about reaching every student, regardless of budget. Title I schools and under-resourced districts are encouraged to reach out — partial and full fee waivers are available based on need.',
-  },
-  {
-    q: 'What do students receive after the program?',
-    a: 'All students receive a digital resource pack including reflection prompts, the One Good Word pledge card, and links to follow-up materials. Full Partnership and Half-Day Workshop programs also include teacher guides and classroom activity sheets.',
+    a: 'Dates fill first for September, October, and May, so reach out early for those months. A signed agreement and a purchase order hold your date. Send us your enrollment, grade span, and what you are seeing in your building, and we will send back a one-page plan and two available dates.',
   },
 ];
 
 export default function FAQSection() {
   const [open, setOpen] = useState(null);
-  const [ref, inView] = useInView({ threshold: 0.1 });
+  const [ref, inView] = useInView({ threshold: 0.05 });
 
   return (
     <section ref={ref} className="py-24 px-6 bg-ink">
@@ -53,7 +65,7 @@ export default function FAQSection() {
               key={i}
               initial={{ opacity: 0, y: 16 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.4, delay: i * 0.07 }}
+              transition={{ duration: 0.4, delay: i * 0.05 }}
               className="border border-cream/10 rounded-sm overflow-hidden"
             >
               <button

@@ -7,6 +7,10 @@ const TESTIMONIALS = [];
 export default function SchoolTestimonials() {
   const [ref, inView] = useInView(0.1);
 
+  // Hidden until there are real quotes to show. Add entries to TESTIMONIALS
+  // ({ quote, name, school }) and the section renders again automatically.
+  if (TESTIMONIALS.length === 0) return null;
+
   return (
     <section className="relative bg-ink py-24 px-6" ref={ref}>
       <div className="max-w-6xl mx-auto">
