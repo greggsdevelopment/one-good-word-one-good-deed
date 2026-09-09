@@ -45,7 +45,7 @@ export default function CodyHero() {
             transition={{ duration: 0.6, delay: 0.1 }}
             className="font-barlow-condensed text-gold text-xs tracking-[0.35em] uppercase mb-4"
           >
-            Digital Director
+            Digital Director / Administrative Coordinator
           </motion.p>
 
           <motion.h1
