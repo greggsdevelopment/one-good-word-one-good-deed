@@ -28,5 +28,19 @@
     "first_name"
   ],
   "allowPublicCreate": true,
-  "allowPublicRead": true
+  "allowPublicRead": true,
+  "rls": {
+    "create": null,
+    "read": null,
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
 }
