@@ -29,7 +29,7 @@ export default function Home() {
   const [recentPledges, setRecentPledges] = useState([]);
 
   const fetchPledges = useCallback(async () => {
-    const pledges = await base44.entities.Pledge.list('-created_date', 30);
+    const pledges = await base44.entities.Pledge.filter({ approved: true }, '-created_date', 30);
     setPledgeCount(pledges.length > 0 ? pledges.length : 0);
     setRecentPledges(pledges.slice(0, 20));
   }, []);
@@ -37,7 +37,7 @@ export default function Home() {
   useEffect(() => {
     // Get total count by listing all pledges
     const loadData = async () => {
-      const allPledges = await base44.entities.Pledge.list('-created_date', 1000);
+      const allPledges = await base44.entities.Pledge.filter({ approved: true }, '-created_date', 1000);
       setPledgeCount(allPledges.length);
       setRecentPledges(allPledges.slice(0, 20));
     };
@@ -46,7 +46,7 @@ export default function Home() {
 
   const handlePledgeCreated = async () => {
     // Refetch pledges after a new one is created
-    const allPledges = await base44.entities.Pledge.list('-created_date', 1000);
+    const allPledges = await base44.entities.Pledge.filter({ approved: true }, '-created_date', 1000);
     setPledgeCount(allPledges.length);
     setRecentPledges(allPledges.slice(0, 20));
   };

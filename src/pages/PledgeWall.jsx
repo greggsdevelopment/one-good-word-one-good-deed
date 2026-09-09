@@ -46,7 +46,7 @@ export default function PledgeWall() {
   const animatedCount = useCountUp(loading ? 0 : pledges.length);
 
   const fetchPledges = async () => {
-    const data = await base44.entities.Pledge.list('-created_date', 200);
+    const data = await base44.entities.Pledge.filter({ approved: true }, '-created_date', 200);
     setPledges(data);
     setLoading(false);
   };
