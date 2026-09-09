@@ -9,6 +9,7 @@ export default function FooterSection({ logoUrl }) {
 
   const pageLinks = [
     { label: 'About', to: '/about' },
+    { label: 'About Cody', to: '/about-cody' },
     { label: 'Programs', to: '/programs' },
     { label: 'Stories', to: '/stories' },
     { label: 'Resources', to: '/resources' },

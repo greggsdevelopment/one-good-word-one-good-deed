@@ -8,9 +8,10 @@ const NAV_GROUPS = [
     {
           label: 'About',
               links: [
-                      { label: 'About Jason', to: '/about' },
-                            { label: 'Stories', to: '/stories' },
-                                  { label: 'Gallery', to: '/gallery' },
+                              { label: 'About Jason', to: '/about' },
+                                    { label: 'About Cody', to: '/about-cody' },
+                                          { label: 'Stories', to: '/stories' },
+                                                { label: 'Gallery', to: '/gallery' },
               ],
     },
       {
