@@ -80,6 +80,23 @@ export default function Gallery() {
   const [activeCategory, setActiveCategory] = useState('All');
   const [lightboxIndex, setLightboxIndex] = useState(null);
   const [uploadOpen, setUploadOpen] = useState(false);
+  const [isAdmin, setIsAdmin] = useState(false);
+
+  // Uploads go straight into the public gallery with no review step,
+  // so the button is only offered to signed-in admins.
+  useEffect(() => {
+    const checkAdmin = async () => {
+      try {
+        const authed = await base44.auth.isAuthenticated();
+        if (!authed) return;
+        const me = await base44.auth.me();
+        setIsAdmin(me?.role === 'admin');
+      } catch {
+        setIsAdmin(false);
+      }
+    };
+    checkAdmin();
+  }, []);
 
   useEffect(() => {
     const load = async () => {
@@ -135,12 +152,16 @@ export default function Gallery() {
             <img src={LOGO_URL} alt="Logo" className="h-8 w-8 rounded-full object-cover ring-2 ring-gold/40" />
             <p className="font-anton text-cream text-lg tracking-wider hidden sm:block">IMPACT GALLERY</p>
           </div>
-          <button
-            onClick={() => setUploadOpen(true)}
-            className="flex items-center gap-2 px-4 py-2 border border-white/10 hover:border-gold/40 rounded-sm text-cream/60 hover:text-gold transition-all font-barlow-condensed text-sm tracking-wider uppercase"
-          >
-            <Upload className="w-4 h-4" /> Upload
-          </button>
+          {isAdmin ? (
+            <button
+              onClick={() => setUploadOpen(true)}
+              className="flex items-center gap-2 px-4 py-2 border border-white/10 hover:border-gold/40 rounded-sm text-cream/60 hover:text-gold transition-all font-barlow-condensed text-sm tracking-wider uppercase"
+            >
+              <Upload className="w-4 h-4" /> Upload
+            </button>
+          ) : (
+            <div className="w-[108px]" aria-hidden="true" />
+          )}
         </div>
       </header>
 
