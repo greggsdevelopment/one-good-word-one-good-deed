@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 
-const GOFUNDME_URL = 'https://www.gofundme.com/manage/support-one-good-word-one-good-deeds-mission';
+const GOFUNDME_URL = 'https://www.gofundme.com/f/support-one-good-word-one-good-deeds-mission';
 
 export default function DonateHero() {
   return (

@@ -13,7 +13,7 @@ export default function FooterSection({ logoUrl }) {
     { label: 'Programs', to: '/programs' },
     { label: 'Stories', to: '/stories' },
     { label: 'Resources', to: '/resources' },
-    { label: 'Donate', to: 'https://www.gofundme.com/manage/support-one-good-word-one-good-deeds-mission', external: true },
+    { label: 'Donate', to: 'https://www.gofundme.com/f/support-one-good-word-one-good-deeds-mission', external: true },
     { label: 'Pledge Wall', to: '/pledge' },
     { label: 'Shop', to: '/shop' },
     { label: 'Events', to: '/events' },

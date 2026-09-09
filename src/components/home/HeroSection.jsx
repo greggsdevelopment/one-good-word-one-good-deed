@@ -188,7 +188,7 @@ export default function HeroSection({ logoUrl, pledgeCount }) {
           className="mt-6 mb-4"
         >
           <a
-            href="https://www.gofundme.com/manage/support-one-good-word-one-good-deeds-mission"
+            href="https://www.gofundme.com/f/support-one-good-word-one-good-deeds-mission"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-3 px-12 py-5 bg-gold hover:bg-gold-dark text-ink font-anton text-2xl sm:text-3xl uppercase tracking-widest rounded-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:shadow-gold/40"

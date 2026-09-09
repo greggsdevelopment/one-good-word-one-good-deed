@@ -3,7 +3,7 @@ import { useInView } from '@/hooks/useInView';
 import { ExternalLink, Zap, RefreshCw } from 'lucide-react';
 import { useState } from 'react';
 
-const GOFUNDME_URL = 'https://www.gofundme.com/manage/support-one-good-word-one-good-deeds-mission';
+const GOFUNDME_URL = 'https://www.gofundme.com/f/support-one-good-word-one-good-deeds-mission';
 
 const TIERS = [
   {
