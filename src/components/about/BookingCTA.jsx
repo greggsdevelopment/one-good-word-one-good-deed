@@ -79,11 +79,11 @@ export default function BookingCTA() {
             Book a School Visit
           </button>
           <a
-            href="mailto:1goodword1gooddeedllc@gmail.com"
+            href="mailto:greggsdevelopment@gmail.com"
             className="flex items-center justify-center gap-2 px-8 py-4 border-2 border-cream/20 hover:border-gold/50 text-cream/70 hover:text-gold font-barlow-condensed font-bold text-lg uppercase tracking-wider rounded-sm transition-all duration-300"
           >
             <Mail className="w-5 h-5" />
-            Email Jason Directly
+            Email Us Directly
           </a>
         </motion.div>
 

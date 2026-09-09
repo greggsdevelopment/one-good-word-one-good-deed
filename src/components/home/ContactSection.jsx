@@ -136,7 +136,7 @@ export default function ContactSection() {
             Phone: <a href="tel:2488089373" className="text-gold-dark hover:text-gold transition-colors">(248) 808-9373</a>
           </p>
           <p className="font-barlow text-ink/40 text-sm">
-            Email: <a href="mailto:1goodword1gooddeedllc@gmail.com" className="text-gold-dark hover:text-gold transition-colors">1goodword1gooddeedllc@gmail.com</a>
+            Email: <a href="mailto:greggsdevelopment@gmail.com" className="text-gold-dark hover:text-gold transition-colors">greggsdevelopment@gmail.com</a>
           </p>
           <p className="font-barlow text-ink/40 text-sm">
             Facebook: <a href="https://www.facebook.com/groups/1332878885346719" target="_blank" rel="noopener noreferrer" className="text-gold-dark hover:text-gold transition-colors">Join our community</a>

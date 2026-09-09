@@ -55,9 +55,9 @@ export default function FooterSection({ logoUrl }) {
                 <Phone className="w-4 h-4 shrink-0" />
                 (248) 808-9373
               </a>
-              <a href="mailto:1goodword1gooddeedllc@gmail.com" className="flex items-center gap-2 text-cream/40 hover:text-gold transition-colors font-barlow text-sm">
+              <a href="mailto:greggsdevelopment@gmail.com" className="flex items-center gap-2 text-cream/40 hover:text-gold transition-colors font-barlow text-sm">
                 <Mail className="w-4 h-4 shrink-0" />
-                1goodword1gooddeedllc@gmail.com
+                greggsdevelopment@gmail.com
               </a>
               <div className="flex items-center gap-2 text-cream/40 font-barlow text-sm">
                 <MapPin className="w-4 h-4 shrink-0" />

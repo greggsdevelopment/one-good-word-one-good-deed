@@ -18,7 +18,7 @@ const FAQS = [
   },
   {
     q: "Can we order bulk wristbands for our school?",
-    a: "Absolutely. Bulk orders are available and we offer school discounts for orders of 50+ wristbands. Reach out via our Contact section or email us directly at 1goodword1gooddeedllc@gmail.com to discuss bulk pricing.",
+    a: "Absolutely. Bulk orders are available and we offer school discounts for orders of 50+ wristbands. Reach out via our Contact section or email us directly at greggsdevelopment@gmail.com to discuss bulk pricing.",
   },
   {
     q: "How does our purchase help the cause?",
