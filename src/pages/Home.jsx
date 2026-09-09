@@ -1,5 +1,5 @@
 // Home page
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect } from 'react';
 import { base44 } from '@/api/base44Client';
 import StickyNav from '@/components/home/StickyNav';
 import HeroSection from '@/components/home/HeroSection';
@@ -27,12 +27,6 @@ const LOGO_URL = 'https://media.base44.com/images/public/6a19e1fc6c5eb736a0763b0
 export default function Home() {
   const [pledgeCount, setPledgeCount] = useState(0);
   const [recentPledges, setRecentPledges] = useState([]);
-
-  const fetchPledges = useCallback(async () => {
-    const pledges = await base44.entities.Pledge.filter({ approved: true }, '-created_date', 30);
-    setPledgeCount(pledges.length > 0 ? pledges.length : 0);
-    setRecentPledges(pledges.slice(0, 20));
-  }, []);
 
   useEffect(() => {
     // Get total count by listing all pledges
