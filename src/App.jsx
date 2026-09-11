@@ -33,6 +33,8 @@ import FullyPromoted from '@/pages/FullyPromoted';
 import LivRiteRecovery from '@/pages/LivRiteRecovery';
 import ClassicStateWayne from '@/pages/ClassicStateWayne';
 import TreeFortBikes from '@/pages/TreeFortBikes';
+import HallOfFame from '@/pages/HallOfFame';
+import Sponsorship from '@/pages/Sponsorship';
 import Login from '@/pages/Login';
 import Register from '@/pages/Register';
 import ForgotPassword from '@/pages/ForgotPassword';
@@ -82,6 +84,10 @@ const AuthenticatedApp = () => {
       <Route path="/liv-rite-recovery" element={<LivRiteRecovery />} />
       <Route path="/classic-state-wayne" element={<ClassicStateWayne />} />
       <Route path="/tree-fort-bikes" element={<TreeFortBikes />} />
+      <Route path="/hall-of-fame" element={<HallOfFame />} />
+      <Route path="/sponsorship" element={<Sponsorship />} />
+      <Route path="/sponsors" element={<Navigate to="/hall-of-fame" replace />} />
+      <Route path="/become-a-sponsor" element={<Navigate to="/sponsorship" replace />} />
       <Route path="/pledge" element={<Navigate to="/pledge-wall" replace />} />
 
       {/* Auth pages */}

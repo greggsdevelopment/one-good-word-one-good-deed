@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import { ArrowLeft } from 'lucide-react';
 import ProgramsHero from '@/components/programs/ProgramsHero';
 import WhatWeDoSection from '@/components/programs/WhatWeDoSection';
+import GradeBands from '@/components/programs/GradeBands';
 import WhatSchoolsGet from '@/components/programs/WhatSchoolsGet';
 import SchoolTestimonials from '@/components/programs/SchoolTestimonials';
 import BookingForm from '@/components/programs/BookingForm';
@@ -32,6 +33,7 @@ export default function Programs() {
         <ProgramsHero />
         <ImpactStatsBanner />
         <WhatWeDoSection />
+        <GradeBands />
         <WhatSchoolsGet />
         <PricingTiers />
         <SchoolTestimonials />

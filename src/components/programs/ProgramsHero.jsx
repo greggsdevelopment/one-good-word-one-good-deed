@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 
-const PILLS = ['Assembly', 'Workshops', 'Student Leaders', 'Staff Training', 'Family Night'];
+const PILLS = ['Grades K to 12', 'Assembly', 'Workshops', 'Student Leaders', 'Staff Training', 'Family Night'];
 
 export default function ProgramsHero() {
   const scrollTo = (selector) => {
@@ -41,8 +41,8 @@ export default function ProgramsHero() {
           transition={{ duration: 0.6, delay: 0.25 }}
           className="font-barlow text-cream/60 text-xl max-w-2xl mx-auto mb-8 leading-relaxed"
         >
-          A bullying and racism prevention program for Michigan public middle schools.
-          Five steps across one school year, built to move students from watching to acting.
+          A bullying and racism prevention program for Michigan public schools, elementary through high
+          school. Five steps across one school year, built to move students from watching to acting.
         </motion.p>
 
         <motion.div

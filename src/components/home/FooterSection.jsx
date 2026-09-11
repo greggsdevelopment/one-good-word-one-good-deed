@@ -11,6 +11,8 @@ export default function FooterSection({ logoUrl }) {
     { label: 'About', to: '/about' },
     { label: 'About Cody', to: '/about-cody' },
     { label: 'Programs', to: '/programs' },
+    { label: 'Sponsor Hall of Fame', to: '/hall-of-fame' },
+    { label: 'Become a Sponsor', to: '/sponsorship' },
     { label: 'Stories', to: '/stories' },
     { label: 'Resources', to: '/resources' },
     { label: 'Donate', to: 'https://www.gofundme.com/f/support-one-good-word-one-good-deeds-mission', external: true },

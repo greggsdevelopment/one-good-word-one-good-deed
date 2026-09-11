@@ -1,0 +1,90 @@
+{
+  "name": "SponsorshipApplication",
+  "type": "object",
+  "properties": {
+    "business_name": {
+      "type": "string",
+      "description": "Name of the sponsoring business or individual"
+    },
+    "contact_person": {
+      "type": "string",
+      "description": "Name of the contact person"
+    },
+    "email": {
+      "type": "string",
+      "description": "Contact email address"
+    },
+    "phone": {
+      "type": "string",
+      "description": "Contact phone number"
+    },
+    "website": {
+      "type": "string",
+      "description": "Business website or social profile"
+    },
+    "city": {
+      "type": "string",
+      "description": "City the business operates in"
+    },
+    "sponsorship_level": {
+      "type": "string",
+      "description": "Sponsorship level or amount the applicant is considering"
+    },
+    "funding_focus": {
+      "type": "string",
+      "description": "What the sponsor most wants their money to fund"
+    },
+    "school_of_interest": {
+      "type": "string",
+      "description": "A specific school or district the sponsor wants to underwrite, if any"
+    },
+    "in_kind": {
+      "type": "string",
+      "description": "Goods or services offered instead of or alongside cash"
+    },
+    "message": {
+      "type": "string",
+      "description": "Anything else the applicant wants to say"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "new",
+        "contacted",
+        "active",
+        "declined"
+      ],
+      "default": "new",
+      "description": "Where the application stands"
+    },
+    "read": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether the application has been reviewed"
+    }
+  },
+  "required": [
+    "business_name",
+    "contact_person",
+    "email"
+  ],
+  "allowPublicCreate": true,
+  "rls": {
+    "create": null,
+    "read": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}

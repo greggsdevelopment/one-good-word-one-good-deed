@@ -28,24 +28,15 @@ const NAV_GROUPS = [
                           { label: 'Donate', to: 'https://www.gofundme.com/f/support-one-good-word-one-good-deeds-mission', external: true },
                                 { label: 'Pledge Wall', to: '/pledge-wall' },
                                       { label: 'Shop', to: '/shop' },
-                                      { label: 'Become a Partner', to: '/#partner' },
+                                      { label: 'Become a Sponsor', to: '/sponsorship' },
                   ],
         },
         {
               label: 'Sponsors',
                   links: [
-                          { label: 'Wristband Bros', to: '/wristband-bros' },
-                          { label: 'Goosehead Insurance', to: '/goosehead-insurance' },
-                          { label: 'Dog N Suds Pet Grooming', to: '/dog-n-suds' },
-                          { label: 'T.D. Keleman Trucking', to: '/td-keleman-trucking' },
-                          { label: 'AD Collectibles (Ali)', to: '/subway-taylor' },
-                          { label: "Papa's Pizza & BBQ", to: '/papas-pizza' },
-                          { label: "Plymouth's Auto Repair", to: '/plymouths-auto-repair' },
-                          { label: "Fully Promoted", to: '/fully-promoted' },
-                          // { label: "Liv Rite Recovery", to: '/liv-rite-recovery', hidden: true }, // not official yet
-                          { label: "Classic State Wayne Theater", to: '/classic-state-wayne' },
-                          { label: "Tree Fort Bikes", to: '/tree-fort-bikes' },
-                          ],
+                          { label: 'Hall of Fame', to: '/hall-of-fame' },
+                          { label: 'Become a Sponsor', to: '/sponsorship' },
+                  ],
         },
 ];
 

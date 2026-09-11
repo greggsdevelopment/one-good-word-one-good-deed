@@ -125,7 +125,7 @@ export default function BookingForm() {
                   min={1}
                 />
                 <input
-                  placeholder="Grade Span (e.g. 6 to 8)"
+                  placeholder="Grade Span (e.g. K to 5, 6 to 8, 9 to 12)"
                   value={form.grade_span}
                   onChange={set('grade_span')}
                   className={inputClass}

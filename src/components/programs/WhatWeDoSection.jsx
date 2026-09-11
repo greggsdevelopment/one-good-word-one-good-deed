@@ -2,39 +2,6 @@ import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { useInView } from '@/hooks/useInView';
 
-const STEPS = [
-  {
-    title: 'The Assembly: "One Good Word"',
-    meta: ['45 minutes', 'Whole school', 'Gym or auditorium'],
-    description:
-      "Jason tells his family's story, students see what bullying and racism cost a real person, and the room learns the 10 second fact above. Ends with the pledge and a wristband every student keeps. Loud, funny in places, honest in others. Not a lecture.",
-  },
-  {
-    title: 'The 10 Second Lab',
-    meta: ['45 minutes', 'One grade level at a time'],
-    description:
-      'Students practice four things they can actually do in the moment: interrupt, redirect, check on the person afterward, and report to an adult. They rehearse the words out loud, in pairs, until saying them stops feeling weird. This is skill practice, not a discussion circle.',
-  },
-  {
-    title: 'Group Chat Check',
-    meta: ['45 minutes', 'One grade level at a time', 'Grades 6 to 8'],
-    description:
-      'Most middle school conflict now starts on a screen at night and walks into the building the next morning. Using anonymous, name-scrubbed examples reviewed in advance with school staff, students map the exact point where a joke turns into harm, and what to do at that point.',
-  },
-  {
-    title: 'Student Ambassadors',
-    meta: ['15 to 20 students', 'Training day plus monthly 30 minute check-ins'],
-    description:
-      'A trained student team nominated by your staff, including students who have been on both sides of the problem. They lead the pledge drive, run lunch table welcomes, and give your counselors an early warning system. This is the piece that keeps the message alive after we drive away.',
-  },
-  {
-    title: 'Staff Session and Family Night',
-    meta: ['60 minutes staff', '60 minutes evening family event'],
-    description:
-      'A professional development hour for teachers, paraprofessionals, bus drivers, and lunch staff on spotting it early and responding consistently. Plus an optional evening event so families hear the same language their kids heard.',
-  },
-];
-
 export default function WhatWeDoSection() {
   const [ref, inView] = useInView(0.05);
 
@@ -81,33 +48,12 @@ export default function WhatWeDoSection() {
           className="font-barlow text-cream/50 text-center text-base max-w-2xl mx-auto mb-16"
         >
           Schools can start with step one and add from there. Most buildings run steps one through three in
-          the fall and carry steps four and five through spring.
+          the fall and carry steps four and five through spring. The five steps below are shaped differently for
+          elementary, middle, and high school, so pick your grade band and read the version your students would
+          actually get.
         </motion.p>
 
-        <ol className="space-y-6">
-          {STEPS.map((step, i) => (
-            <motion.li
-              key={step.title}
-              initial={{ opacity: 0, y: 28 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: 0.2 + i * 0.08 }}
-              className="flex gap-5 sm:gap-7 bg-white/[0.03] border border-white/[0.07] rounded-sm p-6 sm:p-8 hover:border-gold/25 transition-all duration-300"
-            >
-              <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-gold flex items-center justify-center shrink-0">
-                <span className="font-anton text-ink text-2xl sm:text-3xl leading-none">{i + 1}</span>
-              </div>
-              <div>
-                <h3 className="font-barlow-condensed text-cream text-2xl font-semibold tracking-wide mb-2">{step.title}</h3>
-                <p className="font-barlow-condensed text-gold/80 text-xs tracking-[0.2em] uppercase mb-3">
-                  {step.meta.join('  ·  ')}
-                </p>
-                <p className="font-barlow text-cream/60 text-base leading-relaxed">{step.description}</p>
-              </div>
-            </motion.li>
-          ))}
-        </ol>
-
-        <div className="grid md:grid-cols-2 gap-6 mt-12">
+        <div className="grid md:grid-cols-2 gap-6">
           <motion.div
             initial={{ opacity: 0, y: 24 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
