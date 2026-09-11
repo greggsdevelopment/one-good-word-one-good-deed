@@ -36,7 +36,7 @@ export default function WhatWeDoSection() {
           transition={{ duration: 0.6, delay: 0.1 }}
           className="font-barlow text-cream/60 text-center text-lg max-w-2xl mx-auto mb-4 leading-relaxed"
         >
-          One Good Word...One Good Deed began when founder Jason Lewis watched his daughter get bullied
+          One Good Word...One Good Deed began when founder Jason Lewis watched his daughter's friend get bullied
           and decided that talking about it was not enough. Our message to students is simple enough for a
           sixth grader to repeat on the bus ride home: <span className="text-cream font-semibold">one good word, one good deed.</span> Say
           the thing. Do the thing. Every day, on purpose.
