@@ -11,7 +11,6 @@ const NAV_GROUPS = [
                               { label: 'About Jason', to: '/about' },
                                     { label: 'About Cody', to: '/about-cody' },
                                           { label: 'Stories', to: '/stories' },
-                                                { label: 'Gallery', to: '/gallery' },
               ],
     },
       {
