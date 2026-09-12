@@ -2,6 +2,7 @@ import StickyNav from '@/components/home/StickyNav';
 import FooterSection from '@/components/home/FooterSection';
 import CodyHero from '@/components/about-cody/CodyHero';
 import CodyStory from '@/components/about-cody/CodyStory';
+import GroundedKingsCard from '@/components/about-cody/GroundedKingsCard';
 import WhatIDo from '@/components/about-cody/WhatIDo';
 import BeyondSection from '@/components/about-cody/BeyondSection';
 import CodyCTA from '@/components/about-cody/CodyCTA';
@@ -16,6 +17,7 @@ export default function AboutCody() {
       <main className="relative z-10">
         <CodyHero />
         <CodyStory />
+        <GroundedKingsCard />
         <WhatIDo />
         <BeyondSection />
         <CodyCTA />
