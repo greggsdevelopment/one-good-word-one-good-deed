@@ -48,6 +48,18 @@
       ],
       "default": "pending",
       "description": "Order status"
+    },
+    "stripe_session_id": {
+      "type": "string",
+      "description": "Stripe Checkout Session id. Written by the stripeWebhook function and used to make sure one payment never creates two orders."
+    },
+    "stripe_payment_intent": {
+      "type": "string",
+      "description": "Stripe PaymentIntent id, for refunds and reconciliation"
+    },
+    "payment_status": {
+      "type": "string",
+      "description": "Payment status reported by Stripe, e.g. paid"
     }
   },
   "required": [
