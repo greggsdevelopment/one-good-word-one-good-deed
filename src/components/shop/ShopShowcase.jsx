@@ -62,14 +62,13 @@ export default function ShopShowcase({ products, onQuickView, onBrowse }) {
                   className="absolute inset-0 w-full h-full group cursor-pointer"
                   aria-label={`Quick view ${product.name}`}
                 >
+                  {/* Contain, with no per-product zoom: the showcase frame is far
+                      larger than the old thumbnails those zoom values were tuned
+                      for, and here the whole garment should be visible. */}
                   <img
                     src={product.image}
                     alt={product.name}
-                    className="w-full h-full object-cover"
-                    style={{
-                      transform: `scale(${product.imageZoom || 1})`,
-                      transformOrigin: product.imageOrigin || 'center center',
-                    }}
+                    className="w-full h-full object-contain p-3"
                   />
                   <span className="absolute inset-0 bg-black/45 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                     <span className="flex items-center gap-2 border border-gold/50 bg-ink/80 px-4 py-2 rounded-sm text-gold font-barlow-condensed text-sm uppercase tracking-wider">

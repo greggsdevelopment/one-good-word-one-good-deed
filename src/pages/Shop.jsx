@@ -366,11 +366,7 @@ function ProductCard({ product, index, onAddToCart, onQuickView }) {
             <img
               src={product.image}
               alt={product.name}
-              className="w-full h-full object-cover transition-transform [transition-duration:1100ms] ease-out group-hover:scale-[1.07]"
-              style={{
-                transform: `scale(${product.imageZoom || 1})`,
-                transformOrigin: product.imageOrigin || 'center center',
-              }}
+              className="w-full h-full object-contain p-4 transition-transform [transition-duration:1100ms] ease-out group-hover:scale-[1.07]"
             />
           ) : (
             <div className="w-full h-full flex items-center justify-center">

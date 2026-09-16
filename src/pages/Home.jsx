@@ -69,7 +69,6 @@ export default function Home() {
         titleAccent="SHOP"
         image={SHOP_IMAGE}
         imageAlt="One Good Word One Good Deed t-shirt"
-        imageStyle={{ transform: 'scale(1.35)', transformOrigin: 'center' }}
         glow="75% 40%"
         reverse
         meta={
