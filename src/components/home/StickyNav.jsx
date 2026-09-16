@@ -23,7 +23,6 @@ const NAV_GROUPS = [
       { label: 'About Cody', to: '/about-cody' },
       { label: 'Our Stories', to: '/stories' },
       { label: 'Events', to: '/events' },
-      { label: 'Gallery', to: '/gallery' },
       { label: 'Resources', to: '/resources' },
     ],
   },
