@@ -12,7 +12,7 @@ const STEPS = [
  */
 export default function ProgramStepsVisual() {
   return (
-    <div className="absolute inset-0 flex flex-col justify-center px-7 sm:px-10 py-8 bg-gradient-to-br from-black/60 via-ink to-black/70">
+    <div className="absolute inset-0 flex flex-col justify-center px-5 sm:px-10 py-8 bg-gradient-to-br from-black/60 via-ink to-black/70">
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
@@ -27,11 +27,11 @@ export default function ProgramStepsVisual() {
 
       <ol className="relative space-y-4 sm:space-y-5">
         {STEPS.map((step, i) => (
-          <li key={step} className="flex items-center gap-4 group/step">
-            <span className="flex-shrink-0 w-9 h-9 rounded-full border border-gold/40 flex items-center justify-center font-anton text-gold text-sm transition-colors duration-500 group-hover:border-gold group-hover:bg-gold/10">
+          <li key={step} className="flex items-center gap-3 sm:gap-4 group/step">
+            <span className="flex-shrink-0 w-8 h-8 sm:w-9 sm:h-9 rounded-full border border-gold/40 flex items-center justify-center font-anton text-gold text-xs sm:text-sm transition-colors duration-500 group-hover:border-gold group-hover:bg-gold/10">
               {String(i + 1).padStart(2, '0')}
             </span>
-            <span className="font-barlow-condensed text-cream text-lg sm:text-xl tracking-wide leading-tight">
+            <span className="font-barlow-condensed text-cream text-base sm:text-xl tracking-wide leading-tight">
               {step}
             </span>
           </li>
