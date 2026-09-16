@@ -2,31 +2,25 @@ import { Link } from 'react-router-dom';
 import { Facebook, Instagram, Mail, Phone, MapPin } from 'lucide-react';
 
 export default function FooterSection({ logoUrl }) {
-  const scrollTo = (id) => {
-    const el = document.querySelector(id);
-    if (el) el.scrollIntoView({ behavior: 'smooth' });
-  };
-
-  const pageLinks = [
-    { label: 'About', to: '/about' },
-    { label: 'About Cody', to: '/about-cody' },
-    { label: 'Programs', to: '/programs' },
-    { label: 'Sponsor Hall of Fame', to: '/hall-of-fame' },
-    { label: 'Become a Sponsor', to: '/sponsorship' },
-    { label: 'Stories', to: '/stories' },
-    { label: 'Resources', to: '/resources' },
-    { label: 'Donate', to: 'https://www.gofundme.com/f/support-one-good-word-one-good-deeds-mission', external: true },
-    { label: 'Pledge Wall', to: '/pledge' },
+  // The four foundations, mirrored from the main nav.
+  const foundationLinks = [
+    { label: 'Remember Drayke', to: '/drayke' },
+    { label: 'Pledge Wall', to: '/pledge-wall' },
     { label: 'Shop', to: '/shop' },
-    { label: 'Events', to: '/events' },
-    { label: 'Gallery', to: '/gallery' },
+    { label: 'School Programs', to: '/programs' },
   ];
 
-  const scrollLinks = [
-    { label: 'Mission', href: '#mission' },
-    { label: 'Pillars', href: '#pillars' },
-    { label: 'Get Involved', href: '#involved' },
-    { label: 'Contact', href: '#contact' },
+  const pageLinks = [
+    { label: 'About Jason', to: '/about' },
+    { label: 'About Cody', to: '/about-cody' },
+    { label: 'Our Stories', to: '/stories' },
+    { label: 'Events', to: '/events' },
+    { label: 'Gallery', to: '/gallery' },
+    { label: 'Resources', to: '/resources' },
+    { label: 'Sponsor Hall of Fame', to: '/hall-of-fame' },
+    { label: 'Become a Sponsor', to: '/sponsorship' },
+    { label: 'Contact', to: '/contact' },
+    { label: 'Donate', to: 'https://www.gofundme.com/f/support-one-good-word-one-good-deeds-mission', external: true },
   ];
 
   return (
@@ -98,16 +92,16 @@ export default function FooterSection({ logoUrl }) {
 
           {/* Quick links + Social */}
           <div>
-            <p className="font-barlow-condensed text-cream/30 text-xs tracking-[0.3em] uppercase mb-4">On This Page</p>
+            <p className="font-barlow-condensed text-cream/30 text-xs tracking-[0.3em] uppercase mb-4">Start Here</p>
             <div className="flex flex-col gap-2 mb-8">
-              {scrollLinks.map((link) => (
-                <button
-                  key={link.href}
-                  onClick={() => scrollTo(link.href)}
-                  className="font-barlow-condensed text-cream/50 hover:text-gold text-sm tracking-wider uppercase transition-colors text-left"
+              {foundationLinks.map((link) => (
+                <Link
+                  key={link.to}
+                  to={link.to}
+                  className="font-barlow-condensed text-cream/70 hover:text-gold text-sm tracking-wider uppercase transition-colors"
                 >
                   {link.label}
-                </button>
+                </Link>
               ))}
             </div>
             <p className="font-barlow-condensed text-cream/30 text-xs tracking-[0.3em] uppercase mb-3">Follow Us</p>

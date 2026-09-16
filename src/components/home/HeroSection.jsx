@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const SCRIPTURES = [
@@ -21,11 +22,6 @@ export default function HeroSection({ logoUrl, pledgeCount }) {
     }, 3000);
     return () => clearInterval(timer);
   }, []);
-  const scrollTo = (id) => {
-    const el = document.querySelector(id);
-    if (el) el.scrollIntoView({ behavior: 'smooth' });
-  };
-
   return (
     <section id="hero" className="relative min-h-screen flex items-center justify-center bg-ink overflow-hidden pt-16">
       {/* Grain overlay */}
@@ -112,12 +108,12 @@ export default function HeroSection({ logoUrl, pledgeCount }) {
           transition={{ duration: 0.8, delay: 1.05 }}
           className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-8"
         >
-          <button
-            onClick={() => scrollTo('#pledge')}
-            className="px-10 py-4 bg-gold hover:bg-gold-dark text-ink font-barlow-condensed font-bold text-xl uppercase tracking-wider rounded-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:shadow-gold/30 w-full sm:w-auto min-h-[56px]"
+          <Link
+            to="/pledge-wall"
+            className="px-10 py-4 bg-gold hover:bg-gold-dark text-ink font-barlow-condensed font-bold text-xl uppercase tracking-wider rounded-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:shadow-gold/30 w-full sm:w-auto min-h-[56px] flex items-center justify-center"
           >
             Take the Pledge
-          </button>
+          </Link>
           <a
             href="https://www.facebook.com/groups/1332878885346719"
             target="_blank"
