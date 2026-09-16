@@ -1,9 +1,9 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link, useLocation, useNavigate, useSearchParams } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ArrowLeft, Package, Mail, CreditCard, Loader2, CheckCircle, AlertCircle } from 'lucide-react';
 import { base44 } from '@/api/base44Client';
-import { STRIPE_CHECKOUT_ENABLED, ORDER_EMAIL } from '@/lib/shop-config';
+import { ORDER_EMAIL } from '@/lib/shop-config';
 
 // This page never creates an Order record and never decides a price. When card
 // payment is on, it sends { id, size, quantity } to the createCheckout function,
@@ -18,10 +18,34 @@ export default function Checkout() {
   const [searchParams] = useSearchParams();
   const [starting, setStarting] = useState(false);
   const [payError, setPayError] = useState('');
+  // null while we are still asking the server, then true or false.
+  const [cardEnabled, setCardEnabled] = useState(null);
 
   const outcome = searchParams.get('checkout');
   const cart = location.state?.cart || [];
   const total = cart.reduce((sum, i) => sum + i.product.price * i.quantity, 0);
+  const hasCart = cart.length > 0;
+
+  // Ask the server whether card payment is live. Any failure means we show the
+  // email flow, which always works.
+  useEffect(() => {
+    if (outcome === 'success' || !hasCart) return undefined;
+
+    let cancelled = false;
+    base44.functions
+      .invoke('createCheckout', { probe: true })
+      .then((response) => {
+        const data = response?.data ?? response;
+        if (!cancelled) setCardEnabled(data?.enabled === true);
+      })
+      .catch(() => {
+        if (!cancelled) setCardEnabled(false);
+      });
+
+    return () => {
+      cancelled = true;
+    };
+  }, [outcome, hasCart]);
 
   // Back from Stripe after paying. The cart is gone at this point because this
   // is a fresh page load, so this panel stands on its own.
@@ -138,7 +162,12 @@ export default function Checkout() {
             </div>
           )}
 
-          {STRIPE_CHECKOUT_ENABLED ? (
+          {cardEnabled === null ? (
+            <div className="bg-white/[0.03] border border-white/[0.07] rounded-sm p-6 flex items-center gap-3">
+              <Loader2 className="w-4 h-4 text-gold animate-spin shrink-0" />
+              <p className="font-barlow text-cream/60 text-sm">Checking payment options...</p>
+            </div>
+          ) : cardEnabled ? (
             <div className="bg-white/[0.03] border border-white/[0.07] rounded-sm p-6">
               <h2 className="font-barlow-condensed text-cream/60 text-sm tracking-widest uppercase mb-3">
                 Pay securely
@@ -241,7 +270,7 @@ export default function Checkout() {
             <p className="font-anton text-gold text-2xl">${total.toFixed(2)}</p>
           </div>
           <p className="font-barlow text-cream/20 text-xs mt-3">
-            {STRIPE_CHECKOUT_ENABLED
+            {cardEnabled
               ? 'Shipping is added on the Stripe payment page.'
               : 'Shipping is confirmed by email before payment.'}
           </p>

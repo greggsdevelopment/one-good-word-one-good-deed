@@ -12,6 +12,13 @@
  *   { url: string, order_number: string }
  * Errors return { error: <code>, message: string } with a 4xx/5xx status.
  *
+ * There is also a probe:
+ *   POST { probe: true }  ->  200 { enabled: boolean }
+ * The checkout page calls it to find out whether card payment is actually live
+ * before deciding which UI to show. Base44 secrets are backend only, so the
+ * browser has no other way to know, and this keeps the switch in exactly one
+ * place instead of two that can drift apart.
+ *
  * Required secrets on the Base44 app:
  *   STRIPE_SECRET_KEY        - Stripe API key (sk_test_... or sk_live_...)
  *   STRIPE_CHECKOUT_ENABLED  - the string "true" to turn card payment on
@@ -92,7 +99,23 @@ Deno.serve(async (req: Request) => {
     return json({ error: 'method_not_allowed', message: 'Use POST.' }, 405);
   }
 
+  let payload: Record<string, unknown>;
+  try {
+    payload = await req.json();
+  } catch {
+    // An empty body is fine for the probe; anything else fails validation below.
+    payload = {};
+  }
+
   const enabled = (await getSecret('STRIPE_CHECKOUT_ENABLED')) === 'true';
+  const secretKey = await getSecret('STRIPE_SECRET_KEY');
+
+  // Probe. Answer before the guards below so the page can render the right UI
+  // instead of showing a pay button that is guaranteed to fail.
+  if (payload?.probe === true) {
+    return json({ enabled: enabled && Boolean(secretKey) });
+  }
+
   if (!enabled) {
     return json(
       {
@@ -103,7 +126,6 @@ Deno.serve(async (req: Request) => {
     );
   }
 
-  const secretKey = await getSecret('STRIPE_SECRET_KEY');
   if (!secretKey) {
     return json(
       {
@@ -112,13 +134,6 @@ Deno.serve(async (req: Request) => {
       },
       503,
     );
-  }
-
-  let payload: Record<string, unknown>;
-  try {
-    payload = await req.json();
-  } catch {
-    return json({ error: 'invalid_json', message: 'Body must be JSON.' }, 400);
   }
 
   const rawItems = payload?.items;
