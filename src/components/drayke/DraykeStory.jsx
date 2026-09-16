@@ -43,7 +43,7 @@ export default function DraykeStory() {
           style={SERIF}
         >
           <p>
-            Drayke Andrew Hardman was twelve years old, a sixth grader from Tooele, Utah, with
+            Drayke Andrew Hardman was twelve years old, a seventh grader from Tooele, Utah, with
             bright blue eyes and a smile that pulled everyone into its orbit. He was the kid in
             the Pikachu onesie on a hoverboard. The kid hugging puppies like they were treasure.
             The master Lego builder, the jokester, the boy who hugged first and asked questions
