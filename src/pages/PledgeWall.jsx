@@ -117,7 +117,7 @@ export default function PledgeWall() {
             className="w-full h-full object-cover object-center"
           />
           {/* Darken so the counter stays readable */}
-          <div className="absolute inset-0 bg-ink/70" />
+          <div className="absolute inset-0 bg-ink/45" />
           {/* Fade the photo into the page background at the bottom */}
           <div
             className="absolute inset-x-0 bottom-0 h-1/2"
