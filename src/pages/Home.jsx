@@ -10,7 +10,7 @@ import FooterSection from '@/components/home/FooterSection';
 import { HERO_PHOTO } from '@/components/drayke/draykePhotos';
 
 const LOGO_URL = 'https://media.base44.com/images/public/6a19e1fc6c5eb736a0763b09/1824cf861_IMG_5119.png';
-const SHOP_IMAGE = 'https://media.base44.com/images/public/6a19e1fc6c5eb736a0763b09/5a2443586_shirt.png';
+const SHOP_IMAGE = 'https://media.base44.com/images/public/6a19e1fc6c5eb736a0763b09/3cd386384_IMG_7343.jpeg';
 
 const SERIF = { fontFamily: "'Cormorant Garamond', serif" };
 
