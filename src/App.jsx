@@ -9,6 +9,7 @@ import ProtectedRoute from '@/components/ProtectedRoute';
 import ScrollToTop from '@/components/ScrollToTop';
 import BackgroundMusic from '@/components/home/BackgroundMusic';
 import Home from '@/pages/Home';
+import RememberDrayke from '@/pages/RememberDrayke';
 import Shop from '@/pages/Shop';
 import About from '@/pages/About';
 import AboutCody from '@/pages/AboutCody';
@@ -61,6 +62,7 @@ const AuthenticatedApp = () => {
     <Routes>
       {/* Public pages */}
       <Route path="/" element={<Home />} />
+      <Route path="/drayke" element={<RememberDrayke />} />
       <Route path="/shop" element={<Shop />} />
       <Route path="/about" element={<About />} />
       <Route path="/about-cody" element={<AboutCody />} />

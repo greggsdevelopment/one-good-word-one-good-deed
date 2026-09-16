@@ -4,6 +4,7 @@ import { base44 } from '@/api/base44Client';
 import StickyNav from '@/components/home/StickyNav';
 import HeroSection from '@/components/home/HeroSection';
 import MissionSection from '@/components/home/MissionSection';
+import RememberDraykeSection from '@/components/home/RememberDraykeSection';
 import PillarsSection from '@/components/home/PillarsSection';
 import PledgeSection from '@/components/home/PledgeSection';
 import GetInvolvedSection from '@/components/home/GetInvolvedSection';
@@ -49,6 +50,7 @@ export default function Home() {
       <HeroSection logoUrl={LOGO_URL} pledgeCount={pledgeCount} />
       <MarqueeTicker />
       <MissionSection />
+      <RememberDraykeSection />
       <PillarsSection />
       <PledgeSection
         pledgeCount={pledgeCount}
