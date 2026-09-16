@@ -130,7 +130,7 @@ const PRODUCTS = [
     price: 25,
     category: 'T-Shirts',
     featured: true,
-    image: 'https://media.base44.com/images/public/6a19e1fc6c5eb736a0763b09/5a2443586_shirt.png',
+    image: 'https://media.base44.com/images/public/6a19e1fc6c5eb736a0763b09/3cd386384_IMG_7343.jpeg',
     sizes: ['S', 'M', 'L', 'XL', '2XL'],
     imageZoom: 1.5,
     imageOrigin: 'center',
