@@ -9,6 +9,7 @@ import CinematicWall from '@/components/pledge/CinematicWall';
 import PledgeCard from '@/components/pledge/PledgeCard';
 
 const LOGO_URL = 'https://media.base44.com/images/public/6a19e1fc6c5eb736a0763b09/1824cf861_IMG_5119.png';
+const HEADER_BG = 'https://media.base44.com/images/public/6a19e1fc6c5eb736a0763b09/10559d56f_image.png';
 const SERIF = { fontFamily: "'Cormorant Garamond', serif" };
 const SCRIPT = { fontFamily: "'Great Vibes', cursive" };
 
@@ -107,14 +108,25 @@ export default function PledgeWall() {
       <StickyNav logoUrl={LOGO_URL} />
 
       {/* Hero counter */}
-      <section className="relative pt-32 pb-16 px-6 overflow-hidden">
-        <div
-          className="absolute inset-0 pointer-events-none"
-          style={{
-            background:
-              'radial-gradient(ellipse at 50% 20%, rgba(230,180,80,0.13) 0%, rgba(11,11,13,0) 60%)',
-          }}
-        />
+      <section className="relative pt-32 pb-24 px-6 overflow-hidden">
+        {/* Background photo */}
+        <div className="absolute inset-0 pointer-events-none">
+          <img
+            src={HEADER_BG}
+            alt=""
+            className="w-full h-full object-cover object-center"
+          />
+          {/* Darken so the counter stays readable */}
+          <div className="absolute inset-0 bg-ink/70" />
+          {/* Fade the photo into the page background at the bottom */}
+          <div
+            className="absolute inset-x-0 bottom-0 h-1/2"
+            style={{
+              background:
+                'linear-gradient(to bottom, rgba(11,11,13,0) 0%, rgba(11,11,13,0.85) 60%, #0b0b0d 100%)',
+            }}
+          />
+        </div>
         <div className="relative z-10 max-w-4xl mx-auto text-center">
           <motion.p
             initial={{ opacity: 0 }}
