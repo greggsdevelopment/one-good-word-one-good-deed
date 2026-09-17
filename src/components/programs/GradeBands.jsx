@@ -244,7 +244,7 @@ export default function GradeBands() {
 
         <p className="font-barlow text-cream/45 text-center text-base max-w-2xl mx-auto mt-12 leading-relaxed">
           K-8 buildings run the elementary version for grades K to 5 and the middle school version for grades 6
-          to 8 on the same visit. Flat rates cover buildings up to 900 students either way.
+          to 8 on the same visit. Flat rates either way, whatever your enrollment.
         </p>
       </div>
     </section>
