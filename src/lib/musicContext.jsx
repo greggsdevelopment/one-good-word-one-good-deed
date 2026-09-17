@@ -8,6 +8,10 @@ export const useMusic = () => useContext(MusicContext) ?? SAFE_MUSIC;
 
 const VIDEO_ID = 'u-4QARnU77A';
 
+// The track has roughly two seconds of silence at the start.
+// Skip it on the first play and every loop wrap.
+const START_OFFSET_SECONDS = 2;
+
 export function MusicProvider({ children }) {
   const [playing, setPlaying] = useState(false);
   const [ready, setReady] = useState(false);
@@ -17,6 +21,7 @@ export function MusicProvider({ children }) {
   const playingRef = useRef(false);
   const pausedForDraykeRef = useRef(false);
   const prevPathRef = useRef(location.pathname);
+  const firstPlayRef = useRef(true);
 
   useEffect(() => {
     playingRef.current = playing;
@@ -35,8 +40,6 @@ export function MusicProvider({ children }) {
         videoId: VIDEO_ID,
         playerVars: {
           autoplay: 0,
-          loop: 1,
-          playlist: VIDEO_ID,
           controls: 0,
           disablekb: 1,
           fs: 0,
@@ -48,6 +51,18 @@ export function MusicProvider({ children }) {
           onReady: () => {
             setReady(true);
             playerRef.current.setVolume(50);
+          },
+          // Handle the loop wrap ourselves instead of relying on the
+          // loop attribute: when the track ends, seek past the leading
+          // silence and play again.
+          onStateChange: (e) => {
+            if (e.data === 0) {
+              const p = playerRef.current;
+              if (p) {
+                p.seekTo(START_OFFSET_SECONDS, true);
+                p.playVideo();
+              }
+            }
           },
         },
       });
@@ -102,6 +117,11 @@ export function MusicProvider({ children }) {
       player.pauseVideo();
       setPlaying(false);
     } else {
+      // On the very first play, skip the leading silence.
+      if (firstPlayRef.current) {
+        player.seekTo(START_OFFSET_SECONDS, true);
+        firstPlayRef.current = false;
+      }
       player.playVideo();
       setPlaying(true);
     }
