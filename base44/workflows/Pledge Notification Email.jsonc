@@ -1,0 +1,45 @@
+{
+  "name": "Pledge Notification Email",
+  "description": "Sends a Gmail notification to the team whenever a new pledge is submitted on the pledge wall",
+  "definition": {
+    "document": {
+      "dsl": "1.0.0",
+      "name": "pledge_notification_email",
+      "version": "1.0",
+      "namespace": "base44"
+    },
+    "do": [
+      {
+        "send_notification": {
+          "call": "invoke_backend_function",
+          "with": {
+            "function_name": "sendPledgeNotification",
+            "args": {
+              "pledge": {
+                "first_name": "${ .trigger.data.first_name }",
+                "last_initial": "${ .trigger.data.last_initial }",
+                "city": "${ .trigger.data.city }",
+                "pledge_statement": "${ .trigger.data.pledge_statement }"
+              }
+            }
+          },
+          "then": "end",
+          "x-base44": {
+            "title": "Send pledge notification",
+            "description": "Email the team about the new pledge"
+          }
+        }
+      }
+    ]
+  },
+  "trigger": {
+    "condition": null,
+    "config": {
+      "trigger_type": "entity",
+      "events": [
+        "create"
+      ],
+      "entity_name": "Pledge"
+    }
+  }
+}
