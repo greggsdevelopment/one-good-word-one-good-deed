@@ -157,22 +157,28 @@ export default function HeroSection({ logoUrl, pledgeCount }) {
               <div className="h-px w-10 bg-gold/40" />
             </div>
             <p className="font-barlow-condensed text-gold text-[10px] tracking-[0.35em] uppercase mb-3">Scripture</p>
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={scriptureIndex}
-                initial={{ opacity: 0, y: 8 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -8 }}
-                transition={{ duration: 0.4 }}
-              >
-                <p className="font-anton text-cream text-xl sm:text-2xl leading-tight mb-3">
-                  {SCRIPTURES[scriptureIndex].verse}
-                </p>
-                <p className="font-barlow-condensed text-gold/70 text-sm tracking-widest uppercase">
-                  {SCRIPTURES[scriptureIndex].ref}
-                </p>
-              </motion.div>
-            </AnimatePresence>
+            {/* Reserved-height rotating scripture: crossfade with opacity/transform only */}
+            <div className="relative w-full h-28 sm:h-36">
+              {SCRIPTURES.map((s, i) => (
+                <motion.div
+                  key={i}
+                  initial={false}
+                  animate={{
+                    opacity: i === scriptureIndex ? 1 : 0,
+                    y: i === scriptureIndex ? 0 : 10,
+                  }}
+                  transition={{ duration: 0.5, ease: 'easeOut' }}
+                  className="absolute inset-0 flex flex-col items-center justify-center text-center"
+                >
+                  <p className="font-anton text-cream text-xl sm:text-2xl leading-tight mb-3">
+                    {s.verse}
+                  </p>
+                  <p className="font-barlow-condensed text-gold/70 text-sm tracking-widest uppercase">
+                    {s.ref}
+                  </p>
+                </motion.div>
+              ))}
+            </div>
           </motion.div>
         </motion.div>
 

@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Link, useLocation } from 'react-router-dom';
 import { ChevronDown, Shield, Menu, X } from 'lucide-react';
 import { base44 } from '@/api/base44Client';
+import MusicToggle from '@/components/home/MusicToggle';
 
 const DONATE_URL =
   'https://www.gofundme.com/f/support-one-good-word-one-good-deeds-mission';
@@ -203,27 +204,31 @@ export default function StickyNav({ logoUrl }) {
             )}
           </nav>
 
-          {/* Donate (desktop) */}
-          <div className="hidden lg:flex items-center flex-shrink-0">
-            <a
-              href={DONATE_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="bg-gold hover:bg-gold-dark text-ink font-bold text-sm uppercase tracking-wider px-5 py-2.5 rounded-sm transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-gold/25"
-            >
-              Donate
-            </a>
-          </div>
+          <div className="flex items-center gap-2 flex-shrink-0">
+            <MusicToggle />
 
-          {/* Mobile hamburger */}
-          <button
-            className="lg:hidden text-cream hover:text-gold p-2 transition-colors"
-            onClick={() => setMobileOpen(!mobileOpen)}
-            aria-label="Toggle menu"
-            aria-expanded={mobileOpen}
-          >
-            {mobileOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
+            {/* Donate (desktop) */}
+            <div className="hidden lg:flex items-center">
+              <a
+                href={DONATE_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-gold hover:bg-gold-dark text-ink font-bold text-sm uppercase tracking-wider px-5 py-2.5 rounded-sm transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-gold/25"
+              >
+                Donate
+              </a>
+            </div>
+
+            {/* Mobile hamburger */}
+            <button
+              className="lg:hidden text-cream hover:text-gold p-2 transition-colors"
+              onClick={() => setMobileOpen(!mobileOpen)}
+              aria-label="Toggle menu"
+              aria-expanded={mobileOpen}
+            >
+              {mobileOpen ? <X size={24} /> : <Menu size={24} />}
+            </button>
+          </div>
         </div>
       </div>
 

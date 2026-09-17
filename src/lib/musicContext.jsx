@@ -1,13 +1,18 @@
-import { useState, useEffect, useRef } from 'react';
-import { Music, VolumeX } from 'lucide-react';
+import { createContext, useContext, useState, useRef, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
+
+const MusicContext = createContext(null);
+
+export const useMusic = () => useContext(MusicContext);
 
 const VIDEO_ID = 'u-4QARnU77A';
 
-export default function BackgroundMusic() {
+export function MusicProvider({ children }) {
   const [playing, setPlaying] = useState(false);
+  const [ready, setReady] = useState(false);
   const playerRef = useRef(null);
   const containerRef = useRef(null);
-  const readyRef = useRef(false);
+  const location = useLocation();
 
   useEffect(() => {
     // Load YouTube IFrame API script if not already loaded
@@ -33,7 +38,7 @@ export default function BackgroundMusic() {
         },
         events: {
           onReady: () => {
-            readyRef.current = true;
+            setReady(true);
             playerRef.current.setVolume(50);
           },
         },
@@ -58,10 +63,17 @@ export default function BackgroundMusic() {
     };
   }, []);
 
-  const handleToggle = () => {
-    const player = playerRef.current;
-    if (!player || !readyRef.current) return;
+  // Suppress background music on the /drayke memorial page only.
+  useEffect(() => {
+    if (location.pathname === '/drayke' && playerRef.current && ready) {
+      playerRef.current.pauseVideo();
+      setPlaying(false);
+    }
+  }, [location.pathname, ready]);
 
+  const toggle = () => {
+    const player = playerRef.current;
+    if (!player || !ready) return;
     if (playing) {
       player.pauseVideo();
       setPlaying(false);
@@ -72,7 +84,7 @@ export default function BackgroundMusic() {
   };
 
   return (
-    <>
+    <MusicContext.Provider value={{ playing, ready, toggle }}>
       {/* Hidden YouTube player container */}
       <div
         style={{
@@ -89,33 +101,7 @@ export default function BackgroundMusic() {
       >
         <div ref={containerRef} />
       </div>
-
-      {/* Gold music toggle button */}
-      <button
-        onClick={handleToggle}
-        title={playing ? 'Pause music' : 'Play music'}
-        style={{
-          position: 'fixed',
-          bottom: '24px',
-          left: '24px',
-          zIndex: 99999,
-          width: '52px',
-          height: '52px',
-          borderRadius: '50%',
-          backgroundColor: '#e6b450',
-          border: 'none',
-          cursor: 'pointer',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          boxShadow: '0 4px 20px rgba(0,0,0,0.5)',
-        }}
-      >
-        {playing
-          ? <Music size={22} color="#000" />
-          : <VolumeX size={22} color="#000" />
-        }
-      </button>
-    </>
+      {children}
+    </MusicContext.Provider>
   );
 }

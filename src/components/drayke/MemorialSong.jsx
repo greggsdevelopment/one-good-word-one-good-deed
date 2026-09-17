@@ -1,10 +1,14 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from '@/hooks/useInView';
+import { HERO_PHOTO } from './draykePhotos';
 
 const SERIF = { fontFamily: "'Cormorant Garamond', serif" };
 const VIDEO_ID = 'bIB8EWqCPrQ';
 const EMBED_SRC = `https://www.youtube-nocookie.com/embed/${VIDEO_ID}?autoplay=1&rel=0`;
+
+const DEDICATION =
+  'Some kids get a whole lifetime of songs. Drayke got twelve years. This one is his. We play it for the boy in the Pikachu onesie, the Lego builder, the kid who hugged first and asked questions later, and for Samie and Andy, who turned the worst day of their lives into a warning that protects other families. Sit with it for a minute, then go say one good word to a kid who needs it.';
 
 function CornerFlourish({ className, style }) {
   return (
@@ -35,23 +39,34 @@ export default function MemorialSong() {
         style={{ background: 'radial-gradient(ellipse at 50% 45%, rgba(230,180,80,0.08) 0%, rgba(11,11,13,0) 60%)' }}
       />
 
-      <div className="relative max-w-xl mx-auto text-center">
+      <div className="relative max-w-2xl mx-auto text-center">
         {/* Serif eyebrow */}
         <motion.p
           initial={{ opacity: 0, y: 12 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.7 }}
-          className="text-gold text-sm md:text-base tracking-[0.4em] uppercase mb-3"
+          className="text-gold text-sm md:text-base tracking-[0.4em] uppercase mb-5"
           style={SERIF}
         >
-          In His Memory
+          Our Song For Drayke
+        </motion.p>
+
+        {/* Dedication paragraph */}
+        <motion.p
+          initial={{ opacity: 0, y: 16 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.8, delay: 0.1 }}
+          className="text-cream/75 text-base md:text-lg leading-relaxed italic mx-auto mb-8"
+          style={{ ...SERIF, maxWidth: '640px' }}
+        >
+          {DEDICATION}
         </motion.p>
 
         {/* Small gold diamond accent */}
         <motion.div
           initial={{ opacity: 0, scale: 0.5 }}
           animate={inView ? { opacity: 1, scale: 1 } : {}}
-          transition={{ duration: 0.6, delay: 0.1 }}
+          transition={{ duration: 0.6, delay: 0.15 }}
           className="flex items-center justify-center gap-3 mb-8"
         >
           <span className="h-px w-8 bg-gold/30" />
@@ -63,7 +78,7 @@ export default function MemorialSong() {
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8, delay: 0.15 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
           className="relative mx-auto"
         >
           {/* Soft spotlight glow hugging the frame */}
@@ -73,9 +88,11 @@ export default function MemorialSong() {
             aria-hidden="true"
           />
           <div className="relative border border-gold/35">
-            {/* Inner hairline for the double-line effect */}
-            <div className="absolute inset-[5px] border border-gold/20 pointer-events-none" aria-hidden="true" />
-            <div className="relative bg-black/40 aspect-video flex items-center justify-center overflow-hidden">
+            {/* Inner hairline for the double-line effect (poster only, never over the iframe) */}
+            {!playing && (
+              <div className="absolute inset-[5px] border border-gold/20 pointer-events-none" aria-hidden="true" />
+            )}
+            <div className="relative bg-black/40 aspect-video overflow-hidden">
               {playing ? (
                 <iframe
                   src={EMBED_SRC}
@@ -88,14 +105,30 @@ export default function MemorialSong() {
                 <button
                   onClick={() => setPlaying(true)}
                   aria-label="Play Supermarket Flowers by Ed Sheeran"
-                  className="group relative flex items-center justify-center w-full h-full"
+                  className="group relative block w-full h-full"
                 >
-                  {/* Large circular gold play button with thin play glyph */}
-                  <span className="relative flex items-center justify-center w-20 h-20 rounded-full bg-gold/95 shadow-[0_0_30px_rgba(230,180,80,0.45)] transition-transform duration-300 group-hover:scale-105">
-                    <span className="absolute inset-0 rounded-full border border-gold/40 scale-110" aria-hidden="true" />
-                    <svg width="24" height="28" viewBox="0 0 24 28" fill="none" aria-hidden="true">
-                      <path d="M3 3 L22 14 L3 25 Z" fill="#0b0b0d" stroke="#0b0b0d" strokeWidth="1.5" strokeLinejoin="round" />
-                    </svg>
+                  {/* Poster image with slow Ken Burns */}
+                  <motion.img
+                    src={HERO_PHOTO}
+                    alt="Drayke shading his eyes and smiling, 2021"
+                    className="absolute inset-0 w-full h-full object-cover"
+                    animate={{ scale: [1, 1.06, 1] }}
+                    transition={{ duration: 20, repeat: Infinity, ease: 'easeInOut' }}
+                  />
+                  {/* Soft dark gradient scrim over the lower portion */}
+                  <span
+                    className="absolute inset-x-0 bottom-0 h-1/2 pointer-events-none"
+                    style={{ background: 'linear-gradient(to top, rgba(11,11,13,0.85) 0%, rgba(11,11,13,0) 100%)' }}
+                    aria-hidden="true"
+                  />
+                  {/* Large circular gold play button centered over the photo */}
+                  <span className="absolute inset-0 flex items-center justify-center">
+                    <span className="relative flex items-center justify-center w-20 h-20 rounded-full bg-gold/95 shadow-[0_0_30px_rgba(230,180,80,0.45)] transition-transform duration-300 group-hover:scale-105">
+                      <span className="absolute inset-0 rounded-full border border-gold/40 scale-110" aria-hidden="true" />
+                      <svg width="24" height="28" viewBox="0 0 24 28" fill="none" aria-hidden="true">
+                        <path d="M3 3 L22 14 L3 25 Z" fill="#0b0b0d" stroke="#0b0b0d" strokeWidth="1.5" strokeLinejoin="round" />
+                      </svg>
+                    </span>
                   </span>
                 </button>
               )}

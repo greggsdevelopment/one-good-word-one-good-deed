@@ -21,8 +21,8 @@ export default function RememberDrayke() {
       <div className="grain-overlay fixed inset-0 pointer-events-none z-0" style={{ opacity: 0.07 }} />
       <StickyNav logoUrl={LOGO_URL} />
       <DraykeHero />
-      <DraykeStory />
       <MemorialSong />
+      <DraykeStory />
       <DraykeCarousel />
       <ButterflySection />
       <WhyWeRemember />
