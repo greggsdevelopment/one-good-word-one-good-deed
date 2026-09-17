@@ -52,9 +52,9 @@ export default function FooterSection({ logoUrl }) {
             </p>
             {/* Contact info */}
             <div className="space-y-2">
-              <a href="tel:2488089373" className="flex items-center gap-2 text-cream/40 hover:text-gold transition-colors font-barlow text-sm">
+              <a href="tel:7343833865" className="flex items-center gap-2 text-cream/40 hover:text-gold transition-colors font-barlow text-sm">
                 <Phone className="w-4 h-4 shrink-0" />
-                (248) 808-9373
+                (734) 383-3865
               </a>
               <a href="mailto:greggsdevelopment@gmail.com" className="flex items-center gap-2 text-cream/40 hover:text-gold transition-colors font-barlow text-sm">
                 <Mail className="w-4 h-4 shrink-0" />
