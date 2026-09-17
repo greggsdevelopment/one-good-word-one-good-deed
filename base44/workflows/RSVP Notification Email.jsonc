@@ -1,0 +1,48 @@
+{
+  "name": "RSVP Notification Email",
+  "description": "Sends a Gmail notification to the team whenever a new EventRSVP is submitted for A Night For Drayke",
+  "trigger": {
+    "condition": null,
+    "config": {
+      "trigger_type": "entity",
+      "events": [
+        "create"
+      ],
+      "entity_name": "EventRSVP"
+    }
+  },
+  "definition": {
+    "document": {
+      "dsl": "1.0.0",
+      "name": "rsvp_notification_email",
+      "version": "1.0",
+      "namespace": "base44"
+    },
+    "do": [
+      {
+        "send_notification": {
+          "call": "invoke_backend_function",
+          "with": {
+            "function_name": "sendRSVPNotification",
+            "args": {
+              "rsvp": {
+                "full_name": "${ .trigger.data.full_name }",
+                "email": "${ .trigger.data.email }",
+                "phone": "${ .trigger.data.phone }",
+                "adults_attending": "${ .trigger.data.adults_attending }",
+                "children_attending": "${ .trigger.data.children_attending }",
+                "message": "${ .trigger.data.message }",
+                "submitted_at": "${ .trigger.data.created_date }"
+              }
+            }
+          },
+          "then": "end",
+          "x-base44": {
+            "title": "Send RSVP notification",
+            "description": "Email the team about the new RSVP for A Night For Drayke"
+          }
+        }
+      }
+    ]
+  }
+}

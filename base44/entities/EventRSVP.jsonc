@@ -1,0 +1,53 @@
+{
+  "name": "EventRSVP",
+  "type": "object",
+  "properties": {
+    "full_name": {
+      "type": "string",
+      "description": "Full name of the person RSVPing"
+    },
+    "email": {
+      "type": "string",
+      "description": "Email address"
+    },
+    "phone": {
+      "type": "string",
+      "description": "Phone number"
+    },
+    "adults_attending": {
+      "type": "number",
+      "description": "Number of adults attending"
+    },
+    "children_attending": {
+      "type": "number",
+      "description": "Number of children attending"
+    },
+    "message": {
+      "type": "string",
+      "description": "Optional message from the guest"
+    }
+  },
+  "required": [
+    "full_name",
+    "email"
+  ],
+  "allowPublicCreate": true,
+  "rls": {
+    "create": null,
+    "read": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}

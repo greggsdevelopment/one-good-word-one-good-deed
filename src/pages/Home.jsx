@@ -7,6 +7,7 @@ import HeroSection from '@/components/home/HeroSection';
 import FoundationBand from '@/components/home/FoundationBand';
 import ProgramStepsVisual from '@/components/home/ProgramStepsVisual';
 import FooterSection from '@/components/home/FooterSection';
+import NightForDraykeCard from '@/components/home/NightForDraykeCard';
 import { HERO_PHOTO } from '@/components/drayke/draykePhotos';
 
 const LOGO_URL = 'https://media.base44.com/images/public/6a19e1fc6c5eb736a0763b09/1824cf861_IMG_5119.png';
@@ -60,6 +61,9 @@ export default function Home() {
         cta="Visit the Memorial"
         to="/drayke"
       />
+
+      {/* A Night For Drayke event announcement */}
+      <NightForDraykeCard />
 
       {/* 02 - Shop */}
       <FoundationBand

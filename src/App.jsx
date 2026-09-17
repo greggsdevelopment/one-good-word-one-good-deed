@@ -21,6 +21,7 @@ import Gallery from '@/pages/Gallery';
 import Stories from '@/pages/Stories';
 import Resources from '@/pages/Resources';
 import Events from '@/pages/Events';
+import NightForDraykeRSVP from '@/pages/NightForDraykeRSVP';
 import Checkout from '@/pages/Checkout';
 import Contact from '@/pages/Contact';
 import WristbandBros from '@/pages/WristbandBros';
@@ -73,6 +74,7 @@ const AuthenticatedApp = () => {
       <Route path="/stories" element={<Stories />} />
       <Route path="/resources" element={<Resources />} />
       <Route path="/events" element={<Events />} />
+      <Route path="/rsvp/night-for-drayke" element={<NightForDraykeRSVP />} />
       <Route path="/checkout" element={<Checkout />} />
       <Route path="/contact" element={<Contact />} />
       <Route path="/wristband-bros" element={<WristbandBros />} />
