@@ -3,15 +3,16 @@ import { useInView } from '@/hooks/useInView';
 
 const SERIF = { fontFamily: "'Cormorant Garamond', serif" };
 
+const PARAGRAPHS = [
+  'In 1992, a 16-year-old boy was beaten, shot through the face, and left for dead on a concrete floor. Two strangers found him, put him in a car, and drove him to an emergency room. He should not have lived to tell the story. His name is Jason, and he did.',
+  'Years later, in a sixth-grade classroom not far away, another boy heard the last bell and started doing math - whether there would be a roof over his head that night, whether there would be anything to eat before school breakfast the next morning. The kids around him teased him for the way he smelled, and they were right; he did not own deodorant. Not one of them ever said a kind word to him. His name is Cody, and he sat in that building full of people who had no idea.',
+  'One survived a night that should have ended him. The other survived a childhood that tried to erase him. Two fathers, two stories, one same decision: that the kids in our schools deserved someone to show up.',
+  'This is why it matters to us. Not because of a logo or a slogan, but because every child sitting in a classroom, a gym, or an auditorium right now is someone\'s son or daughter, and too many of them are doing the same quiet math, fighting the same silent fight, with no one around them saying anything at all.',
+  'We are committed to making a change in our community because Jason and Cody showed us it was possible, and because we believe showing up is not optional for any of us either.',
+];
+
 export default function StoryCommitment() {
   const [ref, inView] = useInView(0.2);
-
-  const paragraphs = [
-    'Two fathers. Two stories. One same decision: that the kids in our schools deserved someone to show up.',
-    'Jason carried the weight of what happened to him, so no other child would have to carry it alone. Cody carried the weight of what he saw happening around him, so the next kid would not face it unheard. Their stories run parallel, and together they became the reason this movement exists.',
-    'This is why it matters to us. Not because of a logo or a slogan, but because every child sitting in a classroom, a gym, or an auditorium right now is someone\'s son or daughter.',
-    'We are committed to making a change in our community because they showed us it was possible, and because we believe showing up is not optional for any of us either.',
-  ];
 
   return (
     <section className="relative bg-ink py-24 md:py-32 px-6 overflow-hidden" ref={ref}>
@@ -35,15 +36,15 @@ export default function StoryCommitment() {
           className="w-12 h-px bg-gold mx-auto mb-10"
         />
         <div className="space-y-7">
-          {paragraphs.map((p, i) => (
+          {PARAGRAPHS.map((p, i) => (
             <motion.p
               key={i}
               initial={{ opacity: 0, y: 20 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.7, delay: 0.15 + i * 0.15 }}
-              className={`text-cream/85 ${
-                i === 0 ? 'text-2xl md:text-3xl italic' : 'text-lg md:text-xl'
-              } leading-relaxed`}
+              transition={{ duration: 0.7, delay: 0.15 + i * 0.12 }}
+              className={`text-cream/85 leading-relaxed ${
+                i === 2 ? 'text-2xl md:text-3xl italic' : 'text-lg md:text-xl'
+              }`}
               style={SERIF}
             >
               {p}
