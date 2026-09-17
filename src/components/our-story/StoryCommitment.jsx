@@ -9,7 +9,7 @@ const JASON_PARAGRAPHS = [
 ];
 
 const CODY_PARAGRAPHS = [
-  'In a classroom not far away, another boy was living a reality no one could see. Nights with no roof, five of them sleeping in a car, in a tent, moving between hotel rooms when they could scrape the money together. And the next morning, he still had to go to school. He sat there hungry, running on no sleep, quietly breaking apart on the inside, while the same clothes and the exhaustion on his face told everyone exactly what was happening at home. The bullying started not because of something he did, but because of something he could not hide. His name is Cody, and he was alone in a room full of people.',
+  'Years later, in 2004, in a classroom not far away, another boy was living a reality no one could see. Nights with no roof, five of them sleeping in a car, in a tent, moving between hotel rooms when they could scrape the money together. And the next morning, he still had to go to school. He sat there hungry, running on no sleep, quietly breaking apart on the inside, while the same clothes and the exhaustion on his face told everyone exactly what was happening at home. The bullying started not because of something he did, but because of something he could not hide. His name is Cody, and he was alone in a room full of people.',
 ];
 
 const CLOSING_PARAGRAPHS = [
