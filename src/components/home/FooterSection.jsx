@@ -1,7 +1,13 @@
 import { Link } from 'react-router-dom';
-import { Facebook, Instagram, Mail, Phone, MapPin } from 'lucide-react';
+import { Facebook, Instagram, Mail, Phone, MapPin, Lock, Shield } from 'lucide-react';
+import { useAuth } from '@/lib/AuthContext';
 
 export default function FooterSection({ logoUrl }) {
+  // Staff access lives down here on purpose. Visitors have no reason to log in,
+  // so the link stays small and out of the way instead of sitting in the nav.
+  const { user, isAuthenticated } = useAuth();
+  const isAdmin = isAuthenticated && user?.role === 'admin';
+
   // The four foundations, mirrored from the main nav.
   const foundationLinks = [
     { label: 'Remember Drayke', to: '/drayke' },
@@ -131,9 +137,28 @@ export default function FooterSection({ logoUrl }) {
           <p className="font-barlow text-cream/20 text-xs text-center sm:text-left">
             © 2026 One Good Word...One Good Deed LLC. All rights reserved.
           </p>
-          <p className="font-barlow-condensed text-gold/30 text-xs tracking-wider uppercase">
-            Powered by Kindness
-          </p>
+          <div className="flex items-center gap-4">
+            <p className="font-barlow-condensed text-gold/30 text-xs tracking-wider uppercase">
+              Powered by Kindness
+            </p>
+            {isAdmin ? (
+              <Link
+                to="/admin"
+                className="flex items-center gap-1 font-barlow-condensed text-gold/50 hover:text-gold text-xs tracking-wider uppercase transition-colors"
+              >
+                <Shield className="w-3 h-3" />
+                Admin
+              </Link>
+            ) : (
+              <Link
+                to="/login"
+                className="flex items-center gap-1 font-barlow-condensed text-cream/20 hover:text-gold text-xs tracking-wider uppercase transition-colors"
+              >
+                <Lock className="w-3 h-3" />
+                Staff Login
+              </Link>
+            )}
+          </div>
         </div>
       </div>
     </footer>
