@@ -5,9 +5,9 @@ import StoryChapter from './StoryChapter';
 const CHAPTERS = [
   {
     key: 'ch1',
-    heading: 'May 30th',
+    heading: 'May 30th 2026',
     photo: 'https://media.base44.com/images/public/6a19e1fc6c5eb736a0763b09/a4a9948ac_IMG_7383.jpeg',
-    body: 'Cody and Jason met at a diner, both of them with their boys. It was supposed to be a business meeting. Cody was there to build a website.',
+    body: 'Cody and Jason met at a diner, both of them with their boys. It was supposed to be a business meeting — nothing more. Cody was there to build a website, and that was all he came for. But somewhere over the next hour, the room changed. The meeting he walked in expecting would not be the meeting he walked out of. He just did not know it yet.',
   },
   {
     key: 'ch2',
