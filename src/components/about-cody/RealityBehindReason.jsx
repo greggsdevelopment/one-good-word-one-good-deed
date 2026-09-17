@@ -6,7 +6,7 @@ const PARAGRAPHS = [
   'I sat in classrooms hungry, running on no sleep, quietly breaking apart on the inside, while my appearance, the same clothes, the exhaustion on my face, told everyone exactly what was happening at home before I ever said a word.',
   'Kids don\u2019t need you to explain your situation to target you for it. They just need a reason, and I gave them one just by showing up. That\u2019s where the bullying started for me. Not because of something I did, but because of something I couldn\u2019t hide: the reality I was living in.',
   'I didn\u2019t have the language for it then, but I understand it now. Bullying doesn\u2019t just attack who you are, it attacks you when you\u2019re already at your lowest, when you have the least left to fight back with. I know that firsthand because I lived it, hungry, exhausted, and alone in a room full of people.',
-  'That\u2019s part of why this work matters so much to me now. Fathers Fight Back, Grounded Kings, One Good Word One Good Deed, none of it is theoretical for me. I built these things because I know what it costs a kid to walk into a building every day already broken down, and I know what it means when nobody steps in.',
+  'That\u2019s part of why this work matters so much to me now. Grounded Kings, One Good Word One Good Deed, none of it is theoretical for me. I built these things because I know what it costs a kid to walk into a building every day already broken down, and I know what it means when nobody steps in.',
   'I didn\u2019t have someone show up for me back then. So now, I show up for everyone I can.',
 ];
 
