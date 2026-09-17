@@ -62,51 +62,75 @@ export default function DraykeCarousel() {
           onMouseEnter={() => setPaused(true)}
           onMouseLeave={() => setPaused(false)}
         >
-          {/* Frameless stage with gold corner brackets */}
+ {/* Ornamental double-line frame with corner flourishes */}
           <div className="relative mx-auto max-w-3xl">
-            <div className="relative bg-black/40">
-              <div className="relative h-[58vh] min-h-[380px] max-h-[640px] flex items-center justify-center overflow-hidden">
-                <AnimatePresence mode="wait">
-                  <motion.img
-                    key={index}
-                    src={photo.src}
-                    alt={photo.alt}
-                    initial={{ opacity: 0, scale: 1.03 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    exit={{ opacity: 0 }}
-                    transition={{ duration: 0.9, ease: 'easeOut' }}
-                    className="max-h-full max-w-full object-contain"
-                  />
-                </AnimatePresence>
+            {/* Soft spotlight glow hugging the frame */}
+            <div
+              className="absolute -inset-8 pointer-events-none"
+              style={{ background: 'radial-gradient(ellipse at 50% 50%, rgba(230,180,80,0.12) 0%, rgba(11,11,13,0) 70%)' }}
+              aria-hidden="true"
+            />
+            <div className="relative border border-gold/35">
+              {/* Inner hairline for the double-line effect */}
+              <div className="absolute inset-[5px] border border-gold/20 pointer-events-none" aria-hidden="true" />
+              <div className="relative bg-black/40">
+                <div className="relative h-[58vh] min-h-[380px] max-h-[640px] flex items-center justify-center overflow-hidden">
+                  <AnimatePresence mode="wait">
+                    <motion.img
+                      key={index}
+                      src={photo.src}
+                      alt={photo.alt}
+                      initial={{ opacity: 0, scale: 1.03 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      exit={{ opacity: 0 }}
+                      transition={{ duration: 0.9, ease: 'easeOut' }}
+                      className="max-h-full max-w-full object-contain"
+                    />
+                  </AnimatePresence>
+                </div>
               </div>
-            </div>
 
-            {/* Gold corner brackets */}
-            <span className="absolute -top-2 -left-2 w-8 h-8 border-t border-l border-gold/80" aria-hidden="true" />
-            <span className="absolute -top-2 -right-2 w-8 h-8 border-t border-r border-gold/80" aria-hidden="true" />
-            <span className="absolute -bottom-2 -left-2 w-8 h-8 border-b border-l border-gold/80" aria-hidden="true" />
-            <span className="absolute -bottom-2 -right-2 w-8 h-8 border-b border-r border-gold/80" aria-hidden="true" />
+              {/* Corner flourishes — thin filigree L with a small node */}
+              <svg className="absolute -top-3 -left-3 text-gold/80" width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true">
+                <path d="M2 14 V2 H14" stroke="currentColor" strokeWidth="1" strokeLinecap="round" />
+                <circle cx="2" cy="2" r="1.1" fill="currentColor" />
+              </svg>
+              <svg className="absolute -top-3 -right-3 text-gold/80" width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true" style={{ transform: 'scaleX(-1)' }}>
+                <path d="M2 14 V2 H14" stroke="currentColor" strokeWidth="1" strokeLinecap="round" />
+                <circle cx="2" cy="2" r="1.1" fill="currentColor" />
+              </svg>
+              <svg className="absolute -bottom-3 -left-3 text-gold/80" width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true" style={{ transform: 'scaleY(-1)' }}>
+                <path d="M2 14 V2 H14" stroke="currentColor" strokeWidth="1" strokeLinecap="round" />
+                <circle cx="2" cy="2" r="1.1" fill="currentColor" />
+              </svg>
+              <svg className="absolute -bottom-3 -right-3 text-gold/80" width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true" style={{ transform: 'scale(-1, -1)' }}>
+                <path d="M2 14 V2 H14" stroke="currentColor" strokeWidth="1" strokeLinecap="round" />
+                <circle cx="2" cy="2" r="1.1" fill="currentColor" />
+              </svg>
+            </div>
           </div>
 
-          {/* Arrows */}
+          {/* Arrows — minimal thin gold chevrons, no chrome */}
           <button
             onClick={() => go(-1)}
             aria-label="Previous photo"
-            className="absolute left-1 md:-left-6 top-1/2 -translate-y-1/2 bg-transparent hover:bg-gold hover:text-ink text-cream border border-gold/60 rounded-full p-2 transition-colors"
+            className="absolute left-2 md:-left-8 top-1/2 -translate-y-1/2 text-gold/55 hover:text-gold transition-colors p-1"
+            style={SERIF}
           >
-            <ChevronLeft size={20} strokeWidth={1.5} />
+            <ChevronLeft size={26} strokeWidth={1} />
           </button>
           <button
             onClick={() => go(1)}
             aria-label="Next photo"
-            className="absolute right-1 md:-right-6 top-1/2 -translate-y-1/2 bg-transparent hover:bg-gold hover:text-ink text-cream border border-gold/60 rounded-full p-2 transition-colors"
+            className="absolute right-2 md:-right-8 top-1/2 -translate-y-1/2 text-gold/55 hover:text-gold transition-colors p-1"
+            style={SERIF}
           >
-            <ChevronRight size={20} strokeWidth={1.5} />
+            <ChevronRight size={26} strokeWidth={1} />
           </button>
         </motion.div>
 
         {/* Caption */}
-        <div className="h-16 flex items-center justify-center mt-6">
+        <div className="h-16 flex items-center justify-center mt-10">
           <AnimatePresence mode="wait">
             <motion.p
               key={index}
@@ -122,17 +146,23 @@ export default function DraykeCarousel() {
           </AnimatePresence>
         </div>
 
-        {/* Dots */}
-        <div className="flex items-center justify-center gap-2 mt-2">
+        {/* Diamond pagination */}
+        <div className="flex items-center justify-center gap-3 mt-3">
           {CAROUSEL_PHOTOS.map((p, i) => (
             <button
               key={p.alt}
               onClick={() => setIndex(i)}
               aria-label={`Go to photo ${i + 1}`}
-              className={`rounded-full transition-all duration-300 ${
-                i === index ? 'w-8 h-1.5 bg-gold' : 'w-1.5 h-1.5 bg-cream/25 hover:bg-cream/50'
-              }`}
-            />
+              className="transition-all duration-300"
+            >
+              <span
+                className={`block rotate-45 transition-all duration-300 ${
+                  i === index
+                    ? 'w-2.5 h-2.5 bg-gold shadow-[0_0_8px_rgba(230,180,80,0.7)]'
+                    : 'w-1.5 h-1.5 bg-cream/25 hover:bg-gold/60'
+                }`}
+              />
+            </button>
           ))}
         </div>
       </div>
