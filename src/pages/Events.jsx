@@ -6,6 +6,8 @@ import FooterSection from '@/components/home/FooterSection';
 import EventsHero from '@/components/events/EventsHero';
 import EventCalendar from '@/components/events/EventCalendar';
 import EventDetailModal from '@/components/events/EventDetailModal';
+import NightForDraykeCard from '@/components/home/NightForDraykeCard';
+import LetterToSamieAndAndy from '@/components/events/LetterToSamieAndAndy';
 
 const LOGO_URL = 'https://media.base44.com/images/public/6a19e1fc6c5eb736a0763b09/1824cf861_IMG_5119.png';
 
@@ -22,6 +24,8 @@ export default function Events() {
       <div className="grain-overlay fixed inset-0 pointer-events-none z-0" style={{ opacity: 0.07 }} />
       <StickyNav logoUrl={LOGO_URL} />
       <EventsHero />
+      <NightForDraykeCard />
+      <LetterToSamieAndAndy />
 
       <section className="px-4 sm:px-6 pb-24">
         <div className="max-w-6xl mx-auto">

@@ -18,8 +18,23 @@ const CATEGORY_DOT_COLORS = {
 
 const DAY_HEADERS = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 
+// Open the calendar on the month of the nearest upcoming event when the
+// current month has no events, so visitors land on a month that actually
+// shows something instead of an empty grid.
+function getInitialMonth(events) {
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+  const hasThisMonth = events.some((e) => isSameMonth(parseISO(e.event_date), today));
+  if (hasThisMonth) return new Date();
+  const upcoming = events
+    .map((e) => parseISO(e.event_date))
+    .filter((d) => d >= today)
+    .sort((a, b) => a - b);
+  return upcoming.length ? startOfMonth(upcoming[0]) : new Date();
+}
+
 export default function EventCalendar({ events, onEventClick }) {
-  const [currentMonth, setCurrentMonth] = useState(new Date());
+  const [currentMonth, setCurrentMonth] = useState(() => getInitialMonth(events));
 
   const monthStart = startOfMonth(currentMonth);
   const monthEnd = endOfMonth(currentMonth);
