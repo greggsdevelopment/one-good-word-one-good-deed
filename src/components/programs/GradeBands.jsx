@@ -243,8 +243,8 @@ export default function GradeBands() {
         </AnimatePresence>
 
         <p className="font-barlow text-cream/45 text-center text-base max-w-2xl mx-auto mt-12 leading-relaxed">
-          K-8 buildings run the elementary version for grades K to 5 and the middle school version for grades 6
-          to 8 on the same visit. Flat rates either way, whatever your enrollment.
+          K–8 buildings may host the elementary program for grades K–5 and the middle school program for grades
+          6–8 during a single visit. Pricing is flat-rate regardless of enrollment.
         </p>
       </div>
     </section>
