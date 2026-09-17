@@ -24,13 +24,25 @@ function safeHeader(value) {
 export default async function(req) {
   try {
     const body = await req.json();
+    const base44 = createClientFromRequest(req);
+
+    // Auth gate: only admins may trigger notifications
+    let _user;
+    try {
+      _user = await base44.auth.me();
+    } catch (e) {
+      _user = null;
+    }
+    if (!_user || _user.role !== 'admin') {
+      return Response.json({ error: 'Unauthorized' }, { status: 401 });
+    }
+
     const bookingId = body.booking_id;
 
     if (typeof bookingId !== 'string' || bookingId.trim() === '' || bookingId.length > 64) {
       return Response.json({ error: 'Invalid booking_id' }, { status: 400 });
     }
 
-    const base44 = createClientFromRequest(req);
     let record;
     try {
       const matches = await base44.asServiceRole.entities.BookingRequest.filter({ id: bookingId });

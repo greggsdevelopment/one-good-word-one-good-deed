@@ -25,13 +25,25 @@ function safeHeader(value) {
 export default async function(req) {
   try {
     const body = await req.json();
+    const base44 = createClientFromRequest(req);
+
+    // Auth gate: only admins may trigger notifications
+    let _user;
+    try {
+      _user = await base44.auth.me();
+    } catch (e) {
+      _user = null;
+    }
+    if (!_user || _user.role !== 'admin') {
+      return Response.json({ error: 'Unauthorized' }, { status: 401 });
+    }
+
     const pledgeId = body.pledge_id;
 
     if (typeof pledgeId !== 'string' || pledgeId.trim() === '' || pledgeId.length > 64) {
       return Response.json({ error: 'Invalid pledge_id' }, { status: 400 });
     }
 
-    const base44 = createClientFromRequest(req);
     let record;
     try {
       const matches = await base44.asServiceRole.entities.Pledge.filter({ id: pledgeId });
