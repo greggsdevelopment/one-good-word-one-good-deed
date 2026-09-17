@@ -3,7 +3,8 @@ import { useLocation } from 'react-router-dom';
 
 const MusicContext = createContext(null);
 
-export const useMusic = () => useContext(MusicContext);
+const SAFE_MUSIC = { playing: false, ready: false, toggle: () => {} };
+export const useMusic = () => useContext(MusicContext) ?? SAFE_MUSIC;
 
 const VIDEO_ID = 'u-4QARnU77A';
 
@@ -13,6 +14,13 @@ export function MusicProvider({ children }) {
   const playerRef = useRef(null);
   const containerRef = useRef(null);
   const location = useLocation();
+  const playingRef = useRef(false);
+  const pausedForDraykeRef = useRef(false);
+  const prevPathRef = useRef(location.pathname);
+
+  useEffect(() => {
+    playingRef.current = playing;
+  }, [playing]);
 
   useEffect(() => {
     // Load YouTube IFrame API script if not already loaded
@@ -63,12 +71,28 @@ export function MusicProvider({ children }) {
     };
   }, []);
 
-  // Suppress background music on the /drayke memorial page only.
+  // Suppress background music on the /drayke memorial page only:
+  // stop and mute on entry, never autoplay or resume while there,
+  // and restore the visitor's previous preference when they leave.
   useEffect(() => {
-    if (location.pathname === '/drayke' && playerRef.current && ready) {
-      playerRef.current.pauseVideo();
-      setPlaying(false);
+    const onDrayke = location.pathname === '/drayke';
+    const wasOnDrayke = prevPathRef.current === '/drayke';
+    if (onDrayke === wasOnDrayke) {
+      prevPathRef.current = location.pathname;
+      return;
     }
+    if (onDrayke) {
+      if (playingRef.current && playerRef.current && ready) {
+        pausedForDraykeRef.current = true;
+        playerRef.current.pauseVideo();
+        setPlaying(false);
+      }
+    } else if (ready && playerRef.current && pausedForDraykeRef.current) {
+      playerRef.current.playVideo();
+      setPlaying(true);
+    }
+    pausedForDraykeRef.current = false;
+    prevPathRef.current = location.pathname;
   }, [location.pathname, ready]);
 
   const toggle = () => {
