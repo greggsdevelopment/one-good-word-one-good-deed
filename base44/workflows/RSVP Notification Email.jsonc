@@ -25,15 +25,7 @@
           "with": {
             "function_name": "sendRSVPNotification",
             "args": {
-              "rsvp": {
-                "full_name": "${ .trigger.data.full_name }",
-                "email": "${ .trigger.data.email }",
-                "phone": "${ .trigger.data.phone }",
-                "adults_attending": "${ .trigger.data.adults_attending }",
-                "children_attending": "${ .trigger.data.children_attending }",
-                "message": "${ .trigger.data.message }",
-                "submitted_at": "${ .trigger.data.created_date }"
-              }
+              "rsvp_id": "${ .trigger.data.id }"
             }
           },
           "then": "end",

@@ -10,25 +10,56 @@ function base64UrlEncode(str) {
   return btoa(binary).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
 }
 
+// Sanitize any dynamic value before it lands in an email header.
+// Strips carriage returns, line feeds, and all control characters,
+// collapses whitespace, and truncates to 150 characters to prevent
+// CRLF header injection.
+function safeHeader(value) {
+  return String(value ?? '')
+    .replace(/[\u0000-\u001F\u007F]/g, '')
+    .replace(/\s+/g, ' ')
+    .trim()
+    .slice(0, 150);
+}
+
 export default async function(req) {
   try {
     const body = await req.json();
-    const pledge = body.pledge || {};
+    const pledgeId = body.pledge_id;
+
+    if (typeof pledgeId !== 'string' || pledgeId.trim() === '' || pledgeId.length > 64) {
+      return Response.json({ error: 'Invalid pledge_id' }, { status: 400 });
+    }
 
     const base44 = createClientFromRequest(req);
+    let record;
+    try {
+      const matches = await base44.asServiceRole.entities.Pledge.filter({ id: pledgeId });
+      record = matches && matches[0];
+    } catch {
+      return Response.json({ error: 'Pledge not found' }, { status: 404 });
+    }
+    if (!record) {
+      return Response.json({ error: 'Pledge not found' }, { status: 404 });
+    }
+
+    if (record.notification_sent_at) {
+      return Response.json({ success: true, message: 'Notification already sent' }, { status: 200 });
+    }
+
     const { accessToken } = await base44.asServiceRole.connectors.getConnection('gmail');
 
     const to = 'greggsdevelopment@gmail.com';
     const subject = 'New Pledge Submission - Pledge Wall';
-    const name = [pledge.first_name, pledge.last_initial].filter(Boolean).join(' ');
+    const name = [record.first_name, record.last_initial].filter(Boolean).join(' ');
     const emailBody = [
       'A new pledge has been submitted on the pledge wall.',
       '',
       `Name: ${name || 'Not provided'}`,
-      `City: ${pledge.city || 'Not provided'}`,
+      `City: ${record.city || 'Not provided'}`,
       '',
       'Pledge:',
-      pledge.pledge_statement || '(no statement provided)',
+      record.pledge_statement || '(no statement provided)',
       '',
       'Review and approve it in the admin dashboard.'
     ].join('\r\n');
@@ -58,6 +89,11 @@ export default async function(req) {
     }
 
     const result = await response.json();
+
+    await base44.asServiceRole.entities.Pledge.update(pledgeId, {
+      notification_sent_at: new Date().toISOString()
+    });
+
     return Response.json({ success: true, messageId: result.id });
   } catch (error) {
     return Response.json({ error: error.message }, { status: 500 });

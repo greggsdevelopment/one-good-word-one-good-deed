@@ -25,28 +25,7 @@
           "with": {
             "function_name": "sendBookingNotification",
             "args": {
-              "booking": {
-                "school_name": "${ .trigger.data.school_name }",
-                "district": "${ .trigger.data.district }",
-                "school_type": "${ .trigger.data.school_type }",
-                "grade_band": "${ .trigger.data.grade_band }",
-                "num_students": "${ .trigger.data.num_students }",
-                "package_type": "${ .trigger.data.package_type }",
-                "target_term": "${ .trigger.data.target_term }",
-                "preferred_date": "${ .trigger.data.preferred_date }",
-                "date_window_1": "${ .trigger.data.date_window_1 }",
-                "date_window_2": "${ .trigger.data.date_window_2 }",
-                "date_window_3": "${ .trigger.data.date_window_3 }",
-                "payment_route": "${ .trigger.data.payment_route }",
-                "po_number": "${ .trigger.data.po_number }",
-                "quoted_total": "${ .trigger.data.quoted_total }",
-                "contact_name": "${ .trigger.data.contact_name }",
-                "contact_role": "${ .trigger.data.contact_role }",
-                "principal_name": "${ .trigger.data.principal_name }",
-                "email": "${ .trigger.data.email }",
-                "phone": "${ .trigger.data.phone }",
-                "message": "${ .trigger.data.message }"
-              }
+              "booking_id": "${ .trigger.data.id }"
             }
           },
           "then": "end",

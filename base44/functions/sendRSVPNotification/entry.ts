@@ -10,12 +10,43 @@ function base64UrlEncode(str) {
   return btoa(binary).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
 }
 
+// Sanitize any dynamic value before it lands in an email header.
+// Strips carriage returns, line feeds, and all control characters,
+// collapses whitespace, and truncates to 150 characters to prevent
+// CRLF header injection.
+function safeHeader(value) {
+  return String(value ?? '')
+    .replace(/[\u0000-\u001F\u007F]/g, '')
+    .replace(/\s+/g, ' ')
+    .trim()
+    .slice(0, 150);
+}
+
 export default async function(req) {
   try {
     const body = await req.json();
-    const rsvp = body.rsvp || {};
+    const rsvpId = body.rsvp_id;
+
+    if (typeof rsvpId !== 'string' || rsvpId.trim() === '' || rsvpId.length > 64) {
+      return Response.json({ error: 'Invalid rsvp_id' }, { status: 400 });
+    }
 
     const base44 = createClientFromRequest(req);
+    let record;
+    try {
+      const matches = await base44.asServiceRole.entities.EventRSVP.filter({ id: rsvpId });
+      record = matches && matches[0];
+    } catch {
+      return Response.json({ error: 'RSVP not found' }, { status: 404 });
+    }
+    if (!record) {
+      return Response.json({ error: 'RSVP not found' }, { status: 404 });
+    }
+
+    if (record.notification_sent_at) {
+      return Response.json({ success: true, message: 'Notification already sent' }, { status: 200 });
+    }
+
     const { accessToken } = await base44.asServiceRole.connectors.getConnection('gmail');
 
     const to = 'greggsdevelopment@gmail.com';
@@ -23,14 +54,14 @@ export default async function(req) {
     const emailBody = [
       'A new RSVP has been submitted for A Night For Drayke.',
       '',
-      `Name: ${rsvp.full_name || 'Not provided'}`,
-      `Email: ${rsvp.email || 'Not provided'}`,
-      `Phone: ${rsvp.phone || 'Not provided'}`,
-      `Adults attending: ${rsvp.adults_attending ?? 'Not provided'}`,
-      `Children attending: ${rsvp.children_attending ?? 'Not provided'}`,
-      `Message: ${rsvp.message || 'None'}`,
+      `Name: ${record.full_name || 'Not provided'}`,
+      `Email: ${record.email || 'Not provided'}`,
+      `Phone: ${record.phone || 'Not provided'}`,
+      `Adults attending: ${record.adults_attending ?? 'Not provided'}`,
+      `Children attending: ${record.children_attending ?? 'Not provided'}`,
+      `Message: ${record.message || 'None'}`,
       '',
-      `Submitted: ${rsvp.submitted_at || new Date().toISOString()}`
+      `Submitted: ${record.created_date || new Date().toISOString()}`
     ].join('\r\n');
 
     const rawMessage =
@@ -58,6 +89,11 @@ export default async function(req) {
     }
 
     const result = await response.json();
+
+    await base44.asServiceRole.entities.EventRSVP.update(rsvpId, {
+      notification_sent_at: new Date().toISOString()
+    });
+
     return Response.json({ success: true, messageId: result.id });
   } catch (error) {
     return Response.json({ error: error.message }, { status: 500 });

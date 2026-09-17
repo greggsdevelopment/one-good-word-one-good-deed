@@ -9,44 +9,75 @@ function base64UrlEncode(str) {
   return btoa(binary).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
 }
 
+// Sanitize any dynamic value before it lands in an email header.
+// Strips carriage returns, line feeds, and all control characters,
+// collapses whitespace, and truncates to 150 characters to prevent
+// CRLF header injection.
+function safeHeader(value) {
+  return String(value ?? '')
+    .replace(/[\u0000-\u001F\u007F]/g, '')
+    .replace(/\s+/g, ' ')
+    .trim()
+    .slice(0, 150);
+}
+
 export default async function(req) {
   try {
     const body = await req.json();
-    const b = body.booking || {};
+    const bookingId = body.booking_id;
+
+    if (typeof bookingId !== 'string' || bookingId.trim() === '' || bookingId.length > 64) {
+      return Response.json({ error: 'Invalid booking_id' }, { status: 400 });
+    }
 
     const base44 = createClientFromRequest(req);
+    let record;
+    try {
+      const matches = await base44.asServiceRole.entities.BookingRequest.filter({ id: bookingId });
+      record = matches && matches[0];
+    } catch {
+      return Response.json({ error: 'Booking request not found' }, { status: 404 });
+    }
+    if (!record) {
+      return Response.json({ error: 'Booking request not found' }, { status: 404 });
+    }
+
+    if (record.notification_sent_at) {
+      return Response.json({ success: true, message: 'Notification already sent' }, { status: 200 });
+    }
+
     const { accessToken } = await base44.asServiceRole.connectors.getConnection('gmail');
 
     const to = 'greggsdevelopment@gmail.com';
-    const subject = `New School Booking Request - ${b.school_name || 'Unknown School'}`;
+    const subject = `New School Booking Request - ${safeHeader(record.school_name || 'Unknown School')}`;
 
     const lines = [
       'A new school booking request has been submitted.',
       '',
-      `School: ${b.school_name || 'Not provided'}`,
-      b.district ? `District: ${b.district}` : null,
-      b.school_type ? `School Type: ${b.school_type}` : null,
-      b.grade_band ? `Grade Band: ${b.grade_band}` : null,
-      b.num_students != null ? `Number of Students: ${b.num_students}` : null,
-      b.package_type ? `Package: ${b.package_type}` : null,
-      b.target_term ? `Target Term: ${b.target_term}` : null,
-      b.preferred_date ? `Preferred Date: ${b.preferred_date}` : null,
-      b.date_window_1 ? `Date Option 1: ${b.date_window_1}` : null,
-      b.date_window_2 ? `Date Option 2: ${b.date_window_2}` : null,
-      b.date_window_3 ? `Date Option 3: ${b.date_window_3}` : null,
-      b.payment_route ? `Payment Route: ${b.payment_route}` : null,
-      b.po_number ? `PO Number: ${b.po_number}` : null,
-      b.quoted_total != null ? `Quoted Total: $${b.quoted_total}` : null,
+      `School: ${record.school_name || 'Not provided'}`,
+      record.district ? `District: ${record.district}` : null,
+      record.school_type ? `School Type: ${record.school_type}` : null,
+      record.grade_band ? `Grade Band: ${record.grade_band}` : null,
+      record.num_students != null ? `Number of Students: ${record.num_students}` : null,
+      record.package_type ? `Package: ${record.package_type}` : null,
+      record.target_term ? `Target Term: ${record.target_term}` : null,
+      record.preferred_date ? `Preferred Date: ${record.preferred_date}` : null,
+      record.date_window_1 ? `Date Option 1: ${record.date_window_1}` : null,
+      record.date_window_2 ? `Date Option 2: ${record.date_window_2}` : null,
+      record.date_window_3 ? `Date Option 3: ${record.date_window_3}` : null,
+      record.payment_route ? `Payment Route: ${record.payment_route}` : null,
+      record.po_number ? `PO Number: ${record.po_number}` : null,
+      record.quoted_total != null ? `Quoted Total: $${record.quoted_total}` : null,
       '',
       'Contact:',
-      b.contact_name ? `  Name: ${b.contact_name}` : null,
-      b.contact_role ? `  Role: ${b.contact_role}` : null,
-      b.principal_name ? `  Principal: ${b.principal_name}` : null,
-      b.email ? `  Email: ${b.email}` : null,
-      b.phone ? `  Phone: ${b.phone}` : null,
+      record.contact_name ? `  Name: ${record.contact_name}` : null,
+      record.contact_role ? `  Role: ${record.contact_role}` : null,
+      record.principal_name ? `  Principal: ${record.principal_name}` : null,
+      record.email ? `  Email: ${record.email}` : null,
+      record.phone ? `  Phone: ${record.phone}` : null,
       '',
       'Message:',
-      b.message || '(none provided)',
+      record.message || '(none provided)',
       '',
       'Review and follow up in the admin dashboard.'
     ].filter(Boolean);
@@ -78,6 +109,11 @@ export default async function(req) {
     }
 
     const result = await response.json();
+
+    await base44.asServiceRole.entities.BookingRequest.update(bookingId, {
+      notification_sent_at: new Date().toISOString()
+    });
+
     return Response.json({ success: true, messageId: result.id });
   } catch (error) {
     return Response.json({ error: error.message }, { status: 500 });
