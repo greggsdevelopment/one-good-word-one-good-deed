@@ -475,7 +475,7 @@ export default function BookingWizard() {
               <div className="space-y-4">
                 <div>
                   <label className={labelClass}>School name *</label>
-                  <input value={form.school_name} onChange={set('school_name')} className={inputClass} placeholder="Stevenson Middle School" />
+                  <input value={form.school_name} onChange={set('school_name')} className={inputClass} placeholder="Your school name" />
                 </div>
                 <div className="grid sm:grid-cols-2 gap-4">
                   <div>
@@ -489,13 +489,13 @@ export default function BookingWizard() {
                   </div>
                   <div>
                     <label className={labelClass}>District</label>
-                    <input value={form.district} onChange={set('district')} className={inputClass} placeholder="Wayne-Westland" />
+                    <input value={form.district} onChange={set('district')} className={inputClass} placeholder="Your district" />
                   </div>
                 </div>
                 <div className="grid sm:grid-cols-2 gap-4">
                   <div>
                     <label className={labelClass}>Building enrollment</label>
-                    <input type="number" min={1} value={form.enrollment} onChange={set('enrollment')} className={inputClass} placeholder="640" />
+                    <input type="number" min={1} value={form.enrollment} onChange={set('enrollment')} className={inputClass} placeholder="Number of students" />
                   </div>
                   <div>
                     <label className={labelClass}>Principal</label>
