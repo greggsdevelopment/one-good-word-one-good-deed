@@ -37,7 +37,7 @@ const CHAPTERS = [
     key: 'ch6',
     heading: 'We Are Just Getting Started',
     photo: 'https://media.base44.com/images/public/6a19e1fc6c5eb736a0763b09/85ad17b34_IMG_7173.jpeg',
-    body: 'A live pledge wall. A full school program built for Michigan schools. Sponsors signing on. News coverage telling the story. None of it happened because of a website. It happened because two fathers decided that showing up was not optional. Two fathers, two stories, one same decision: that the kids in our schools deserved someone to show up. Jason carried the weight of what happened to him so no other child would have to carry it alone. Cody carried the weight of what he saw happening around him so the next kid would not face it unheard. Their stories run parallel, and together they became the reason this movement exists. This is why it matters to us. Not because of a logo or a slogan, but because every child sitting in a classroom, a gym, or an auditorium right now is someone\'s son or daughter. We are committed to making a change in our community because they showed us it was possible, and because we believe showing up is not optional for any of us either.',
+    body: 'A live pledge wall. A full school program built for Michigan schools. Sponsors signing on. News coverage telling the story. None of it happened because of a website. It happened because two fathers decided that showing up was not optional.',
   },
 ];
 
