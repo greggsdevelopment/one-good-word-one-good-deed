@@ -5,7 +5,8 @@ import { HERO_PHOTO } from './draykePhotos';
 
 const SERIF = { fontFamily: "'Cormorant Garamond', serif" };
 const VIDEO_ID = 'bIB8EWqCPrQ';
-const EMBED_SRC = `https://www.youtube-nocookie.com/embed/${VIDEO_ID}?autoplay=1&rel=0`;
+const EMBED_SRC = `https://www.youtube.com/embed/${VIDEO_ID}?autoplay=1&playsinline=1&rel=0&modestbranding=1`;
+const WATCH_URL = `https://www.youtube.com/watch?v=${VIDEO_ID}`;
 
 const DEDICATION =
   'Some kids get a whole lifetime of songs. Drayke got twelve years. This one is his. We play it for the boy in the Pikachu onesie, the Lego builder, the kid who hugged first and asked questions later, and for Samie and Andy, who turned the worst day of their lives into a warning that protects other families. Sit with it for a minute, then go say one good word to a kid who needs it.';
@@ -152,6 +153,17 @@ export default function MemorialSong() {
         >
           Supermarket Flowers by Ed Sheeran
         </motion.p>
+
+        {/* Fallback text link in case the embed ever fails */}
+        <a
+          href={WATCH_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-block mt-3 text-gold/70 hover:text-gold text-sm tracking-wide transition-colors"
+          style={SERIF}
+        >
+          Watch on YouTube
+        </a>
       </div>
     </section>
   );
