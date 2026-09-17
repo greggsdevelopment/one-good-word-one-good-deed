@@ -4,6 +4,7 @@ import FooterSection from '@/components/home/FooterSection';
 import DraykeHero from '@/components/drayke/DraykeHero';
 import DraykeStory from '@/components/drayke/DraykeStory';
 import DraykeCarousel from '@/components/drayke/DraykeCarousel';
+import MemorialSong from '@/components/drayke/MemorialSong';
 import ButterflySection from '@/components/drayke/ButterflySection';
 import WhyWeRemember from '@/components/drayke/WhyWeRemember';
 import HelpBand from '@/components/drayke/HelpBand';
@@ -21,6 +22,7 @@ export default function RememberDrayke() {
       <StickyNav logoUrl={LOGO_URL} />
       <DraykeHero />
       <DraykeStory />
+      <MemorialSong />
       <DraykeCarousel />
       <ButterflySection />
       <WhyWeRemember />
