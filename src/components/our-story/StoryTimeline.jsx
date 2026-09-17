@@ -6,31 +6,37 @@ const CHAPTERS = [
   {
     key: 'ch1',
     heading: 'May 30th',
-    body: 'We met at a diner, both of us with our boys. It was supposed to be a business meeting. I was there to build a website.',
+    photo: 'https://media.base44.com/images/public/6a19e1fc6c5eb736a0763b09/a4a9948ac_IMG_7383.jpeg',
+    body: 'Cody and Jason met at a diner, both of them with their boys. It was supposed to be a business meeting. Cody was there to build a website.',
   },
   {
     key: 'ch2',
     heading: 'The Conversation That Changed It',
-    body: 'Jason told me his story. He told me why he started One Good Word, One Good Deed, what he had seen, what it cost, and what he was not willing to let happen to another kid. Somewhere in the middle of that conversation, I stopped hearing it as a client telling me about a project. I felt it in my soul. This was not a website. This was something I needed to be a part of.',
+    photo: 'https://media.base44.com/images/public/6a19e1fc6c5eb736a0763b09/32c3481a3_IMG_7388.jpeg',
+    body: 'Jason told Cody his story. He told him why he started One Good Word, One Good Deed, what he had seen, what it cost, and what he was not willing to let happen to another kid. Somewhere in the middle of that conversation, Cody stopped hearing it as a client telling him about a project. He felt it in his soul. This was not a website. This was something he needed to be a part of.',
   },
   {
     key: 'ch3',
     heading: 'We Got To Work',
-    body: 'From that day forward, it stopped being his mission and started being ours. Community events. Wristbands handed out to anyone who would take one. Conversations with strangers in parking lots that turned into conversations about their kids.',
+    photo: 'https://media.base44.com/images/public/6a19e1fc6c5eb736a0763b09/7893e6993_IMG_7384.jpeg',
+    body: 'From that day forward, it stopped being Jason\'s mission and started being theirs. Community events. Wristbands handed out to anyone who would take one. Conversations with strangers in parking lots that turned into conversations about their kids.',
   },
   {
     key: 'ch4',
     heading: 'Building The Network',
-    body: 'We started knocking on doors. Local businesses, churches, and people who decided these kids were worth investing in. One sponsor at a time, we built something with roots in this community instead of something that just talked about it.',
+    photo: 'https://media.base44.com/images/public/6a19e1fc6c5eb736a0763b09/62df32c7f_IMG_7385.jpeg',
+    body: 'They started knocking on doors. Local businesses, churches, and people who decided these kids were worth investing in. One sponsor at a time, they built something with roots in this community instead of something that just talked about it.',
   },
   {
     key: 'ch5',
     heading: 'The Stop Bullying Truck',
-    body: 'Then we wrapped the truck. Now it turns heads in parking lots, and people stop us to ask what it means. Every single time, that is another conversation we get to have about what is happening to kids in our schools.',
+    photo: 'https://media.base44.com/images/public/6a19e1fc6c5eb736a0763b09/f37ec7107_IMG_7386.jpeg',
+    body: 'Then they wrapped the truck. Now it turns heads in parking lots, and people stop them to ask what it means. Every single time, that is another conversation they get to have about what is happening to kids in our schools.',
   },
   {
     key: 'ch6',
     heading: 'We Are Just Getting Started',
+    photo: 'https://media.base44.com/images/public/6a19e1fc6c5eb736a0763b09/85ad17b34_IMG_7173.jpeg',
     body: 'A live pledge wall. A full school program built for Michigan middle schools. Sponsors signing on. News coverage telling the story. None of it happened because of a website. It happened because two fathers decided that showing up was not optional.',
   },
 ];
@@ -77,7 +83,7 @@ export default function StoryTimeline() {
                 key={ch.key}
                 chapter={ch}
                 index={i}
-                photoUrl={photos[ch.key]}
+                photoUrl={photos[ch.key] || ch.photo}
                 isAdmin={isAdmin}
                 onUploaded={load}
               />
