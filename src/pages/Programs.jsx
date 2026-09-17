@@ -5,7 +5,7 @@ import WhatWeDoSection from '@/components/programs/WhatWeDoSection';
 import GradeBands from '@/components/programs/GradeBands';
 import WhatSchoolsGet from '@/components/programs/WhatSchoolsGet';
 import SchoolTestimonials from '@/components/programs/SchoolTestimonials';
-import BookingForm from '@/components/programs/BookingForm';
+import BookingWizard from '@/components/programs/BookingWizard';
 import PricingTiers from '@/components/programs/PricingTiers';
 import ImpactStatsBanner from '@/components/programs/ImpactStatsBanner';
 import FAQSection from '@/components/programs/FAQSection';
@@ -38,7 +38,7 @@ export default function Programs() {
         <PricingTiers />
         <SchoolTestimonials />
         <FAQSection />
-        <BookingForm />
+        <BookingWizard />
       </main>
     </div>
   );

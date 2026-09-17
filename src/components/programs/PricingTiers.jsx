@@ -1,73 +1,64 @@
 import { motion } from 'framer-motion';
 import { Check, Star } from 'lucide-react';
 import { useInView } from '@/hooks/useInView';
+import {
+  ASSEMBLY_PRICE,
+  FAMILY_NIGHT_PRICE,
+  LEADERSHIP_PRICE,
+  PACKAGES as PRICING_PACKAGES,
+  STAFF_PD_PRICE,
+  WORKSHOP_ADDITIONAL,
+  WORKSHOP_RATE,
+  WORKSHOP_THREE_PLUS,
+  formatUSD,
+} from '@/data/programPricing';
 
+// Every number here comes from src/data/programPricing.js so the published rate
+// sheet and the booking wizard's calculator can never disagree.
 const RATES = [
   {
     name: 'Whole School Assembly',
-    price: '$1,500',
+    price: formatUSD(ASSEMBLY_PRICE),
     note: '45 minutes. Includes up to two back-to-back sessions the same day and a wristband for every student.',
   },
   {
     name: 'The 10 Second Lab',
-    price: '$450',
+    price: formatUSD(WORKSHOP_RATE),
     unit: 'per grade level',
-    note: '30 to 45 minutes depending on the age group, priced per grade level. Three or more grade levels in one visit: $1,200.',
+    note: `30 to 45 minutes depending on the age group, priced per grade level. Three grade levels in one visit: ${formatUSD(WORKSHOP_THREE_PLUS)}, then ${formatUSD(WORKSHOP_ADDITIONAL)} for each grade level after that.`,
   },
   {
     name: 'Group Chat Check',
-    price: '$450',
+    price: formatUSD(WORKSHOP_RATE),
     unit: 'per grade level',
-    note: '45 minutes, priced per grade level. Grades 4 and up; K to 3 run Words Stick instead at the same rate. Three or more grade levels in one visit: $1,200.',
+    note: `45 minutes, priced per grade level. Grades 4 and up; K to 3 run Words Stick instead at the same rate. Three grade levels in one visit: ${formatUSD(WORKSHOP_THREE_PLUS)}, then ${formatUSD(WORKSHOP_ADDITIONAL)} for each grade level after that.`,
   },
   {
     name: 'Student Ambassadors',
-    price: '$2,400',
+    price: formatUSD(LEADERSHIP_PRICE),
     unit: 'per semester',
     note: 'One semester. Full training day for 15 to 20 students plus monthly 30 minute check-ins.',
   },
   {
     name: 'Staff Professional Development',
-    price: '$750',
+    price: formatUSD(STAFF_PD_PRICE),
     note: '60 minutes for teachers, paraprofessionals, and support staff. Can run on an existing PD day.',
   },
   {
     name: 'Family Night',
-    price: '$500',
+    price: formatUSD(FAMILY_NIGHT_PRICE),
     note: '60 minute evening event, open to the school community.',
   },
 ];
 
-const PACKAGES = [
-  {
-    name: 'Starter',
-    price: '$3,200',
-    highlight: false,
-    description: 'A full semester of work in one line item.',
-    features: [
-      'Whole school assembly',
-      'One workshop round for up to three grade levels',
-      'Staff professional development hour',
-      'Pre and post student survey with summary report',
-    ],
-  },
-  {
-    name: 'Full Year',
-    price: '$6,500',
-    highlight: true,
-    badge: 'Saves $1,050',
-    description: 'All five steps across up to three grade levels, including the student leader program and family night.',
-    features: [
-      'Whole school assembly',
-      'The 10 Second Lab, up to three grade levels',
-      'Group Chat Check, up to three grade levels',
-      'Student Ambassadors or Student Leaders, one semester',
-      'Staff professional development hour',
-      'Family Night',
-      'Pre and post student survey with summary report',
-    ],
-  },
-];
+const PACKAGES = Object.values(PRICING_PACKAGES).map((p) => ({
+  name: p.name,
+  price: formatUSD(p.price),
+  highlight: Boolean(p.highlight),
+  badge: p.badge,
+  description: p.description,
+  features: p.features,
+}));
 
 export default function PricingTiers() {
   const [ref, inView] = useInView({ threshold: 0.05 });
@@ -89,7 +80,7 @@ export default function PricingTiers() {
           <p className="font-barlow-condensed text-gold text-xs tracking-[0.3em] uppercase mb-3">Pricing</p>
           <h2 className="font-anton text-cream text-4xl sm:text-5xl tracking-wide mb-4">2026 TO 2027 RATE SHEET</h2>
           <p className="font-barlow text-cream/50 max-w-2xl mx-auto leading-relaxed">
-            Flat rates for buildings up to 900 students. No travel or setup charges anywhere in metro Detroit.
+            Flat rates whatever your enrollment. No travel or setup charges anywhere in metro Detroit.
             Every option includes the pre and post student survey and your summary report.
           </p>
         </motion.div>

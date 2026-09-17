@@ -2,13 +2,40 @@
   "name": "BookingRequest",
   "type": "object",
   "properties": {
+    "reference": {
+      "type": "string",
+      "description": "Short human-readable reference given to the school, e.g. OGW-B-MU4TIGGT"
+    },
     "school_name": {
       "type": "string",
       "description": "Name of the school"
     },
+    "school_type": {
+      "type": "string",
+      "enum": [
+        "public_district",
+        "charter",
+        "private",
+        "faith_based",
+        "other"
+      ],
+      "description": "Drives whether billing goes through a purchase order or a direct invoice"
+    },
+    "district": {
+      "type": "string",
+      "description": "District the school belongs to, if any"
+    },
+    "principal_name": {
+      "type": "string",
+      "description": "Building principal"
+    },
     "contact_name": {
       "type": "string",
       "description": "Contact person's name"
+    },
+    "contact_role": {
+      "type": "string",
+      "description": "Contact's role, e.g. principal, counselor, dean"
     },
     "email": {
       "type": "string",
@@ -18,28 +45,105 @@
       "type": "string",
       "description": "Contact phone number"
     },
-    "preferred_date": {
+    "grade_band": {
       "type": "string",
-      "format": "date",
-      "description": "Preferred visit date"
+      "enum": [
+        "elementary",
+        "middle",
+        "high"
+      ],
+      "description": "Which grade band the program runs for"
     },
     "num_students": {
       "type": "number",
-      "description": "Estimated number of students"
+      "description": "Building enrollment"
+    },
+    "package_type": {
+      "type": "string",
+      "description": "starter, full_year, or custom"
+    },
+    "line_items": {
+      "type": "string",
+      "description": "JSON string of the itemized quote lines the school selected"
+    },
+    "quoted_total": {
+      "type": "number",
+      "description": "Estimated total in USD calculated from the published rate sheet at the time of request"
+    },
+    "target_term": {
+      "type": "string",
+      "description": "Which term the school is aiming for, e.g. Fall 2026"
+    },
+    "preferred_date": {
+      "type": "string",
+      "format": "date",
+      "description": "First preferred date, kept for backwards compatibility with earlier requests"
+    },
+    "date_window_1": {
+      "type": "string",
+      "format": "date",
+      "description": "First date option offered by the school"
+    },
+    "date_window_2": {
+      "type": "string",
+      "format": "date",
+      "description": "Second date option"
+    },
+    "date_window_3": {
+      "type": "string",
+      "format": "date",
+      "description": "Third date option"
+    },
+    "payment_route": {
+      "type": "string",
+      "enum": [
+        "po",
+        "invoice"
+      ],
+      "description": "po means the district issues a purchase order first, invoice means bill them directly"
+    },
+    "po_number": {
+      "type": "string",
+      "description": "Purchase order number, when the school already has one"
+    },
+    "billing_contact_name": {
+      "type": "string",
+      "description": "Business office or billing contact"
+    },
+    "billing_contact_email": {
+      "type": "string",
+      "description": "Where the invoice should be sent"
+    },
+    "needs_w9": {
+      "type": "boolean",
+      "default": false,
+      "description": "School asked for a W-9 to set up the vendor record"
     },
     "message": {
       "type": "string",
-      "description": "Additional notes or questions"
+      "description": "Anything else the school told us"
+    },
+    "internal_notes": {
+      "type": "string",
+      "description": "Admin-only notes, never shown to the school"
     },
     "status": {
       "type": "string",
       "enum": [
+        "new",
+        "contacted",
+        "quoted",
+        "po_received",
+        "scheduled",
+        "delivered",
+        "invoiced",
+        "paid",
+        "cancelled",
         "pending",
-        "confirmed",
-        "cancelled"
+        "confirmed"
       ],
-      "default": "pending",
-      "description": "Booking status"
+      "default": "new",
+      "description": "Where the request sits in the pipeline. pending and confirmed are legacy values kept so older requests still load."
     }
   },
   "required": [
