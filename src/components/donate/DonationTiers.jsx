@@ -12,7 +12,7 @@ const TIERS = [
     emoji: '🌱',
     tagline: 'Put wristbands on 5 kids',
     impact: 'Wristbands for a classroom',
-    description: 'Your $10 puts One Good Word wristbands on five students — a daily reminder to choose kindness.',
+    description: 'Your $10 puts One Good Word wristbands on five students - a daily reminder to choose kindness.',
   },
   {
     name: 'Supporter',
@@ -29,7 +29,7 @@ const TIERS = [
     emoji: '🏆',
     tagline: 'Bring the full program to a school',
     impact: 'Sponsors a full school assembly',
-    description: 'Your $100 helps fund a full school assembly — reaching hundreds of students with Jason\'s life-changing message.',
+    description: 'Your $100 helps fund a full school assembly - reaching hundreds of students with Jason\'s life-changing message.',
   },
 ];
 
@@ -108,7 +108,7 @@ export default function DonationTiers() {
           ))}
         </div>
 
-        {/* Custom amount — redirect to GoFundMe */}
+        {/* Custom amount - redirect to GoFundMe */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}

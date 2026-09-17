@@ -1,4 +1,4 @@
-// Home page — hero, the three foundations, footer. Nothing else.
+// Home page - hero, the three foundations, footer. Nothing else.
 import { useState, useEffect } from 'react';
 import { Sunrise, Sunset } from 'lucide-react';
 import { base44 } from '@/api/base44Client';
@@ -34,7 +34,7 @@ export default function Home() {
       <StickyNav logoUrl={LOGO_URL} />
       <HeroSection logoUrl={LOGO_URL} pledgeCount={pledgeCount} />
 
-      {/* 01 — Drayke */}
+      {/* 01 - Drayke */}
       <FoundationBand
         index="01"
         eyebrow="The Reason We Fight"
@@ -61,7 +61,7 @@ export default function Home() {
         to="/drayke"
       />
 
-      {/* 02 — Shop */}
+      {/* 02 - Shop */}
       <FoundationBand
         index="02"
         eyebrow="Wear the Movement"
@@ -85,7 +85,7 @@ export default function Home() {
         to="/shop"
       />
 
-      {/* 03 — School Programs */}
+      {/* 03 - School Programs */}
       <FoundationBand
         index="03"
         eyebrow="Where the Work Happens"

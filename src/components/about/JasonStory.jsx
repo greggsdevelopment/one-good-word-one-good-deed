@@ -74,7 +74,7 @@ export default function JasonStory() {
           ))}
         </div>
 
-        {/* BUT GOD — closing statement */}
+        {/* BUT GOD - closing statement */}
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
           animate={inView ? { opacity: 1, scale: 1 } : {}}
@@ -83,7 +83,7 @@ export default function JasonStory() {
         >
           <p className="font-anton text-gold text-6xl sm:text-7xl tracking-wide">BUT GOD.</p>
           <p className="font-barlow text-cream/40 text-base mt-4 max-w-md mx-auto leading-relaxed">
-            This story is why Jason Lewis walks into schools, gyms, and auditoriums — so no young person ever feels as alone as he did on that concrete floor.
+            This story is why Jason Lewis walks into schools, gyms, and auditoriums - so no young person ever feels as alone as he did on that concrete floor.
           </p>
         </motion.div>
 
@@ -106,7 +106,7 @@ export default function JasonStory() {
             </div>
           </div>
           <p className="font-barlow text-cream/30 text-sm text-center mt-6 italic">
-            Every word he speaks. Every school he visits. Every life he touches — it's all for them.
+            Every word he speaks. Every school he visits. Every life he touches - it's all for them.
           </p>
         </motion.div>
       </div>

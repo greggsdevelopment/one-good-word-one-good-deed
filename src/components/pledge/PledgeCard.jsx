@@ -36,7 +36,7 @@ export default function PledgeCard({ pledge, onClose }) {
           </p>
 
           <p className="font-barlow-condensed text-cream font-bold text-lg tracking-wide">
-            — {pledge.first_name}{pledge.last_initial ? ` ${pledge.last_initial}.` : ''}
+            - {pledge.first_name}{pledge.last_initial ? ` ${pledge.last_initial}.` : ''}
             {pledge.city ? `, ${pledge.city}` : ''}
           </p>
 

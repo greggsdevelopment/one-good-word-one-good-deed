@@ -6,7 +6,7 @@ import { useInView } from '@/hooks/useInView';
 const FINDER_TOOLS = [
   {
     name: 'Find a Therapist Near You',
-    description: 'Psychology Today\'s therapist finder — search by zip code, insurance, and specialty.',
+    description: 'Psychology Today\'s therapist finder - search by zip code, insurance, and specialty.',
     url: 'https://www.psychologytoday.com/us/therapists/teens',
     category: 'Mental Health',
   },
@@ -18,13 +18,13 @@ const FINDER_TOOLS = [
   },
   {
     name: 'Youth Shelter Finder',
-    description: '1800Runaway.org — find a safe shelter or crisis center near you.',
+    description: '1800Runaway.org - find a safe shelter or crisis center near you.',
     url: 'https://www.1800runaway.org/find-help/local-resources/',
     category: 'Housing & Safety',
   },
   {
     name: 'Food Bank Locator',
-    description: 'Feeding America — find free food and pantries in your community.',
+    description: 'Feeding America - find free food and pantries in your community.',
     url: 'https://www.feedingamerica.org/find-your-local-foodbank',
     category: 'Food & Basic Needs',
   },
@@ -310,7 +310,7 @@ export default function LocalServices({ search = '', activeCategory = 'All' }) {
           className="mt-16 border-t border-cream/10 pt-10 text-center"
         >
           <p className="font-barlow-condensed text-gold text-xl sm:text-2xl tracking-wide mb-2">
-            Remember: Asking for help is a sign of strength — not weakness.
+            Remember: Asking for help is a sign of strength - not weakness.
           </p>
           <p className="font-barlow text-cream/30 text-sm max-w-lg mx-auto">
             You matter. Your life has value. One good word can change everything.

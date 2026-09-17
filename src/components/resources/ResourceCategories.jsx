@@ -28,7 +28,7 @@ const CATEGORIES = [
     title: 'Racial Justice & Identity',
     description: 'Safe spaces and support for teens navigating racism and identity.',
     links: [
-      { label: 'Racism — It Stops With Me', url: 'https://itstopswithme.humanrights.gov.au' },
+      { label: 'Racism - It Stops With Me', url: 'https://itstopswithme.humanrights.gov.au' },
       { label: 'Teaching Tolerance', url: 'https://www.tolerance.org' },
       { label: 'Race Forward', url: 'https://www.raceforward.org' },
     ],
@@ -80,7 +80,7 @@ export default function ResourceCategories() {
           <p className="font-barlow-condensed text-gold text-xs tracking-[0.3em] uppercase mb-2">By Topic</p>
           <h2 className="font-anton text-cream text-4xl sm:text-5xl tracking-wide">FIND SUPPORT</h2>
           <p className="font-barlow text-cream/40 mt-3 max-w-xl">
-            Browse resources by category — whatever you're going through, there's help available.
+            Browse resources by category - whatever you're going through, there's help available.
           </p>
         </motion.div>
 

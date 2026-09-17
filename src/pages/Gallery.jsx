@@ -189,7 +189,7 @@ export default function Gallery() {
             transition={{ delay: 0.2 }}
             className="font-barlow text-cream/60 text-lg max-w-xl mx-auto"
           >
-            Every photo tells a story of change — from the hearts we've touched in schools and communities across Michigan and beyond.
+            Every photo tells a story of change - from the hearts we've touched in schools and communities across Michigan and beyond.
           </motion.p>
         </div>
 
@@ -342,7 +342,7 @@ export default function Gallery() {
                   </div>
                 </div>
                 <p className="text-cream/20 font-barlow text-xs mt-4 text-center">
-                  {lightboxIndex + 1} / {filtered.length} — use arrow keys or buttons to navigate
+                  {lightboxIndex + 1} / {filtered.length} - use arrow keys or buttons to navigate
                 </p>
               </div>
             </motion.div>

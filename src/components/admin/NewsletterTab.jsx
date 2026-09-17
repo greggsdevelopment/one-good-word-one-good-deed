@@ -36,7 +36,7 @@ export default function NewsletterTab() {
                 <tr key={sub.id} className="border-b border-ink/5 last:border-0 hover:bg-ink/[0.02] transition-colors">
                   <td className="px-4 py-3 font-barlow text-ink">{sub.email}</td>
                   <td className="px-4 py-3 font-barlow text-ash">
-                    {sub.created_date ? format(new Date(sub.created_date), 'MMM d, yyyy') : '—'}
+                    {sub.created_date ? format(new Date(sub.created_date), 'MMM d, yyyy') : '-'}
                   </td>
                   <td className="px-4 py-3">
                     <span className="inline-block bg-green-100 text-green-700 font-barlow-condensed text-xs px-2 py-0.5 rounded-full uppercase tracking-wider">

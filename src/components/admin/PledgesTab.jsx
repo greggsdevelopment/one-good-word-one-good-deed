@@ -46,7 +46,7 @@ export default function PledgesTab() {
                     <span className="font-barlow font-semibold text-ink">
                       {p.first_name} {p.last_initial ? `${p.last_initial}.` : ''}
                     </span>
-                    {p.city && <span className="font-barlow text-ash text-sm">— {p.city}</span>}
+                    {p.city && <span className="font-barlow text-ash text-sm">- {p.city}</span>}
                   </div>
                   {p.pledge_statement && (
                     <p className="font-barlow text-ink/50 text-sm italic">"{p.pledge_statement}"</p>
@@ -87,7 +87,7 @@ export default function PledgesTab() {
                     <span className="font-barlow font-semibold text-ink">
                       {p.first_name} {p.last_initial ? `${p.last_initial}.` : ''}
                     </span>
-                    {p.city && <span className="font-barlow text-ash text-sm">— {p.city}</span>}
+                    {p.city && <span className="font-barlow text-ash text-sm">- {p.city}</span>}
                   </div>
                   {p.pledge_statement && (
                     <p className="font-barlow text-ink/50 text-sm italic">"{p.pledge_statement}"</p>

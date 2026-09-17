@@ -143,7 +143,7 @@ export default function PledgeSection({ pledgeCount, recentPledges, onPledgeCrea
           </p>
         </motion.div>
 
-        {/* Pledge wall — recent 12, slide in at top */}
+        {/* Pledge wall - recent 12, slide in at top */}
         {displayPledges.length > 0 && (
           <motion.div
             initial={{ opacity: 0 }}

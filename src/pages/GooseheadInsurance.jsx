@@ -154,7 +154,7 @@ export default function GooseheadInsurance() {
             COVERAGE BUILT ON<br />TRUST & COMMUNITY.
           </h2>
           <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: "19px", color: "#8a857c", lineHeight: 1.85, maxWidth: "660px", margin: "0 auto" }}>
-            We believe in protecting what matters most — your family, your home, your future. Through this partnership, the One Good Word...One Good Deed community gets access to a trusted agent who shares our values of love, integrity, and service.
+            We believe in protecting what matters most - your family, your home, your future. Through this partnership, the One Good Word...One Good Deed community gets access to a trusted agent who shares our values of love, integrity, and service.
           </p>
         </section>
 
@@ -189,7 +189,7 @@ export default function GooseheadInsurance() {
             REACH OUT TO<br />REBECCA TODAY
           </h2>
           <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: "18px", color: "#8a857c", marginBottom: "48px" }}>
-            Call or email — she's here to help you find the right coverage.
+            Call or email - she's here to help you find the right coverage.
           </p>
           <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "20px" }}>
             <a href="mailto:Rebecca.frolka@goosehead.com" className="gh-shimmer-btn" style={{ fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 700, fontSize: "18px", letterSpacing: "3px", textTransform: "uppercase", color: "#080808", background: "linear-gradient(135deg, #f0c060 0%, #e6b450 50%, #c9922f 100%)", padding: "22px 64px", borderRadius: "2px", boxShadow: "0 0 70px rgba(230,180,80,0.35), 0 14px 48px rgba(0,0,0,0.75)" }}>

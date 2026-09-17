@@ -3,7 +3,7 @@ import { useInView } from '@/hooks/useInView';
 
 const FEATURED = [
   {
-    quote: "I pledge to speak up every time I see someone being bullied — even when it's hard.",
+    quote: "I pledge to speak up every time I see someone being bullied - even when it's hard.",
     name: 'Aaliyah T.', city: 'Detroit, MI',
   },
   {
@@ -43,7 +43,7 @@ export default function FeaturedQuotes() {
                 "{q.quote}"
               </p>
               <p className="font-barlow-condensed text-cream/50 text-sm tracking-wide">
-                — {q.name}{q.city ? `, ${q.city}` : ''}
+                - {q.name}{q.city ? `, ${q.city}` : ''}
               </p>
             </motion.div>
           ))}

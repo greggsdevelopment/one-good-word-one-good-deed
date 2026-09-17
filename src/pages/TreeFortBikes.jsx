@@ -115,7 +115,7 @@ export default function TreeFortBikes() {
           </h1>
 
           <p style={{ ...fadeStyle(0.38), fontFamily: "'Barlow', sans-serif", fontSize: "18px", color: "#8a857c", maxWidth: "560px", lineHeight: 1.7, marginBottom: "16px" }}>
-            One Good Word...One Good Deed LLC is proud to partner with Tree Fort Bikes — Ypsilanti's trusted bicycle shop featuring bikes, parts, accessories, and expert repairs for riders of every kind.
+            One Good Word...One Good Deed LLC is proud to partner with Tree Fort Bikes - Ypsilanti's trusted bicycle shop featuring bikes, parts, accessories, and expert repairs for riders of every kind.
           </p>
 
           <p style={{ ...fadeStyle(0.45), fontFamily: "'Barlow Condensed', sans-serif", fontSize: "15px", color: "#e6b450", letterSpacing: "2px", marginBottom: "12px" }}>
@@ -158,7 +158,7 @@ export default function TreeFortBikes() {
             KEEP RIDERS MOVING.<br />KEEP COMMUNITIES MOVING.
           </h2>
           <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: "19px", color: "#8a857c", lineHeight: 1.85, maxWidth: "660px", margin: "0 auto" }}>
-            Tree Fort Bikes has been keeping riders on the road for years — bikes, parts, accessories, and the kind of honest repairs that build trust one ride at a time. That same reliability and heart for the community is exactly what this movement stands on. When local businesses show up for their neighbors, everyone moves forward together.
+            Tree Fort Bikes has been keeping riders on the road for years - bikes, parts, accessories, and the kind of honest repairs that build trust one ride at a time. That same reliability and heart for the community is exactly what this movement stands on. When local businesses show up for their neighbors, everyone moves forward together.
           </p>
         </section>
 
@@ -171,7 +171,7 @@ export default function TreeFortBikes() {
             <p style={{ fontFamily: "'Barlow Condensed', sans-serif", fontSize: "12px", letterSpacing: "5px", color: "#e6b450", textTransform: "uppercase", textAlign: "center", marginBottom: "64px" }}>What Tree Fort Bikes Brings</p>
             <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(270px, 1fr))", gap: "3px" }}>
               {[
-                { num: "01", title: "Bikes & Gear", body: "A full range of bicycles and accessories for every rider — from first-timers to seasoned cyclists chasing their next adventure." },
+                { num: "01", title: "Bikes & Gear", body: "A full range of bicycles and accessories for every rider - from first-timers to seasoned cyclists chasing their next adventure." },
                 { num: "02", title: "Expert Repairs", body: "Skilled mechanics who keep your ride running smooth. Honest work, fair pricing, and the kind of care that earns 288 five-star reviews." },
                 { num: "03", title: "Washtenaw County Proud", body: "Rooted in Paint Creek Crossing, Ypsilanti. A trusted local name serving riders across Washtenaw County and beyond." },
               ].map((f) => (
@@ -234,7 +234,7 @@ export default function TreeFortBikes() {
         {/* ─── FOOTER BAR ────────────────────────────────────── */}
         <div style={{ borderTop: "1px solid #141414", padding: "30px 24px", textAlign: "center" }}>
           <p style={{ fontFamily: "'Barlow Condensed', sans-serif", fontSize: "11px", letterSpacing: "3px", color: "#2a2620", textTransform: "uppercase" }}>
-            One Good Word...One Good Deed LLC &nbsp;|&nbsp; In Partnership with Tree Fort Bikes — Ypsilanti, MI &nbsp;|&nbsp; ogwogd.org
+            One Good Word...One Good Deed LLC &nbsp;|&nbsp; In Partnership with Tree Fort Bikes - Ypsilanti, MI &nbsp;|&nbsp; ogwogd.org
           </p>
         </div>
       </div>

@@ -399,7 +399,7 @@ export default function BookingWizard() {
                                   gradeBand: form.gradeBand,
                                   mode: 'custom',
                                   items: { [key]: levels },
-                                }).total) : '—'}
+                                }).total) : '-'}
                               </p>
                             </div>
                             {c.note && <p className="font-barlow text-ink/40 text-xs mb-3">{c.note}</p>}
@@ -654,7 +654,7 @@ export default function BookingWizard() {
                   ].map(([k, v]) => (
                     <div key={k} className="flex justify-between gap-3 py-1 border-b border-ink/5">
                       <span className="font-barlow-condensed text-ink/40 text-xs tracking-wider uppercase">{k}</span>
-                      <span className="font-barlow text-ink/70 text-sm text-right">{v || '—'}</span>
+                      <span className="font-barlow text-ink/70 text-sm text-right">{v || '-'}</span>
                     </div>
                   ))}
                 </div>

@@ -113,12 +113,12 @@ export default function PlymouthsAutoRepair() {
               🙏 HUGE SHOUT OUT TO SAM &amp; ABRAHAM!
             </p>
             <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: "15px", color: "#f5f1e8", lineHeight: 1.65 }}>
-              Sam and Abraham — your generosity, your integrity, and your heart for this community mean everything to us. We are beyond grateful for your support of this mission. Thank you for being the real deal.
+              Sam and Abraham - your generosity, your integrity, and your heart for this community mean everything to us. We are beyond grateful for your support of this mission. Thank you for being the real deal.
             </p>
           </div>
 
           <p style={{ ...fadeStyle(0.38), fontFamily: "'Barlow', sans-serif", fontSize: "18px", color: "#8a857c", maxWidth: "560px", lineHeight: 1.7, marginBottom: "16px" }}>
-            One Good Word...One Good Deed LLC is proud to partner with Plymouth's most trusted auto shop — honest work, fair prices, and a crew that treats every customer like family.
+            One Good Word...One Good Deed LLC is proud to partner with Plymouth's most trusted auto shop - honest work, fair prices, and a crew that treats every customer like family.
           </p>
 
           <p style={{ ...fadeStyle(0.45), fontFamily: "'Barlow Condensed', sans-serif", fontSize: "15px", color: "#e6b450", letterSpacing: "2px", marginBottom: "44px" }}>
@@ -158,14 +158,14 @@ export default function PlymouthsAutoRepair() {
             HONEST WORK.<br /><span style={{ color: "#e6b450" }}>REAL COMMUNITY.</span>
           </h2>
           <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: "19px", color: "#8a857c", lineHeight: 1.85, maxWidth: "660px", margin: "0 auto 48px" }}>
-            Abraham built Plymouth's Auto Repair on one principle — treat every customer the way you'd want your own family treated. No upselling, no phantom repairs, no surprises. That kind of integrity is exactly what this movement is about. When honest people show up for each other, communities change.
+            Abraham built Plymouth's Auto Repair on one principle - treat every customer the way you'd want your own family treated. No upselling, no phantom repairs, no surprises. That kind of integrity is exactly what this movement is about. When honest people show up for each other, communities change.
           </p>
 
           {/* Shout out cards */}
           <div style={{ display: "flex", gap: "24px", flexWrap: "wrap", justifyContent: "center", maxWidth: "760px", margin: "0 auto" }}>
             {[
-              { name: "Abraham", emoji: "🔧", title: "The Heart of the Shop", body: "Abraham is the reason 235+ Plymouth drivers trust this shop with their cars. His honesty, his skill, and his genuine care for people is rare — and it's exactly what this mission stands on." },
-              { name: "Sam", emoji: "🤝", title: "The Partner in the Movement", body: "Sam, your support of One Good Word...One Good Deed means more than words can say. You believed in this mission and showed up — and that is what changing a community looks like." },
+              { name: "Abraham", emoji: "🔧", title: "The Heart of the Shop", body: "Abraham is the reason 235+ Plymouth drivers trust this shop with their cars. His honesty, his skill, and his genuine care for people is rare - and it's exactly what this mission stands on." },
+              { name: "Sam", emoji: "🤝", title: "The Partner in the Movement", body: "Sam, your support of One Good Word...One Good Deed means more than words can say. You believed in this mission and showed up - and that is what changing a community looks like." },
             ].map((person) => (
               <div key={person.name} style={{ flex: "1", minWidth: "280px", border: "1px solid rgba(230,180,80,0.4)", borderRadius: "2px", padding: "36px 32px", background: "#0d0c0a", textAlign: "center" }}>
                 <div style={{ fontSize: "36px", marginBottom: "12px" }}>{person.emoji}</div>
@@ -186,8 +186,8 @@ export default function PlymouthsAutoRepair() {
             <p style={{ fontFamily: "'Barlow Condensed', sans-serif", fontSize: "12px", letterSpacing: "5px", color: "#e6b450", textTransform: "uppercase", textAlign: "center", marginBottom: "64px" }}>What Makes Them Special</p>
             <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(270px, 1fr))", gap: "3px" }}>
               {[
-                { num: "01", title: "Honest Every Time", body: "Abraham tells you exactly what's wrong — and what isn't. 235+ five-star reviews from Plymouth drivers who found a mechanic they can actually trust." },
-                { num: "02", title: "Same-Day Walk-Ins", body: "No appointment needed for most services. Brakes, oil changes, exhaust, diagnostics — in and out the same day. Walk-ins always welcome." },
+                { num: "01", title: "Honest Every Time", body: "Abraham tells you exactly what's wrong - and what isn't. 235+ five-star reviews from Plymouth drivers who found a mechanic they can actually trust." },
+                { num: "02", title: "Same-Day Walk-Ins", body: "No appointment needed for most services. Brakes, oil changes, exhaust, diagnostics - in and out the same day. Walk-ins always welcome." },
                 { num: "03", title: "Plymouth Proud", body: "Rooted at 605 Ann Arbor Rd, serving Plymouth, Canton, Northville and all of SE Michigan. This is a local shop with a local heart." },
               ].map((f) => (
                 <div key={f.num} className="par-feature-card" style={{ padding: "52px 40px", background: "#111", borderTop: "2px solid #e6b450" }}>
@@ -249,7 +249,7 @@ export default function PlymouthsAutoRepair() {
         {/* ─── FOOTER BAR ─── */}
         <div style={{ borderTop: "1px solid #141414", padding: "30px 24px", textAlign: "center" }}>
           <p style={{ fontFamily: "'Barlow Condensed', sans-serif", fontSize: "11px", letterSpacing: "3px", color: "#2a2620", textTransform: "uppercase" }}>
-            One Good Word...One Good Deed LLC &nbsp;|&nbsp; In Partnership with Plymouth's Auto Repair &amp; Muffler — Plymouth, MI &nbsp;|&nbsp; ogwogd.org
+            One Good Word...One Good Deed LLC &nbsp;|&nbsp; In Partnership with Plymouth's Auto Repair &amp; Muffler - Plymouth, MI &nbsp;|&nbsp; ogwogd.org
           </p>
         </div>
       </div>

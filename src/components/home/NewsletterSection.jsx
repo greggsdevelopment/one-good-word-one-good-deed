@@ -40,7 +40,7 @@ export default function NewsletterSection() {
           transition={{ duration: 0.6, delay: 0.1 }}
           className="font-barlow text-ink/70 text-lg mb-10"
         >
-          Get updates, stories, and ways to make a difference — delivered to your inbox.
+          Get updates, stories, and ways to make a difference - delivered to your inbox.
         </motion.p>
 
         <AnimatePresence mode="wait">

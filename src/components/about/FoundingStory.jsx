@@ -6,12 +6,12 @@ const PILLARS = [
   {
     icon: Heart,
     title: 'Born From Personal Pain',
-    body: 'Jason Lewis witnessed firsthand the devastating effects of bullying and racism — not just on individuals, but on entire communities. After seeing too many young lives diminished by hate, he knew silence was no longer an option.',
+    body: 'Jason Lewis witnessed firsthand the devastating effects of bullying and racism - not just on individuals, but on entire communities. After seeing too many young lives diminished by hate, he knew silence was no longer an option.',
   },
   {
     icon: School,
     title: 'Taking It to the Schools',
-    body: 'Jason\'s mission is simple: go directly into classrooms, gyms, and auditoriums to speak with students. His message — that one kind word and one good deed can change everything — resonates with kids of all ages and backgrounds.',
+    body: 'Jason\'s mission is simple: go directly into classrooms, gyms, and auditoriums to speak with students. His message - that one kind word and one good deed can change everything - resonates with kids of all ages and backgrounds.',
   },
   {
     icon: Users,
@@ -63,11 +63,11 @@ export default function FoundingStory() {
             <p className="font-barlow text-ink/70 text-lg leading-relaxed">
               One Good Word...One Good Deed was not born in a boardroom. It was born in the 
               heart of a man who refused to let hatred win. Jason Lewis saw the way bullying 
-              and racism were tearing apart the young people around him — stealing confidence, 
+              and racism were tearing apart the young people around him - stealing confidence, 
               crushing dreams, and in the worst cases, taking lives.
             </p>
             <p className="font-barlow text-ink/70 text-lg leading-relaxed">
-              Grounded in his Christian faith, Jason believed that God's love was the antidote — 
+              Grounded in his Christian faith, Jason believed that God's love was the antidote - 
               and that every person has the power to make a difference with a single kind word 
               and a single good deed. So he built a movement around exactly that.
             </p>

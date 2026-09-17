@@ -26,7 +26,7 @@ const FAQS = [
   },
   {
     q: "Is One Good Word...One Good Deed faith-based?",
-    a: "Yes — the movement is rooted in God's love as the foundation for treating others with kindness and dignity. Jason's message is uplifting and inclusive, meeting students exactly where they are regardless of background.",
+    a: "Yes - the movement is rooted in God's love as the foundation for treating others with kindness and dignity. Jason's message is uplifting and inclusive, meeting students exactly where they are regardless of background.",
   },
 ];
 

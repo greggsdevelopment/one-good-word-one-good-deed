@@ -7,7 +7,7 @@ const PROGRAMS = [
     icon: Presentation,
     title: 'School Assemblies',
     description:
-      'High-energy full-school assemblies for K-12 that deliver an unforgettable message about stopping bullying and racism. Jason speaks from lived experience — students connect immediately.',
+      'High-energy full-school assemblies for K-12 that deliver an unforgettable message about stopping bullying and racism. Jason speaks from lived experience - students connect immediately.',
     details: ['30–60 minute format', 'K–12 all grade levels', 'Up to 1,000+ students', 'Q&A included'],
   },
   {

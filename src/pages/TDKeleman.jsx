@@ -115,7 +115,7 @@ export default function TDKeleman() {
           </h1>
 
           <p style={{ ...fadeStyle(0.38), fontFamily: "'Barlow', sans-serif", fontSize: "18px", color: "#8a857c", maxWidth: "560px", lineHeight: 1.7, marginBottom: "16px" }}>
-            One Good Word...One Good Deed LLC is proud to partner with T.D. Keleman Trucking LLC — a Livonia, Michigan-based carrier specializing in flatbed and heavy hauling across the region.
+            One Good Word...One Good Deed LLC is proud to partner with T.D. Keleman Trucking LLC - a Livonia, Michigan-based carrier specializing in flatbed and heavy hauling across the region.
           </p>
 
           <p style={{ ...fadeStyle(0.45), fontFamily: "'Barlow Condensed', sans-serif", fontSize: "15px", color: "#e6b450", letterSpacing: "2px", marginBottom: "44px" }}>
@@ -137,7 +137,7 @@ export default function TDKeleman() {
             MOVING LOADS.<br />MOVING COMMUNITIES.
           </h2>
           <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: "19px", color: "#8a857c", lineHeight: 1.85, maxWidth: "660px", margin: "0 auto" }}>
-            T.D. Keleman Trucking LLC knows what it means to carry weight — literally. Their dedication to reliable, professional service mirrors the values we carry every day: showing up, doing the work, and never leaving someone behind. Businesses like this are the backbone of our communities.
+            T.D. Keleman Trucking LLC knows what it means to carry weight - literally. Their dedication to reliable, professional service mirrors the values we carry every day: showing up, doing the work, and never leaving someone behind. Businesses like this are the backbone of our communities.
           </p>
         </section>
 
@@ -151,7 +151,7 @@ export default function TDKeleman() {
             <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(270px, 1fr))", gap: "3px" }}>
               {[
                 { num: "01", title: "Flatbed Hauling", body: "Specialized flatbed transport built for oversized and uniquely shaped loads that standard carriers can't handle." },
-                { num: "02", title: "Heavy Hauling", body: "Equipped and experienced for heavy haul operations — moving the loads that demand skill, precision, and trust." },
+                { num: "02", title: "Heavy Hauling", body: "Equipped and experienced for heavy haul operations - moving the loads that demand skill, precision, and trust." },
                 { num: "03", title: "Michigan Rooted", body: "Based in Livonia, MI and committed to the local economy. A name you can count on close to home." },
               ].map((f) => (
                 <div key={f.num} className="tdk-feature-card" style={{ padding: "52px 40px", background: "#111", borderTop: "2px solid #e6b450" }}>
@@ -171,8 +171,8 @@ export default function TDKeleman() {
             <h2 style={{ fontFamily: "'Anton', sans-serif", fontSize: "clamp(28px, 4vw, 46px)", textTransform: "uppercase", textAlign: "center", marginBottom: "48px" }}>FLEET PHOTOS</h2>
             <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: "3px" }}>
                 {[
-                { src: "https://media.base44.com/images/public/6a19e1fc6c5eb736a0763b09/00ee3dcf0_truck_photo_1.png", alt: "T.D. Keleman Trucking — Flatbed Rig" },
-                { src: "https://media.base44.com/images/public/6a19e1fc6c5eb736a0763b09/e734f9c72_truck_photo_2.png", alt: "T.D. Keleman Trucking — Fleet Shot" },
+                { src: "https://media.base44.com/images/public/6a19e1fc6c5eb736a0763b09/00ee3dcf0_truck_photo_1.png", alt: "T.D. Keleman Trucking - Flatbed Rig" },
+                { src: "https://media.base44.com/images/public/6a19e1fc6c5eb736a0763b09/e734f9c72_truck_photo_2.png", alt: "T.D. Keleman Trucking - Fleet Shot" },
               ].map((photo) => (
                 <div
                   key={photo.src}

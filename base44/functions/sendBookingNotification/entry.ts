@@ -18,7 +18,7 @@ export default async function(req) {
     const { accessToken } = await base44.asServiceRole.connectors.getConnection('gmail');
 
     const to = 'greggsdevelopment@gmail.com';
-    const subject = `New School Booking Request — ${b.school_name || 'Unknown School'}`;
+    const subject = `New School Booking Request - ${b.school_name || 'Unknown School'}`;
 
     const lines = [
       'A new school booking request has been submitted.',

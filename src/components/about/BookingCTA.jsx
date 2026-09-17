@@ -61,7 +61,7 @@ export default function BookingCTA() {
           transition={{ duration: 0.6, delay: 0.25 }}
           className="font-barlow text-cream/40 text-base max-w-xl mx-auto mb-12"
         >
-          Whether it's a 30-minute assembly or a full-day workshop — Jason will show up, 
+          Whether it's a 30-minute assembly or a full-day workshop - Jason will show up, 
           speak truth, and leave your students inspired to be the change.
         </motion.p>
 

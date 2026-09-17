@@ -35,7 +35,7 @@ export default function ResourcesHero() {
           transition={{ duration: 0.6, delay: 0.2 }}
           className="font-barlow text-cream/60 text-lg sm:text-xl max-w-2xl mx-auto leading-relaxed mb-8"
         >
-          Whether you're in crisis, struggling, or just need someone to talk to — these resources are here for you. 
+          Whether you're in crisis, struggling, or just need someone to talk to - these resources are here for you. 
           Real help. Real people. Right now.
         </motion.p>
 

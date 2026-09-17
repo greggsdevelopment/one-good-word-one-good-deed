@@ -27,7 +27,7 @@ export default function HeroSection({ logoUrl, pledgeCount }) {
       {/* Grain overlay */}
       <div className="grain-overlay" style={{ opacity: 0.09 }} />
 
-      {/* Wide ambient background glow — stronger */}
+      {/* Wide ambient background glow - stronger */}
       <div
         className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1000px] h-[1000px] rounded-full pointer-events-none"
         style={{
@@ -80,7 +80,7 @@ export default function HeroSection({ logoUrl, pledgeCount }) {
           />
         </motion.div>
 
-        {/* Headline — larger and bolder */}
+        {/* Headline - larger and bolder */}
         <motion.h1
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}

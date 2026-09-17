@@ -90,7 +90,7 @@ export default function DraykeCarousel() {
                 </div>
               </div>
 
-              {/* Corner flourishes — thin filigree L with a small node */}
+              {/* Corner flourishes - thin filigree L with a small node */}
               <svg className="absolute -top-3 -left-3 text-gold/80" width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true">
                 <path d="M2 14 V2 H14" stroke="currentColor" strokeWidth="1" strokeLinecap="round" />
                 <circle cx="2" cy="2" r="1.1" fill="currentColor" />
@@ -110,7 +110,7 @@ export default function DraykeCarousel() {
             </div>
           </div>
 
-          {/* Arrows — minimal thin gold chevrons, no chrome */}
+          {/* Arrows - minimal thin gold chevrons, no chrome */}
           <button
             onClick={() => go(-1)}
             aria-label="Previous photo"

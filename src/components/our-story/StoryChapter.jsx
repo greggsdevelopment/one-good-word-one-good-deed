@@ -56,7 +56,7 @@ export default function StoryChapter({ chapter, index, photoUrl, isAdmin, onUplo
             <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 text-gold/40">
               <Camera className="w-8 h-8" strokeWidth={1.2} />
               <span className="font-barlow-condensed text-xs tracking-[0.3em] uppercase">
-                Photo — Chapter {num}
+                Photo - Chapter {num}
               </span>
             </div>
           )}

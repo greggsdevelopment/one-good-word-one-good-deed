@@ -182,7 +182,7 @@ export default function RaffleSection() {
 
               <div className="mt-6 p-4 bg-gold/5 border border-gold/20 rounded-lg">
                 <p className="text-cream/70 text-sm text-center">
-                  🎟️ <span className="text-gold font-semibold">$5 per ticket</span> — payment link provided after submission
+                  🎟️ <span className="text-gold font-semibold">$5 per ticket</span> - payment link provided after submission
                 </p>
               </div>
 

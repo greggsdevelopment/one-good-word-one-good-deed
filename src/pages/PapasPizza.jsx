@@ -116,7 +116,7 @@ export default function PapasPizza() {
           </h1>
 
           <p style={{ ...fadeStyle(0.38), fontFamily: "'Barlow', sans-serif", fontSize: "18px", color: "#8a857c", maxWidth: "560px", lineHeight: 1.7, marginBottom: "16px" }}>
-            One Good Word...One Good Deed LLC is proud to partner with Papa's Pizza & BBQ — a Westland, Michigan staple bringing bold flavors and community love to every table.
+            One Good Word...One Good Deed LLC is proud to partner with Papa's Pizza & BBQ - a Westland, Michigan staple bringing bold flavors and community love to every table.
           </p>
 
           <p style={{ ...fadeStyle(0.45), fontFamily: "'Barlow Condensed', sans-serif", fontSize: "15px", color: "#e6b450", letterSpacing: "2px", marginBottom: "44px" }}>
@@ -154,7 +154,7 @@ export default function PapasPizza() {
           <div style={{ maxWidth: "900px", margin: "0 auto", border: "1px solid rgba(230,180,80,0.2)", overflow: "hidden", borderRadius: "2px" }}>
             <img
               src={PAPAS_PHOTO}
-              alt="Papa's Pizza & BBQ — Westland, MI"
+              alt="Papa's Pizza & BBQ - Westland, MI"
               style={{ width: "100%", display: "block", objectFit: "cover", maxHeight: "480px" }}
             />
           </div>
@@ -167,7 +167,7 @@ export default function PapasPizza() {
             GOOD FOOD.<br /><span style={{ color: "#e6b450" }}>GOOD PEOPLE.</span>
           </h2>
           <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: "19px", color: "#8a857c", lineHeight: 1.85, maxWidth: "660px", margin: "0 auto" }}>
-            Great communities are fed — literally and figuratively — by businesses that care. Papa's Pizza & BBQ isn't just serving incredible food; they're serving the spirit of the neighborhood. That's the kind of energy this mission runs on.
+            Great communities are fed - literally and figuratively - by businesses that care. Papa's Pizza & BBQ isn't just serving incredible food; they're serving the spirit of the neighborhood. That's the kind of energy this mission runs on.
           </p>
         </section>
 
@@ -180,8 +180,8 @@ export default function PapasPizza() {
             <p style={{ fontFamily: "'Barlow Condensed', sans-serif", fontSize: "12px", letterSpacing: "5px", color: "#e6b450", textTransform: "uppercase", textAlign: "center", marginBottom: "64px" }}>What Papa's Brings</p>
             <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(270px, 1fr))", gap: "3px" }}>
               {[
-                { num: "01", title: "Pizza & BBQ", body: "A one-of-a-kind combo — bold BBQ flavors meets the comfort of great pizza. Open late, rated 4.8 stars by over 111 customers." },
-                { num: "02", title: "Westland Rooted", body: "Located at 1980 N Wayne Rd, Papa's is a true local gem — the kind of spot that becomes part of the neighborhood fabric." },
+                { num: "01", title: "Pizza & BBQ", body: "A one-of-a-kind combo - bold BBQ flavors meets the comfort of great pizza. Open late, rated 4.8 stars by over 111 customers." },
+                { num: "02", title: "Westland Rooted", body: "Located at 1980 N Wayne Rd, Papa's is a true local gem - the kind of spot that becomes part of the neighborhood fabric." },
                 { num: "03", title: "Community First", body: "Open until midnight, serving families, night owls, and everyone in between. This is community dining done right." },
               ].map((f) => (
                 <div key={f.num} className="papas-feature-card" style={{ padding: "52px 40px", background: "#111", borderTop: "2px solid #e6b450" }}>
@@ -233,7 +233,7 @@ export default function PapasPizza() {
         {/* ─── FOOTER BAR ────────────────────────────────────── */}
         <div style={{ borderTop: "1px solid #141414", padding: "30px 24px", textAlign: "center" }}>
           <p style={{ fontFamily: "'Barlow Condensed', sans-serif", fontSize: "11px", letterSpacing: "3px", color: "#2a2620", textTransform: "uppercase" }}>
-            One Good Word...One Good Deed LLC &nbsp;|&nbsp; In Partnership with Papa's Pizza &amp; BBQ — Westland, MI &nbsp;|&nbsp; ogwogd.org
+            One Good Word...One Good Deed LLC &nbsp;|&nbsp; In Partnership with Papa's Pizza &amp; BBQ - Westland, MI &nbsp;|&nbsp; ogwogd.org
           </p>
         </div>
       </div>

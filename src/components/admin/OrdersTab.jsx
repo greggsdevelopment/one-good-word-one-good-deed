@@ -59,18 +59,18 @@ export default function OrdersTab() {
                   {b.phone && <p className="font-barlow text-ash text-xs">{b.phone}</p>}
                 </td>
                 <td className="px-4 py-3 max-w-[200px]">
-                  <p className="font-barlow text-ink/60 text-xs leading-relaxed line-clamp-2">{b.message || '—'}</p>
+                  <p className="font-barlow text-ink/60 text-xs leading-relaxed line-clamp-2">{b.message || '-'}</p>
                 </td>
                 <td className="px-4 py-3 whitespace-nowrap">
                   <p className="font-barlow text-ink/70 text-xs">
-                    {b.preferred_date ? format(new Date(b.preferred_date), 'MMM d, yyyy') : '—'}
+                    {b.preferred_date ? format(new Date(b.preferred_date), 'MMM d, yyyy') : '-'}
                   </p>
                   <p className="font-barlow text-ash text-[10px]">
                     Submitted {format(new Date(b.created_date), 'MMM d')}
                   </p>
                 </td>
                 <td className="px-4 py-3 text-center">
-                  <span className="font-barlow text-ink/70 text-sm">{b.num_students ?? '—'}</span>
+                  <span className="font-barlow text-ink/70 text-sm">{b.num_students ?? '-'}</span>
                 </td>
                 <td className="px-4 py-3">
                   <span className={`inline-block text-[10px] font-barlow-condensed uppercase tracking-wider px-2 py-1 rounded-full ${STATUS_STYLES[status] || STATUS_STYLES.pending}`}>

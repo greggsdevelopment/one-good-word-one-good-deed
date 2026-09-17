@@ -37,7 +37,7 @@ const CHAPTERS = [
     key: 'ch6',
     heading: 'We Are Just Getting Started',
     photo: 'https://media.base44.com/images/public/6a19e1fc6c5eb736a0763b09/85ad17b34_IMG_7173.jpeg',
-    body: 'A live pledge wall. A full school program built for Michigan middle schools. Sponsors signing on. News coverage telling the story. None of it happened because of a website. It happened because two fathers decided that showing up was not optional.',
+    body: 'A live pledge wall. A full school program built for Michigan schools. Sponsors signing on. News coverage telling the story. None of it happened because of a website. It happened because two fathers decided that showing up was not optional.',
   },
 ];
 

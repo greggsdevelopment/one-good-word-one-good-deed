@@ -38,7 +38,7 @@ export default function BookJasonBanner() {
           transition={{ duration: 0.6, delay: 0.2 }}
           className="font-barlow text-cream/60 text-xl max-w-2xl mx-auto mb-10"
         >
-          Bring an unforgettable assembly experience to your students. Jason speaks directly to the hearts of young people — on bullying, racism, purpose, and God's love.
+          Bring an unforgettable assembly experience to your students. Jason speaks directly to the hearts of young people - on bullying, racism, purpose, and God's love.
         </motion.p>
         <motion.div
           initial={{ opacity: 0, y: 16 }}

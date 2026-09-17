@@ -25,7 +25,7 @@ const MILESTONES = [
   {
     year: '2024',
     title: 'Merch & Movement Launch',
-    body: 'The movement expands with branded merchandise — shirts, hoodies, coats, and wristbands — giving supporters a way to wear the message daily.',
+    body: 'The movement expands with branded merchandise - shirts, hoodies, coats, and wristbands - giving supporters a way to wear the message daily.',
   },
   {
     year: '2025+',

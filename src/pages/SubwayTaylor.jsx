@@ -111,7 +111,7 @@ export default function SubwayTaylor() {
           </div>
 
           <p style={{ ...fadeStyle(0.38), fontFamily: "'Barlow', sans-serif", fontSize: "18px", color: "#8a857c", maxWidth: "560px", lineHeight: 1.7, marginBottom: "16px" }}>
-            One Good Word...One Good Deed LLC is proud to partner with Ali — entrepreneur, collector, and community champion. Follow his TikTok for exclusive collectibles drops and more.
+            One Good Word...One Good Deed LLC is proud to partner with Ali - entrepreneur, collector, and community champion. Follow his TikTok for exclusive collectibles drops and more.
           </p>
 
           <p style={{ ...fadeStyle(0.45), fontFamily: "'Barlow Condensed', sans-serif", fontSize: "15px", color: "#e6b450", letterSpacing: "2px", marginBottom: "44px" }}>
@@ -145,7 +145,7 @@ export default function SubwayTaylor() {
             RARE FINDS.<br />REAL COMMUNITY.
           </h2>
           <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: "19px", color: "#8a857c", lineHeight: 1.85, maxWidth: "660px", margin: "0 auto" }}>
-            Ali built AD Collectibles from passion — a love for the rare, the special, and the stories behind every piece. That same passion is what drives this movement. When you support entrepreneurs like Ali, you're investing in the kind of community that lifts everyone up.
+            Ali built AD Collectibles from passion - a love for the rare, the special, and the stories behind every piece. That same passion is what drives this movement. When you support entrepreneurs like Ali, you're investing in the kind of community that lifts everyone up.
           </p>
         </section>
 
@@ -159,8 +159,8 @@ export default function SubwayTaylor() {
             <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(270px, 1fr))", gap: "3px" }}>
               {[
                 { num: "01", title: "Exclusive Collectibles", body: "Ali sources rare and unique finds that you won't see anywhere else. Follow @adcollectibles on TikTok to catch every drop." },
-                { num: "02", title: "Entrepreneur Spirit", body: "From Subway owner to TikTok collectibles entrepreneur — Ali embodies the hustle, heart, and community values we champion." },
-                { num: "03", title: "Taylor, MI Proud", body: "Rooted in Taylor, Michigan. Ali represents the best of what a local entrepreneur can be — driven, generous, and community-first." },
+                { num: "02", title: "Entrepreneur Spirit", body: "From Subway owner to TikTok collectibles entrepreneur - Ali embodies the hustle, heart, and community values we champion." },
+                { num: "03", title: "Taylor, MI Proud", body: "Rooted in Taylor, Michigan. Ali represents the best of what a local entrepreneur can be - driven, generous, and community-first." },
               ].map((f) => (
                 <div key={f.num} className="subway-feature-card" style={{ padding: "52px 40px", background: "#111", borderTop: "2px solid #e6b450" }}>
                   <p style={{ fontFamily: "'Barlow Condensed', sans-serif", fontSize: "11px", letterSpacing: "4px", color: "#e6b450", marginBottom: "16px" }}>{f.num}</p>
@@ -199,7 +199,7 @@ export default function SubwayTaylor() {
             <div style={{ border: "1px solid rgba(230,180,80,0.15)", padding: "40px 48px", borderRadius: "2px", background: "#0a0908" }}>
               <p style={{ fontFamily: "'Barlow Condensed', sans-serif", fontSize: "11px", letterSpacing: "5px", color: "#8a857c", textTransform: "uppercase", marginBottom: "14px" }}>Also Visit Ali's Subway</p>
               <h3 style={{ fontFamily: "'Anton', sans-serif", fontSize: "clamp(22px, 3vw, 32px)", textTransform: "uppercase", letterSpacing: "1px", marginBottom: "18px", color: "#f5f1e8" }}>
-                Subway — Taylor, MI
+                Subway - Taylor, MI
               </h3>
               <div style={{ display: "flex", flexDirection: "column", gap: "8px", alignItems: "center" }}>
                 <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: "15px", color: "#8a857c" }}>
@@ -227,7 +227,7 @@ export default function SubwayTaylor() {
         {/* ─── FOOTER BAR ─── */}
         <div style={{ borderTop: "1px solid #141414", padding: "30px 24px", textAlign: "center" }}>
           <p style={{ fontFamily: "'Barlow Condensed', sans-serif", fontSize: "11px", letterSpacing: "3px", color: "#2a2620", textTransform: "uppercase" }}>
-            One Good Word...One Good Deed LLC &nbsp;|&nbsp; In Partnership with Ali — AD Collectibles &amp; Subway Taylor, MI &nbsp;|&nbsp; ogwogd.org
+            One Good Word...One Good Deed LLC &nbsp;|&nbsp; In Partnership with Ali - AD Collectibles &amp; Subway Taylor, MI &nbsp;|&nbsp; ogwogd.org
           </p>
         </div>
       </div>

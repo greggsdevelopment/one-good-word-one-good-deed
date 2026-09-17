@@ -70,7 +70,7 @@ export default function SummaryDashboard({ bookings = [], pledges = [], messages
 
       {/* Monthly bar chart */}
       <div className="bg-ink border border-cream/10 rounded-sm p-6">
-        <p className="font-barlow-condensed text-cream/50 text-xs tracking-widest uppercase mb-6">Activity — Last 6 Months</p>
+        <p className="font-barlow-condensed text-cream/50 text-xs tracking-widest uppercase mb-6">Activity - Last 6 Months</p>
         <ResponsiveContainer width="100%" height={240}>
           <BarChart data={monthlyData} margin={{ top: 0, right: 0, left: -20, bottom: 0 }} barGap={4}>
             <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" />

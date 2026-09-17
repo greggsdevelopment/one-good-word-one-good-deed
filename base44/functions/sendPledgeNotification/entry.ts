@@ -19,7 +19,7 @@ export default async function(req) {
     const { accessToken } = await base44.asServiceRole.connectors.getConnection('gmail');
 
     const to = 'greggsdevelopment@gmail.com';
-    const subject = 'New Pledge Submission — Pledge Wall';
+    const subject = 'New Pledge Submission - Pledge Wall';
     const name = [pledge.first_name, pledge.last_initial].filter(Boolean).join(' ');
     const emailBody = [
       'A new pledge has been submitted on the pledge wall.',

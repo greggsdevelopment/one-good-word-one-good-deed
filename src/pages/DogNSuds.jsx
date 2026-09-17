@@ -106,7 +106,7 @@ export default function DogNSuds() {
           </h1>
 
           <p style={{ ...fadeStyle(0.38), fontFamily: "'Barlow', sans-serif", fontSize: "18px", color: "#8a857c", maxWidth: "540px", lineHeight: 1.7, marginBottom: "16px" }}>
-            One Good Word...One Good Deed LLC is proud to partner with Dog N Suds Pet Grooming — a community staple with over 25 years of loving care for your furry family members.
+            One Good Word...One Good Deed LLC is proud to partner with Dog N Suds Pet Grooming - a community staple with over 25 years of loving care for your furry family members.
           </p>
 
           <p style={{ ...fadeStyle(0.45), fontFamily: "'Barlow Condensed', sans-serif", fontSize: "15px", color: "#e6b450", letterSpacing: "2px", marginBottom: "44px" }}>
@@ -158,8 +158,8 @@ export default function DogNSuds() {
             <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(270px, 1fr))", gap: "3px" }}>
               {[
                 { num: "01", title: "25+ Years Experience", body: "Over two and a half decades of professional grooming means your pet is in the most trusted hands in Westland." },
-                { num: "02", title: "Community Rooted", body: "A locally owned business that has grown alongside the Westland community — familiar faces who genuinely care." },
-                { num: "03", title: "Full Grooming Services", body: "Baths, cuts, nail trims, and more — everything your furry family member needs to look and feel their best." },
+                { num: "02", title: "Community Rooted", body: "A locally owned business that has grown alongside the Westland community - familiar faces who genuinely care." },
+                { num: "03", title: "Full Grooming Services", body: "Baths, cuts, nail trims, and more - everything your furry family member needs to look and feel their best." },
               ].map((f) => (
                 <div key={f.num} className="dns-feature-card" style={{ padding: "52px 40px", background: "#111", borderTop: "2px solid #e6b450" }}>
                   <p style={{ fontFamily: "'Barlow Condensed', sans-serif", fontSize: "11px", letterSpacing: "4px", color: "#e6b450", marginBottom: "16px" }}>{f.num}</p>

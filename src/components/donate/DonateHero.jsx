@@ -34,7 +34,7 @@ export default function DonateHero() {
           transition={{ duration: 0.6, delay: 0.2 }}
           className="font-barlow text-cream/60 text-lg max-w-2xl mx-auto mb-4 leading-relaxed"
         >
-          Every dollar you give helps Jason reach more students — putting wristbands on more wrists, 
+          Every dollar you give helps Jason reach more students - putting wristbands on more wrists, 
           funding more school visits, and spreading the message that one good word really does change everything.
         </motion.p>
         <motion.p
@@ -44,7 +44,7 @@ export default function DonateHero() {
           className="font-barlow text-cream/35 text-base max-w-xl mx-auto mb-10"
         >
           "If we can change how one child thinks about another child, we can change a generation."
-          <br /><span className="text-gold/60 text-sm">— Jason Lewis</span>
+          <br /><span className="text-gold/60 text-sm">- Jason Lewis</span>
         </motion.p>
         <motion.a
           initial={{ opacity: 0, y: 16 }}

@@ -107,12 +107,12 @@ export default function LivRiteRecovery() {
               🙏 A HUGE THANK YOU TO BRENDA MACK!
             </p>
             <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: "15px", color: "#f5f1e8", lineHeight: 1.65 }}>
-              Brenda — your heart for this community is unmatched. You have poured yourself into helping people find their way back, and your support of this mission means more than words can say. We are deeply grateful for you and everything Live Rite Recovery stands for.
+              Brenda - your heart for this community is unmatched. You have poured yourself into helping people find their way back, and your support of this mission means more than words can say. We are deeply grateful for you and everything Live Rite Recovery stands for.
             </p>
           </div>
 
           <p style={{ ...fadeStyle(0.38), fontFamily: "'Barlow', sans-serif", fontSize: "18px", color: "#8a857c", maxWidth: "560px", lineHeight: 1.7, marginBottom: "16px" }}>
-            One Good Word...One Good Deed LLC is proud to partner with Live Rite Recovery Corp — a non-profit dedicated to helping those with substance use disorder find the resources they need for long-term recovery.
+            One Good Word...One Good Deed LLC is proud to partner with Live Rite Recovery Corp - a non-profit dedicated to helping those with substance use disorder find the resources they need for long-term recovery.
           </p>
 
           <p style={{ ...fadeStyle(0.45), fontFamily: "'Barlow Condensed', sans-serif", fontSize: "15px", color: "#e6b450", letterSpacing: "2px", marginBottom: "44px" }}>
@@ -154,7 +154,7 @@ export default function LivRiteRecovery() {
             ONE GOOD WORD<br /><span style={{ color: "#e6b450" }}>CAN SAVE A LIFE.</span>
           </h2>
           <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: "19px", color: "#8a857c", lineHeight: 1.85, maxWidth: "660px", margin: "0 auto" }}>
-            Live Rite Recovery Corp and One Good Word...One Good Deed share the same heartbeat — showing up for people when it matters most. Recovery is hard. But with the right resources, the right community, and one good word at the right moment, it's possible. That's what this partnership is all about.
+            Live Rite Recovery Corp and One Good Word...One Good Deed share the same heartbeat - showing up for people when it matters most. Recovery is hard. But with the right resources, the right community, and one good word at the right moment, it's possible. That's what this partnership is all about.
           </p>
         </section>
 
@@ -167,9 +167,9 @@ export default function LivRiteRecovery() {
             <p style={{ fontFamily: "'Barlow Condensed', sans-serif", fontSize: "12px", letterSpacing: "5px", color: "#e6b450", textTransform: "uppercase", textAlign: "center", marginBottom: "64px" }}>What Live Rite Recovery Does</p>
             <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(270px, 1fr))", gap: "3px" }}>
               {[
-                { num: "01", title: "Recovery Resource Center", body: "Open to the public Monday–Friday, 9–5pm. Housing, food, clothing, employment, meetings — trained Recovery Care Technicians are ready to help." },
+                { num: "01", title: "Recovery Resource Center", body: "Open to the public Monday–Friday, 9–5pm. Housing, food, clothing, employment, meetings - trained Recovery Care Technicians are ready to help." },
                 { num: "02", title: "Housing & Support", body: "Nine recovery homes offering a structured, supportive environment for those taking their first steps toward a new life in recovery." },
-                { num: "03", title: "Jobs & Career Training", body: "Live Rite partners with local employers and runs career training programs — including their Peer Recovery Coaching Academy — to help people rebuild." },
+                { num: "03", title: "Jobs & Career Training", body: "Live Rite partners with local employers and runs career training programs - including their Peer Recovery Coaching Academy - to help people rebuild." },
               ].map((f) => (
                 <div key={f.num} className="lrr-feature-card" style={{ padding: "52px 40px", background: "#111", borderTop: "2px solid #e6b450" }}>
                   <p style={{ fontFamily: "'Barlow Condensed', sans-serif", fontSize: "11px", letterSpacing: "4px", color: "#e6b450", marginBottom: "16px" }}>{f.num}</p>

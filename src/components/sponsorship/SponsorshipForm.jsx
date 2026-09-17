@@ -5,11 +5,11 @@ import { useInView } from '@/hooks/useInView';
 import { base44 } from '@/api/base44Client';
 
 const LEVELS = [
-  'Supply Drop — $250',
-  'Family Night — $500',
-  'Assembly Underwriter — $1,500',
-  'Starter Package for one school — $3,200',
-  'Full Year for one school — $6,500',
+  'Supply Drop - $250',
+  'Family Night - $500',
+  'Assembly Underwriter - $1,500',
+  'Starter Package for one school - $3,200',
+  'Full Year for one school - $6,500',
   'Monthly giving, any amount',
   'In-kind goods or services',
   'Not sure yet, let’s talk',

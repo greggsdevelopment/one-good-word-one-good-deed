@@ -21,7 +21,7 @@ export default function EventsHero() {
             EVENTS &<br />GATHERINGS
           </h1>
           <p className="font-barlow text-cream/40 max-w-xl text-lg">
-            Join us in the community — workshops, school visits, outreach events, and more. Everyone is welcome.
+            Join us in the community - workshops, school visits, outreach events, and more. Everyone is welcome.
           </p>
         </motion.div>
       </div>

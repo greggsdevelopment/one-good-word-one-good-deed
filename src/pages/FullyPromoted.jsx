@@ -108,12 +108,12 @@ export default function FullyPromoted() {
               🙏 HUGE THANKS TO TOM &amp; GINA CASTLE!
             </p>
             <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: "15px", color: "#f5f1e8", lineHeight: 1.65 }}>
-              Tom and Gina — your generosity and belief in this mission mean the world to us. You didn't just support a cause, you joined a movement. We are deeply grateful for everything you do.
+              Tom and Gina - your generosity and belief in this mission mean the world to us. You didn't just support a cause, you joined a movement. We are deeply grateful for everything you do.
             </p>
           </div>
 
           <p style={{ ...fadeStyle(0.38), fontFamily: "'Barlow', sans-serif", fontSize: "18px", color: "#8a857c", maxWidth: "560px", lineHeight: 1.7, marginBottom: "16px" }}>
-            One Good Word...One Good Deed LLC is proud to partner with Fully Promoted Plymouth — your local experts in branded apparel and promotional products that make your message stick.
+            One Good Word...One Good Deed LLC is proud to partner with Fully Promoted Plymouth - your local experts in branded apparel and promotional products that make your message stick.
           </p>
 
           <p style={{ ...fadeStyle(0.45), fontFamily: "'Barlow Condensed', sans-serif", fontSize: "15px", color: "#e6b450", letterSpacing: "2px", marginBottom: "44px" }}>
@@ -155,7 +155,7 @@ export default function FullyPromoted() {
             YOUR BRAND.<br /><span style={{ color: "#e6b450" }}>YOUR MISSION.</span>
           </h2>
           <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: "19px", color: "#8a857c", lineHeight: 1.85, maxWidth: "660px", margin: "0 auto 48px" }}>
-            Every wristband, every shirt, every piece of branded gear that carries this movement's message — it spreads one good word further. Fully Promoted Plymouth helps make that happen. Tom and Gina understand that a brand is more than a logo — it's a statement about who you are and what you stand for.
+            Every wristband, every shirt, every piece of branded gear that carries this movement's message - it spreads one good word further. Fully Promoted Plymouth helps make that happen. Tom and Gina understand that a brand is more than a logo - it's a statement about who you are and what you stand for.
           </p>
 
           {/* Shout out cards */}
@@ -183,9 +183,9 @@ export default function FullyPromoted() {
             <p style={{ fontFamily: "'Barlow Condensed', sans-serif", fontSize: "12px", letterSpacing: "5px", color: "#e6b450", textTransform: "uppercase", textAlign: "center", marginBottom: "64px" }}>What Fully Promoted Does</p>
             <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(270px, 1fr))", gap: "3px" }}>
               {[
-                { num: "01", title: "Branded Apparel", body: "Custom shirts, hats, hoodies, and more — screen printed or embroidered to represent your brand at every event, school visit, and community gathering." },
-                { num: "02", title: "Promotional Products", body: "From pens to banners to giveaways — Fully Promoted helps your message reach further with quality promotional items that leave a lasting impression." },
-                { num: "03", title: "Plymouth Local", body: "Based in Plymouth, MI — Tom and Gina run a shop that cares about the community it serves. Local business, local values, local impact." },
+                { num: "01", title: "Branded Apparel", body: "Custom shirts, hats, hoodies, and more - screen printed or embroidered to represent your brand at every event, school visit, and community gathering." },
+                { num: "02", title: "Promotional Products", body: "From pens to banners to giveaways - Fully Promoted helps your message reach further with quality promotional items that leave a lasting impression." },
+                { num: "03", title: "Plymouth Local", body: "Based in Plymouth, MI - Tom and Gina run a shop that cares about the community it serves. Local business, local values, local impact." },
               ].map((f) => (
                 <div key={f.num} className="fp-feature-card" style={{ padding: "52px 40px", background: "#111", borderTop: "2px solid #e6b450" }}>
                   <p style={{ fontFamily: "'Barlow Condensed', sans-serif", fontSize: "11px", letterSpacing: "4px", color: "#e6b450", marginBottom: "16px" }}>{f.num}</p>
@@ -202,7 +202,7 @@ export default function FullyPromoted() {
           <div style={{ maxWidth: "700px", margin: "0 auto", border: "1px solid rgba(230,180,80,0.25)", padding: "60px 48px", borderRadius: "2px", background: "#0d0c0a" }}>
             <p style={{ fontFamily: "'Barlow Condensed', sans-serif", fontSize: "11px", letterSpacing: "5px", color: "#e6b450", textTransform: "uppercase", marginBottom: "20px" }}>Connect with Tom &amp; Gina</p>
             <h3 style={{ fontFamily: "'Anton', sans-serif", fontSize: "clamp(26px, 4vw, 40px)", textTransform: "uppercase", letterSpacing: "1px", marginBottom: "24px" }}>
-              Fully Promoted — Plymouth, MI
+              Fully Promoted - Plymouth, MI
             </h3>
             <div style={{ display: "flex", flexDirection: "column", gap: "10px", alignItems: "center" }}>
               <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: "16px", color: "#8a857c", lineHeight: 1.7 }}>
@@ -238,7 +238,7 @@ export default function FullyPromoted() {
         {/* ─── FOOTER BAR ─── */}
         <div style={{ borderTop: "1px solid #141414", padding: "30px 24px", textAlign: "center" }}>
           <p style={{ fontFamily: "'Barlow Condensed', sans-serif", fontSize: "11px", letterSpacing: "3px", color: "#2a2620", textTransform: "uppercase" }}>
-            One Good Word...One Good Deed LLC &nbsp;|&nbsp; In Partnership with Fully Promoted — Plymouth, MI &nbsp;|&nbsp; ogwogd.org
+            One Good Word...One Good Deed LLC &nbsp;|&nbsp; In Partnership with Fully Promoted - Plymouth, MI &nbsp;|&nbsp; ogwogd.org
           </p>
         </div>
       </div>

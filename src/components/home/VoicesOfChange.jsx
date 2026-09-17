@@ -5,7 +5,7 @@ import { Quote } from 'lucide-react';
 
 const VOICES = [
   {
-    quote: "Jason's presentation changed the way I think about my words. I used to say things without thinking. Now I pause and ask myself — is this a good word?",
+    quote: "Jason's presentation changed the way I think about my words. I used to say things without thinking. Now I pause and ask myself - is this a good word?",
     name: "Marcus T.",
     role: "8th Grade Student",
     school: "Troy Middle School",
@@ -35,7 +35,7 @@ const VOICES = [
     school: "Berkley Elementary",
   },
   {
-    quote: "The faith-based component resonated deeply with our community. Jason spoke truth without preaching. The students listened — really listened.",
+    quote: "The faith-based component resonated deeply with our community. Jason spoke truth without preaching. The students listened - really listened.",
     name: "Coach Tamara S.",
     role: "Athletic Director",
     school: "Bishop Foley High",
@@ -67,7 +67,7 @@ function TestimonialCard({ voice }) {
         </div>
         <div>
           <p className="font-barlow-condensed text-cream font-semibold text-sm tracking-wide">{voice.name}</p>
-          <p className="font-barlow text-cream/40 text-xs">{voice.role} — {voice.school}</p>
+          <p className="font-barlow text-cream/40 text-xs">{voice.role} - {voice.school}</p>
         </div>
       </div>
     </div>

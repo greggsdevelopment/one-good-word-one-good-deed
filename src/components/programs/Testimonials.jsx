@@ -5,7 +5,7 @@ import { Quote } from 'lucide-react';
 const TESTIMONIALS = [
   {
     quote:
-      "Jason's assembly was the most impactful we've had in 10 years of doing these programs. Students were in tears — in the best way. They were hugging each other before he finished. We booked him back immediately.",
+      "Jason's assembly was the most impactful we've had in 10 years of doing these programs. Students were in tears - in the best way. They were hugging each other before he finished. We booked him back immediately.",
     name: 'Principal Michelle Davis',
     school: 'Wayne-Westland Community Schools',
     role: 'Elementary Principal',
@@ -19,7 +19,7 @@ const TESTIMONIALS = [
   },
   {
     quote:
-      "My students are still talking about him two months later. Jason speaks their language. He doesn't lecture — he connects. Every middle school in America needs to hear this message.",
+      "My students are still talking about him two months later. Jason speaks their language. He doesn't lecture - he connects. Every middle school in America needs to hear this message.",
     name: 'Ms. Tamara Jenkins',
     school: 'Lincoln Middle School',
     role: '7th Grade Teacher',

@@ -31,7 +31,7 @@ export default function QuickViewModal({ product, onClose, onAddToCart }) {
         className="fixed inset-0 bg-black/50 z-[9998] flex items-center justify-center p-4"
         onClick={onClose}
       >
-        {/* Modal — centered by flex parent, stop click propagation */}
+        {/* Modal - centered by flex parent, stop click propagation */}
         <motion.div
           key="quickview-modal"
           initial={{ opacity: 0, scale: 0.95, y: 24 }}

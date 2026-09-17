@@ -273,7 +273,7 @@ export default function RaffleTab() {
       {paid.length > 0 && (
         <div>
           <p className="font-barlow-condensed text-ink/50 text-xs tracking-widest uppercase mb-3">
-            Paid — Ticket Assigned ({paid.length})
+            Paid - Ticket Assigned ({paid.length})
           </p>
           <div className="space-y-3">
             {paid.map((entry) => (

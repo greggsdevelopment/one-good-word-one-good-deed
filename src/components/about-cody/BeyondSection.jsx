@@ -29,7 +29,7 @@ export default function BeyondSection() {
         >
           Cody is the founder of Greggs Development, a web design and AI solutions company in metro Detroit, and a father.
           He also founded Grounded Kings Foundation, a community built for men navigating fatherhood, hard seasons,
-          and rebuilding without a blueprint — on its way to becoming an officially recognized nonprofit.
+          and rebuilding without a blueprint - on its way to becoming an officially recognized nonprofit.
         </motion.p>
       </div>
     </section>

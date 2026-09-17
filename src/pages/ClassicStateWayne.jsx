@@ -124,12 +124,12 @@ export default function ClassicStateWayne() {
               🙏 A HUGE THANK YOU TO AUTUMN!
             </p>
             <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: "15px", color: "#f5f1e8", lineHeight: 1.65 }}>
-              Autumn — your support and generosity have made a real impact on this mission. Thank you for believing in One Good Word...One Good Deed and for opening the doors of Classic State Wayne Theater to our community. We are truly grateful for you.
+              Autumn - your support and generosity have made a real impact on this mission. Thank you for believing in One Good Word...One Good Deed and for opening the doors of Classic State Wayne Theater to our community. We are truly grateful for you.
             </p>
           </div>
 
           <p style={{ ...fadeStyle(0.38), fontFamily: "'Barlow', sans-serif", fontSize: "18px", color: "#8a857c", maxWidth: "560px", lineHeight: 1.7, marginBottom: "16px" }}>
-            One Good Word...One Good Deed LLC is proud to partner with Phoenix Theatres Classic State Wayne — your local movie theater serving the Wayne, Michigan community.
+            One Good Word...One Good Deed LLC is proud to partner with Phoenix Theatres Classic State Wayne - your local movie theater serving the Wayne, Michigan community.
           </p>
 
           <p style={{ ...fadeStyle(0.45), fontFamily: "'Barlow Condensed', sans-serif", fontSize: "15px", color: "#e6b450", letterSpacing: "2px", marginBottom: "44px" }}>
@@ -173,7 +173,7 @@ export default function ClassicStateWayne() {
             </div>
           </div>
           <p style={{ fontFamily: "'Barlow Condensed', sans-serif", fontSize: "12px", letterSpacing: "3px", color: "#8a857c", textAlign: "center", marginTop: "16px", textTransform: "uppercase" }}>
-            Jason &amp; Autumn — Classic State Wayne Theater, Wayne, MI
+            Jason &amp; Autumn - Classic State Wayne Theater, Wayne, MI
           </p>
         </section>
 
@@ -184,7 +184,7 @@ export default function ClassicStateWayne() {
             WHERE STORIES<br /><span style={{ color: "#e6b450" }}>COME TO LIFE.</span>
           </h2>
           <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: "19px", color: "#8a857c", lineHeight: 1.85, maxWidth: "660px", margin: "0 auto" }}>
-            Movies have always had the power to move people — to change minds, open hearts, and inspire action. Classic State Wayne Theater is more than a cinema; it's a community gathering place. That's exactly the kind of space this movement needs. Stories matter. And Autumn gets that.
+            Movies have always had the power to move people - to change minds, open hearts, and inspire action. Classic State Wayne Theater is more than a cinema; it's a community gathering place. That's exactly the kind of space this movement needs. Stories matter. And Autumn gets that.
           </p>
         </section>
 
@@ -197,9 +197,9 @@ export default function ClassicStateWayne() {
             <p style={{ fontFamily: "'Barlow Condensed', sans-serif", fontSize: "12px", letterSpacing: "5px", color: "#e6b450", textTransform: "uppercase", textAlign: "center", marginBottom: "64px" }}>About Classic State Wayne</p>
             <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(270px, 1fr))", gap: "3px" }}>
               {[
-                { num: "01", title: "Community Theater", body: "A neighborhood staple in Wayne, Michigan — bringing the magic of the movies to families and friends right in their own backyard." },
+                { num: "01", title: "Community Theater", body: "A neighborhood staple in Wayne, Michigan - bringing the magic of the movies to families and friends right in their own backyard." },
                 { num: "02", title: "Phoenix Theatres", body: "Part of the Phoenix Theatres family, Classic State Wayne offers a full lineup of first-run films, special screenings, and community events." },
-                { num: "03", title: "Wayne, MI Proud", body: "Located at 35310 Michigan Ave, Wayne, MI 48184. A local theater for a local community — the kind of place that brings people together." },
+                { num: "03", title: "Wayne, MI Proud", body: "Located at 35310 Michigan Ave, Wayne, MI 48184. A local theater for a local community - the kind of place that brings people together." },
               ].map((f) => (
                 <div key={f.num} className="csw-feature-card" style={{ padding: "52px 40px", background: "#111", borderTop: "2px solid #e6b450" }}>
                   <p style={{ fontFamily: "'Barlow Condensed', sans-serif", fontSize: "11px", letterSpacing: "4px", color: "#e6b450", marginBottom: "16px" }}>{f.num}</p>
