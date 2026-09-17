@@ -17,9 +17,9 @@ export default function FooterSection({ logoUrl }) {
   ];
 
   const pageLinks = [
-    { label: 'Our Story', to: '/about' },
+    { label: 'About Jason', to: '/about' },
     { label: 'About Cody', to: '/about-cody' },
-    { label: 'Our Stories', to: '/stories' },
+    { label: 'Our Story', to: '/stories' },
     { label: 'Events', to: '/events' },
     { label: 'Resources', to: '/resources' },
     { label: 'Sponsor Hall of Fame', to: '/hall-of-fame' },
