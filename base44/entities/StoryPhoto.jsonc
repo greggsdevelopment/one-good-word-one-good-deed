@@ -1,0 +1,36 @@
+{
+  "name": "StoryPhoto",
+  "type": "object",
+  "properties": {
+    "chapter": {
+      "type": "string",
+      "description": "Chapter key, e.g. ch1, ch2"
+    },
+    "image_url": {
+      "type": "string",
+      "description": "Public URL of the uploaded photo"
+    }
+  },
+  "required": [
+    "chapter",
+    "image_url"
+  ],
+  "rls": {
+    "create": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "read": null,
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}

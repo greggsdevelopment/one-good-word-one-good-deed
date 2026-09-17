@@ -19,7 +19,7 @@ const NAV_GROUPS = [
   {
     label: 'About',
     links: [
-      { label: 'About Jason', to: '/about' },
+      { label: 'Our Story', to: '/about' },
       { label: 'About Cody', to: '/about-cody' },
       { label: 'Our Stories', to: '/stories' },
       { label: 'Events', to: '/events' },
