@@ -1,0 +1,40 @@
+{
+  "name": "Sponsorship Notification Email",
+  "description": "Sends a Gmail notification to the team whenever a new SponsorshipApplication is submitted",
+  "trigger": {
+    "condition": null,
+    "config": {
+      "trigger_type": "entity",
+      "events": [
+        "create"
+      ],
+      "entity_name": "SponsorshipApplication"
+    }
+  },
+  "definition": {
+    "document": {
+      "dsl": "1.0.0",
+      "name": "sponsorship_notification_email",
+      "version": "1.0",
+      "namespace": "base44"
+    },
+    "do": [
+      {
+        "send_notification": {
+          "call": "invoke_backend_function",
+          "with": {
+            "function_name": "sendSponsorshipNotification",
+            "args": {
+              "sponsorship_id": "${ .trigger.data.id }"
+            }
+          },
+          "then": "end",
+          "x-base44": {
+            "title": "Send sponsorship notification",
+            "description": "Email the team about the new sponsorship application"
+          }
+        }
+      }
+    ]
+  }
+}

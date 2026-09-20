@@ -61,6 +61,11 @@
       "type": "boolean",
       "default": false,
       "description": "Whether the application has been reviewed"
+    },
+    "notification_sent_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO timestamp set by the backend after the notification email is sent"
     }
   },
   "required": [
