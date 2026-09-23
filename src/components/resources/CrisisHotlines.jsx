@@ -42,11 +42,13 @@ const HOTLINES = [
     badge: 'bg-green-500/20 text-green-300',
   },
   {
-    name: 'Bullying Prevention Hotline',
-    description: 'Get support and guidance if you are being bullied or know someone who is.',
+    name: 'Childhelp National Child Abuse Hotline',
+    description: 'Confidential support for children and teens experiencing abuse, and for anyone worried about a child. Call or text 24/7.',
     call: '1-800-422-4453',
-    website: 'https://www.stopbullying.gov',
-    available: 'Mon–Fri 8am–8pm',
+    text: '1-800-422-4453',
+    textKeyword: 'GO',
+    website: 'https://childhelphotline.org',
+    available: '24/7',
     color: 'border-gold/30 bg-gold/5',
     badge: 'bg-gold/20 text-gold',
   },
@@ -69,7 +71,7 @@ const HOTLINE_CATEGORY_MAP = {
   'Crisis Text Line': 'Crisis',
   'Trevor Project (LGBTQ+)': 'Crisis',
   'SAMHSA National Helpline': 'Substance Abuse',
-  'Bullying Prevention Hotline': 'Anti-Bullying',
+  'Childhelp National Child Abuse Hotline': 'Crisis',
   'National Domestic Violence Hotline': 'Crisis',
 };
 
