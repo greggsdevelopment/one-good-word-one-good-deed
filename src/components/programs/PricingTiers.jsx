@@ -192,8 +192,7 @@ export default function PricingTiers() {
               Bullying prevention programming, staff training, and family engagement events are commonly funded
               through Title I and Section 31a at-risk dollars rather than a building's general budget. Tell us
               which fund you are working from and we will format the invoice to match. Sponsor underwriting is
-              available where the money is not there. We are backed by local businesses across the region and
-              we have covered buildings that way before.
+              available where the money is not there. We are backed by local businesses across the region.
             </p>
           </motion.div>
 

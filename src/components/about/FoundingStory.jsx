@@ -16,7 +16,7 @@ const PILLARS = [
   {
     icon: Users,
     title: 'A Community-Wide Movement',
-    body: 'Partnering with Wayne-Westland Community Schools and expanding outward, Jason is building a network of change-makers who believe that love, God, and action are more powerful than hate.',
+    body: 'As an approved vendor for Wayne-Westland Community Schools and working to bring the message into more schools, Jason is building a network of change-makers who believe that love, God, and action are more powerful than hate.',
   },
 ];
 
@@ -89,16 +89,15 @@ export default function FoundingStory() {
           <div className="absolute inset-0 opacity-5 bg-gradient-to-br from-gold to-transparent" />
           <div className="relative z-10">
             <p className="font-barlow-condensed text-gold text-xs tracking-[0.3em] uppercase mb-3">
-              Official Partnership
+              Approved School Vendor
             </p>
             <h3 className="font-anton text-cream text-3xl sm:text-4xl mb-4 leading-tight">
               WAYNE-WESTLAND<br />COMMUNITY SCHOOLS
             </h3>
             <p className="font-barlow text-cream/60 text-lg max-w-2xl leading-relaxed">
-              Jason's partnership with Wayne-Westland Community Schools represents a landmark 
-              commitment to bringing anti-bullying and anti-racism education directly into the 
-              classroom. Through assemblies, workshops, and ongoing engagement, the movement 
-              is reaching thousands of students across the district.
+              In May 2026, Jason was approved as a vendor for Wayne-Westland Community Schools,
+              clearing the way to bring anti-bullying and anti-racism assemblies and workshops
+              directly into the district's classrooms.
             </p>
           </div>
         </motion.div>

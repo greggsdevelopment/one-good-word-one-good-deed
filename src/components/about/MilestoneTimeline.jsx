@@ -19,8 +19,8 @@ const MILESTONES = [
   },
   {
     year: '2023',
-    title: 'Wayne-Westland Partnership',
-    body: 'A landmark partnership is formed with Wayne-Westland Community Schools, opening the doors to thousands of students across the district.',
+    title: 'Approved School Vendor',
+    body: 'Jason Lewis is approved as a vendor for Wayne-Westland Community Schools in May 2026.',
   },
   {
     year: '2024',

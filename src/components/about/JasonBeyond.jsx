@@ -27,7 +27,7 @@ export default function JasonBeyond() {
           transition={{ duration: 0.6, delay: 0.1 }}
           className="font-barlow text-cream/65 text-lg sm:text-xl leading-relaxed"
         >
-          Jason is a father, a speaker, and a partner to Wayne-Westland Community Schools, bringing
+          Jason is a father, a speaker, and an approved vendor for Wayne-Westland Community Schools, bringing
           anti-bullying and anti-racism education directly into classrooms, gyms, and auditoriums.
           Everything he does is grounded in his Christian faith and the belief that God&apos;s love is
           the antidote to hate.

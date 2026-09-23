@@ -83,7 +83,17 @@ export default function NightForDraykeCard() {
               <span className="hidden sm:block w-px h-4 bg-gold/30" />
               <span className="flex items-center gap-2">
                 <MapPin className="text-gold" size={16} strokeWidth={1.5} />
-                <span style={SERIF} className="text-lg">Location and time to be announced</span>
+                <span style={SERIF} className="text-lg">
+                  5:00 PM &middot;{' '}
+                  <a
+                    href="https://www.google.com/maps/dir/?api=1&destination=1615%20S%20Wayne%20Rd%2C%20Westland%2C%20MI%2048186"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-gold hover:text-gold-dark underline decoration-gold/40 underline-offset-4 transition-colors"
+                  >
+                    1615 S Wayne Rd, Westland, MI 48186
+                  </a>
+                </span>
               </span>
             </motion.div>
 
