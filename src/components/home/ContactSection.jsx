@@ -133,7 +133,7 @@ export default function ContactSection() {
 
         <div className="mt-12 text-center space-y-2">
           <p className="font-barlow text-ink/40 text-sm">
-            Phone: <a href="tel:2488089373" className="text-gold-dark hover:text-gold transition-colors">(248) 808-9373</a>
+            Phone: <a href="tel:7343833865" className="text-gold-dark hover:text-gold transition-colors">(734) 383-3865</a>
           </p>
           <p className="font-barlow text-ink/40 text-sm">
             Email: <a href="mailto:greggsdevelopment@gmail.com" className="text-gold-dark hover:text-gold transition-colors">greggsdevelopment@gmail.com</a>

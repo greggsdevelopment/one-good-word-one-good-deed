@@ -6,7 +6,7 @@ import { useInView } from '@/hooks/useInView';
 const FAQS = [
   {
     q: 'What grades is this built for?',
-    a: 'Kindergarten through twelfth grade. The five steps are the same in every building, but the material is rebuilt for each band: elementary gets a 30 minute assembly with no graphic detail and a playground-level skills lab, middle school gets the version built around social rank and group chats, and high school gets the unedited story plus the adult consequences. The assembly runs for the whole building; the labs run one grade level at a time so the examples fit the room. Flat rates cover buildings up to 900 students. K-8 buildings run both versions on the same visit.'
+    a: 'Kindergarten through twelfth grade. The five steps are the same in every building, but the material is rebuilt for each band: elementary gets a 30 minute assembly with no graphic detail and a playground-level skills lab, middle school gets the version built around social rank and group chats, and high school gets the unedited story plus the adult consequences. The assembly runs for the whole building; the labs run one grade level at a time so the examples fit the room. K-8 buildings run both versions on the same visit.'
   },
   {
     q: 'Is this appropriate for public school instructional time?',
