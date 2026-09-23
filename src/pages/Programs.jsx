@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowLeft } from 'lucide-react';
 import ProgramsHero from '@/components/programs/ProgramsHero';
@@ -10,7 +11,32 @@ import PricingTiers from '@/components/programs/PricingTiers';
 import ImpactStatsBanner from '@/components/programs/ImpactStatsBanner';
 import FAQSection from '@/components/programs/FAQSection';
 
+const META_DESCRIPTION =
+  'Anti-bullying assemblies, workshops, student ambassadors and staff training for K-12 schools. Flat rates, no travel fee in metro Detroit. Get a quote online.';
+
+function setMeta(attr, key, content) {
+  let tag = document.head.querySelector(`meta[${attr}="${key}"]`);
+  const created = !tag;
+  if (created) {
+    tag = document.createElement('meta');
+    tag.setAttribute(attr, key);
+    document.head.appendChild(tag);
+  }
+  const previous = tag.getAttribute('content');
+  tag.setAttribute('content', content);
+  return () => (created ? tag.remove() : tag.setAttribute('content', previous ?? ''));
+}
+
 export default function Programs() {
+  useEffect(() => {
+    const restoreDesc = setMeta('name', 'description', META_DESCRIPTION);
+    const restoreOg = setMeta('property', 'og:description', META_DESCRIPTION);
+    return () => {
+      restoreDesc();
+      restoreOg();
+    };
+  }, []);
+
   return (
     <div className="min-h-screen bg-ink">
       <div className="grain-overlay fixed inset-0 pointer-events-none z-0" style={{ opacity: 0.07 }} />
