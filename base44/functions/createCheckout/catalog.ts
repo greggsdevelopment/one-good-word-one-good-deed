@@ -19,16 +19,6 @@ export type CatalogItem = {
 };
 
 export const CATALOG: Record<string, CatalogItem> = {
-  'bw-dove-shirt': { name: 'Black & White Dove Shirt', price_cents: 2500 },
-  'blue-yellow-logo-shirt': { name: 'Blue & Yellow T-Shirt Logo', price_cents: 2500 },
-  'blue-white-letters-shirt': { name: 'Blue & White T-Shirt Letters', price_cents: 2500 },
-  'bw-hoodie': { name: 'Black & White Hoodie Front & Back', price_cents: 6000 },
-  'bw-letters-shirt': { name: 'Black White ONE GOOD WORD T-Shirt', price_cents: 2500 },
-  'blue-black-shirt': { name: 'Blue Black T-Shirt', price_cents: 2500 },
-  'wool-coat-silver': { name: 'Wool Coat – Silver & Black Logo', price_cents: 12000 },
-  'wool-coat-varsity': { name: 'Wool Coat – One Good Word One Good Deed', price_cents: 12000 },
-  'red-black-shirt': { name: 'Red Black T-Shirt', price_cents: 2500 },
-  'wristbands': { name: 'Awareness Wristbands', price_cents: 200 },
   'ogw-ogd-colorful-shirt': { name: 'One Good Word One Good Deed T-Shirt', price_cents: 2500 },
 };
 
