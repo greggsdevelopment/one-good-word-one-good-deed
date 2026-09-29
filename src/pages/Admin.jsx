@@ -3,7 +3,8 @@ import { useQuery } from '@tanstack/react-query';
 import { base44 } from '@/api/base44Client';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Button } from '@/components/ui/button';
-import { LogOut, CalendarCheck, Heart, BookOpen, ShoppingBag, Mail, ClipboardList, Users, Ticket, Handshake } from 'lucide-react';
+import { LogOut, CalendarCheck, Heart, BookOpen, ShoppingBag, Mail, ClipboardList, Users, Ticket, Handshake, CalendarDays } from 'lucide-react';
+import EventsTab from '@/components/admin/EventsTab';
 import BookingTab from '@/components/admin/BookingTab';
 import PledgesTab from '@/components/admin/PledgesTab';
 import StoriesTab from '@/components/admin/StoriesTab';
@@ -53,6 +54,11 @@ export default function Admin() {
     queryFn: () => base44.entities.RaffleEntry.list('-created_date', 200),
   });
 
+  const { data: rsvps = [] } = useQuery({
+    queryKey: ['admin-rsvps'],
+    queryFn: () => base44.entities.EventRSVP.list('-created_date', 1000),
+  });
+
   const pendingStories = stories.filter(s => !s.approved).length;
   const pendingPledges = pledges.filter(p => !p.approved).length;
   const pendingRaffle = raffleEntries.filter(e => e.status === 'pending').length;
@@ -98,7 +104,7 @@ export default function Admin() {
         </div>
 
         {/* Summary Dashboard Chart */}
-        <SummaryDashboard bookings={bookings} pledges={pledges} messages={messages} events={events} orders={orders} />
+        <SummaryDashboard bookings={bookings} pledges={pledges} messages={messages} events={events} orders={orders} rsvps={rsvps} />
 
         {/* Tabs */}
         <Tabs defaultValue="bookings">
@@ -106,6 +112,10 @@ export default function Admin() {
             <TabsTrigger value="bookings" className="font-barlow-condensed uppercase tracking-wider text-xs data-[state=active]:bg-ink data-[state=active]:text-cream gap-1.5">
               <CalendarCheck className="w-3.5 h-3.5" /> Bookings
               {bookings.length > 0 && <span className="ml-1 bg-blue-100 text-blue-700 rounded-full text-[10px] px-1.5">{bookings.length}</span>}
+            </TabsTrigger>
+            <TabsTrigger value="events" className="font-barlow-condensed uppercase tracking-wider text-xs data-[state=active]:bg-ink data-[state=active]:text-cream gap-1.5">
+              <CalendarDays className="w-3.5 h-3.5" /> Events
+              {rsvps.length > 0 && <span className="ml-1 bg-teal-100 text-teal-700 rounded-full text-[10px] px-1.5">{rsvps.length}</span>}
             </TabsTrigger>
             <TabsTrigger value="pledges" className="font-barlow-condensed uppercase tracking-wider text-xs data-[state=active]:bg-ink data-[state=active]:text-cream gap-1.5">
               <Heart className="w-3.5 h-3.5" /> Pledges
@@ -122,7 +132,7 @@ export default function Admin() {
             </TabsTrigger>
             <TabsTrigger value="orders" className="font-barlow-condensed uppercase tracking-wider text-xs data-[state=active]:bg-ink data-[state=active]:text-cream gap-1.5">
               <ClipboardList className="w-3.5 h-3.5" /> Orders
-              {bookings.length > 0 && <span className="ml-1 bg-amber-100 text-amber-700 rounded-full text-[10px] px-1.5">{bookings.length}</span>}
+              {orders.length > 0 && <span className="ml-1 bg-amber-100 text-amber-700 rounded-full text-[10px] px-1.5">{orders.length}</span>}
             </TabsTrigger>
             <TabsTrigger value="raffle" className="font-barlow-condensed uppercase tracking-wider text-xs data-[state=active]:bg-ink data-[state=active]:text-cream gap-1.5">
               <Ticket className="w-3.5 h-3.5" /> Raffle
@@ -138,6 +148,7 @@ export default function Admin() {
           </TabsList>
 
           <TabsContent value="bookings"><BookingTab /></TabsContent>
+          <TabsContent value="events"><EventsTab /></TabsContent>
           <TabsContent value="pledges"><PledgesTab /></TabsContent>
           <TabsContent value="stories"><StoriesTab /></TabsContent>
           <TabsContent value="messages"><MessagesTab /></TabsContent>

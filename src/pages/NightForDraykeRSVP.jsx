@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { CheckCircle, Calendar, MapPin } from 'lucide-react';
@@ -23,8 +23,18 @@ function GoldDiamond() {
   );
 }
 
+const EVENT_TITLE = 'A Night For Drayke';
+const FALLBACK_EVENT_ID = '6aac286b10ef0792c64d5678';
+
 export default function NightForDraykeRSVP() {
   const [ref, inView] = useInView(0.1);
+  const [eventId, setEventId] = useState(FALLBACK_EVENT_ID);
+
+  useEffect(() => {
+    base44.entities.Event.filter({ title: EVENT_TITLE }).then((found) => {
+      if (found?.[0]?.id) setEventId(found[0].id);
+    });
+  }, []);
   const [form, setForm] = useState({
     full_name: '',
     email: '',
@@ -45,6 +55,8 @@ export default function NightForDraykeRSVP() {
     setError('');
     try {
       await base44.entities.EventRSVP.create({
+        event_id: eventId,
+        event_title: EVENT_TITLE,
         full_name: form.full_name.trim(),
         email: form.email.trim(),
         phone: form.phone.trim(),

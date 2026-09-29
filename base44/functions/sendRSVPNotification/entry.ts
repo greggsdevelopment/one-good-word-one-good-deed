@@ -66,6 +66,7 @@ export default async function(req) {
     const emailBody = [
       'A new RSVP has been submitted for A Night For Drayke.',
       '',
+      `Event: ${record.event_title || 'A Night For Drayke'}`,
       `Name: ${record.full_name || 'Not provided'}`,
       `Email: ${record.email || 'Not provided'}`,
       `Phone: ${record.phone || 'Not provided'}`,

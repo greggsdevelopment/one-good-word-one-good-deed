@@ -2,6 +2,14 @@
   "name": "EventRSVP",
   "type": "object",
   "properties": {
+    "event_id": {
+      "type": "string",
+      "description": "The id of the Event this RSVP belongs to"
+    },
+    "event_title": {
+      "type": "string",
+      "description": "Snapshot of the event title at submit time"
+    },
     "full_name": {
       "type": "string",
       "description": "Full name of the person RSVPing"
@@ -25,6 +33,20 @@
     "message": {
       "type": "string",
       "description": "Optional message from the guest"
+    },
+    "checked_in": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether the guest has checked in at the event"
+    },
+    "checked_in_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When the guest was checked in"
+    },
+    "admin_notes": {
+      "type": "string",
+      "description": "Admin-only notes about this RSVP"
     },
     "notification_sent_at": {
       "type": "string",
