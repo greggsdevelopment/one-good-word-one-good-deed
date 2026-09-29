@@ -5,9 +5,6 @@ import { ChevronDown, Shield, Menu, X } from 'lucide-react';
 import { base44 } from '@/api/base44Client';
 import MusicToggle from '@/components/home/MusicToggle';
 
-const DONATE_URL =
-  'https://www.gofundme.com/f/support-one-good-word-one-good-deeds-mission';
-
 // The four foundations of the movement. Always visible, never buried.
 const PRIMARY_LINKS = [
   { label: 'Remember Drayke', to: '/drayke' },
@@ -209,14 +206,12 @@ export default function StickyNav({ logoUrl }) {
 
             {/* Donate (desktop) */}
             <div className="hidden lg:flex items-center">
-              <a
-                href={DONATE_URL}
-                target="_blank"
-                rel="noopener noreferrer"
+              <Link
+                to="/donate"
                 className="bg-gold hover:bg-gold-dark text-ink font-bold text-sm uppercase tracking-wider px-5 py-2.5 rounded-sm transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-gold/25"
               >
                 Donate
-              </a>
+              </Link>
             </div>
 
             {/* Mobile hamburger */}
@@ -317,15 +312,13 @@ export default function StickyNav({ logoUrl }) {
                 )}
               </div>
 
-              <a
-                href={DONATE_URL}
-                target="_blank"
-                rel="noopener noreferrer"
+              <Link
+                to="/donate"
                 onClick={() => setMobileOpen(false)}
                 className="block bg-gold text-ink font-bold text-center uppercase tracking-wider px-4 py-3.5 rounded-sm mt-5"
               >
                 Donate
-              </a>
+              </Link>
             </div>
           </motion.div>
         )}

@@ -1,22 +1,22 @@
 import { motion } from 'framer-motion';
-import { School, BookOpen, MapPin } from 'lucide-react';
+import { School, Backpack, PartyPopper } from 'lucide-react';
 import { useInView } from '@/hooks/useInView';
 
 const REASONS = [
   {
+    icon: Backpack,
+    title: 'Kids Who Go Without',
+    desc: 'Backpacks, supplies, coats and hygiene items go straight to kids and families who need them, handed out at schools and community events.',
+  },
+  {
     icon: School,
-    title: 'Reach More Schools',
-    desc: 'Thousands of students across Michigan have never heard a message like Jason\'s. Your gift expands access to schools that need it most.',
+    title: 'Schools That Cannot Pay',
+    desc: 'Many under-resourced schools have nothing left in the budget for speakers. Donations help bring the program to those buildings anyway.',
   },
   {
-    icon: BookOpen,
-    title: 'Fund Free Programs',
-    desc: 'Many Title I and under-resourced schools cannot afford speaker fees. Donations make it possible to give every student this experience at no cost.',
-  },
-  {
-    icon: MapPin,
-    title: 'Expand to New Cities',
-    desc: 'The movement is growing. With your support, One Good Word One Good Deed can bring its message to cities beyond Southeast Michigan.',
+    icon: PartyPopper,
+    title: 'Community Events',
+    desc: 'Family nights, giveaways and events like A Night For Drayke run on donated items and the people who show up for them.',
   },
 ];
 

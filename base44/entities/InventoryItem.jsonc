@@ -1,0 +1,77 @@
+{
+  "name": "InventoryItem",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "What the item is, e.g. Backpacks (kids) or Wide ruled notebooks"
+    },
+    "category": {
+      "type": "string",
+      "description": "One of the donation categories"
+    },
+    "quantity_on_hand": {
+      "type": "number",
+      "default": 0,
+      "description": "Units currently in storage"
+    },
+    "unit": {
+      "type": "string",
+      "default": "each",
+      "description": "Counting unit, e.g. each, pack, box"
+    },
+    "size": {
+      "type": "string",
+      "description": "Size or age range, if it matters"
+    },
+    "condition": {
+      "type": "string",
+      "description": "New, Like new, or Gently used"
+    },
+    "location": {
+      "type": "string",
+      "description": "Where it is stored"
+    },
+    "target_quantity": {
+      "type": "number",
+      "description": "How many we want on hand"
+    },
+    "low_stock_threshold": {
+      "type": "number",
+      "description": "Flag as low when on-hand falls to or below this"
+    },
+    "active": {
+      "type": "boolean",
+      "default": true,
+      "description": "False hides it from the main inventory list"
+    },
+    "notes": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "name"
+  ],
+  "rls": {
+    "create": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "read": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}

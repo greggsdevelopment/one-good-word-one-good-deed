@@ -1,0 +1,78 @@
+{
+  "name": "InventoryTransaction",
+  "type": "object",
+  "properties": {
+    "item_id": {
+      "type": "string",
+      "description": "InventoryItem id"
+    },
+    "item_name": {
+      "type": "string",
+      "description": "Item name at the time, kept so history survives deletes"
+    },
+    "change": {
+      "type": "number",
+      "description": "Units added (positive) or removed (negative)"
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "received",
+        "distributed",
+        "adjustment"
+      ],
+      "description": "Why the count changed"
+    },
+    "reason": {
+      "type": "string",
+      "description": "Free text, e.g. recount, damaged, back to school giveaway"
+    },
+    "recipient": {
+      "type": "string",
+      "description": "Who or where distributed items went"
+    },
+    "donation_id": {
+      "type": "string",
+      "description": "ItemDonation id, for received items"
+    },
+    "donor_name": {
+      "type": "string",
+      "description": "Donor name, for received items"
+    },
+    "quantity_after": {
+      "type": "number",
+      "description": "On-hand count after this change"
+    },
+    "recorded_by": {
+      "type": "string",
+      "description": "Admin email who recorded it"
+    }
+  },
+  "required": [
+    "item_id",
+    "change",
+    "type"
+  ],
+  "rls": {
+    "create": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "read": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}

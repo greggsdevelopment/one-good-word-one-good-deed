@@ -3,7 +3,7 @@ import { useQuery } from '@tanstack/react-query';
 import { base44 } from '@/api/base44Client';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Button } from '@/components/ui/button';
-import { LogOut, CalendarCheck, Heart, BookOpen, ShoppingBag, Mail, ClipboardList, Users, Ticket, Handshake, CalendarDays } from 'lucide-react';
+import { LogOut, CalendarCheck, Heart, BookOpen, ShoppingBag, Mail, ClipboardList, Users, Ticket, Handshake, CalendarDays, Backpack } from 'lucide-react';
 import EventsTab from '@/components/admin/EventsTab';
 import BookingTab from '@/components/admin/BookingTab';
 import PledgesTab from '@/components/admin/PledgesTab';
@@ -15,6 +15,7 @@ import NewsletterTab from '@/components/admin/NewsletterTab';
 import SummaryDashboard from '@/components/admin/SummaryDashboard';
 import RaffleTab from '@/components/admin/RaffleTab';
 import SponsorTab from '@/components/admin/SponsorTab';
+import DonationsTab from '@/components/admin/DonationsTab';
 
 export default function Admin() {
   const { data: bookings = [] } = useQuery({
@@ -59,6 +60,12 @@ export default function Admin() {
     queryFn: () => base44.entities.EventRSVP.list('-created_date', 1000),
   });
 
+  const { data: itemDonations = [] } = useQuery({
+    queryKey: ['admin-item-donations'],
+    queryFn: () => base44.entities.ItemDonation.list('-created_date', 500),
+  });
+
+  const newItemDonations = itemDonations.filter(d => !d.status || d.status === 'new').length;
   const pendingStories = stories.filter(s => !s.approved).length;
   const pendingPledges = pledges.filter(p => !p.approved).length;
   const pendingRaffle = raffleEntries.filter(e => e.status === 'pending').length;
@@ -117,6 +124,10 @@ export default function Admin() {
               <CalendarDays className="w-3.5 h-3.5" /> Events
               {rsvps.length > 0 && <span className="ml-1 bg-teal-100 text-teal-700 rounded-full text-[10px] px-1.5">{rsvps.length}</span>}
             </TabsTrigger>
+            <TabsTrigger value="donations" className="font-barlow-condensed uppercase tracking-wider text-xs data-[state=active]:bg-ink data-[state=active]:text-cream gap-1.5">
+              <Backpack className="w-3.5 h-3.5" /> Donations
+              {newItemDonations > 0 && <span className="ml-1 bg-amber-100 text-amber-700 rounded-full text-[10px] px-1.5">{newItemDonations}</span>}
+            </TabsTrigger>
             <TabsTrigger value="pledges" className="font-barlow-condensed uppercase tracking-wider text-xs data-[state=active]:bg-ink data-[state=active]:text-cream gap-1.5">
               <Heart className="w-3.5 h-3.5" /> Pledges
             </TabsTrigger>
@@ -149,6 +160,7 @@ export default function Admin() {
 
           <TabsContent value="bookings"><BookingTab /></TabsContent>
           <TabsContent value="events"><EventsTab /></TabsContent>
+          <TabsContent value="donations"><DonationsTab /></TabsContent>
           <TabsContent value="pledges"><PledgesTab /></TabsContent>
           <TabsContent value="stories"><StoriesTab /></TabsContent>
           <TabsContent value="messages"><MessagesTab /></TabsContent>

@@ -189,16 +189,14 @@ export default function HeroSection({ logoUrl, pledgeCount }) {
           transition={{ duration: 0.8, delay: 1.25 }}
           className="mt-6 mb-4"
         >
-          <a
-            href="https://www.gofundme.com/f/support-one-good-word-one-good-deeds-mission"
-            target="_blank"
-            rel="noopener noreferrer"
+          <Link
+            to="/donate"
             className="inline-flex items-center gap-3 px-12 py-5 bg-gold hover:bg-gold-dark text-ink font-anton text-2xl sm:text-3xl uppercase tracking-widest rounded-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:shadow-gold/40"
             style={{ boxShadow: '0 0 40px rgba(230,180,80,0.35), 0 8px 32px rgba(0,0,0,0.6)' }}
           >
             ❤️ Donate Now
-          </a>
-          <p className="font-barlow-condensed text-ash text-xs tracking-[0.3em] uppercase mt-3">Support the Mission on GoFundMe</p>
+          </Link>
+          <p className="font-barlow-condensed text-ash text-xs tracking-[0.3em] uppercase mt-3">Backpacks, supplies, coats, or money</p>
         </motion.div>
 
         {/* Pledge count */}

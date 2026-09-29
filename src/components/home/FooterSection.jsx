@@ -25,7 +25,7 @@ export default function FooterSection({ logoUrl }) {
     { label: 'Sponsor Hall of Fame', to: '/hall-of-fame' },
     { label: 'Become a Sponsor', to: '/sponsorship' },
     { label: 'Contact', to: '/contact' },
-    { label: 'Donate', to: 'https://www.gofundme.com/f/support-one-good-word-one-good-deeds-mission', external: true },
+    { label: 'Donate', to: '/donate' },
   ];
 
   return (

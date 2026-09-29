@@ -1,8 +1,9 @@
 import { motion } from 'framer-motion';
+import { Backpack, HeartHandshake } from 'lucide-react';
 
-const GOFUNDME_URL = 'https://www.gofundme.com/f/support-one-good-word-one-good-deeds-mission';
+export default function DonateHero({ itemsOpen, moneyOpen }) {
+  const scrollTo = (id) => document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
 
-export default function DonateHero() {
   return (
     <section className="relative bg-ink pt-28 pb-20 px-6 overflow-hidden">
       <div className="absolute inset-0 pointer-events-none">
@@ -34,8 +35,8 @@ export default function DonateHero() {
           transition={{ duration: 0.6, delay: 0.2 }}
           className="font-barlow text-cream/60 text-lg max-w-2xl mx-auto mb-4 leading-relaxed"
         >
-          Every dollar you give helps Jason reach more students - putting wristbands on more wrists, 
-          funding more school visits, and spreading the message that one good word really does change everything.
+          Kids get picked on for what they do not have. A backpack, a warm coat, a clean shirt, supplies on the
+          first day. Give the things families need, or give money that keeps the program in schools.
         </motion.p>
         <motion.p
           initial={{ opacity: 0 }}
@@ -46,17 +47,38 @@ export default function DonateHero() {
           "If we can change how one child thinks about another child, we can change a generation."
           <br /><span className="text-gold/60 text-sm">- Jason Lewis</span>
         </motion.p>
-        <motion.a
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.35 }}
-          href={GOFUNDME_URL}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-block px-8 py-4 bg-gold hover:bg-gold-dark text-ink font-barlow-condensed font-bold text-lg uppercase tracking-wider rounded-sm transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-gold/20"
-        >
-          Make a Donation
-        </motion.a>
+
+        {(itemsOpen || moneyOpen) && (
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.35 }}
+            className="flex flex-col sm:flex-row gap-4 justify-center"
+          >
+            {itemsOpen && (
+              <button
+                type="button"
+                onClick={() => scrollTo('give-items')}
+                className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-gold hover:bg-gold-dark text-ink font-barlow-condensed font-bold text-lg uppercase tracking-wider rounded-sm transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-gold/20"
+              >
+                <Backpack className="w-5 h-5" /> Donate Items
+              </button>
+            )}
+            {moneyOpen && (
+              <button
+                type="button"
+                onClick={() => scrollTo('give-money')}
+                className={`inline-flex items-center justify-center gap-2 px-8 py-4 font-barlow-condensed font-bold text-lg uppercase tracking-wider rounded-sm transition-all duration-300 hover:-translate-y-0.5 ${
+                  itemsOpen
+                    ? 'border border-gold/40 text-gold hover:bg-gold/10'
+                    : 'bg-gold hover:bg-gold-dark text-ink hover:shadow-lg hover:shadow-gold/20'
+                }`}
+              >
+                <HeartHandshake className="w-5 h-5" /> Give Money
+              </button>
+            )}
+          </motion.div>
+        )}
       </div>
     </section>
   );
