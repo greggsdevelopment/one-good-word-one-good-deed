@@ -30,7 +30,7 @@ function Toggle({ checked, onChange, title, body }) {
 export default function DonationSettingsPanel({ settings, onSaved }) {
   const queryClient = useQueryClient();
   const [form, setForm] = useState(settings);
-  const [needsText, setNeedsText] = useState((settings.needs || []).join('\n'));
+  const [notAcceptedText, setNotAcceptedText] = useState((settings.not_accepted || []).join('\n'));
   const [saving, setSaving] = useState(false);
 
   // Only reset the form when the saved settings actually change, not on every
@@ -38,7 +38,7 @@ export default function DonationSettingsPanel({ settings, onSaved }) {
   const savedKey = JSON.stringify(settings);
   useEffect(() => {
     setForm(settings);
-    setNeedsText((settings.needs || []).join('\n'));
+    setNotAcceptedText((settings.not_accepted || []).join('\n'));
   }, [savedKey]);
 
   const persist = async (patch) => {
@@ -47,7 +47,8 @@ export default function DonationSettingsPanel({ settings, onSaved }) {
       pickup_enabled: !!patch.pickup_enabled,
       money_donations_enabled: !!patch.money_donations_enabled,
       pickup_radius_miles: Math.min(500, Math.max(1, Number(patch.pickup_radius_miles) || 50)),
-      needs: patch.needs,
+      allow_other_items: !!patch.allow_other_items,
+      not_accepted: patch.not_accepted,
       dropoff_instructions: patch.dropoff_instructions || '',
       closed_message: patch.closed_message || '',
       gofundme_url: patch.gofundme_url || '',
@@ -58,11 +59,11 @@ export default function DonationSettingsPanel({ settings, onSaved }) {
     onSaved?.();
   };
 
-  const currentNeeds = () => needsText.split('\n').map((s) => s.trim()).filter(Boolean);
+  const currentNotAccepted = () => notAcceptedText.split('\n').map((s) => s.trim()).filter(Boolean);
 
   // Switches save the moment they are flipped, so "turn it off" is one click.
   const flip = (key) => async (value) => {
-    const next = { ...form, [key]: value, needs: currentNeeds() };
+    const next = { ...form, [key]: value, not_accepted: currentNotAccepted() };
     setForm(next);
     try {
       await persist(next);
@@ -77,7 +78,7 @@ export default function DonationSettingsPanel({ settings, onSaved }) {
     e.preventDefault();
     setSaving(true);
     try {
-      await persist({ ...form, needs: currentNeeds() });
+      await persist({ ...form, not_accepted: currentNotAccepted() });
       sonner.success('Saved', { description: 'The donate page is updated.' });
     } catch (err) {
       sonner.error('Could not save', { description: err?.message || 'Try again.' });
@@ -104,6 +105,12 @@ export default function DonationSettingsPanel({ settings, onSaved }) {
           body="Off leaves drop-off open but stops pickup requests."
         />
         <Toggle
+          checked={!!form.allow_other_items}
+          onChange={flip('allow_other_items')}
+          title="Allow items not on the list"
+          body="Adds a 'something else' line to the form, flagged for your review. Off means donors can only pick from the Needs List."
+        />
+        <Toggle
           checked={!!form.money_donations_enabled}
           onChange={flip('money_donations_enabled')}
           title="Show money donations (GoFundMe)"
@@ -123,8 +130,8 @@ export default function DonationSettingsPanel({ settings, onSaved }) {
           </div>
         </div>
         <div>
-          <span className={label}>What we need most (one per line, shown on /donate)</span>
-          <Textarea rows={6} value={needsText} onChange={(e) => setNeedsText(e.target.value)} />
+          <span className={label}>What we cannot take (one per line, shown on /donate)</span>
+          <Textarea rows={5} value={notAcceptedText} onChange={(e) => setNotAcceptedText(e.target.value)} />
         </div>
         <div>
           <span className={label}>Drop-off instructions</span>

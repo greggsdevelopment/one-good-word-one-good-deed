@@ -28,9 +28,10 @@ const FILTERS = [
 
 const fullAddress = (d) => [d.address_line, d.city, [d.state, d.zip].filter(Boolean).join(' ')].filter(Boolean).join(', ');
 const toLocalInput = (iso) => (iso ? format(new Date(iso), "yyyy-MM-dd'T'HH:mm") : '');
-const itemsSummary = (d) => (d.items || []).map((i) => `${i.quantity} x ${i.category}${i.description ? ` (${i.description})` : ''}, ${i.condition}`).join('; ');
+const itemsSummary = (d) => (d.items || []).map((i) => `${i.quantity} x ${i.name || i.category}${i.need_id === 'other' ? ' [NOT ON LIST]' : ''}${i.description && i.description !== i.name ? ` (${i.description})` : ''}, ${i.condition}`).join('; ');
+const hasOffList = (d) => (d.items || []).some((i) => i.need_id === 'other');
 
-function DonationCard({ donation, inventory, recordedBy, onChange }) {
+function DonationCard({ donation, inventory, needs, recordedBy, onChange }) {
   const [when, setWhen] = useState(toLocalInput(donation.scheduled_for));
   const [notes, setNotes] = useState(donation.admin_notes || '');
   const [receiving, setReceiving] = useState(false);
@@ -76,6 +77,7 @@ function DonationCard({ donation, inventory, recordedBy, onChange }) {
               {donation.delivery_method === 'pickup' ? <Truck className="w-3.5 h-3.5" /> : <MapPin className="w-3.5 h-3.5" />}
               {donation.delivery_method === 'pickup' ? 'Pickup' : 'Drop-off'}
             </span>
+            {hasOffList(donation) && <span className="text-[10px] font-barlow-condensed uppercase tracking-wider bg-amber-100 text-amber-800 rounded-full px-2 py-0.5">Has off-list items</span>}
           </div>
           <div className="flex flex-wrap gap-4 text-sm font-barlow mt-1">
             <a href={`mailto:${donation.email}`} className="flex items-center gap-1 text-gold-dark hover:underline"><Mail className="w-3.5 h-3.5" /> {donation.email}</a>
@@ -91,9 +93,10 @@ function DonationCard({ donation, inventory, recordedBy, onChange }) {
           <ul className="font-barlow text-sm text-ink/80 space-y-0.5">
             {(donation.items || []).map((i, idx) => (
               <li key={idx}>
-                <span className="font-semibold">{i.quantity}</span> x {i.category}
-                {i.description ? <span className="text-ink/60"> ({i.description})</span> : null}
+                <span className="font-semibold">{i.quantity}</span> x {i.name || i.category}
+                {i.description && i.description !== i.name ? <span className="text-ink/60"> ({i.description})</span> : null}
                 <span className="text-ash"> · {i.condition}</span>
+                {i.need_id === 'other' && <span className="ml-1.5 text-[10px] font-barlow-condensed uppercase tracking-wider bg-amber-100 text-amber-800 rounded-full px-2 py-0.5">not on list</span>}
               </li>
             ))}
           </ul>
@@ -171,13 +174,13 @@ function DonationCard({ donation, inventory, recordedBy, onChange }) {
       </div>
 
       {receiving && (
-        <ReceiveDialog donation={donation} inventory={inventory} recordedBy={recordedBy} onClose={() => setReceiving(false)} onDone={onChange} />
+        <ReceiveDialog donation={donation} inventory={inventory} needs={needs} recordedBy={recordedBy} onClose={() => setReceiving(false)} onDone={onChange} />
       )}
     </div>
   );
 }
 
-export default function IncomingDonations({ donations, inventory, recordedBy, onChange }) {
+export default function IncomingDonations({ donations, inventory, needs = [], recordedBy, onChange }) {
   const [filter, setFilter] = useState('open');
   const counts = useMemo(() => Object.fromEntries(FILTERS.map((f) => [f.key, donations.filter(f.match).length])), [donations]);
   const shown = donations.filter(FILTERS.find((f) => f.key === filter).match);
@@ -223,7 +226,7 @@ export default function IncomingDonations({ donations, inventory, recordedBy, on
       {shown.length === 0 ? (
         <p className="font-barlow text-ash text-center py-12">Nothing here yet.</p>
       ) : (
-        shown.map((d) => <DonationCard key={d.id} donation={d} inventory={inventory} recordedBy={recordedBy} onChange={onChange} />)
+        shown.map((d) => <DonationCard key={d.id} donation={d} inventory={inventory} needs={needs} recordedBy={recordedBy} onChange={onChange} />)
       )}
     </div>
   );

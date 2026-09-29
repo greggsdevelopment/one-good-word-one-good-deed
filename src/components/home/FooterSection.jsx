@@ -22,10 +22,11 @@ export default function FooterSection({ logoUrl }) {
     { label: 'Our Story', to: '/stories' },
     { label: 'Events', to: '/events' },
     { label: 'Resources', to: '/resources' },
-    { label: 'Sponsor Hall of Fame', to: '/hall-of-fame' },
+    { label: 'Donate Items', to: '/donate#give-items' },
+    { label: 'Give Money', to: '/donate#give-money' },
     { label: 'Become a Sponsor', to: '/sponsorship' },
+    { label: 'Sponsor Hall of Fame', to: '/hall-of-fame' },
     { label: 'Contact', to: '/contact' },
-    { label: 'Donate', to: '/donate' },
   ];
 
   return (

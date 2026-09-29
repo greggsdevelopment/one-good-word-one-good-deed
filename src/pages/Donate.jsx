@@ -1,17 +1,33 @@
-import { Link } from 'react-router-dom';
+import { useEffect } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import { ArrowLeft } from 'lucide-react';
 
 import DonateHero from '@/components/donate/DonateHero';
 import WhyWeNeedSupport from '@/components/donate/WhyWeNeedSupport';
 import ItemDonationForm from '@/components/donate/ItemDonationForm';
 import MoneyDonation from '@/components/donate/MoneyDonation';
-import { useDonationSettings } from '@/lib/donations';
+import { useDonationNeeds, useDonationSettings } from '@/lib/donations';
 
 export default function Donate() {
-  const { settings, isLoading } = useDonationSettings();
+  const { settings, isLoading: settingsLoading } = useDonationSettings();
+  const { data: needs = [], isLoading: needsLoading } = useDonationNeeds();
+  const { hash } = useLocation();
+  const isLoading = settingsLoading || needsLoading;
+
   const itemsOpen = settings.item_donations_enabled;
   const moneyOpen = settings.money_donations_enabled;
   const anyOpen = itemsOpen || moneyOpen;
+
+  // Nav links like /donate#give-items arrive while the spinner is still up,
+  // so scroll once the page has actually rendered.
+  useEffect(() => {
+    if (isLoading || !hash) return;
+    const id = decodeURIComponent(hash.slice(1));
+    const timer = window.setTimeout(() => {
+      document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 80);
+    return () => window.clearTimeout(timer);
+  }, [isLoading, hash]);
 
   return (
     <div className="min-h-screen bg-ink">
@@ -48,7 +64,7 @@ export default function Donate() {
               </section>
             )}
 
-            {itemsOpen && <ItemDonationForm settings={settings} />}
+            {itemsOpen && <ItemDonationForm settings={settings} needs={needs} />}
             {anyOpen && <WhyWeNeedSupport />}
             {moneyOpen && <MoneyDonation gofundmeUrl={settings.gofundme_url} />}
 

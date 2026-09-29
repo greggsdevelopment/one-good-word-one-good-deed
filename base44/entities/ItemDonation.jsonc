@@ -19,8 +19,10 @@
       "items": {
         "type": "object",
         "properties": {
+          "need_id": { "type": "string", "description": "DonationNeed id, or 'other' for an off-list item" },
+          "name": { "type": "string", "description": "Need name at the time of the offer" },
           "category": { "type": "string" },
-          "description": { "type": "string" },
+          "description": { "type": "string", "description": "Donor's detail, e.g. sizes" },
           "quantity": { "type": "number" },
           "condition": { "type": "string" }
         }

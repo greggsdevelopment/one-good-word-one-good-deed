@@ -25,13 +25,18 @@ const NAV_GROUPS = [
     ],
   },
   {
-    label: 'Sponsors',
+    label: 'Support',
     links: [
-      { label: 'Hall of Fame', to: '/hall-of-fame' },
+      { label: 'Donate Items', to: '/donate#give-items' },
+      { label: 'Give Money', to: '/donate#give-money' },
       { label: 'Become a Sponsor', to: '/sponsorship' },
+      { label: 'Sponsor Hall of Fame', to: '/hall-of-fame' },
     ],
   },
 ];
+
+// Dropdown links may carry a hash; compare on the path alone.
+const linkPath = (to) => to.split('#')[0];
 
 function NavLink({ to, children, active }) {
   return (
@@ -100,7 +105,7 @@ export default function StickyNav({ logoUrl }) {
   const toggleMobileGroup = (label) =>
     setMobileOpenGroup((prev) => (prev === label ? null : label));
 
-  const groupActive = (group) => group.links.some((l) => l.to === pathname);
+  const groupActive = (group) => group.links.some((l) => linkPath(l.to) === pathname);
 
   return (
     <header
@@ -172,7 +177,7 @@ export default function StickyNav({ logoUrl }) {
                           to={link.to}
                           onClick={() => setOpenGroup(null)}
                           className={`block px-4 py-2 text-sm transition-colors ${
-                            pathname === link.to
+                            linkPath(link.to) === pathname
                               ? 'text-gold bg-gold/10'
                               : 'text-cream/70 hover:bg-gold/10 hover:text-gold'
                           }`}

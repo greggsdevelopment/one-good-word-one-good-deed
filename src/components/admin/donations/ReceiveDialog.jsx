@@ -7,28 +7,29 @@ import { itemLabel, receiveDonation } from './inventoryOps';
 
 const label = 'font-barlow-condensed text-[11px] uppercase tracking-wider text-ash block mb-1';
 
-function guessTarget(line, inventory) {
-  const name = (line.description || line.category).trim().toLowerCase();
-  const exact = inventory.find(
-    (it) => it.category === line.category && (it.name || '').trim().toLowerCase() === name,
-  );
+function guessTarget(line, inventory, needs) {
+  const need = needs.find((n) => n.id === line.need_id);
+  if (need?.inventory_item_id && inventory.some((it) => it.id === need.inventory_item_id)) return need.inventory_item_id;
+  const name = (line.name || line.description || line.category || '').trim().toLowerCase();
+  const exact = inventory.find((it) => (it.name || '').trim().toLowerCase() === name);
   return exact ? exact.id : 'new';
 }
 
-export default function ReceiveDialog({ donation, inventory, recordedBy, onClose, onDone }) {
+export default function ReceiveDialog({ donation, inventory, needs = [], recordedBy, onClose, onDone }) {
   const initial = useMemo(
     () =>
       (donation.items || []).map((line) => ({
         include: true,
-        target: guessTarget(line, inventory),
-        name: line.description || line.category,
+        target: guessTarget(line, inventory, needs),
+        name: line.name || line.description || line.category,
         category: line.category,
         condition: line.condition,
-        size: '',
+        size: line.need_id === 'other' ? '' : line.description || '',
         quantity: line.quantity,
         offered: line.quantity,
+        offList: line.need_id === 'other',
       })),
-    [donation, inventory],
+    [donation, inventory, needs],
   );
   const [lines, setLines] = useState(initial);
   const [saving, setSaving] = useState(false);
@@ -65,8 +66,9 @@ export default function ReceiveDialog({ donation, inventory, recordedBy, onClose
             <div key={idx} className={`border rounded-sm p-3 ${line.include ? 'border-ink/15 bg-white' : 'border-ink/5 bg-ink/[0.02] opacity-60'}`}>
               <label className="flex items-center gap-2 font-barlow text-sm font-semibold text-ink mb-3">
                 <input type="checkbox" checked={line.include} onChange={(e) => update(idx, { include: e.target.checked })} />
-                {line.offered} x {line.category}
-                {line.name && line.name !== line.category ? ` (${line.name})` : ''} · {line.condition}
+                {line.offered} x {line.name}
+                {line.size ? ` (${line.size})` : ''} · {line.condition}
+                {line.offList && <span className="ml-1 text-[10px] font-barlow-condensed uppercase tracking-wider bg-amber-100 text-amber-800 rounded-full px-2 py-0.5">not on list</span>}
               </label>
               {line.include && (
                 <div className="grid grid-cols-12 gap-3">

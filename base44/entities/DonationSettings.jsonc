@@ -22,12 +22,17 @@
       "default": 50,
       "description": "Straight-line pickup radius in miles, measured from Westland, MI"
     },
-    "needs": {
+    "allow_other_items": {
+      "type": "boolean",
+      "default": false,
+      "description": "When true the form has a 'something not on the list' line. When false donors can only pick from DonationNeed items."
+    },
+    "not_accepted": {
       "type": "array",
       "items": {
         "type": "string"
       },
-      "description": "What we need most right now, shown on /donate"
+      "description": "What we can't take, shown on /donate"
     },
     "dropoff_instructions": {
       "type": "string",

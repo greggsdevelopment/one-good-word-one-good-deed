@@ -6,6 +6,9 @@
  *
  * - Refuses everything when DonationSettings.item_donations_enabled is false.
  * - Refuses pickups when DonationSettings.pickup_enabled is false.
+ * - Only takes items on the DonationNeed list with status 'open', in a
+ *   condition that need accepts, up to that need's per-donation cap. Off-list
+ *   items are refused unless DonationSettings.allow_other_items is true.
  * - Geocodes pickup addresses (US Census first, OpenStreetMap Nominatim as a
  *   fallback) and refuses anything farther than pickup_radius_miles
  *   (default 50) in a straight line from Westland, MI.
@@ -15,7 +18,7 @@
  * Request (POST, JSON):
  *   { donor_name, email, phone, delivery_method: 'pickup' | 'dropoff',
  *     address_line, city, state, zip, pickup_window, notes,
- *     items: [{ category, description, quantity, condition }],
+ *     items: [{ need_id, description, quantity, condition }],
  *     website (honeypot, must be empty), check_only?: boolean }
  * Responses:
  *   200 { success: true, id }                 created
@@ -113,6 +116,15 @@ async function loadSettings(base44: any): Promise<any> {
   }
 }
 
+async function loadNeeds(base44: any): Promise<any[]> {
+  try {
+    const rows = await base44.asServiceRole.entities.DonationNeed.list('sort_order', 500);
+    return Array.isArray(rows) ? rows : [];
+  } catch {
+    return [];
+  }
+}
+
 async function notify(base44: any, record: any): Promise<boolean> {
   try {
     const { accessToken } = await base44.asServiceRole.connectors.getConnection('gmail');
@@ -152,6 +164,7 @@ Deno.serve(async (req: Request) => {
   const settings = await loadSettings(base44);
   const itemsEnabled = settings.item_donations_enabled !== false;
   const pickupEnabled = settings.pickup_enabled !== false;
+  const allowOther = settings.allow_other_items === true;
   const radius = radiusFrom(settings);
 
   if (!itemsEnabled) {
@@ -163,7 +176,8 @@ Deno.serve(async (req: Request) => {
     return json({ success: true, id: null });
   }
 
-  const checked = validateSubmission(body, { pickupEnabled });
+  const needs = await loadNeeds(base44);
+  const checked = validateSubmission(body, { pickupEnabled, allowOther, needs });
   if (!checked.ok) {
     const code = checked.field === 'delivery_method' && body?.delivery_method === 'pickup' && !pickupEnabled ? 403 : 400;
     return json({ error: code === 403 ? 'pickup_closed' : 'invalid', field: checked.field, message: checked.message }, code);
