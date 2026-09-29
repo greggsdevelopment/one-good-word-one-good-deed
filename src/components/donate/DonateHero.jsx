@@ -36,7 +36,7 @@ export default function DonateHero({ itemsOpen, moneyOpen }) {
           className="font-barlow text-cream/60 text-lg max-w-2xl mx-auto mb-4 leading-relaxed"
         >
           Kids get picked on for what they do not have. A backpack, a warm coat, a clean shirt, supplies on the
-          first day. Give the things families need, or give money that keeps the program in schools.
+          first day. Give the things families need, or donate funds that keep the program in schools.
         </motion.p>
         <motion.p
           initial={{ opacity: 0 }}
@@ -58,7 +58,7 @@ export default function DonateHero({ itemsOpen, moneyOpen }) {
             {itemsOpen && (
               <button
                 type="button"
-                onClick={() => scrollTo('give-items')}
+                onClick={() => scrollTo('donate-items')}
                 className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-gold hover:bg-gold-dark text-ink font-barlow-condensed font-bold text-lg uppercase tracking-wider rounded-sm transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-gold/20"
               >
                 <Backpack className="w-5 h-5" /> Donate Items
@@ -67,14 +67,14 @@ export default function DonateHero({ itemsOpen, moneyOpen }) {
             {moneyOpen && (
               <button
                 type="button"
-                onClick={() => scrollTo('give-money')}
+                onClick={() => scrollTo('donate-funds')}
                 className={`inline-flex items-center justify-center gap-2 px-8 py-4 font-barlow-condensed font-bold text-lg uppercase tracking-wider rounded-sm transition-all duration-300 hover:-translate-y-0.5 ${
                   itemsOpen
                     ? 'border border-gold/40 text-gold hover:bg-gold/10'
                     : 'bg-gold hover:bg-gold-dark text-ink hover:shadow-lg hover:shadow-gold/20'
                 }`}
               >
-                <HeartHandshake className="w-5 h-5" /> Give Money
+                <HeartHandshake className="w-5 h-5" /> Donate Funds
               </button>
             )}
           </motion.div>

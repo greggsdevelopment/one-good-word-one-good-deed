@@ -9,6 +9,8 @@ export const ITEM_CATEGORIES = [
   'Shoes',
   'Coats and winter gear',
   'Hygiene and personal care',
+  'Baby and toddler',
+  'Blankets and bedding',
   'Books',
   'Toys and games',
   'Other',

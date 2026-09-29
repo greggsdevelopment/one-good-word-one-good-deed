@@ -12,6 +12,8 @@ export const ITEM_CATEGORIES = [
   'Shoes',
   'Coats and winter gear',
   'Hygiene and personal care',
+  'Baby and toddler',
+  'Blankets and bedding',
   'Books',
   'Toys and games',
   'Other',
@@ -97,13 +99,55 @@ export function useDonationNeeds() {
 }
 
 // A sensible first list. The admin can add it with one click and edit from there.
+// Kept to what a kid or a family in a rough spot actually uses, with the
+// conditions strict enough that nobody can unload a closet on us.
+const N = ['New'];
+const NL = ['New', 'Like new'];
+const NLG = ['New', 'Like new', 'Gently used'];
 export const STARTER_NEEDS = [
-  { name: 'Backpacks', category: 'Backpacks', details: 'Kids and teen sizes. Zippers and straps must work.', accepted_conditions: ['New', 'Like new'], max_per_donation: 20, target_quantity: 50, sort_order: 10 },
-  { name: 'Notebooks, folders and paper', category: 'School supplies', details: 'Unused.', accepted_conditions: ['New'], max_per_donation: 100, target_quantity: 200, sort_order: 20 },
-  { name: 'Pencils, pens, crayons and markers', category: 'School supplies', details: 'Unopened packs.', accepted_conditions: ['New'], max_per_donation: 100, target_quantity: 200, sort_order: 30 },
-  { name: 'Socks and underwear (kids sizes)', category: 'Clothing', details: 'New in the package only.', accepted_conditions: ['New'], max_per_donation: 50, target_quantity: 100, sort_order: 40 },
-  { name: 'Coats, hats and gloves (kids sizes)', category: 'Coats and winter gear', details: 'Clean, with working zippers and buttons.', accepted_conditions: ['New', 'Like new'], max_per_donation: 20, target_quantity: 50, sort_order: 50 },
-  { name: 'Deodorant, toothbrushes and toothpaste', category: 'Hygiene and personal care', details: 'Unopened only.', accepted_conditions: ['New'], max_per_donation: 50, target_quantity: 100, sort_order: 60 },
-  { name: 'Shoes (kids sizes)', category: 'Shoes', details: 'Clean pairs, no holes.', accepted_conditions: ['New', 'Like new'], max_per_donation: 20, target_quantity: 40, sort_order: 70 },
-  { name: 'Books for kids and teens', category: 'Books', details: 'Complete, no torn or missing pages.', accepted_conditions: ['New', 'Like new', 'Gently used'], max_per_donation: 40, target_quantity: 100, sort_order: 80 },
+  // Backpacks
+  { name: 'Backpacks (kids and teen sizes)', category: 'Backpacks', details: 'Zippers and straps must work. No rips.', accepted_conditions: NL, max_per_donation: 20, target_quantity: 50, sort_order: 10 },
+
+  // School supplies
+  { name: 'Notebooks, folders and loose-leaf paper', category: 'School supplies', details: 'Unused.', accepted_conditions: N, max_per_donation: 100, target_quantity: 200, sort_order: 20 },
+  { name: 'Pencils, pens, crayons, markers and colored pencils', category: 'School supplies', details: 'Unopened packs.', accepted_conditions: N, max_per_donation: 100, target_quantity: 200, sort_order: 21 },
+  { name: 'Binders and pencil cases', category: 'School supplies', details: 'Clean. Binder rings must close.', accepted_conditions: NL, max_per_donation: 40, target_quantity: 80, sort_order: 22 },
+  { name: 'Glue sticks, scissors, rulers, erasers and highlighters', category: 'School supplies', details: 'Unopened.', accepted_conditions: N, max_per_donation: 100, target_quantity: 150, sort_order: 23 },
+  { name: 'Calculators (basic or scientific)', category: 'School supplies', details: 'Working, with the cover if it came with one.', accepted_conditions: NL, max_per_donation: 20, target_quantity: 30, sort_order: 24 },
+  { name: 'Lunch boxes and water bottles', category: 'School supplies', details: 'New only, for hygiene.', accepted_conditions: N, max_per_donation: 30, target_quantity: 60, sort_order: 25 },
+  { name: 'Headphones or earbuds for school', category: 'School supplies', details: 'New in package. Many schools require them.', accepted_conditions: N, max_per_donation: 20, target_quantity: 40, sort_order: 26 },
+
+  // Clothing
+  { name: 'Socks and underwear (kids sizes)', category: 'Clothing', details: 'New in the package only.', accepted_conditions: N, max_per_donation: 50, target_quantity: 100, sort_order: 30 },
+  { name: 'Shirts, pants and sweatshirts (kids sizes)', category: 'Clothing', details: 'Clean, no stains, rips or missing buttons. Tell us the sizes.', accepted_conditions: NL, max_per_donation: 30, target_quantity: 100, sort_order: 31 },
+  { name: 'School uniform polos and khakis (kids sizes)', category: 'Clothing', details: 'Clean, no stains. Tell us the sizes.', accepted_conditions: NL, max_per_donation: 20, target_quantity: 40, sort_order: 32 },
+  { name: 'Pajamas (kids sizes)', category: 'Clothing', details: 'Clean, no stains. Tell us the sizes.', accepted_conditions: NL, max_per_donation: 20, target_quantity: 40, sort_order: 33 },
+
+  // Shoes
+  { name: 'Sneakers (kids sizes)', category: 'Shoes', details: 'Clean pairs, no holes, laces included. Tell us the sizes.', accepted_conditions: NL, max_per_donation: 20, target_quantity: 40, sort_order: 40 },
+  { name: 'Winter boots (kids sizes)', category: 'Shoes', details: 'Clean, dry, soles intact. Tell us the sizes.', accepted_conditions: NL, max_per_donation: 20, target_quantity: 40, sort_order: 41 },
+
+  // Coats and winter gear
+  { name: 'Winter coats (kids sizes)', category: 'Coats and winter gear', details: 'Clean, zippers and buttons working. Tell us the sizes.', accepted_conditions: NL, max_per_donation: 20, target_quantity: 50, sort_order: 50 },
+  { name: 'Hats, gloves and scarves', category: 'Coats and winter gear', details: 'Clean, no holes.', accepted_conditions: NL, max_per_donation: 50, target_quantity: 100, sort_order: 51 },
+
+  // Hygiene and personal care
+  { name: 'Deodorant, toothbrushes and toothpaste', category: 'Hygiene and personal care', details: 'Unopened only.', accepted_conditions: N, max_per_donation: 50, target_quantity: 100, sort_order: 60 },
+  { name: 'Shampoo, conditioner, soap and body wash', category: 'Hygiene and personal care', details: 'Unopened only. Full size or travel size.', accepted_conditions: N, max_per_donation: 50, target_quantity: 100, sort_order: 61 },
+  { name: 'Pads and tampons', category: 'Hygiene and personal care', details: 'Unopened boxes or packs.', accepted_conditions: N, max_per_donation: 50, target_quantity: 100, sort_order: 62 },
+  { name: 'Hair brushes, combs and hair ties', category: 'Hygiene and personal care', details: 'New in package.', accepted_conditions: N, max_per_donation: 50, target_quantity: 100, sort_order: 63 },
+
+  // Baby and toddler
+  { name: 'Diapers and baby wipes', category: 'Baby and toddler', details: 'Unopened packs, any size. Tell us the size.', accepted_conditions: N, max_per_donation: 50, target_quantity: 100, sort_order: 70 },
+
+  // Blankets and bedding
+  { name: 'Blankets and throws', category: 'Blankets and bedding', details: 'New only.', accepted_conditions: N, max_per_donation: 20, target_quantity: 40, sort_order: 80 },
+
+  // Books
+  { name: 'Books for kids and teens', category: 'Books', details: 'Complete, no torn or missing pages.', accepted_conditions: NLG, max_per_donation: 40, target_quantity: 100, sort_order: 90 },
+
+  // Toys and games
+  { name: 'Toys for giveaways', category: 'Toys and games', details: 'New in package only. These go straight into treat bags and community giveaways.', accepted_conditions: N, max_per_donation: 30, target_quantity: 100, sort_order: 100 },
+  { name: 'Board games and puzzles', category: 'Toys and games', details: 'All pieces included.', accepted_conditions: NL, max_per_donation: 10, target_quantity: 20, sort_order: 101 },
+  { name: 'Sports balls and outdoor play gear', category: 'Toys and games', details: 'Clean and working. Balls must hold air.', accepted_conditions: NL, max_per_donation: 10, target_quantity: 20, sort_order: 102 },
 ];

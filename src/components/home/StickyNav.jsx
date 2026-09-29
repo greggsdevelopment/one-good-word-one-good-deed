@@ -27,8 +27,8 @@ const NAV_GROUPS = [
   {
     label: 'Support',
     links: [
-      { label: 'Donate Items', to: '/donate#give-items' },
-      { label: 'Give Money', to: '/donate#give-money' },
+      { label: 'Donate Items', to: '/donate#donate-items' },
+      { label: 'Donate Funds', to: '/donate#donate-funds' },
       { label: 'Become a Sponsor', to: '/sponsorship' },
       { label: 'Sponsor Hall of Fame', to: '/hall-of-fame' },
     ],

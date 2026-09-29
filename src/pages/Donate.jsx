@@ -18,7 +18,7 @@ export default function Donate() {
   const moneyOpen = settings.money_donations_enabled;
   const anyOpen = itemsOpen || moneyOpen;
 
-  // Nav links like /donate#give-items arrive while the spinner is still up,
+  // Nav links like /donate#donate-items arrive while the spinner is still up,
   // so scroll once the page has actually rendered.
   useEffect(() => {
     if (isLoading || !hash) return;
@@ -70,7 +70,7 @@ export default function Donate() {
 
             <section className="px-6 pb-16 pt-4">
               <p className="max-w-2xl mx-auto font-barlow text-cream/35 text-xs leading-relaxed text-center">
-                One Good Word...One Good Deed is a Michigan LLC, not a registered 501(c)(3). Gifts of money or
+                One Good Word...One Good Deed is a Michigan LLC, not a registered 501(c)(3). Donations of funds or
                 items are not tax deductible as charitable contributions.
               </p>
             </section>

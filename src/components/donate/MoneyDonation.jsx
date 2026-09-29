@@ -13,7 +13,7 @@ export default function MoneyDonation({ gofundmeUrl }) {
   const [ref, inView] = useInView(0.1);
 
   return (
-    <section id="give-money" ref={ref} className="relative bg-ink py-24 px-6 scroll-mt-16">
+    <section id="donate-funds" ref={ref} className="relative bg-ink py-24 px-6 scroll-mt-16">
       <div className="max-w-3xl mx-auto text-center">
         <motion.p
           initial={{ opacity: 0, y: 16 }}
@@ -21,7 +21,7 @@ export default function MoneyDonation({ gofundmeUrl }) {
           transition={{ duration: 0.6 }}
           className="font-barlow-condensed text-gold text-xs tracking-[0.3em] uppercase mb-3"
         >
-          Give Money
+          Donate Funds
         </motion.p>
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
@@ -37,7 +37,7 @@ export default function MoneyDonation({ gofundmeUrl }) {
           transition={{ duration: 0.6, delay: 0.1 }}
           className="font-barlow text-cream/55 text-lg leading-relaxed mb-8"
         >
-          Money gifts go through our GoFundMe and pay for the work that keeps this moving:
+          Financial gifts go through our GoFundMe and pay for the work that keeps this moving:
         </motion.p>
 
         <motion.ul
@@ -65,7 +65,7 @@ export default function MoneyDonation({ gofundmeUrl }) {
           rel="noopener noreferrer"
           className="inline-flex items-center justify-center gap-2 px-10 py-4 bg-gold hover:bg-gold-dark text-ink font-barlow-condensed font-bold text-lg uppercase tracking-wider rounded-sm transition-all hover:-translate-y-0.5 hover:shadow-lg hover:shadow-gold/20"
         >
-          Give on GoFundMe <ExternalLink className="w-4 h-4" />
+          Donate on GoFundMe <ExternalLink className="w-4 h-4" />
         </motion.a>
       </div>
     </section>

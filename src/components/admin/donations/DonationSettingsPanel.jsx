@@ -113,8 +113,8 @@ export default function DonationSettingsPanel({ settings, onSaved }) {
         <Toggle
           checked={!!form.money_donations_enabled}
           onChange={flip('money_donations_enabled')}
-          title="Show money donations (GoFundMe)"
-          body="Shows the Give Money section on /donate."
+          title="Show fund donations (GoFundMe)"
+          body="Shows the Donate Funds section on /donate."
         />
       </div>
 

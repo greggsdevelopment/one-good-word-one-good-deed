@@ -80,7 +80,7 @@ export default function ItemDonationForm({ settings, needs = [] }) {
       const data = response?.data ?? response;
       if (data?.success) {
         setSubmitted(true);
-        document.getElementById('give-items')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        document.getElementById('donate-items')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
       } else {
         setError({ message: data?.message || 'Something went wrong. Please try again.' });
       }
@@ -104,7 +104,7 @@ export default function ItemDonationForm({ settings, needs = [] }) {
 
   if (submitted) {
     return (
-      <section id="give-items" className="relative bg-cream py-24 px-6 scroll-mt-16">
+      <section id="donate-items" className="relative bg-cream py-24 px-6 scroll-mt-16">
         <div className="max-w-2xl mx-auto text-center">
           <CheckCircle className="w-16 h-16 text-gold-dark mx-auto mb-6" />
           <h2 className="font-anton text-ink text-4xl sm:text-5xl mb-4">THANK YOU. WE'LL BE IN TOUCH.</h2>
@@ -127,7 +127,7 @@ export default function ItemDonationForm({ settings, needs = [] }) {
   }
 
   return (
-    <section id="give-items" ref={ref} className="relative bg-cream py-24 px-6 scroll-mt-16">
+    <section id="donate-items" ref={ref} className="relative bg-cream py-24 px-6 scroll-mt-16">
       <div className="max-w-4xl mx-auto">
         <motion.p
           initial={{ opacity: 0, y: 16 }}
@@ -202,7 +202,7 @@ export default function ItemDonationForm({ settings, needs = [] }) {
           <div className="bg-white border border-ink/10 rounded-sm p-8 text-center">
             <p className="font-barlow text-ink/70 text-lg leading-relaxed">
               Our list is empty right now, so we are not taking item offers at the moment. Check back soon, or
-              give money below to keep the program in schools.
+              donate funds below to keep the program in schools.
             </p>
           </div>
         ) : (

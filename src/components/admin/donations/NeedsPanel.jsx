@@ -66,7 +66,6 @@ function NeedDialog({ need, inventory, onClose, onSaved }) {
           condition: form.accepted_conditions[0],
           quantity_on_hand: 0,
           unit: 'each',
-          target_quantity: num(form.target_quantity),
           active: true,
         });
         inventoryId = created.id;
@@ -198,7 +197,6 @@ export default function NeedsPanel({ needs, inventory, onChange }) {
           condition: n.accepted_conditions[0],
           quantity_on_hand: 0,
           unit: 'each',
-          target_quantity: n.target_quantity,
           active: true,
         });
         await base44.entities.DonationNeed.create({ ...n, status: 'open', inventory_item_id: created.id });
