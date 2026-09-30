@@ -149,6 +149,10 @@
       "type": "string",
       "format": "date-time",
       "description": "ISO timestamp set by the backend after the notification email is sent"
+    },
+    "school_id": {
+      "type": "string",
+      "description": "School partner this booking belongs to (links it to the school portal)"
     }
   },
   "required": [

@@ -9,12 +9,12 @@ import { getHumanToken } from '@/lib/turnstile';
  * Returns { id, reference? } on success; throws an Error whose message is safe
  * to show the visitor on failure.
  */
-export async function submitForm(form, data, { honeypot = '' } = {}) {
+export async function submitForm(form, data, { honeypot = '', device } = {}) {
   // Runs Cloudflare's bot check first; throws a readable error if it fails.
   const turnstile_token = await getHumanToken(`form-${form}`);
   let response;
   try {
-    response = await base44.functions.invoke('submitForm', { form, data, website: honeypot, turnstile_token });
+    response = await base44.functions.invoke('submitForm', { form, data, website: honeypot, turnstile_token, device });
   } catch (err) {
     const payload = err?.response?.data || err?.data || {};
     const error = new Error(

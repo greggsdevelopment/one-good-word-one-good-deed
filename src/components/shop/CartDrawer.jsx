@@ -24,6 +24,7 @@ export default function CartDrawer({ open, onClose, cart, onUpdateQty, onRemove,
             animate={{ x: 0 }}
             exit={{ x: '100%' }}
             transition={{ type: 'spring', damping: 30, stiffness: 300 }}
+            style={{ paddingTop: 'var(--safe-top)', paddingBottom: 'var(--safe-bottom)' }}
             className="fixed right-0 top-0 bottom-0 z-50 w-full max-w-md bg-[#0f0f12] border-l border-white/[0.08] flex flex-col"
           >
             {/* Header */}

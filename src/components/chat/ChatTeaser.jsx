@@ -38,7 +38,7 @@ export default function ChatTeaser({ show, text, chips = [], onOpen, onChip, onC
       {show && text && (
         <motion.div
           className="ogw-chat-teaser fixed right-4 sm:right-6 z-[71] w-[min(300px,calc(100vw-2rem))] origin-bottom-right"
-          style={{ bottom: 'calc(5.5rem + env(safe-area-inset-bottom, 0px) + var(--chat-lift, 0px))' }}
+          style={{ bottom: 'calc(5.5rem + max(var(--tabbar-h, 0px), env(safe-area-inset-bottom, 0px)) + var(--chat-lift, 0px))' }}
           initial={{ opacity: 0, scale: 0.5, y: 30, rotate: 4 }}
           animate={{ opacity: 1, scale: 1, y: 0, rotate: 0 }}
           exit={{ opacity: 0, scale: 0.7, y: 20, transition: { duration: 0.2 } }}

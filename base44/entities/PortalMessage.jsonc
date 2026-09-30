@@ -1,0 +1,73 @@
+{
+  "name": "PortalMessage",
+  "type": "object",
+  "description": "Conversation between a school and our team.",
+  "properties": {
+    "school_id": {
+      "type": "string",
+      "description": "School"
+    },
+    "author": {
+      "type": "string",
+      "description": "Who wrote it",
+      "enum": [
+        "school",
+        "ogwogd"
+      ]
+    },
+    "author_name": {
+      "type": "string",
+      "description": "Name shown"
+    },
+    "author_email": {
+      "type": "string",
+      "description": "Email of the writer"
+    },
+    "body": {
+      "type": "string",
+      "description": "Message"
+    },
+    "topic": {
+      "type": "string",
+      "description": "general, schedule, billing, documents",
+      "default": "general"
+    },
+    "read_by_ogwogd": {
+      "type": "boolean",
+      "description": "Our team has seen it",
+      "default": false
+    },
+    "read_by_school": {
+      "type": "boolean",
+      "description": "The school has seen it",
+      "default": false
+    }
+  },
+  "required": [
+    "school_id",
+    "author",
+    "body"
+  ],
+  "rls": {
+    "create": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "read": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "name": "BlockedSubmitter",
+  "type": "object",
+  "description": "Anyone with this tag can no longer post to the Pledge Wall.",
+  "properties": {
+    "tag": {
+      "type": "string",
+      "description": "Anonymous submitter tag shown on their pledges"
+    },
+    "reason": {
+      "type": "string",
+      "description": "Why they were blocked"
+    }
+  },
+  "required": [
+    "tag"
+  ],
+  "rls": {
+    "create": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "read": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}

@@ -3,7 +3,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import { base44 } from '@/api/base44Client';
 import {
-  INTENT_LABELS, clearSession, flag, intentForText, loadSession, localCrisisMessage, pageContext, rateMessage, saveSession, sendChatMessage, sendHandoff, setFlag,
+  INTENT_LABELS, aiConsented, clearSession, flag, giveAiConsent, intentForText, loadSession, localCrisisMessage, pageContext, rateMessage, saveSession, sendChatMessage, sendHandoff, setFlag,
 } from '@/lib/chat';
 import ChatLauncher from './ChatLauncher';
 import ChatTeaser from './ChatTeaser';
@@ -75,6 +75,8 @@ export default function SupportChat() {
   const [state, dispatch] = useReducer(reducer, initial);
   const [teaser, setTeaser] = useState(false);
   const [everOpened, setEverOpened] = useState(false);
+  // A typed question waiting for the visitor's okay to use AI.
+  const [pendingConsent, setPendingConsent] = useState(null);
   const openRef = useRef(open);
   openRef.current = open;
   const stateRef = useRef(state);
@@ -167,6 +169,12 @@ export default function SupportChat() {
       const intent = input.intent || intentForText(input.text);
       const text = intent ? '' : String(input.text || '').trim();
       if (!intent && !text) return;
+      // Typed questions go to an AI service, so ask once first. Quick buttons and
+      // anything that looks like a crisis never reach the AI and skip this.
+      if (!intent && !retried && !resend && !aiConsented() && !localCrisisMessage(text)) {
+        setPendingConsent({ text });
+        return;
+      }
       const localId = uid();
       const gen = generation.current;
       if (!retried && !resend) {
@@ -224,6 +232,20 @@ export default function SupportChat() {
     rateMessage(stateRef.current, id, value).catch(() => {});
   }, []);
 
+  const acceptConsent = useCallback(() => {
+    giveAiConsent();
+    const input = pendingConsent;
+    setPendingConsent(null);
+    if (input) send(input);
+  }, [pendingConsent, send]);
+
+  const declineConsent = useCallback(() => {
+    setPendingConsent(null);
+    send({ intent: 'talk_person' });
+  }, [send]);
+
+  const cancelConsent = useCallback(() => setPendingConsent(null), []);
+
   const reset = useCallback(() => {
     generation.current += 1;
     clearSession();
@@ -278,6 +300,10 @@ export default function SupportChat() {
             onRate={rate}
             onReset={reset}
             onNavigate={go}
+            consent={pendingConsent}
+            onConsent={acceptConsent}
+            onDeclineConsent={declineConsent}
+            onCancelConsent={cancelConsent}
           />
         )}
       </Suspense>

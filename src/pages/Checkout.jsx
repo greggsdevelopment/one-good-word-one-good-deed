@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react';
-import { Link, useLocation, useNavigate, useSearchParams } from 'react-router-dom';
+import { Link, useLocation, useSearchParams } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ArrowLeft, Package, Mail, CreditCard, Loader2, CheckCircle, AlertCircle } from 'lucide-react';
 import { base44 } from '@/api/base44Client';
 import { ORDER_EMAIL } from '@/lib/shop-config';
 import { getHumanToken } from '@/lib/turnstile';
+import BackButton from '@/components/app/BackButton';
 
 // This page never creates an Order record and never decides a price. When card
 // payment is on, it sends { id, size, quantity } to the createCheckout function,
@@ -15,7 +16,6 @@ import { getHumanToken } from '@/lib/turnstile';
 
 export default function Checkout() {
   const location = useLocation();
-  const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const [starting, setStarting] = useState(false);
   const [payError, setPayError] = useState('');
@@ -141,11 +141,9 @@ export default function Checkout() {
       <div className="grain-overlay fixed inset-0 pointer-events-none z-0" style={{ opacity: 0.07 }} />
 
       {/* Header */}
-      <header className="sticky top-0 z-50 bg-ink/95 backdrop-blur-md border-b border-white/[0.06]">
+      <header className="sticky top-0 sticky-safe z-50 bg-ink/95 backdrop-blur-md border-b border-white/[0.06]">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 flex items-center gap-4 h-16">
-          <button onClick={() => navigate(-1)} className="text-cream/50 hover:text-gold transition-colors">
-            <ArrowLeft className="w-5 h-5" />
-          </button>
+          <BackButton fallback="/shop" label="" className="text-cream/50" />
           <h1 className="font-anton text-cream text-lg tracking-wider">CHECKOUT</h1>
         </div>
       </header>

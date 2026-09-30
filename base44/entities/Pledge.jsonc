@@ -27,6 +27,19 @@
       "type": "string",
       "format": "date-time",
       "description": "ISO timestamp set by the backend after the notification email is sent"
+    },
+    "submitter_tag": {
+      "type": "string",
+      "description": "Anonymous tag (from a one-way hash) so viewers can block and we can ban a submitter without storing who they are"
+    },
+    "hidden_reason": {
+      "type": "string",
+      "description": "Why an approved pledge was taken down, like reported"
+    },
+    "reported_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When it was last reported"
     }
   },
   "required": [

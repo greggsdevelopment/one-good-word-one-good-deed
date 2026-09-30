@@ -1,10 +1,13 @@
-import { Suspense, lazy, useEffect } from 'react';
+import { Suspense, lazy, useCallback, useEffect, useState } from 'react';
 import { Toaster } from "@/components/ui/toaster"
 import { Toaster as SonnerToaster } from "@/components/ui/sonner"
 import { QueryClientProvider } from '@tanstack/react-query'
 import { queryClientInstance } from '@/lib/query-client'
-import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
-import { MotionConfig } from 'framer-motion';
+import { BrowserRouter as Router, Route, Routes, Navigate, useLocation } from 'react-router-dom';
+import { MotionConfig, motion } from 'framer-motion';
+import { useQueryClient } from '@tanstack/react-query';
+import MobileTabBar from '@/components/app/MobileTabBar';
+import PullToRefresh from '@/components/app/PullToRefresh';
 import { AuthProvider, useAuth } from '@/lib/AuthContext';
 import UserNotRegisteredError from '@/components/UserNotRegisteredError';
 import ProtectedRoute from '@/components/ProtectedRoute';
@@ -17,6 +20,10 @@ import Home from '@/pages/Home';
 // fetched when it is visited, so the landing page is not waiting on 30 pages
 // and the admin (with its charts) it never shows.
 const NotFound = lazy(() => import('@/pages/NotFound'));
+const Account = lazy(() => import('@/pages/Account'));
+const Privacy = lazy(() => import('@/pages/Privacy'));
+const Terms = lazy(() => import('@/pages/Terms'));
+const Portal = lazy(() => import('@/pages/Portal'));
 const RememberDrayke = lazy(() => import('@/pages/RememberDrayke'));
 const Shop = lazy(() => import('@/pages/Shop'));
 const About = lazy(() => import('@/pages/About'));
@@ -53,6 +60,9 @@ const ResetPassword = lazy(() => import('@/pages/ResetPassword'));
 // After the first page settles, quietly fetch the public pages so clicking
 // around still feels instant. Admin and sign-in pages load only on demand.
 const PREFETCH = [
+  () => import('@/pages/Account'),
+  () => import('@/pages/Privacy'),
+  () => import('@/pages/Terms'),
   () => import('@/pages/RememberDrayke'),
   () => import('@/pages/Shop'),
   () => import('@/pages/About'),
@@ -108,8 +118,28 @@ function PageFallback() {
   return <div className="min-h-screen bg-black" aria-busy="true" />;
 }
 
+// Pages whose state lives in the page itself (forms, checkout, sign-in).
+const KEEP_ON_REFRESH = /^\/(login|register|forgot-password|reset-password|checkout|donate|sponsorship|rsvp|contact|pledge-wall|portal|account|admin)(\/|$)/i;
+const hasTypedInput = () =>
+  [...document.querySelectorAll('input, textarea')].some((el) => {
+    const type = (el.getAttribute('type') || 'text').toLowerCase();
+    if (['hidden', 'checkbox', 'radio', 'submit', 'button', 'range', 'file'].includes(type)) return false;
+    // React keeps defaultValue in sync with controlled inputs, so any text counts.
+    return Boolean(el.value && el.value.trim());
+  });
+
 const AuthenticatedApp = () => {
   const { authError } = useAuth();
+  const { pathname } = useLocation();
+  const queryClient = useQueryClient();
+  // Pull to refresh: refetch data and remount the current page.
+  const [refreshKey, setRefreshKey] = useState(0);
+  const refresh = useCallback(async () => {
+    // Never wipe something the visitor is typing or paying for: on those
+    // pages, or with any field filled in, only the data is refreshed.
+    if (!KEEP_ON_REFRESH.test(window.location.pathname) && !hasTypedInput()) setRefreshKey((k) => k + 1);
+    await queryClient.invalidateQueries();
+  }, [queryClient]);
 
   // Public pages draw right away. The app settings and login check finish in
   // the background; only the admin area waits for them (see ProtectedRoute).
@@ -121,7 +151,12 @@ const AuthenticatedApp = () => {
   }
 
   return (
+    <>
+    <PullToRefresh onRefresh={refresh} />
     <Suspense fallback={<PageFallback />}>
+    {/* A quick fade on every screen change. Opacity only: a transform here
+        would break the fixed headers and bars inside each page. */}
+    <motion.div key={`${pathname}:${refreshKey}`} initial={{ opacity: 0.35 }} animate={{ opacity: 1 }} transition={{ duration: 0.22, ease: 'easeOut' }}>
     <Routes>
       {/* Public pages */}
       <Route path="/" element={<Home />} />
@@ -157,6 +192,10 @@ const AuthenticatedApp = () => {
       <Route path="/pledge" element={<Navigate to="/pledge-wall" replace />} />
 
       {/* Auth pages */}
+      <Route path="/account" element={<Account />} />
+      <Route path="/privacy" element={<Privacy />} />
+      <Route path="/terms" element={<Terms />} />
+      <Route path="/portal" element={<Portal />} />
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
       <Route path="/forgot-password" element={<ForgotPassword />} />
@@ -169,7 +208,9 @@ const AuthenticatedApp = () => {
 
       <Route path="*" element={<NotFound />} />
     </Routes>
+    </motion.div>
     </Suspense>
+    </>
   );
 };
 
@@ -183,14 +224,24 @@ function App() {
           <MusicProvider>
             {/* Honors the device's reduce-motion setting for every animation. */}
             <MotionConfig reducedMotion="user">
+              {/* Covers the phone status bar area when the app runs full screen. */}
+              <div aria-hidden="true" className="fixed inset-x-0 top-0 z-[90] bg-black pointer-events-none" style={{ height: 'env(safe-area-inset-top, 0px)' }} />
               <AuthenticatedApp />
               {/* Support assistant bubble, on every public page */}
               <SupportChat />
+              <MobileTabBar />
             </MotionConfig>
           </MusicProvider>
         </Router>
         <Toaster />
-        <SonnerToaster position="bottom-center" richColors closeButton duration={5000} />
+        <SonnerToaster
+          position="bottom-center"
+          richColors
+          closeButton
+          duration={5000}
+          offset={{ bottom: 'calc(16px + var(--tabbar-h, 0px))' }}
+          mobileOffset={{ bottom: 'calc(12px + var(--tabbar-h, 0px))' }}
+        />
       </QueryClientProvider>
     </AuthProvider>
   )

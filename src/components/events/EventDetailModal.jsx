@@ -70,7 +70,7 @@ export default function EventDetailModal({ event, onClose }) {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
-        className="fixed inset-0 z-[9999] flex items-center justify-center p-4"
+        className="fixed inset-0 z-[9999] flex items-center justify-center p-4 pt-[max(1rem,var(--safe-top))] pb-[max(1rem,var(--safe-bottom))]"
       >
         {/* Backdrop */}
         <div className="absolute inset-0 bg-black/80 backdrop-blur-sm" onClick={onClose} />

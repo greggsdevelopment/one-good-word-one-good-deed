@@ -11,7 +11,12 @@ const INTENT_TEXTS = new Set(Object.values(INTENT_LABELS).map((l) => l.toLowerCa
  * The chat window. On a computer it grows out of the bubble in the corner; on
  * a phone it slides up as a full-screen sheet you can drag back down.
  */
-export default function ChatPanel({ open, isPhone, settings, ctx, state, onClose, onSend, onHandoff, onRate, onReset, onNavigate }) {
+export default function ChatPanel({ open, isPhone, settings, ctx, state, onClose, onSend, onHandoff, onRate, onReset, onNavigate, consent, onConsent, onDeclineConsent, onCancelConsent }) {
+  const consentRef = useRef(null);
+  const consentOpen = useRef(false);
+  consentOpen.current = Boolean(consent);
+  const cancelConsent = useRef(onCancelConsent);
+  cancelConsent.current = onCancelConsent;
   const reduce = useReducedMotion();
   // Swipe the header down to close on phones.
   const dragY = useMotionValue(0);
@@ -64,7 +69,11 @@ export default function ChatPanel({ open, isPhone, settings, ctx, state, onClose
   useEffect(() => {
     if (!open) return undefined;
     const onKey = (e) => {
-      if (e.key === 'Escape') onClose();
+      if (e.key === 'Escape') {
+        // First Escape backs out of the AI question; the next one closes the chat.
+        if (consentOpen.current && cancelConsent.current) cancelConsent.current();
+        else onClose();
+      }
       // On a phone the chat is full screen, so keep Tab inside it.
       if (e.key === 'Tab' && isPhone && sectionRef.current) {
         const items = [...sectionRef.current.querySelectorAll('button:not([disabled]), a[href], textarea, input')].filter((el) => el.offsetParent !== null);
@@ -289,6 +298,39 @@ export default function ChatPanel({ open, isPhone, settings, ctx, state, onClose
                 )}
               </div>
             </div>
+
+            {/* Ask before the first typed question goes to AI */}
+            <AnimatePresence>
+              {consent && (
+                <motion.div
+                  key="consent"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: 20 }}
+                  transition={{ type: 'spring', stiffness: 380, damping: 30 }}
+                  className="relative z-20 mx-3 mb-2 rounded-2xl border border-rb-blue/40 bg-[#0d1016] p-4 shadow-2xl shadow-black/60"
+                  ref={consentRef}
+                  role="dialog"
+                  aria-label="Before we answer"
+                  onAnimationComplete={() => consentRef.current?.querySelector('[data-consent-ok]')?.focus({ preventScroll: true })}
+                >
+                  <p className="font-barlow-condensed font-bold uppercase tracking-wider text-sm text-cream">Before we answer</p>
+                  <p className="mt-1 font-barlow text-sm text-cream/90 line-clamp-2 italic">&ldquo;{consent.text}&rdquo;</p>
+                  <p className="mt-1.5 font-barlow text-sm leading-relaxed text-cream/75">
+                    Typed questions are answered by AI. Your message and this conversation are sent through our website platform, Base44, to an AI
+                    model from a provider such as OpenAI, Google or Anthropic, only to write the reply. Please don't share private details. <a href="/privacy#ai" className="underline underline-offset-2">Privacy Policy</a>
+                  </p>
+                  <div className="mt-3 grid grid-cols-2 gap-2">
+                    <button type="button" onClick={onDeclineConsent} className="min-h-[44px] rounded-xl border border-white/15 font-barlow-condensed uppercase tracking-wider text-xs text-cream/80">
+                      Talk to a person
+                    </button>
+                    <button type="button" data-consent-ok onClick={onConsent} className="min-h-[44px] rounded-xl bg-gold text-ink font-barlow-condensed font-bold uppercase tracking-wider text-xs">
+                      OK, answer it
+                    </button>
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
 
             {/* Jump to newest */}
             <AnimatePresence>

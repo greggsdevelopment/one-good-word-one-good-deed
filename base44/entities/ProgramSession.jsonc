@@ -1,0 +1,100 @@
+{
+  "name": "ProgramSession",
+  "type": "object",
+  "description": "A scheduled part of a school's program.",
+  "properties": {
+    "school_id": {
+      "type": "string",
+      "description": "School"
+    },
+    "booking_id": {
+      "type": "string",
+      "description": "Booking this belongs to"
+    },
+    "kind": {
+      "type": "string",
+      "description": "Program step",
+      "enum": [
+        "assembly",
+        "ten_second_lab",
+        "group_chat_check",
+        "ambassadors",
+        "staff_pd",
+        "family_night",
+        "survey",
+        "planning_call",
+        "other"
+      ]
+    },
+    "title": {
+      "type": "string",
+      "description": "What the school sees"
+    },
+    "date": {
+      "type": "string",
+      "format": "date",
+      "description": "Day of the session"
+    },
+    "start_time": {
+      "type": "string",
+      "description": "Start, like 9:00 AM"
+    },
+    "end_time": {
+      "type": "string",
+      "description": "End, like 10:00 AM"
+    },
+    "location": {
+      "type": "string",
+      "description": "Room or place"
+    },
+    "grades": {
+      "type": "string",
+      "description": "Which grades or groups"
+    },
+    "status": {
+      "type": "string",
+      "description": "Where it stands",
+      "enum": [
+        "proposed",
+        "confirmed",
+        "completed",
+        "cancelled"
+      ],
+      "default": "proposed"
+    },
+    "notes_for_school": {
+      "type": "string",
+      "description": "Shown to the school"
+    },
+    "internal_notes": {
+      "type": "string",
+      "description": "Private"
+    }
+  },
+  "required": [
+    "school_id",
+    "title"
+  ],
+  "rls": {
+    "create": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "read": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}

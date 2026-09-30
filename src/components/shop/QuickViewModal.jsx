@@ -28,7 +28,7 @@ export default function QuickViewModal({ product, onClose, onAddToCart }) {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
-        className="fixed inset-0 bg-black/50 z-[9998] flex items-center justify-center p-4"
+        className="fixed inset-0 bg-black/50 z-[9998] flex items-center justify-center p-4 pt-[max(1rem,var(--safe-top))] pb-[max(1rem,var(--safe-bottom))]"
         onClick={onClose}
       >
         {/* Modal - centered by flex parent, stop click propagation */}

@@ -1,0 +1,73 @@
+{
+  "name": "SchoolTask",
+  "type": "object",
+  "description": "Checklist items for a school's program.",
+  "properties": {
+    "school_id": {
+      "type": "string",
+      "description": "School"
+    },
+    "booking_id": {
+      "type": "string",
+      "description": "Booking, if any"
+    },
+    "title": {
+      "type": "string",
+      "description": "What needs doing"
+    },
+    "owner": {
+      "type": "string",
+      "description": "Whose job it is",
+      "enum": [
+        "school",
+        "ogwogd"
+      ]
+    },
+    "due_date": {
+      "type": "string",
+      "format": "date",
+      "description": "Due"
+    },
+    "done": {
+      "type": "boolean",
+      "description": "Finished",
+      "default": false
+    },
+    "done_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When it was finished"
+    },
+    "done_by": {
+      "type": "string",
+      "description": "Who checked it off"
+    }
+  },
+  "required": [
+    "school_id",
+    "title",
+    "owner"
+  ],
+  "rls": {
+    "create": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "read": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}

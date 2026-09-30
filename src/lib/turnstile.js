@@ -64,7 +64,7 @@ function mountPoint() {
     host.id = 'ogw-human-check';
     host.setAttribute('aria-live', 'polite');
     // Bottom center, above everything, empty (and invisible) unless Cloudflare asks for a click.
-    host.style.cssText = 'position:fixed;left:50%;bottom:16px;transform:translateX(-50%);z-index:2147483000;';
+    host.style.cssText = 'position:fixed;left:50%;bottom:calc(16px + var(--tabbar-h, 0px) + env(safe-area-inset-bottom, 0px));transform:translateX(-50%);z-index:2147483000;';
     document.body.appendChild(host);
   }
   const slot = document.createElement('div');

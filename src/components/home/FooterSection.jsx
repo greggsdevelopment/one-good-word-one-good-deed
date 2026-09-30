@@ -30,7 +30,7 @@ export default function FooterSection({ logoUrl }) {
   ];
 
   return (
-    <footer className="relative bg-black pt-16 pb-8 px-6 overflow-hidden">
+    <footer className="select-text relative bg-black pt-16 pb-8 px-6 overflow-hidden">
       <div className="rainbow-rule absolute top-0 inset-x-0" aria-hidden="true" />
       <div className="grain-overlay" />
 

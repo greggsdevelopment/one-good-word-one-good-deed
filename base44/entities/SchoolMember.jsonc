@@ -1,0 +1,79 @@
+{
+  "name": "SchoolMember",
+  "type": "object",
+  "description": "Who can see a school's portal.",
+  "properties": {
+    "school_id": {
+      "type": "string",
+      "description": "School"
+    },
+    "email": {
+      "type": "string",
+      "description": "Staff email; matched to the signed-in account"
+    },
+    "name": {
+      "type": "string",
+      "description": "Full name"
+    },
+    "title": {
+      "type": "string",
+      "description": "Principal, assistant principal, counselor, secretary, business office..."
+    },
+    "phone": {
+      "type": "string",
+      "description": "Direct phone"
+    },
+    "is_primary": {
+      "type": "boolean",
+      "description": "Main contact for the school",
+      "default": false
+    },
+    "status": {
+      "type": "string",
+      "description": "invited = waiting to sign in, active, requested = asked for by a school member and waiting on us, removed",
+      "enum": [
+        "invited",
+        "active",
+        "requested",
+        "removed"
+      ],
+      "default": "invited"
+    },
+    "invited_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When we sent the invite"
+    },
+    "last_seen_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Last time they opened the portal"
+    }
+  },
+  "required": [
+    "school_id",
+    "email"
+  ],
+  "rls": {
+    "create": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "read": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}

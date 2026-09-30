@@ -284,3 +284,57 @@ html[data-chat-hide] .ogw-chat-teaser {
 .ogw-word { display: inline-block; opacity: 0; animation: ogw-word 0.28s ease-out forwards; }
 .ogw-ping { animation: ogw-ping 1.6s ease-out 3; }
 .ogw-spin-layer { will-change: transform; }
+
+/* ==========================================================================
+   App shell: behaves like a native app on phones and in the app stores.
+   ========================================================================== */
+:root {
+  color-scheme: dark;
+  --safe-top: env(safe-area-inset-top, 0px);
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+  --safe-left: env(safe-area-inset-left, 0px);
+  --safe-right: env(safe-area-inset-right, 0px);
+  --tabbar-h: 0px;
+}
+@media (max-width: 767px) {
+  html[data-tabbar] { --tabbar-h: calc(58px + var(--safe-bottom)); }
+  html[data-tabbar] body { padding-bottom: var(--tabbar-h); }
+  /* iOS zooms into any field under 16px; keep forms steady. !important beats
+     text-sm style utility classes on the fields. */
+  input, select, textarea { font-size: max(16px, 1em) !important; }
+}
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  touch-action: manipulation; /* no double-tap zoom delay; pinch zoom still works */
+}
+html, body {
+  overscroll-behavior: none; /* no rubber-band bounce or browser pull-to-refresh */
+  -webkit-tap-highlight-color: transparent;
+}
+body {
+  /* Content starts below the status bar / notch when the app runs full screen. */
+  padding-top: var(--safe-top);
+  padding-left: var(--safe-left);
+  padding-right: var(--safe-right);
+}
+/* Touch screens only: app-like, no accidental text selection or long-press
+   callouts. Mouse users can still select and copy anything. */
+@media (hover: none) and (pointer: coarse) {
+  body {
+    -webkit-user-select: none;
+    user-select: none;
+    -webkit-touch-callout: none;
+  }
+}
+/* Anything someone may want to copy stays selectable. */
+input, textarea, [contenteditable="true"], .select-text, .select-text * {
+  -webkit-user-select: text;
+  user-select: text;
+  -webkit-touch-callout: default;
+}
+img, svg, a { -webkit-user-drag: none; }
+/* Sticky page headers sit under the status bar area, not behind it. */
+.sticky-safe { top: var(--safe-top) !important; }
+.fixed-top-safe { top: var(--safe-top) !important; }
+html[data-chat-hide] .ogw-tabbar { display: none; }

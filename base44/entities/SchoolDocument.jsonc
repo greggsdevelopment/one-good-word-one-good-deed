@@ -1,0 +1,86 @@
+{
+  "name": "SchoolDocument",
+  "type": "object",
+  "description": "Files shared between a school and our team.",
+  "properties": {
+    "school_id": {
+      "type": "string",
+      "description": "School"
+    },
+    "booking_id": {
+      "type": "string",
+      "description": "Booking, if any"
+    },
+    "title": {
+      "type": "string",
+      "description": "Name shown in the portal"
+    },
+    "kind": {
+      "type": "string",
+      "description": "Type",
+      "enum": [
+        "agreement",
+        "quote",
+        "invoice",
+        "w9",
+        "purchase_order",
+        "survey_report",
+        "certificate",
+        "photo_release",
+        "other"
+      ]
+    },
+    "file_uri": {
+      "type": "string",
+      "description": "Private file location; opened only with a short-lived link"
+    },
+    "file_name": {
+      "type": "string",
+      "description": "Original file name"
+    },
+    "uploaded_by": {
+      "type": "string",
+      "description": "school or ogwogd",
+      "enum": [
+        "school",
+        "ogwogd"
+      ]
+    },
+    "uploader_email": {
+      "type": "string",
+      "description": "Who uploaded it"
+    },
+    "visible_to_school": {
+      "type": "boolean",
+      "description": "School staff can see it",
+      "default": true
+    }
+  },
+  "required": [
+    "school_id",
+    "title",
+    "file_uri"
+  ],
+  "rls": {
+    "create": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "read": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}

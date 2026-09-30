@@ -115,7 +115,7 @@ export function UserMessage({ m }) {
       animate={{ opacity: 1, x: 0, y: 0, scale: 1 }}
       transition={{ type: 'spring', stiffness: 420, damping: 28 }}
     >
-      <p className="bg-gold text-ink rounded-2xl rounded-br-md px-4 py-2.5 font-barlow text-[15px] leading-snug whitespace-pre-wrap break-words shadow-lg shadow-black/30">
+      <p className="select-text bg-gold text-ink rounded-2xl rounded-br-md px-4 py-2.5 font-barlow text-[15px] leading-snug whitespace-pre-wrap break-words shadow-lg shadow-black/30">
         {m.content}
       </p>
     </motion.div>
@@ -189,7 +189,7 @@ export function BotMessage({ m, showAvatar, isLast, showHandoff, sending, handof
       <div className="w-7 shrink-0 pt-0.5">{showAvatar && <Avatar size={28} />}</div>
       <div className="min-w-0 flex-1">
         <div
-          className={`relative rounded-2xl rounded-tl-md px-4 py-3 font-barlow text-[15px] leading-relaxed text-cream/90 break-words ${
+          className={`select-text relative rounded-2xl rounded-tl-md px-4 py-3 font-barlow text-[15px] leading-relaxed text-cream/90 break-words ${
             crisis
               ? 'bg-rb-red/[0.1] border border-rb-red/40 shadow-[0_0_40px_-12px_rgba(239,83,80,0.6)]'
               : 'bg-white/[0.05] border border-white/[0.08]'

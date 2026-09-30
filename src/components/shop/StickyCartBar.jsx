@@ -13,6 +13,7 @@ export default function StickyCartBar({ cartCount, cartTotal, onOpenCart, onChec
           animate={{ y: 0, opacity: 1 }}
           exit={{ y: 80, opacity: 0 }}
           transition={{ type: 'spring', damping: 28, stiffness: 300 }}
+          style={{ bottom: 'var(--tabbar-h, 0px)' }}
           className="fixed bottom-0 left-0 right-0 z-40 bg-ink/95 backdrop-blur-md border-t border-cream/10 px-4 py-3 shadow-2xl shadow-black/50"
         >
           <div className="max-w-7xl mx-auto flex items-center justify-between gap-4">

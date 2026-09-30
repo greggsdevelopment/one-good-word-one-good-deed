@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { MapPin } from 'lucide-react';
+import { ReportButton } from '@/components/pledge/ReportPledge';
 
 const SERIF = { fontFamily: "'Cormorant Garamond', serif" };
 
@@ -27,12 +28,12 @@ function useSlotCount() {
   return count;
 }
 
-function WallCard({ pledge }) {
+function WallCard({ pledge, onReport }) {
   return (
     <motion.div
-      initial={{ opacity: 0, y: 16, filter: 'blur(8px)' }}
-      animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
-      exit={{ opacity: 0, y: -16, filter: 'blur(8px)' }}
+      initial={{ opacity: 0, y: 16 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -16 }}
       transition={{ duration: 1.15, ease: 'easeOut' }}
       className="absolute inset-0 flex flex-col justify-between rounded-sm border border-gold/15 bg-white/[0.03] p-5 overflow-hidden"
     >
@@ -48,6 +49,7 @@ function WallCard({ pledge }) {
       </p>
 
       <div className="relative mt-4 pt-3 border-t border-gold/10">
+        {onReport && <ReportButton onClick={() => onReport(pledge)} className="absolute right-0 top-1" />}
         <p className="font-barlow-condensed text-cream text-sm font-semibold tracking-wide">
           {pledge.first_name}
           {pledge.last_initial ? ` ${pledge.last_initial}.` : ''}
@@ -68,7 +70,7 @@ function WallCard({ pledge }) {
  * pledge, fading in and out on a staggered rotation until every signee has had
  * their moment on screen.
  */
-export default function CinematicWall({ pledges }) {
+export default function CinematicWall({ pledges, onReport }) {
   const slotCount = useSlotCount();
   const total = pledges.length;
 
@@ -124,7 +126,7 @@ export default function CinematicWall({ pledges }) {
           return (
             <div key={slot} className="relative h-44 sm:h-48">
               <AnimatePresence mode="wait">
-                <WallCard key={pledge.id || pledgeIndex} pledge={pledge} />
+                <WallCard key={pledge.id || pledgeIndex} pledge={pledge} onReport={onReport} />
               </AnimatePresence>
             </div>
           );

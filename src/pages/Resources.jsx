@@ -19,13 +19,13 @@ export default function Resources() {
   const [activeCategory, setActiveCategory] = useState('All');
 
   return (
-    <div className="min-h-screen bg-ink">
+    <div className="min-h-screen bg-ink select-text">
       <div className="grain-overlay fixed inset-0 pointer-events-none z-0" style={{ opacity: 0.07 }} />
       <StickyNav logoUrl={LOGO_URL} />
       <ResourcesHero />
 
       {/* Search + filter controls */}
-      <div className="relative z-10 bg-ink border-b border-cream/[0.06] px-6 py-6 sticky top-[64px] backdrop-blur-md bg-ink/95">
+      <div className="relative z-10 bg-ink border-b border-cream/[0.06] px-6 py-6 sticky top-[64px] backdrop-blur-md bg-ink/95" style={{ top: 'calc(64px + var(--safe-top))' }}>
         <div className="max-w-6xl mx-auto flex flex-col gap-4">
 
           {/* Top row: search + last updated + print */}

@@ -1,10 +1,11 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowLeft, X, ChevronLeft, ChevronRight, MapPin, Calendar, Upload } from 'lucide-react';
+import { X, ChevronLeft, ChevronRight, MapPin, Calendar, Upload } from 'lucide-react';
 import { base44 } from '@/api/base44Client';
 import { format } from 'date-fns';
 import UploadPhotoModal from '@/components/gallery/UploadPhotoModal';
+import BackButton from '@/components/app/BackButton';
 
 const LOGO_URL = '/brand/logo-512.webp';
 
@@ -142,12 +143,9 @@ export default function Gallery() {
       <div className="grain-overlay fixed inset-0 pointer-events-none z-0" style={{ opacity: 0.07 }} />
 
       {/* Header */}
-      <header className="sticky top-0 z-50 bg-ink/95 backdrop-blur-md border-b border-white/[0.06]">
+      <header className="sticky top-0 sticky-safe z-50 bg-ink/95 backdrop-blur-md border-b border-white/[0.06]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-between h-16">
-          <Link to="/" className="flex items-center gap-2 text-cream/70 hover:text-gold transition-colors font-barlow-condensed text-sm tracking-wider uppercase">
-            <ArrowLeft className="w-4 h-4" />
-            Back to Site
-          </Link>
+          <BackButton fallback="/" />
           <div className="flex items-center gap-3">
             <img src={LOGO_URL} alt="Logo" className="h-8 w-8 rounded-full object-cover ring-2 ring-gold/40" />
             <p className="font-anton text-cream text-lg tracking-wider hidden sm:block">IMPACT GALLERY</p>
@@ -290,7 +288,7 @@ export default function Gallery() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[100] bg-ink/97 backdrop-blur-lg flex items-center justify-center px-4"
+            className="fixed inset-0 z-[100] bg-ink/97 backdrop-blur-lg flex items-center justify-center px-4 pt-[max(1rem,var(--safe-top))] pb-[max(1rem,var(--safe-bottom))]"
             onClick={closeLightbox}
           >
             <button

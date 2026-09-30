@@ -32,7 +32,7 @@ export default function ChatLauncher({ open, unread, attention, hideOnPhone, onT
   return (
     <div
       className={`ogw-chat-launcher fixed right-4 sm:right-6 z-[71] ${hideOnPhone ? 'max-sm:hidden' : ''}`}
-      style={{ bottom: 'calc(1rem + env(safe-area-inset-bottom, 0px) + var(--chat-lift, 0px))', transition: 'bottom 400ms cubic-bezier(.2,.8,.2,1)' }}
+      style={{ bottom: 'calc(1rem + max(var(--tabbar-h, 0px), env(safe-area-inset-bottom, 0px)) + var(--chat-lift, 0px))', transition: 'bottom 400ms cubic-bezier(.2,.8,.2,1)' }}
     >
       {/* "Ask us anything" label that slides out on hover */}
       <AnimatePresence>

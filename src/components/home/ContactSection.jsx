@@ -27,7 +27,7 @@ export default function ContactSection() {
   const inputClass = "w-full bg-white border border-ink/10 rounded-sm px-5 py-4 text-ink placeholder:text-ink/30 font-barlow focus:outline-none focus:border-gold-dark/50 transition-colors";
 
   return (
-    <section id="contact" className="relative bg-cream py-24 md:py-32 px-6" ref={ref}>
+    <section id="contact" className="select-text relative bg-cream py-24 md:py-32 px-6" ref={ref}>
       <div className="max-w-2xl mx-auto">
         <motion.div
           initial={{ scaleX: 0 }}

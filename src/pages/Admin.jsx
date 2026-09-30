@@ -1,13 +1,13 @@
 // Admin Dashboard
 import { useEffect, useMemo, useState } from 'react';
-import { useSearchParams } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 import { base44 } from '@/api/base44Client';
 import { useAuth } from '@/lib/AuthContext';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Button } from '@/components/ui/button';
 import {
   LogOut, CalendarCheck, Heart, BookOpen, ShoppingBag, Inbox, ClipboardList, Users, Ticket, Handshake,
-  CalendarDays, Backpack, LayoutDashboard, Search, RefreshCw, Mail, MessageCircle,
+  CalendarDays, Backpack, LayoutDashboard, Search, RefreshCw, Mail, MessageCircle, School, Landmark,
 } from 'lucide-react';
 import TodayTab from '@/components/admin/TodayTab';
 import InboxTab from '@/components/admin/InboxTab';
@@ -23,6 +23,8 @@ import SponsorTab from '@/components/admin/SponsorTab';
 import DonationsTab from '@/components/admin/DonationsTab';
 import PeopleTab from '@/components/admin/PeopleTab';
 import ChatsTab from '@/components/admin/ChatsTab';
+import SchoolsTab from '@/components/admin/schools/SchoolsTab';
+import BooksTab from '@/components/admin/books/BooksTab';
 import CommandSearch from '@/components/admin/CommandSearch';
 import { isPrayer, readLastSeen, useAdminData, useRefreshAdmin, writeLastSeen } from '@/lib/adminData';
 import { isUpcoming } from '@/lib/rsvpUtils';
@@ -72,23 +74,27 @@ export default function Admin() {
       events: data.events.filter(isUpcoming).length,
       pledges: data.pledges.filter((p) => !p.approved).length,
       stories: data.stories.filter((s) => !s.approved).length,
+      schools: data.portalMessages.filter((m) => m.author === 'school' && !m.read_by_ogwogd).length + data.schoolMembers.filter((m) => m.status === 'requested').length,
+      reports: data.reports.filter((r) => (r.status || 'new') === 'new').length,
       chats: data.chats.filter((c) => c.status === 'needs_reply' || (c.urgent && c.status !== 'resolved')).length,
     };
   }, [data]);
-  const todayCount = counts.chats + counts.inbox + counts.bookings + counts.orders + counts.donations + counts.sponsors + counts.pledges + counts.stories;
+  const todayCount = counts.schools + counts.chats + counts.inbox + counts.bookings + counts.orders + counts.donations + counts.sponsors + counts.pledges + counts.stories;
 
   const tabs = [
     { value: 'today', label: 'Today', icon: LayoutDashboard, n: todayCount, tone: 'bg-gold text-ink' },
     { value: 'inbox', label: 'Inbox', icon: Inbox, n: counts.inbox },
     { value: 'chats', label: 'Chats', icon: MessageCircle, n: counts.chats, tone: 'bg-violet-100 text-violet-700' },
     { value: 'bookings', label: 'Bookings', icon: CalendarCheck, n: counts.bookings, tone: 'bg-blue-100 text-blue-700' },
+    { value: 'schools', label: 'Schools', icon: School, n: counts.schools, tone: 'bg-violet-100 text-violet-700' },
+    { value: 'books', label: 'Books', icon: Landmark },
     { value: 'orders', label: 'Orders', icon: ClipboardList, n: counts.orders },
     { value: 'donations', label: 'Donations', icon: Backpack, n: counts.donations },
     { value: 'sponsors', label: 'Sponsors', icon: Handshake, n: counts.sponsors },
     { value: 'events', label: 'Events', icon: CalendarDays, n: counts.events, tone: 'bg-teal-100 text-teal-700' },
     { value: 'people', label: 'People', icon: Users },
     { value: 'newsletter', label: 'Newsletter', icon: Mail },
-    { value: 'pledges', label: 'Pledges', icon: Heart, n: counts.pledges },
+    { value: 'pledges', label: 'Pledges', icon: Heart, n: counts.pledges + counts.reports, tone: counts.reports ? 'bg-red-100 text-red-700' : undefined },
     { value: 'stories', label: 'Stories', icon: BookOpen, n: counts.stories },
     { value: 'marketplace', label: 'Shop Products', icon: ShoppingBag },
     { value: 'raffle', label: 'Raffle', icon: Ticket },
@@ -98,10 +104,10 @@ export default function Admin() {
   const firstName = String(user?.full_name || user?.name || '').split(' ')[0];
 
   return (
-    <div className="min-h-screen bg-cream">
+    <div className="min-h-screen bg-cream select-text">
 
       {/* Header */}
-      <div className="bg-ink text-cream px-4 sm:px-8 py-4 flex items-center justify-between gap-3 sticky top-0 z-40">
+      <div className="bg-ink text-cream px-4 sm:px-8 py-4 flex items-center justify-between gap-3 sticky top-0 sticky-safe z-40">
         <div className="min-w-0">
           <h1 className="font-anton text-xl sm:text-2xl tracking-wider">ADMIN</h1>
           <p className="font-barlow text-cream/40 text-xs truncate">
@@ -124,9 +130,9 @@ export default function Admin() {
           <button onClick={refreshAll} className="h-9 w-9 flex items-center justify-center rounded-sm border border-cream/15 hover:border-gold/50" aria-label="Refresh">
             <RefreshCw className={`w-4 h-4 ${fetching ? 'animate-spin text-gold' : 'text-cream/70'}`} />
           </button>
-          <a href="/" className="font-barlow-condensed text-cream/50 hover:text-gold text-sm tracking-wider uppercase transition-colors hidden sm:block">
+          <Link to="/" className="font-barlow-condensed text-cream/50 hover:text-gold text-sm tracking-wider uppercase transition-colors hidden sm:block">
             View Site
-          </a>
+          </Link>
           <Button variant="outline" size="sm" onClick={() => base44.auth.logout('/')} className="text-cream bg-transparent border-cream/20 hover:bg-cream/10 font-barlow-condensed uppercase tracking-wider text-xs">
             <LogOut className="w-4 h-4 sm:mr-1" /> <span className="hidden sm:inline">Logout</span>
           </Button>
@@ -148,6 +154,8 @@ export default function Admin() {
           <TabsContent value="chats"><ChatsTab key={sub || 'list'} initialChat={sub || ''} /></TabsContent>
           <TabsContent value="inbox"><InboxTab key={sub || 'messages'} initialView={sub || 'messages'} /></TabsContent>
           <TabsContent value="bookings"><BookingTab /></TabsContent>
+          <TabsContent value="schools"><SchoolsTab key={sub || 'list'} initialSchool={sub || ''} /></TabsContent>
+          <TabsContent value="books"><BooksTab /></TabsContent>
           <TabsContent value="orders"><OrdersTab /></TabsContent>
           <TabsContent value="donations"><DonationsTab /></TabsContent>
           <TabsContent value="sponsors"><SponsorTab /></TabsContent>

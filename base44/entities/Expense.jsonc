@@ -1,0 +1,82 @@
+{
+  "name": "Expense",
+  "type": "object",
+  "description": "Money spent, for the books.",
+  "properties": {
+    "date": {
+      "type": "string",
+      "format": "date",
+      "description": "Date spent"
+    },
+    "category": {
+      "type": "string",
+      "description": "What it was for",
+      "enum": [
+        "wristbands",
+        "printing",
+        "travel",
+        "supplies",
+        "event",
+        "marketing",
+        "software",
+        "fees",
+        "other"
+      ]
+    },
+    "vendor": {
+      "type": "string",
+      "description": "Paid to"
+    },
+    "amount": {
+      "type": "number",
+      "description": "Amount"
+    },
+    "school_id": {
+      "type": "string",
+      "description": "School it was for, if any"
+    },
+    "booking_id": {
+      "type": "string",
+      "description": "Booking it was for, if any"
+    },
+    "payment_method": {
+      "type": "string",
+      "description": "Card, cash, check..."
+    },
+    "receipt_uri": {
+      "type": "string",
+      "description": "Private receipt file"
+    },
+    "notes": {
+      "type": "string",
+      "description": "Notes"
+    }
+  },
+  "required": [
+    "date",
+    "amount",
+    "category"
+  ],
+  "rls": {
+    "create": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "read": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}

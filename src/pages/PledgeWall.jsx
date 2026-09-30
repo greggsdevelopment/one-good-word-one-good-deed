@@ -9,6 +9,8 @@ import StickyNav from '@/components/home/StickyNav';
 import FooterSection from '@/components/home/FooterSection';
 import CinematicWall from '@/components/pledge/CinematicWall';
 import PledgeCard from '@/components/pledge/PledgeCard';
+import { ReportButton, ReportSheet, deviceId, useModeration } from '@/components/pledge/ReportPledge';
+import { Link } from 'react-router-dom';
 
 const LOGO_URL = '/brand/logo-512.webp';
 const HEADER_BG = 'https://media.base44.com/images/public/6a19e1fc6c5eb736a0763b09/10559d56f_image.png';
@@ -49,6 +51,9 @@ export default function PledgeWall() {
   const [submittedPledge, setSubmittedPledge] = useState(null);
   const [search, setSearch] = useState('');
   const [browseOpen, setBrowseOpen] = useState(false);
+  const [agreed, setAgreed] = useState(false);
+  const [reporting, setReporting] = useState(null);
+  const moderation = useModeration();
 
   const animatedCount = useCountUp(loading ? 0 : pledges.length);
 
@@ -75,10 +80,14 @@ export default function PledgeWall() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (!agreed) {
+      notify.error('Please agree to the Community Guidelines first.');
+      return;
+    }
     setSubmitting(true);
     const clean = { ...form, last_initial: form.last_initial.charAt(0).toUpperCase() };
     try {
-      await submitForm('pledge', clean);
+      await submitForm('pledge', clean, { device: deviceId() });
     } catch (err) {
       notify.error(err.message);
       setSubmitting(false);
@@ -92,18 +101,21 @@ export default function PledgeWall() {
 
   const handleShareDone = () => {
     setSubmitted(false);
+    setAgreed(false);
     setSubmittedPledge(null);
     setForm({ first_name: '', last_initial: '', city: '', pledge_statement: '' });
   };
 
   const query = search.trim().toLowerCase();
+  // Hide anything this visitor reported and anyone they blocked.
+  const shownPledges = moderation.visible(pledges);
   const filteredPledges = query
-    ? pledges.filter(
+    ? shownPledges.filter(
         (p) =>
           p.first_name?.toLowerCase().includes(query) ||
           p.city?.toLowerCase().includes(query)
       )
-    : pledges;
+    : shownPledges;
 
   const showGrid = Boolean(query) || browseOpen;
 
@@ -190,7 +202,7 @@ export default function PledgeWall() {
               <div className="w-8 h-8 border-2 border-gold/20 border-t-gold rounded-full animate-spin" />
             </div>
           ) : (
-            <CinematicWall pledges={pledges} />
+            <CinematicWall pledges={shownPledges} onReport={setReporting} />
           )}
         </div>
       </section>
@@ -274,12 +286,15 @@ export default function PledgeWall() {
                               </p>
                             )}
                           </div>
-                          {pledge.created_date && (
-                            <p className="flex items-center gap-1 font-barlow text-cream/25 text-xs">
-                              <Clock className="w-3 h-3" />
-                              {format(new Date(pledge.created_date), 'MMM d, yyyy')}
-                            </p>
-                          )}
+                          <div className="flex items-center gap-1">
+                            {pledge.created_date && (
+                              <p className="flex items-center gap-1 font-barlow text-cream/25 text-xs">
+                                <Clock className="w-3 h-3" />
+                                {format(new Date(pledge.created_date), 'MMM d, yyyy')}
+                              </p>
+                            )}
+                            <ReportButton onClick={() => setReporting(pledge)} />
+                          </div>
                         </div>
                       </div>
                     ))}
@@ -328,6 +343,14 @@ export default function PledgeWall() {
                     rows={4}
                     className={`${inputClass} resize-none`}
                   />
+                  <label className="flex items-start gap-3 cursor-pointer text-left">
+                    <input type="checkbox" checked={agreed} onChange={(e) => setAgreed(e.target.checked)} required className="mt-1 w-4 h-4 accent-[#F7C948] shrink-0" />
+                    <span className="font-barlow text-cream/60 text-sm leading-snug">
+                      I agree to the{' '}
+                      <Link to="/terms#community" className="text-cream underline underline-offset-2">Community Guidelines</Link>: kind words only, no one's
+                      personal information.
+                    </span>
+                  </label>
                   <button
                     type="submit"
                     disabled={submitting}
@@ -351,6 +374,7 @@ export default function PledgeWall() {
       </section>
 
       <FooterSection logoUrl={LOGO_URL} />
+      <ReportSheet pledge={reporting} onClose={() => setReporting(null)} onHide={moderation.hide} onBlock={moderation.block} />
     </div>
   );
 }

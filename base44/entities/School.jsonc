@@ -1,0 +1,109 @@
+{
+  "name": "School",
+  "type": "object",
+  "description": "A school partner. Staff reach it through the school portal.",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "School name"
+    },
+    "district": {
+      "type": "string",
+      "description": "District"
+    },
+    "school_type": {
+      "type": "string",
+      "description": "public, charter, private, faith, other"
+    },
+    "address": {
+      "type": "string",
+      "description": "Street address"
+    },
+    "city": {
+      "type": "string",
+      "description": "City"
+    },
+    "state": {
+      "type": "string",
+      "description": "State",
+      "default": "MI"
+    },
+    "zip": {
+      "type": "string",
+      "description": "ZIP"
+    },
+    "phone": {
+      "type": "string",
+      "description": "Main office phone"
+    },
+    "grade_band": {
+      "type": "string",
+      "description": "elementary, middle, high, k8, k12"
+    },
+    "enrollment": {
+      "type": "number",
+      "description": "Approximate enrollment"
+    },
+    "billing_contact_name": {
+      "type": "string",
+      "description": "Who pays invoices"
+    },
+    "billing_email": {
+      "type": "string",
+      "description": "Where invoices go"
+    },
+    "po_required": {
+      "type": "boolean",
+      "description": "District requires a purchase order before service",
+      "default": false
+    },
+    "tax_exempt_id": {
+      "type": "string",
+      "description": "Tax exempt number, if the school provided one"
+    },
+    "w9_sent": {
+      "type": "boolean",
+      "description": "We have sent our W-9",
+      "default": false
+    },
+    "status": {
+      "type": "string",
+      "description": "Relationship",
+      "enum": [
+        "prospect",
+        "active",
+        "past"
+      ],
+      "default": "active"
+    },
+    "admin_notes": {
+      "type": "string",
+      "description": "Private notes, never shown to the school"
+    }
+  },
+  "required": [
+    "name"
+  ],
+  "rls": {
+    "create": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "read": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}

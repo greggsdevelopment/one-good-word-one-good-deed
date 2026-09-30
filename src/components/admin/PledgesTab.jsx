@@ -2,6 +2,7 @@ import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { base44 } from '@/api/base44Client';
 import { Trash2, CheckCircle2, Circle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import ReportsPanel from '@/components/admin/ReportsPanel';
 
 export default function PledgesTab() {
   const queryClient = useQueryClient();
@@ -28,13 +29,19 @@ export default function PledgesTab() {
 
   if (isLoading) return <p className="font-barlow text-ash py-8 text-center">Loading...</p>;
   if (pledges.length === 0)
-    return <p className="font-barlow text-ash text-center py-12">No pledges yet.</p>;
+    return (
+      <div className="space-y-6">
+        <ReportsPanel />
+        <p className="font-barlow text-ash text-center py-12">No pledges yet.</p>
+      </div>
+    );
 
   const pending = pledges.filter(p => !p.approved);
   const approved = pledges.filter(p => p.approved);
 
   return (
     <div className="space-y-6">
+      <ReportsPanel />
       {pending.length > 0 && (
         <div>
           <h3 className="font-barlow-condensed text-ink text-xs tracking-widest uppercase mb-2 text-amber-600">Pending Review ({pending.length})</h3>
@@ -47,6 +54,7 @@ export default function PledgesTab() {
                       {p.first_name} {p.last_initial ? `${p.last_initial}.` : ''}
                     </span>
                     {p.city && <span className="font-barlow text-ash text-sm">- {p.city}</span>}
+                    {p.hidden_reason === 'reported' && <span className="rounded-full bg-red-100 text-red-700 px-2 py-0.5 text-[10px] font-barlow-condensed uppercase tracking-wider">Reported</span>}
                   </div>
                   {p.pledge_statement && (
                     <p className="font-barlow text-ink/50 text-sm italic">"{p.pledge_statement}"</p>

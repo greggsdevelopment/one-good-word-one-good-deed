@@ -1,0 +1,70 @@
+{
+  "name": "Payment",
+  "type": "object",
+  "description": "Money received against an invoice.",
+  "properties": {
+    "invoice_id": {
+      "type": "string",
+      "description": "Invoice paid"
+    },
+    "school_id": {
+      "type": "string",
+      "description": "School"
+    },
+    "amount": {
+      "type": "number",
+      "description": "Amount received"
+    },
+    "method": {
+      "type": "string",
+      "description": "How it came in",
+      "enum": [
+        "check",
+        "ach",
+        "card",
+        "cash",
+        "other"
+      ]
+    },
+    "reference": {
+      "type": "string",
+      "description": "Check number or transfer id"
+    },
+    "received_date": {
+      "type": "string",
+      "format": "date",
+      "description": "Date received"
+    },
+    "notes": {
+      "type": "string",
+      "description": "Notes"
+    }
+  },
+  "required": [
+    "invoice_id",
+    "amount",
+    "received_date"
+  ],
+  "rls": {
+    "create": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "read": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}

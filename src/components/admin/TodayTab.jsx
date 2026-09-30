@@ -1,7 +1,7 @@
 import { useMemo } from 'react';
 import { format, addDays, isSameDay, parseISO, startOfDay } from 'date-fns';
 import {
-  AlertTriangle, ArrowRight, Backpack, MessageCircle, CalendarCheck, CalendarDays, Handshake, HandHeart, Heart, Lightbulb,
+  AlertTriangle, ArrowRight, Backpack, MessageCircle, Flag, School, Receipt, CalendarCheck, CalendarDays, Handshake, HandHeart, Heart, Lightbulb,
   Mail, Package, BookOpen, Sparkles, CheckCircle2, Truck, DollarSign, Users,
 } from 'lucide-react';
 import { businessDaysSince, isPrayer, timeAgo, useAdminData } from '@/lib/adminData';
@@ -20,6 +20,26 @@ function buildQueue(d) {
   const q = [];
   const push = (item) => q.push({ ...item, overdue: item.promise != null && businessDaysSince(item.when) >= item.promise });
 
+  (d.reports || []).filter((x) => (x.status || 'new') === 'new').forEach((x) => push({
+    id: `rep-${x.id}`, tab: 'pledges', icon: Flag, kind: 'Report',
+    title: 'A visitor reported a pledge (it is hidden)', sub: String(x.target_preview || '').slice(0, 90), when: x.created_date, promise: 1, action: 'Review',
+  }));
+  (d.portalMessages || []).filter((x) => x.author === 'school' && !x.read_by_ogwogd).forEach((x) => push({
+    id: `pm-${x.id}`, tab: `schools:${x.school_id}`, icon: School, kind: 'School portal',
+    title: `${x.author_name || 'A school'} sent a message`, sub: String(x.body || '').slice(0, 90), when: x.created_date, promise: 1, action: 'Reply',
+  }));
+  (d.schoolMembers || []).filter((x) => x.status === 'requested').forEach((x) => push({
+    id: `sm-${x.id}`, tab: `schools:${x.school_id}`, icon: School, kind: 'Portal access',
+    title: `A school asked to add ${x.name || x.email}`, sub: x.email, when: x.created_date, promise: 1, action: 'Approve',
+  }));
+  (d.invoices || []).filter((x) => x.status === 'sent' && x.due_date && String(x.due_date) < new Date().toISOString().slice(0, 10)).forEach((x) => {
+    const paid = (d.payments || []).filter((p) => p.invoice_id === x.id).reduce((t, p) => t + (Number(p.amount) || 0), 0);
+    if (paid >= (Number(x.total) || 0) - 0.004) return;
+    push({
+      id: `iv-${x.id}`, tab: `schools:${x.school_id}`, icon: Receipt, kind: 'Past due',
+      title: `Invoice ${x.number} is past due`, sub: `${money((Number(x.total) || 0) - paid)} still owed`, when: x.due_date, promise: 0, action: 'Follow up',
+    });
+  });
   (d.chats || []).filter((x) => x.urgent && x.status !== 'resolved').forEach((x) => push({
     id: `chu-${x.id}`, tab: `chats:${x.id}`, icon: AlertTriangle, kind: 'Chat safety flag',
     title: `A chat visitor wrote something that matched the safety check`, sub: 'They were shown 911, 988 and 741741. Review it.',

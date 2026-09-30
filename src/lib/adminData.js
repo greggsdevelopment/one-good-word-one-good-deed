@@ -4,7 +4,7 @@ import { base44 } from '@/api/base44Client';
 // One place that knows how to load every admin data set. Query keys match the
 // ones the individual tabs already use, so a save anywhere refreshes everywhere.
 export const ADMIN_SOURCES = {
-  bookings: { key: ['bookings'], load: () => base44.entities.BookingRequest.list('-created_date', 500) },
+  bookings: { key: ['bookings'], entity: 'BookingRequest', load: () => base44.entities.BookingRequest.list('-created_date', 500) },
   orders: { key: ['admin-orders'], load: () => base44.entities.Order.list('-created_date', 500) },
   messages: { key: ['contactMessages'], load: () => base44.entities.ContactMessage.list('-created_date', 500) },
   sponsors: { key: ['sponsorship-applications'], load: () => base44.entities.SponsorshipApplication.list('-created_date', 500) },
@@ -18,6 +18,16 @@ export const ADMIN_SOURCES = {
   inventory: { key: ['admin-inventory'], load: () => base44.entities.InventoryItem.list('name', 1000) },
   products: { key: ['admin-products'], load: () => base44.entities.Product.list('sort_order', 500) },
   chats: { key: ['admin-chats'], load: () => base44.entities.SupportChat.list('-created_date', 500) },
+  schools: { key: ['admin-schools'], entity: 'School', load: () => base44.entities.School.list('name', 500) },
+  schoolMembers: { key: ['admin-school-members'], entity: 'SchoolMember', load: () => base44.entities.SchoolMember.list('-created_date', 2000) },
+  sessions: { key: ['admin-sessions'], entity: 'ProgramSession', load: () => base44.entities.ProgramSession.list('date', 2000) },
+  invoices: { key: ['admin-invoices'], entity: 'Invoice', load: () => base44.entities.Invoice.list('-issue_date', 2000) },
+  payments: { key: ['admin-payments'], entity: 'Payment', load: () => base44.entities.Payment.list('-received_date', 5000) },
+  schoolDocs: { key: ['admin-school-docs'], entity: 'SchoolDocument', load: () => base44.entities.SchoolDocument.list('-created_date', 2000) },
+  portalMessages: { key: ['admin-portal-messages'], entity: 'PortalMessage', load: () => base44.entities.PortalMessage.list('-created_date', 2000) },
+  schoolTasks: { key: ['admin-school-tasks'], entity: 'SchoolTask', load: () => base44.entities.SchoolTask.list('due_date', 2000) },
+  expenses: { key: ['admin-expenses'], entity: 'Expense', load: () => base44.entities.Expense.list('-date', 5000) },
+  reports: { key: ['admin-content-reports'], entity: 'ContentReport', load: () => base44.entities.ContentReport.list('-created_date', 500) },
 };
 
 const REFRESH_MS = 60_000;
@@ -182,4 +192,78 @@ export function writeLastSeen(ts = Date.now()) {
   } catch {
     // private mode or blocked storage; the feature just stays off
   }
+}
+
+/* ---------- instant saves ---------- */
+
+/**
+ * Create, update and delete for one admin data set, with the screen updated
+ * immediately (optimistic) and rolled back if the server refuses.
+ */
+export function useEntityOps(sourceName) {
+  const qc = useQueryClient();
+  const src = ADMIN_SOURCES[sourceName];
+  const key = src.key;
+  const Entity = base44.entities[src.entity];
+
+  const put = (fn) => qc.setQueryData(key, (old) => fn(Array.isArray(old) ? old : []));
+  // Stop an in-flight refetch from landing on top of the optimistic change.
+  const settle = () => qc.cancelQueries({ queryKey: key }).catch(() => {});
+  const rowOf = (id) => (qc.getQueryData(key) || []).find?.((r) => r.id === id);
+
+  // Rollbacks touch only the row being changed, so a failed save never undoes
+  // other edits made meanwhile or data a background refresh brought in.
+  return {
+    async create(data) {
+      await settle();
+      const temp = { id: `temp-${Date.now()}-${Math.random().toString(36).slice(2, 6)}`, created_date: new Date().toISOString(), ...data, pending: true };
+      put((rows) => [temp, ...rows]);
+      try {
+        const saved = await Entity.create(data);
+        put((rows) => {
+          const rest = rows.filter((r) => r.id !== temp.id && r.id !== saved.id);
+          return [saved, ...rest];
+        });
+        return saved;
+      } catch (err) {
+        put((rows) => rows.filter((r) => r.id !== temp.id));
+        throw err;
+      }
+    },
+    async update(id, patch) {
+      await settle();
+      const before = rowOf(id);
+      const undo = before ? Object.fromEntries(Object.keys(patch).map((k) => [k, before[k]])) : null;
+      put((rows) => rows.map((r) => (r.id === id ? { ...r, ...patch } : r)));
+      try {
+        const saved = await Entity.update(id, patch);
+        if (saved && saved.id) put((rows) => rows.map((r) => (r.id === id ? { ...r, ...saved } : r)));
+        return saved;
+      } catch (err) {
+        if (undo) put((rows) => rows.map((r) => (r.id === id ? { ...r, ...undo } : r)));
+        throw err;
+      }
+    },
+    async remove(id) {
+      await settle();
+      const rows0 = qc.getQueryData(key) || [];
+      const index = rows0.findIndex?.((r) => r.id === id) ?? -1;
+      const before = index >= 0 ? rows0[index] : null;
+      put((rows) => rows.filter((r) => r.id !== id));
+      try {
+        await Entity.delete(id);
+        put((rows) => rows.filter((r) => r.id !== id)); // in case a refresh brought it back meanwhile
+      } catch (err) {
+        if (before) {
+          put((rows) => {
+            if (rows.some((r) => r.id === id)) return rows;
+            const next = [...rows];
+            next.splice(Math.min(index, next.length), 0, before);
+            return next;
+          });
+        }
+        throw err;
+      }
+    },
+  };
 }

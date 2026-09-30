@@ -1,0 +1,83 @@
+{
+  "name": "ContentReport",
+  "type": "object",
+  "description": "Reports from the public about posted content (Apple 1.2 / Google UGC).",
+  "properties": {
+    "kind": {
+      "type": "string",
+      "description": "What was reported",
+      "enum": [
+        "pledge"
+      ]
+    },
+    "target_id": {
+      "type": "string",
+      "description": "Id of the reported record"
+    },
+    "target_preview": {
+      "type": "string",
+      "description": "Short copy of the reported text, for the review queue"
+    },
+    "reason": {
+      "type": "string",
+      "description": "Why it was reported",
+      "enum": [
+        "bullying_or_hate",
+        "personal_info",
+        "inappropriate",
+        "spam",
+        "other"
+      ]
+    },
+    "details": {
+      "type": "string",
+      "description": "Optional note from the reporter"
+    },
+    "ip_hash": {
+      "type": "string",
+      "description": "One-way hash of the reporter network address, for rate limits"
+    },
+    "status": {
+      "type": "string",
+      "description": "Review state",
+      "enum": [
+        "new",
+        "kept",
+        "removed"
+      ],
+      "default": "new"
+    },
+    "reviewed_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When the team reviewed it"
+    }
+  },
+  "required": [
+    "kind",
+    "target_id",
+    "reason"
+  ],
+  "rls": {
+    "create": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "read": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}

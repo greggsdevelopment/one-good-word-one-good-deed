@@ -226,7 +226,7 @@ export default function RaffleTab() {
 
       {/* Confirm modal */}
       {confirmEntry && (
-        <div className="fixed inset-0 bg-ink/60 flex items-center justify-center z-50 p-4">
+        <div className="fixed inset-0 bg-ink/60 flex items-center justify-center z-50 p-4 pt-[max(1rem,var(--safe-top))] pb-[max(1rem,var(--safe-bottom))]">
           <div className="bg-white rounded-sm p-6 max-w-sm w-full space-y-4 shadow-xl">
             <h3 className="font-anton text-xl text-ink tracking-wide">Confirm Payment</h3>
             <p className="font-barlow text-ink/70 text-sm">

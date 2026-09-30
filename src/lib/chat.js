@@ -83,6 +83,30 @@ export function localCrisisMessage(text) {
   };
 }
 
+/* ------------------------------------------------------------------ AI consent */
+
+// Apple 5.1.2(i): ask before sending someone's words to a third-party AI.
+const CONSENT_KEY = 'ogw-ai-consent-v1';
+let consentMemory = false;
+
+export function aiConsented() {
+  if (consentMemory) return true;
+  try {
+    return window.localStorage.getItem(CONSENT_KEY) === 'yes';
+  } catch {
+    return false;
+  }
+}
+
+export function giveAiConsent() {
+  consentMemory = true;
+  try {
+    window.localStorage.setItem(CONSENT_KEY, 'yes');
+  } catch {
+    // remembered for this visit only
+  }
+}
+
 /* ------------------------------------------------------------------ session */
 
 const KEY = 'ogw-chat-v1';
@@ -173,6 +197,8 @@ export function pageContext(pathname = '/') {
   if (p.startsWith('/resources')) return { teaser: 'Looking for someone to talk to? I can point you to free help, day or night.', chips: ['help_now', 'bullied'], first: 'help_now' };
   if (p.startsWith('/pledge')) return { teaser: 'Ready to take the pledge? I can tell you how it works.', chips: ['pledge', 'about'], first: 'pledge' };
   if (p.startsWith('/drayke')) return { teaser: null, chips: ['drayke', 'events'], first: 'events' };
+  // Working and legal screens: no marketing nudge.
+  if (/^\/(portal|account|privacy|terms|login|register|forgot-password|reset-password)/.test(p)) return { teaser: null, chips: ['talk_person', 'about'], first: 'book' };
   return { teaser: 'Hi there. Questions about One Good Word? I answer in seconds.', chips: ['book', 'donate_items'], first: 'book' };
 }
 
