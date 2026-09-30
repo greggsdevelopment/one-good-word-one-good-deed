@@ -51,7 +51,7 @@ export default function HeroSection({ logoUrl, pledgeCount }) {
           <motion.div
             initial={{ opacity: 0, scale: 0.85, rotate: -8 }}
             animate={{ opacity: 1, scale: 1, rotate: 0 }}
-            transition={{ duration: 1.1, delay: 0.15, ease: [0.2, 0.8, 0.2, 1] }}
+            transition={{ duration: 1, delay: 0.05, ease: [0.2, 0.8, 0.2, 1] }}
             className="order-1 lg:order-2 flex justify-center"
           >
             <div className="relative w-64 h-64 sm:w-80 sm:h-80 lg:w-[30rem] lg:h-[30rem] animate-float">
@@ -67,13 +67,13 @@ export default function HeroSection({ logoUrl, pledgeCount }) {
 
           {/* Message */}
           <div className="order-2 lg:order-1 text-center lg:text-left">
-            <motion.p {...rise(0.25, 16)} className="inline-flex items-center gap-3 font-barlow-condensed text-cream/80 text-[11px] sm:text-sm tracking-[0.4em] uppercase mb-6">
+            <motion.p {...rise(0.1, 16)} className="inline-flex items-center gap-3 font-barlow-condensed text-cream/80 text-[11px] sm:text-sm tracking-[0.4em] uppercase mb-6">
               <span className="rainbow-rule w-8 rounded-full" aria-hidden="true" />
               A Movement of Love Over Hate
             </motion.p>
 
             <motion.h1
-              {...rise(0.4, 36)}
+              {...rise(0.15, 36)}
               className="font-anton text-white text-[3.6rem] leading-[0.88] sm:text-8xl lg:text-[8.5rem] tracking-tight mb-6"
             >
               STAND UP.
@@ -81,12 +81,12 @@ export default function HeroSection({ logoUrl, pledgeCount }) {
               <span className="text-gold">SPEAK LOVE.</span>
             </motion.h1>
 
-            <motion.p {...rise(0.6)} className="font-barlow text-cream/75 text-base sm:text-lg md:text-xl max-w-xl mx-auto lg:mx-0 leading-relaxed mb-9">
+            <motion.p {...rise(0.28)} className="font-barlow text-cream/75 text-base sm:text-lg md:text-xl max-w-xl mx-auto lg:mx-0 leading-relaxed mb-9">
               One Good Word...One Good Deed was created to stand up against bullying and racism through God's love.
               It starts with one word. It grows with one deed.
             </motion.p>
 
-            <motion.div {...rise(0.75)} className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3 sm:gap-4 mb-10">
+            <motion.div {...rise(0.38)} className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3 sm:gap-4 mb-10">
               <Link
                 to="/pledge-wall"
                 className="group w-full sm:w-auto min-h-[56px] inline-flex items-center justify-center gap-2 px-9 py-4 bg-gold text-ink font-barlow-condensed font-bold text-xl uppercase tracking-wider rounded-sm hover:-translate-y-1"
@@ -100,7 +100,7 @@ export default function HeroSection({ logoUrl, pledgeCount }) {
                 <HeartHandshake className="w-5 h-5" /> Donate
               </Link>
             </motion.div>
-            <motion.p {...rise(0.82, 10)} className="-mt-6 mb-10 font-barlow text-sm text-cream/50">
+            <motion.p {...rise(0.44, 10)} className="-mt-6 mb-10 font-barlow text-sm text-cream/50">
               Or{' '}
               <a href="https://www.facebook.com/groups/1332878885346719" target="_blank" rel="noopener noreferrer" className="text-cream/80 underline decoration-rb-purple decoration-2 underline-offset-4 hover:text-white">
                 join the movement on Facebook
@@ -108,7 +108,7 @@ export default function HeroSection({ logoUrl, pledgeCount }) {
             </motion.p>
 
             {/* Proof + scripture */}
-            <motion.div {...rise(0.9)} className="grid sm:grid-cols-[auto_1fr] gap-4 sm:gap-6 items-stretch max-w-xl mx-auto lg:mx-0">
+            <motion.div {...rise(0.5)} className="grid sm:grid-cols-[auto_1fr] gap-4 sm:gap-6 items-stretch max-w-xl mx-auto lg:mx-0">
               <Link to="/pledge-wall" className="rainbow-border rounded-sm bg-white/[0.03] backdrop-blur-sm px-6 py-4 text-center sm:text-left glow-hover">
                 <p className="font-anton text-4xl sm:text-5xl leading-none text-rainbow">
                   <CountUp value={pledgeCount} />

@@ -8,8 +8,8 @@ export function SpinRing({ width = 2, speed = 'animate-spin-slow', glow = true, 
   const mask = `radial-gradient(farthest-side, transparent calc(100% - ${width}px), #000 calc(100% - ${width}px))`;
   return (
     <span aria-hidden="true" className={`pointer-events-none absolute inset-0 ${className}`}>
-      {glow && <span className={`absolute -inset-1 rounded-full ${speed} opacity-60 blur-md`} style={{ background: 'var(--rainbow-conic)' }} />}
-      <span className={`absolute inset-0 rounded-full ${speed}`} style={{ background: 'var(--rainbow-conic)', WebkitMask: mask, mask }} />
+      {glow && <span className="absolute -inset-1.5 rounded-full opacity-50" style={{ background: 'radial-gradient(closest-side, rgba(160,108,213,0.7), rgba(74,155,232,0.35) 60%, transparent)' }} />}
+      <span className={`absolute inset-0 rounded-full ogw-spin-layer ${speed}`} style={{ background: 'var(--rainbow-conic)', WebkitMask: mask, mask }} />
     </span>
   );
 }
@@ -32,25 +32,22 @@ export function Avatar({ size = 36, ring = true, className = '' }) {
   );
 }
 
-/** Soft color light drifting behind the panel. */
+/**
+ * Soft color light drifting behind the panel. Plain gradients on one layer
+ * that only moves, so nothing is re-blurred or repainted per frame.
+ */
 export function Aurora() {
-  const reduce = useReducedMotion();
-  const blobs = [
-    { c: 'var(--rb-purple)', s: 320, x: [-60, 40, -60], y: [-80, 20, -80], top: '-12%', left: '-20%', d: 22 },
-    { c: 'var(--rb-blue)', s: 300, x: [40, -50, 40], y: [0, 60, 0], top: '30%', left: '55%', d: 26 },
-    { c: 'var(--rb-red)', s: 260, x: [0, 50, 0], y: [40, -30, 40], top: '70%', left: '-10%', d: 30 },
-  ];
   return (
     <div aria-hidden="true" className="pointer-events-none absolute inset-0 overflow-hidden">
-      {blobs.map((b, i) => (
-        <motion.div
-          key={i}
-          className="absolute rounded-full"
-          style={{ width: b.s, height: b.s, top: b.top, left: b.left, background: b.c, filter: 'blur(90px)', opacity: 0.16 }}
-          animate={reduce ? undefined : { x: b.x, y: b.y }}
-          transition={{ duration: b.d, repeat: Infinity, ease: 'easeInOut' }}
-        />
-      ))}
+      <div
+        className="absolute -inset-[25%] ogw-aurora"
+        style={{
+          background:
+            'radial-gradient(38% 30% at 22% 18%, rgba(160,108,213,0.26), transparent 70%),' +
+            'radial-gradient(36% 30% at 82% 46%, rgba(74,155,232,0.22), transparent 70%),' +
+            'radial-gradient(34% 28% at 18% 84%, rgba(239,83,80,0.18), transparent 70%)',
+        }}
+      />
       <div className="grain-overlay" style={{ opacity: 0.05 }} />
     </div>
   );
@@ -69,13 +66,7 @@ export function TypingDots() {
       <span className="sr-only">Typing</span>
       <span className="flex items-end gap-1 h-4">
         {[RB[0], RB[2], RB[4]].map((c, k) => (
-          <motion.span
-            key={c}
-            className="block w-2 h-2 rounded-full"
-            style={{ background: c, boxShadow: `0 0 10px ${c}` }}
-            animate={{ y: [0, -6, 0], opacity: [0.6, 1, 0.6] }}
-            transition={{ duration: 0.9, repeat: Infinity, delay: k * 0.15, ease: 'easeInOut' }}
-          />
+          <span key={c} className="block w-2 h-2 rounded-full ogw-bounce" style={{ background: c, animationDelay: `${k * 0.15}s` }} />
         ))}
       </span>
       <motion.span
@@ -222,6 +213,7 @@ export function WordReveal({ text, animate, onDone, onNavigate }) {
 
   if (!play) return <span className="whitespace-pre-wrap">{linkify(String(text), onNavigate)}</span>;
 
+  // Plain CSS per word (no per-word animation objects, no blur filter).
   let k = 0;
   return (
     <span className="whitespace-pre-wrap" aria-hidden="true">
@@ -229,15 +221,9 @@ export function WordReveal({ text, animate, onDone, onNavigate }) {
         if (!w.trim()) return w;
         const idx = k++;
         return (
-          <motion.span
-            key={i}
-            className="inline-block"
-            initial={{ opacity: 0, y: 6, filter: 'blur(4px)' }}
-            animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
-            transition={{ duration: 0.28, delay: idx * step, ease: 'easeOut' }}
-          >
+          <span key={i} className="ogw-word" style={{ animationDelay: `${(idx * step).toFixed(3)}s` }}>
             {w}
-          </motion.span>
+          </span>
         );
       })}
     </span>

@@ -1,5 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Anton&family=Barlow+Condensed:wght@400;500;600;700&family=Barlow:wght@300;400;500;600;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Great+Vibes&display=swap');
+/* Web fonts are linked from index.html so they download in parallel with the app. */
 
 @tailwind base;
 @tailwind components;
@@ -240,3 +239,48 @@ html[data-chat-hide] .ogw-chat-launcher,
 html[data-chat-hide] .ogw-chat-teaser {
   display: none;
 }
+
+/* ==========================================================================
+   Support chat motion. Everything here animates only transform and opacity,
+   which the graphics chip handles without repainting, so it stays smooth on
+   phones. (Animated blur filters were the main source of chat lag.)
+   ========================================================================== */
+@keyframes ogw-drift {
+  0%, 100% { transform: translate3d(-4%, -3%, 0) rotate(0deg); }
+  50% { transform: translate3d(4%, 4%, 0) rotate(8deg); }
+}
+@keyframes ogw-breathe {
+  0%, 100% { opacity: 0.35; transform: scale(0.9); }
+  50% { opacity: 0.75; transform: scale(1.05); }
+}
+@keyframes ogw-wiggle {
+  0%, 82%, 100% { transform: rotate(0deg); }
+  86% { transform: rotate(-12deg); }
+  90% { transform: rotate(10deg); }
+  94% { transform: rotate(-6deg); }
+}
+@keyframes ogw-slide {
+  from { transform: translate3d(-50%, 0, 0); }
+  to { transform: translate3d(0, 0, 0); }
+}
+@keyframes ogw-bounce {
+  0%, 100% { transform: translate3d(0, 0, 0); opacity: 0.55; }
+  50% { transform: translate3d(0, -6px, 0); opacity: 1; }
+}
+@keyframes ogw-word {
+  from { opacity: 0; transform: translate3d(0, 6px, 0); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes ogw-ping {
+  from { transform: scale(1); opacity: 0.8; }
+  to { transform: scale(1.9); opacity: 0; }
+}
+.ogw-aurora { animation: ogw-drift 26s ease-in-out infinite; will-change: transform; }
+.ogw-breathe { animation: ogw-breathe 4s ease-in-out infinite; will-change: transform, opacity; }
+.ogw-wiggle { animation: ogw-wiggle 6s ease-in-out infinite; }
+.ogw-slide { animation: ogw-slide 6s linear infinite; will-change: transform; }
+.ogw-slide.is-fast { animation-duration: 1.1s; }
+.ogw-bounce { animation: ogw-bounce 0.9s ease-in-out infinite; }
+.ogw-word { display: inline-block; opacity: 0; animation: ogw-word 0.28s ease-out forwards; }
+.ogw-ping { animation: ogw-ping 1.6s ease-out 3; }
+.ogw-spin-layer { will-change: transform; }

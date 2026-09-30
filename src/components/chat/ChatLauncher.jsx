@@ -71,25 +71,19 @@ export default function ChatLauncher({ open, unread, attention, hideOnPhone, onT
         whileTap={{ scale: 0.9 }}
       >
         {/* Breathing glow */}
-        <motion.span
+        <span
           aria-hidden="true"
-          className="absolute -inset-3 rounded-full"
-          style={{ background: 'var(--rainbow-conic)', filter: 'blur(18px)' }}
-          animate={reduce ? { opacity: 0.35 } : { opacity: [0.25, 0.55, 0.25], scale: [0.92, 1.04, 0.92] }}
-          transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
+          className="absolute -inset-4 rounded-full ogw-breathe"
+          style={{
+            background:
+              'radial-gradient(closest-side, rgba(247,201,72,0.55), rgba(239,83,80,0.35) 45%, rgba(74,155,232,0.25) 70%, transparent)',
+          }}
         />
 
         {/* Attention pings */}
         {attention && !reduce &&
           [0, 0.6].map((d) => (
-            <motion.span
-              key={d}
-              aria-hidden="true"
-              className="absolute inset-0 rounded-full border-2 border-rb-yellow"
-              initial={{ scale: 1, opacity: 0.8 }}
-              animate={{ scale: 1.9, opacity: 0 }}
-              transition={{ duration: 1.6, delay: d, repeat: 2, ease: 'easeOut' }}
-            />
+            <span key={d} aria-hidden="true" className="absolute inset-0 rounded-full border-2 border-rb-yellow opacity-0 ogw-ping" style={{ animationDelay: `${d}s` }} />
           ))}
 
         <SpinRing width={3} speed={open ? 'animate-spin' : 'animate-spin-slow'} glow={false} />
@@ -125,14 +119,12 @@ export default function ChatLauncher({ open, unread, attention, hideOnPhone, onT
 
         {/* Speech badge */}
         {!open && (
-          <motion.span
+          <span
             aria-hidden="true"
-            className="absolute -top-1 -left-1 grid place-items-center w-6 h-6 rounded-full bg-gold text-ink shadow-lg shadow-black/40"
-            animate={reduce ? undefined : { rotate: [0, -12, 10, -6, 0] }}
-            transition={{ duration: 1.2, repeat: Infinity, repeatDelay: 5 }}
+            className="absolute -top-1 -left-1 grid place-items-center w-6 h-6 rounded-full bg-gold text-ink shadow-lg shadow-black/40 ogw-wiggle"
           >
             <MessageCircle className="w-3.5 h-3.5" strokeWidth={2.5} />
-          </motion.span>
+          </span>
         )}
 
         {/* Unread count */}

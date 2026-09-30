@@ -3,7 +3,7 @@ import {
   BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer,
 } from 'recharts';
 import { subMonths, format, parseISO, isSameMonth } from 'date-fns';
-import { DollarSign, CalendarCheck, Heart, Mail, CalendarDays, TrendingUp, ShoppingBag, Users } from 'lucide-react';
+import { DollarSign, CalendarCheck, Heart, Mail, CalendarDays, ShoppingBag, Users } from 'lucide-react';
 import { isUpcoming, rsvpTotals } from '@/lib/rsvpUtils';
 
 const StatCard = ({ icon: Icon, label, value, sub, accent }) => (

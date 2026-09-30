@@ -19,10 +19,20 @@ export default function ScrollToTop() {
     if (navigationType === "POP") return;
 
     if (hash) {
+      // Pages load on demand, so the target may not exist yet. Keep looking
+      // for a few seconds, then give up quietly.
       const id = getHashId(hash);
-      const timer = window.setTimeout(() => {
-        document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
-      }, 50);
+      const started = Date.now();
+      let timer;
+      const tryScroll = () => {
+        const el = document.getElementById(id);
+        if (el) {
+          el.scrollIntoView({ behavior: "smooth" });
+          return;
+        }
+        if (Date.now() - started < 4000) timer = window.setTimeout(tryScroll, 80);
+      };
+      timer = window.setTimeout(tryScroll, 50);
       return () => window.clearTimeout(timer);
     }
 

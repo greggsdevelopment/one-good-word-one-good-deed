@@ -192,7 +192,7 @@ export function BotMessage({ m, showAvatar, isLast, showHandoff, sending, handof
           className={`relative rounded-2xl rounded-tl-md px-4 py-3 font-barlow text-[15px] leading-relaxed text-cream/90 break-words ${
             crisis
               ? 'bg-rb-red/[0.1] border border-rb-red/40 shadow-[0_0_40px_-12px_rgba(239,83,80,0.6)]'
-              : 'bg-white/[0.05] border border-white/[0.08] backdrop-blur-sm'
+              : 'bg-white/[0.05] border border-white/[0.08]'
           }`}
         >
           {crisis && (

@@ -141,11 +141,12 @@ export default function ChatPanel({ open, isPhone, settings, ctx, state, onClose
     lastTop.current = el.scrollTop;
   };
 
+  // Grows out of the bubble using only scale and opacity, which never repaint.
   const desktopMotion = {
-    initial: { opacity: 0, y: 30, scale: 0.88, clipPath: 'circle(8% at 92% 100%)' },
-    animate: { opacity: 1, y: 0, scale: 1, clipPath: 'circle(150% at 92% 100%)' },
-    exit: { opacity: 0, y: 24, scale: 0.9, clipPath: 'circle(8% at 92% 100%)' },
-    transition: { type: 'spring', stiffness: 260, damping: 28, clipPath: { duration: 0.55, ease: [0.2, 0.8, 0.2, 1] } },
+    initial: { opacity: 0, y: 40, scale: 0.6 },
+    animate: { opacity: 1, y: 0, scale: 1 },
+    exit: { opacity: 0, y: 30, scale: 0.7, transition: { duration: 0.18, ease: 'easeIn' } },
+    transition: { type: 'spring', stiffness: 380, damping: 30, mass: 0.8 },
   };
   const phoneMotion = {
     initial: { y: '100%' },
@@ -179,7 +180,7 @@ export default function ChatPanel({ open, isPhone, settings, ctx, state, onClose
           {/* Turning rainbow edge (computer only) */}
           {!isPhone && (
             <span aria-hidden="true" className="absolute inset-0 rounded-[26px] overflow-hidden">
-              <span className="absolute -inset-[40%] animate-spin-slow opacity-80" style={{ background: 'var(--rainbow-conic)' }} />
+              <span className="absolute -inset-[40%] animate-spin-slow opacity-80 ogw-spin-layer" style={{ background: 'var(--rainbow-conic)' }} />
             </span>
           )}
 
@@ -191,7 +192,7 @@ export default function ChatPanel({ open, isPhone, settings, ctx, state, onClose
 
             {/* Header */}
             <header
-              className="relative z-10 flex items-center gap-3 px-4 pt-3 pb-3 border-b border-white/[0.07] bg-black/30 backdrop-blur-xl touch-none select-none"
+              className="relative z-10 flex items-center gap-3 px-4 pt-3 pb-3 border-b border-white/[0.07] bg-black/40 touch-none select-none"
               onPointerDown={onHeaderDown}
               onPointerMove={onHeaderMove}
               onPointerUp={onHeaderUp}
@@ -234,11 +235,9 @@ export default function ChatPanel({ open, isPhone, settings, ctx, state, onClose
 
             {/* Rainbow line: calm when idle, racing while thinking */}
             <div aria-hidden="true" className="relative z-10 h-[2px] overflow-hidden bg-white/[0.04]">
-              <motion.div
-                className="absolute inset-y-0 w-[200%]"
+              <div
+                className={`absolute inset-y-0 left-0 w-[200%] transition-opacity duration-300 ogw-slide ${sending ? 'is-fast opacity-100' : 'opacity-45'}`}
                 style={{ background: 'var(--rainbow-loop)' }}
-                animate={reduce ? { x: 0, opacity: 0.6 } : { x: ['-50%', '0%'], opacity: sending ? 1 : 0.45 }}
-                transition={{ x: { duration: sending ? 1.1 : 6, repeat: Infinity, ease: 'linear' }, opacity: { duration: 0.3 } }}
               />
             </div>
 
@@ -311,7 +310,7 @@ export default function ChatPanel({ open, isPhone, settings, ctx, state, onClose
               )}
             </AnimatePresence>
 
-            <div className="relative z-10 border-t border-white/[0.07] bg-black/40 backdrop-blur-xl">
+            <div className="relative z-10 border-t border-white/[0.07] bg-black/60">
               <Composer
                 onSend={onSend}
                 sending={sending}

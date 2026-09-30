@@ -47,8 +47,8 @@ export default function ChatTeaser({ show, text, chips = [], onOpen, onChip, onC
           aria-label="Chat suggestion"
         >
           <div className="relative rounded-2xl p-[1px] overflow-hidden shadow-2xl shadow-black/60">
-            <span aria-hidden="true" className="absolute -inset-[60%] animate-spin-slow" style={{ background: 'var(--rainbow-conic)' }} />
-            <div className="relative rounded-[15px] bg-[#0f0f12]/95 backdrop-blur-xl p-4 pr-9">
+            <span aria-hidden="true" className="absolute -inset-[60%] animate-spin-slow ogw-spin-layer" style={{ background: 'var(--rainbow-conic)' }} />
+            <div className="relative rounded-[15px] bg-[#0f0f12] p-4 pr-9">
               <button
                 type="button"
                 onClick={onClose}

@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { Heart, Share2, Facebook, Twitter } from 'lucide-react';
+import { Heart, Facebook, Twitter } from 'lucide-react';
 
 const SITE_URL = 'https://1goodword1gooddeed.base44.app';
 const SHARE_TEXT = encodeURIComponent(`I just took the One Good Word One Good Deed pledge! Join me at ${SITE_URL}`);
