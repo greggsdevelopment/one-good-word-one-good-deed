@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { CheckCircle } from 'lucide-react';
-import { base44 } from '@/api/base44Client';
+import { submitForm } from '@/lib/submitForm';
+import { toast as notify } from 'sonner';
 
 const CATEGORIES = ['Crisis', 'Mental Health', 'After-School', 'Anti-Bullying', 'Faith', 'Substance Abuse', 'Other'];
 
@@ -17,9 +18,14 @@ export default function SuggestResourceForm() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setSubmitting(true);
-    await base44.entities.ResourceSuggestion.create(form);
-    setSubmitting(false);
-    setSubmitted(true);
+    try {
+      await submitForm('resource', form);
+      setSubmitted(true);
+    } catch (err) {
+      notify.error(err.message);
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (

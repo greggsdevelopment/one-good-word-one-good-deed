@@ -54,9 +54,12 @@
   "required": [
     "name"
   ],
-  "allowPublicCreate": true,
   "rls": {
-    "create": null,
+    "create": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
     "read": {
       "user_condition": {
         "role": "admin"

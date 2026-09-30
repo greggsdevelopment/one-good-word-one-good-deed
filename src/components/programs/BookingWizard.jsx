@@ -1,7 +1,7 @@
 import { useMemo, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useInView } from '@/hooks/useInView';
-import { base44 } from '@/api/base44Client';
+import { submitForm } from '@/lib/submitForm';
 import {
   ArrowLeft,
   ArrowRight,
@@ -142,8 +142,7 @@ export default function BookingWizard() {
     setError('');
     setSubmitting(true);
     try {
-      const reference = `OGW-B-${Date.now().toString(36).toUpperCase()}`;
-      const record = await base44.entities.BookingRequest.create({
+      const record = await submitForm('booking', {
         school_name: form.school_name,
         contact_name: form.contact_name,
         email: form.email,
@@ -151,8 +150,6 @@ export default function BookingWizard() {
         preferred_date: form.date_window_1 || undefined,
         num_students: form.enrollment ? Number(form.enrollment) : undefined,
         message: form.message,
-        status: 'new',
-        reference,
         grade_band: form.gradeBand,
         school_type: form.school_type,
         district: form.district,
@@ -171,11 +168,13 @@ export default function BookingWizard() {
         billing_contact_email: form.billing_contact_email,
         needs_w9: Boolean(form.needs_w9),
       });
-      setSubmitted({ ...record, reference });
+      setSubmitted({ ...record, reference: record.reference });
     } catch (err) {
       console.error('Booking request failed', err);
       setError(
-        'We could not send that. Please try again, or email greggsdevelopment@gmail.com and we will pick it up from there.',
+        err?.code === 'rate_limited' || err?.field
+          ? err.message
+          : 'We could not send that. Please try again, or email greggsdevelopment@gmail.com and we will pick it up from there.',
       );
     } finally {
       setSubmitting(false);

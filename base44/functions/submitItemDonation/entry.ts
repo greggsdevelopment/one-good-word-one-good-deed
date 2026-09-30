@@ -184,6 +184,19 @@ Deno.serve(async (req: Request) => {
   }
   const sub = checked.value;
 
+  // Flood protection: 3 offers per email and 20 overall per 10 minutes.
+  try {
+    const cutoff = Date.now() - 10 * 60_000;
+    const recentAll = await base44.asServiceRole.entities.ItemDonation.list('-created_date', 20);
+    const mine = await base44.asServiceRole.entities.ItemDonation.filter({ email: sub.email }, '-created_date', 3);
+    const inWindow = (rows: any[]) => rows.filter((r) => r?.created_date && Date.parse(r.created_date) >= cutoff).length;
+    if (inWindow(recentAll) >= 20 || inWindow(mine) >= 3) {
+      return json({ error: 'rate_limited', message: 'You have sent a few of these already. Please wait a bit, or call (734) 383-3865.' }, 429);
+    }
+  } catch (err) {
+    console.error('submitItemDonation: rate check failed', err);
+  }
+
   let geo: Geo | null = null;
   let distance: number | null = null;
   if (sub.delivery_method === 'pickup') {

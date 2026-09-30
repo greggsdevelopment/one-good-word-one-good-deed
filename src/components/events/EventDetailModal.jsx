@@ -4,7 +4,8 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { X, Calendar, Clock, MapPin, ExternalLink, Star, CheckCircle, ArrowRight } from 'lucide-react';
 import { format, parseISO } from 'date-fns';
-import { base44 } from '@/api/base44Client';
+import { submitForm } from '@/lib/submitForm';
+import { toast as notify } from 'sonner';
 
 const SERIF = { fontFamily: "'Cormorant Garamond', serif" };
 
@@ -44,17 +45,22 @@ export default function EventDetailModal({ event, onClose }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setSubmitting(true);
-    await base44.entities.BookingRequest.create({
-      school_name: `RSVP: ${event.title}`,
-      contact_name: form.contact_name,
-      email: form.email,
-      phone: form.phone,
-      preferred_date: event.event_date,
-      num_students: form.num_students ? Number(form.num_students) : undefined,
-      message: `RSVP for event: ${event.title} on ${format(date, 'MMMM d, yyyy')}`,
-    });
-    setSubmitting(false);
-    setSubmitted(true);
+    try {
+      await submitForm('booking', {
+        school_name: `RSVP: ${event.title}`,
+        contact_name: form.contact_name,
+        email: form.email,
+        phone: form.phone,
+        preferred_date: event.event_date,
+        num_students: form.num_students ? Number(form.num_students) : undefined,
+        message: `RSVP for event: ${event.title} on ${format(date, 'MMMM d, yyyy')}`,
+      });
+      setSubmitted(true);
+    } catch (err) {
+      notify.error(err.message);
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   const content = (

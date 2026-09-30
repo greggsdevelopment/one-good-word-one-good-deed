@@ -28,7 +28,8 @@ export const formatEventDate = (e) => (e.event_date ? format(parseISO(e.event_da
 
 export const formatSubmitted = (r) => (r.created_date ? format(new Date(r.created_date), 'MMM d, yyyy h:mm a') : '');
 
-const csvCell = (v) => `"${String(v ?? '').replace(/"/g, '""')}"`;
+const neutralize = (s) => (/^-?\d+(\.\d+)?$/.test(s) ? s : /^[=+\-@\t\r]/.test(s) ? `'${s}` : s);
+const csvCell = (v) => `"${neutralize(String(v ?? '')).replace(/"/g, '""')}"`;
 
 export function downloadRosterCsv(event, rsvps) {
   const headers = [

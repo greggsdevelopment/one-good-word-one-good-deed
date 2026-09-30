@@ -5,7 +5,6 @@ import { base44 } from '@/api/base44Client';
 import { useAuth } from '@/lib/AuthContext';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Button } from '@/components/ui/button';
-import { Toaster as SonnerToaster } from '@/components/ui/sonner';
 import {
   LogOut, CalendarCheck, Heart, BookOpen, ShoppingBag, Inbox, ClipboardList, Users, Ticket, Handshake,
   CalendarDays, Backpack, LayoutDashboard, Search, RefreshCw, Mail,
@@ -97,7 +96,6 @@ export default function Admin() {
 
   return (
     <div className="min-h-screen bg-cream">
-      <SonnerToaster position="bottom-center" richColors closeButton duration={3500} />
 
       {/* Header */}
       <div className="bg-ink text-cream px-4 sm:px-8 py-4 flex items-center justify-between gap-3 sticky top-0 z-40">

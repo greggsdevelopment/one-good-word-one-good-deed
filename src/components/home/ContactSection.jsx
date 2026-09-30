@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { base44 } from '@/api/base44Client';
+import { submitForm } from '@/lib/submitForm';
+import { toast as notify } from 'sonner';
 import { useInView } from '@/hooks/useInView';
 import { CheckCircle } from 'lucide-react';
 
@@ -13,9 +14,14 @@ export default function ContactSection() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setSubmitting(true);
-    await base44.entities.ContactMessage.create(formData);
-    setSubmitting(false);
-    setSubmitted(true);
+    try {
+      await submitForm('contact', formData);
+      setSubmitted(true);
+    } catch (err) {
+      notify.error(err.message);
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   const inputClass = "w-full bg-white border border-ink/10 rounded-sm px-5 py-4 text-ink placeholder:text-ink/30 font-barlow focus:outline-none focus:border-gold-dark/50 transition-colors";

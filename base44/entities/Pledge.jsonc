@@ -32,11 +32,24 @@
   "required": [
     "first_name"
   ],
-  "allowPublicCreate": true,
-  "allowPublicRead": true,
   "rls": {
-    "create": null,
-    "read": null,
+    "create": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "read": {
+      "$or": [
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        },
+        {
+          "data.approved": true
+        }
+      ]
+    },
     "update": {
       "user_condition": {
         "role": "admin"
@@ -47,5 +60,6 @@
         "role": "admin"
       }
     }
-  }
+  },
+  "allowPublicRead": true
 }

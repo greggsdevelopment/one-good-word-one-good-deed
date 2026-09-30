@@ -6,7 +6,15 @@
       "enum": [
         "admin",
         "user"
-      ]
+      ],
+      "rls": {
+        "read": true,
+        "write": {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      }
     }
   },
   "required": [

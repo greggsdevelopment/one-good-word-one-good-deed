@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { base44 } from '@/api/base44Client';
+import { submitForm } from '@/lib/submitForm';
+import { toast as notify } from 'sonner';
 import { useInView } from '@/hooks/useInView';
 import { CheckCircle } from 'lucide-react';
 
@@ -14,9 +15,14 @@ export default function NewsletterSection() {
     e.preventDefault();
     if (!email) return;
     setSubmitting(true);
-    await base44.entities.NewsletterSubscriber.create({ email });
-    setSubmitting(false);
-    setSubmitted(true);
+    try {
+      await submitForm('newsletter', { email });
+      setSubmitted(true);
+    } catch (err) {
+      notify.error(err.message);
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (

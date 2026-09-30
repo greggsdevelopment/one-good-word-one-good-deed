@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { CheckCircle, Calendar, MapPin } from 'lucide-react';
 import { base44 } from '@/api/base44Client';
+import { submitForm } from '@/lib/submitForm';
 import StickyNav from '@/components/home/StickyNav';
 import FooterSection from '@/components/home/FooterSection';
 import { useInView } from '@/hooks/useInView';
@@ -54,9 +55,8 @@ export default function NightForDraykeRSVP() {
     setSubmitting(true);
     setError('');
     try {
-      await base44.entities.EventRSVP.create({
+      await submitForm('rsvp', {
         event_id: eventId,
-        event_title: EVENT_TITLE,
         full_name: form.full_name.trim(),
         email: form.email.trim(),
         phone: form.phone.trim(),
@@ -66,7 +66,7 @@ export default function NightForDraykeRSVP() {
       });
       setSubmitted(true);
     } catch (err) {
-      setError('Something went wrong. Please try again.');
+      setError(err?.message || 'Something went wrong. Please try again.');
     } finally {
       setSubmitting(false);
     }

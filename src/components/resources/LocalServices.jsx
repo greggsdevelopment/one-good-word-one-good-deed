@@ -173,7 +173,7 @@ export default function LocalServices({ search = '', activeCategory = 'All' }) {
   const handleSearch = (e) => {
     e.preventDefault();
     if (zip.trim()) {
-      window.open(`https://www.211.org/about-us/your-local-211?zip=${encodeURIComponent(zip)}`, '_blank');
+      window.open(`https://www.211.org/about-us/your-local-211?zip=${encodeURIComponent(zip)}`, '_blank', 'noopener,noreferrer');
     }
   };
 

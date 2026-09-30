@@ -5,8 +5,8 @@ const SITE_URL = 'https://1goodword1gooddeed.base44.app';
 const SHARE_TEXT = encodeURIComponent(`I just took the One Good Word One Good Deed pledge! Join me at ${SITE_URL}`);
 
 export default function PledgeCard({ pledge, onClose }) {
-  const shareTwitter = () => window.open(`https://twitter.com/intent/tweet?text=${SHARE_TEXT}`, '_blank');
-  const shareFacebook = () => window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(SITE_URL)}&quote=${SHARE_TEXT}`, '_blank');
+  const shareTwitter = () => window.open(`https://twitter.com/intent/tweet?text=${SHARE_TEXT}`, '_blank', 'noopener,noreferrer');
+  const shareFacebook = () => window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(SITE_URL)}&quote=${SHARE_TEXT}`, '_blank', 'noopener,noreferrer');
 
   return (
     <motion.div

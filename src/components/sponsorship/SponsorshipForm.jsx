@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { CheckCircle, Mail, Phone } from 'lucide-react';
 import { useInView } from '@/hooks/useInView';
-import { base44 } from '@/api/base44Client';
+import { submitForm } from '@/lib/submitForm';
 
 const LEVELS = [
   'Supply Drop - $250',
@@ -49,12 +49,14 @@ export default function SponsorshipForm() {
     setSubmitting(true);
     setError('');
     try {
-      await base44.entities.SponsorshipApplication.create({ ...form, status: 'new' });
+      await submitForm('sponsorship', form);
       setSubmitted(true);
     } catch (err) {
       console.error('Sponsorship application failed:', err);
       setError(
-        'Something went wrong sending that. Email greggsdevelopment@gmail.com or call (734) 383-3865 and we will take it down by hand.'
+        err?.code === 'rate_limited' || err?.field
+          ? err.message
+          : 'Something went wrong sending that. Email greggsdevelopment@gmail.com or call (734) 383-3865 and we will take it down by hand.'
       );
     } finally {
       setSubmitting(false);

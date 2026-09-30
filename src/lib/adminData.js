@@ -114,8 +114,15 @@ export function parseJsonList(raw) {
   }
 }
 
+// Spreadsheet apps run cells that start with = + - @ (or tab/CR) as formulas.
+// Prefix those with an apostrophe so exported form text can never execute.
+function neutralize(s) {
+  if (/^-?\d+(\.\d+)?$/.test(s)) return s; // plain numbers, e.g. -4 in inventory history
+  return /^[=+\-@\t\r]/.test(s) ? `'${s}` : s;
+}
+
 function csvCell(value) {
-  const s = value == null ? '' : String(value);
+  const s = neutralize(value == null ? '' : String(value));
   return /[",\r\n]/.test(s) ? `"${s.replace(/"/g, '""')}"` : s;
 }
 

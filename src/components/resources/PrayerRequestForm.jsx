@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Heart, Send, CheckCircle } from 'lucide-react';
-import { base44 } from '@/api/base44Client';
+import { submitForm } from '@/lib/submitForm';
+import { toast as notify } from 'sonner';
 
 export default function PrayerRequestForm() {
   const [form, setForm] = useState({ name: '', prayer: '', anonymous: false });
@@ -12,14 +13,17 @@ export default function PrayerRequestForm() {
     e.preventDefault();
     if (!form.prayer.trim()) return;
     setLoading(true);
-    await base44.entities.ContactMessage.create({
-      name: form.anonymous ? 'Anonymous' : (form.name.trim() || 'Anonymous'),
-      email: 'prayer@request.org',
-      subject: 'Prayer Request',
-      message: form.prayer.trim(),
-    });
-    setLoading(false);
-    setSubmitted(true);
+    try {
+      await submitForm('prayer', {
+        name: form.anonymous ? 'Anonymous' : (form.name.trim() || 'Anonymous'),
+        message: form.prayer.trim(),
+      });
+      setSubmitted(true);
+    } catch (err) {
+      notify.error(err.message);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (

@@ -2,6 +2,8 @@ import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Heart, MapPin, Clock, Search, X, ChevronDown } from 'lucide-react';
 import { base44 } from '@/api/base44Client';
+import { submitForm } from '@/lib/submitForm';
+import { toast as notify } from 'sonner';
 import { format } from 'date-fns';
 import StickyNav from '@/components/home/StickyNav';
 import FooterSection from '@/components/home/FooterSection';
@@ -75,7 +77,13 @@ export default function PledgeWall() {
     e.preventDefault();
     setSubmitting(true);
     const clean = { ...form, last_initial: form.last_initial.charAt(0).toUpperCase() };
-    await base44.entities.Pledge.create(clean);
+    try {
+      await submitForm('pledge', clean);
+    } catch (err) {
+      notify.error(err.message);
+      setSubmitting(false);
+      return;
+    }
     setSubmitting(false);
     setSubmitted(true);
     setSubmittedPledge(clean);
