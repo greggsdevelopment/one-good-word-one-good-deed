@@ -5,7 +5,7 @@ import { base44 } from '@/api/base44Client';
 import StickyNav from '@/components/home/StickyNav';
 import HeroSection from '@/components/home/HeroSection';
 import FoundationBand from '@/components/home/FoundationBand';
-import ProgramStepsVisual from '@/components/home/ProgramStepsVisual';
+import ProgramJourney from '@/components/home/ProgramJourney';
 import FooterSection from '@/components/home/FooterSection';
 import NightForDraykeCard from '@/components/home/NightForDraykeCard';
 import { HERO_PHOTO } from '@/components/drayke/draykePhotos';
@@ -37,9 +37,48 @@ export default function Home() {
       <HeroSection logoUrl={LOGO_URL} pledgeCount={pledgeCount} />
       <Marquee items={['Stop Bullying', 'Stop Racism', 'One Good Word', 'One Good Deed', 'Remember Drayke', 'Speak Love']} />
 
-      {/* 01 - Drayke */}
+      {/* 01 - School Programs: leads the page */}
       <FoundationBand
         index="01"
+        eyebrow="Where the Work Happens"
+        title="SCHOOL"
+        titleAccent="PROGRAMS"
+        visual={<ProgramJourney />}
+        glow="25% 45%"
+        tint="var(--rb-blue)"
+        description="Kindness is a skill, so we teach it like one. Five steps across one school year take students from watching to acting, with a staff training hour and a family night built in. Booked by principals across Southeast Michigan."
+        cta="See the Programs"
+        to="/programs"
+      />
+
+      {/* 02 - Shop */}
+      <FoundationBand
+        index="02"
+        eyebrow="Wear the Movement"
+        title="THE MERCH"
+        titleAccent="SHOP"
+        image={SHOP_IMAGE}
+        imageAlt="One Good Word One Good Deed t-shirt"
+        glow="75% 40%"
+        tint="var(--rb-orange)"
+        reverse
+        meta={
+          <div className="flex flex-wrap items-center justify-center lg:justify-start gap-x-6 gap-y-2 font-barlow-condensed text-cream/60 text-xs tracking-[0.2em] uppercase">
+            <span>Tees from $25</span>
+            <span className="text-gold/40">/</span>
+            <span>Hoodies &amp; Coats</span>
+            <span className="text-gold/40">/</span>
+            <span>Free shipping over $75</span>
+          </div>
+        }
+        description="Shirts, hoodies, wool coats and the wristbands we hand to every student at every assembly. Every purchase puts the message on somebody's chest and funds the next school we walk into."
+        cta="Shop the Collection"
+        to="/shop"
+      />
+
+      {/* 03 - Drayke */}
+      <FoundationBand
+        index="03"
         eyebrow="The Reason We Fight"
         title="REMEMBER"
         titleAccent="DRAYKE"
@@ -67,45 +106,6 @@ export default function Home() {
 
       {/* A Night For Drayke event announcement */}
       <NightForDraykeCard />
-
-      {/* 02 - Shop */}
-      <FoundationBand
-        index="02"
-        eyebrow="Wear the Movement"
-        title="THE MERCH"
-        titleAccent="SHOP"
-        image={SHOP_IMAGE}
-        imageAlt="One Good Word One Good Deed t-shirt"
-        glow="75% 40%"
-        tint="var(--rb-orange)"
-        reverse
-        meta={
-          <div className="flex flex-wrap items-center justify-center lg:justify-start gap-x-6 gap-y-2 font-barlow-condensed text-cream/60 text-xs tracking-[0.2em] uppercase">
-            <span>Tees from $25</span>
-            <span className="text-gold/40">/</span>
-            <span>Hoodies &amp; Coats</span>
-            <span className="text-gold/40">/</span>
-            <span>Free shipping over $75</span>
-          </div>
-        }
-        description="Shirts, hoodies, wool coats and the wristbands we hand to every student at every assembly. Every purchase puts the message on somebody's chest and funds the next school we walk into."
-        cta="Shop the Collection"
-        to="/shop"
-      />
-
-      {/* 03 - School Programs */}
-      <FoundationBand
-        index="03"
-        eyebrow="Where the Work Happens"
-        title="SCHOOL"
-        titleAccent="PROGRAMS"
-        visual={<ProgramStepsVisual />}
-        glow="25% 45%"
-        tint="var(--rb-blue)"
-        description="Kindness is a skill, so we teach it like one. Five steps across one school year take students from watching to acting, with a staff training hour and a family night built in. Booked by principals across Southeast Michigan."
-        cta="See the Programs"
-        to="/programs"
-      />
 
       <FooterSection logoUrl={LOGO_URL} />
     </div>

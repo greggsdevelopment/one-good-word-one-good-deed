@@ -351,3 +351,9 @@ html[data-chat-hide] .ogw-tabbar { display: none; }
     animation: none !important;
   }
 }
+
+/* Home page school program: the timer bar for each step. */
+@keyframes ogw-step-fill {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}

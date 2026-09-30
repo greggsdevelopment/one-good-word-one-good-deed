@@ -5,6 +5,7 @@ import CodyStory from '@/components/about-cody/CodyStory';
 import RealityBehindReason from '@/components/about-cody/RealityBehindReason';
 import GroundedKingsCard from '@/components/about-cody/GroundedKingsCard';
 import WhatIDo from '@/components/about-cody/WhatIDo';
+import GreggsDevCard from '@/components/about-cody/GreggsDevCard';
 import BeyondSection from '@/components/about-cody/BeyondSection';
 import CodyCTA from '@/components/about-cody/CodyCTA';
 
@@ -21,6 +22,7 @@ export default function AboutCody() {
         <RealityBehindReason />
         <GroundedKingsCard />
         <WhatIDo />
+        <GreggsDevCard />
         <BeyondSection />
         <CodyCTA />
       </main>
