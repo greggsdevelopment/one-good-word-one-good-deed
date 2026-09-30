@@ -17,7 +17,7 @@ export default function ProgramStepsVisual() {
         className="absolute inset-0 pointer-events-none"
         style={{
           background:
-            'radial-gradient(circle at 75% 15%, rgba(230,180,80,0.14) 0%, rgba(11,11,13,0) 60%)',
+            'radial-gradient(circle at 75% 15%, rgba(247,201,72,0.14) 0%, rgba(11,11,13,0) 60%)',
         }}
       />
 

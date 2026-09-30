@@ -30,7 +30,8 @@ export default function FooterSection({ logoUrl }) {
   ];
 
   return (
-    <footer className="relative bg-ink pt-16 pb-8 px-6 overflow-hidden">
+    <footer className="relative bg-black pt-16 pb-8 px-6 overflow-hidden">
+      <div className="rainbow-rule absolute top-0 inset-x-0" aria-hidden="true" />
       <div className="grain-overlay" />
 
       <div className="relative z-10 max-w-6xl mx-auto">
@@ -39,7 +40,7 @@ export default function FooterSection({ logoUrl }) {
           <div>
             <div className="flex items-center gap-3 mb-4">
               {logoUrl && (
-                <img src={logoUrl} alt="Logo" className="h-10 w-10 rounded-full object-cover shrink-0" />
+                <img src={logoUrl} alt="One Good Word One Good Deed logo" className="h-14 w-14 rounded-full object-cover shrink-0" />
               )}
               <div>
                 <p className="font-barlow-condensed text-cream text-sm font-semibold tracking-wide">

@@ -38,7 +38,7 @@ export default function NightForDraykeCard() {
           {/* subtle gold glow */}
           <div
             className="absolute inset-0 pointer-events-none"
-            style={{ background: 'radial-gradient(ellipse at 50% 0%, rgba(230,180,80,0.10) 0%, rgba(11,11,13,0) 60%)' }}
+            style={{ background: 'radial-gradient(ellipse at 50% 0%, rgba(247,201,72,0.10) 0%, rgba(11,11,13,0) 60%)' }}
           />
 
           <div className="relative z-10 text-center">

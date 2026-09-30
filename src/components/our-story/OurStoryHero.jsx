@@ -10,7 +10,7 @@ export default function OurStoryHero() {
     <section className="relative bg-ink pt-36 pb-24 px-6 overflow-hidden" ref={ref}>
       <div
         className="absolute inset-0 pointer-events-none"
-        style={{ background: 'radial-gradient(ellipse at 50% 40%, rgba(230,180,80,0.08) 0%, rgba(11,11,13,0) 60%)' }}
+        style={{ background: 'radial-gradient(ellipse at 50% 40%, rgba(247,201,72,0.08) 0%, rgba(11,11,13,0) 60%)' }}
       />
       <div className="relative max-w-3xl mx-auto text-center">
         <motion.p

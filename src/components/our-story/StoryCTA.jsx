@@ -11,7 +11,7 @@ export default function StoryCTA() {
     <section className="relative bg-ink py-28 px-6 overflow-hidden" ref={ref}>
       <div
         className="absolute inset-0 pointer-events-none"
-        style={{ background: 'radial-gradient(ellipse at 50% 50%, rgba(230,180,80,0.10) 0%, rgba(11,11,13,0) 60%)' }}
+        style={{ background: 'radial-gradient(ellipse at 50% 50%, rgba(247,201,72,0.10) 0%, rgba(11,11,13,0) 60%)' }}
       />
       <div className="relative max-w-2xl mx-auto text-center">
         <motion.div

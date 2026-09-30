@@ -14,7 +14,7 @@ export default function ButterflySection() {
     >
       <div
         className="absolute inset-0 pointer-events-none"
-        style={{ background: 'radial-gradient(ellipse at 50% 30%, rgba(230,180,80,0.1) 0%, rgba(11,11,13,0) 55%)' }}
+        style={{ background: 'radial-gradient(ellipse at 50% 30%, rgba(247,201,72,0.1) 0%, rgba(11,11,13,0) 55%)' }}
       />
 
       <div className="relative max-w-3xl mx-auto text-center">

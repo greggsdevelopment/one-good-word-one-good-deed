@@ -14,7 +14,7 @@ export default function MusicToggle() {
       onClick={toggle}
       title="Background music"
       aria-label="Background music"
-      className="flex items-center justify-center w-9 h-9 rounded-full border border-gold/50 text-gold hover:bg-gold/10 hover:border-gold transition-all duration-300 hover:shadow-[0_0_12px_rgba(230,180,80,0.4)]"
+      className="flex items-center justify-center w-9 h-9 rounded-full border border-gold/50 text-gold hover:bg-gold/10 hover:border-gold transition-all duration-300 hover:shadow-[0_0_12px_rgba(247,201,72,0.4)]"
     >
       {playing ? <Volume2 size={16} strokeWidth={1.5} /> : <VolumeX size={16} strokeWidth={1.5} />}
     </button>

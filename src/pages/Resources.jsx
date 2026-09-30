@@ -10,7 +10,7 @@ import SuggestResourceForm from '@/components/resources/SuggestResourceForm';
 import PrayerRequestForm from '@/components/resources/PrayerRequestForm';
 import BackToTopButton from '@/components/BackToTopButton';
 
-const LOGO_URL = 'https://media.base44.com/images/public/6a19e1fc6c5eb736a0763b09/1824cf861_IMG_5119.png';
+const LOGO_URL = '/brand/logo-512.webp';
 
 const CATEGORY_TABS = ['All', 'Crisis', 'Mental Health', 'After-School', 'Anti-Bullying', 'Faith', 'Substance Abuse'];
 

@@ -4,6 +4,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { ChevronDown, Shield, Menu, X } from 'lucide-react';
 import { base44 } from '@/api/base44Client';
 import MusicToggle from '@/components/home/MusicToggle';
+import ScrollProgress from '@/components/fx/ScrollProgress';
 
 // The four foundations of the movement. Always visible, never buried.
 const PRIMARY_LINKS = [
@@ -111,10 +112,12 @@ export default function StickyNav({ logoUrl }) {
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled
-          ? 'bg-ink/95 shadow-lg shadow-black/40 backdrop-blur-md border-b border-gold/10'
-          : 'bg-ink/80 backdrop-blur-sm'
+          ? 'bg-black/85 shadow-lg shadow-black/50 backdrop-blur-xl'
+          : 'bg-black/40 backdrop-blur-sm'
       }`}
     >
+      <ScrollProgress />
+      <div className={`rainbow-rule absolute bottom-0 inset-x-0 transition-opacity duration-500 ${scrolled ? 'opacity-70' : 'opacity-0'}`} aria-hidden="true" />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 gap-2">
           {/* Logo */}
@@ -123,7 +126,7 @@ export default function StickyNav({ logoUrl }) {
               <img
                 src={logoUrl}
                 alt="One Good Word"
-                className="h-10 w-10 rounded-full object-cover transition-transform duration-300 group-hover:scale-105"
+                className="h-11 w-11 rounded-full object-cover transition-transform duration-500 group-hover:scale-110 group-hover:rotate-12"
               />
             )}
             <span className="text-cream font-bold text-sm hidden sm:block leading-tight tracking-wide">

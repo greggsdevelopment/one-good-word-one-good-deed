@@ -8,7 +8,7 @@ import WhatIDo from '@/components/about-cody/WhatIDo';
 import BeyondSection from '@/components/about-cody/BeyondSection';
 import CodyCTA from '@/components/about-cody/CodyCTA';
 
-const LOGO_URL = 'https://media.base44.com/images/public/6a19e1fc6c5eb736a0763b09/1824cf861_IMG_5119.png';
+const LOGO_URL = '/brand/logo-512.webp';
 
 export default function AboutCody() {
   return (

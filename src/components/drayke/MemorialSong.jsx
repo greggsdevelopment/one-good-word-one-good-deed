@@ -37,7 +37,7 @@ export default function MemorialSong() {
       {/* Soft gold glow behind the panel */}
       <div
         className="absolute inset-0 pointer-events-none"
-        style={{ background: 'radial-gradient(ellipse at 50% 45%, rgba(230,180,80,0.08) 0%, rgba(11,11,13,0) 60%)' }}
+        style={{ background: 'radial-gradient(ellipse at 50% 45%, rgba(247,201,72,0.08) 0%, rgba(11,11,13,0) 60%)' }}
       />
 
       <div className="relative max-w-2xl mx-auto text-center">
@@ -85,7 +85,7 @@ export default function MemorialSong() {
           {/* Soft spotlight glow hugging the frame */}
           <div
             className="absolute -inset-6 pointer-events-none"
-            style={{ background: 'radial-gradient(ellipse at 50% 50%, rgba(230,180,80,0.12) 0%, rgba(11,11,13,0) 70%)' }}
+            style={{ background: 'radial-gradient(ellipse at 50% 50%, rgba(247,201,72,0.12) 0%, rgba(11,11,13,0) 70%)' }}
             aria-hidden="true"
           />
           <div className="relative border border-gold/35">
@@ -124,7 +124,7 @@ export default function MemorialSong() {
                   />
                   {/* Large circular gold play button centered over the photo */}
                   <span className="absolute inset-0 flex items-center justify-center">
-                    <span className="relative flex items-center justify-center w-20 h-20 rounded-full bg-gold/95 shadow-[0_0_30px_rgba(230,180,80,0.45)] transition-transform duration-300 group-hover:scale-105">
+                    <span className="relative flex items-center justify-center w-20 h-20 rounded-full bg-gold/95 shadow-[0_0_30px_rgba(247,201,72,0.45)] transition-transform duration-300 group-hover:scale-105">
                       <span className="absolute inset-0 rounded-full border border-gold/40 scale-110" aria-hidden="true" />
                       <svg width="24" height="28" viewBox="0 0 24 28" fill="none" aria-hidden="true">
                         <path d="M3 3 L22 14 L3 25 Z" fill="#0b0b0d" stroke="#0b0b0d" strokeWidth="1.5" strokeLinejoin="round" />

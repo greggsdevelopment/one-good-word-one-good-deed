@@ -10,7 +10,7 @@ import FooterSection from '@/components/home/FooterSection';
 import CinematicWall from '@/components/pledge/CinematicWall';
 import PledgeCard from '@/components/pledge/PledgeCard';
 
-const LOGO_URL = 'https://media.base44.com/images/public/6a19e1fc6c5eb736a0763b09/1824cf861_IMG_5119.png';
+const LOGO_URL = '/brand/logo-512.webp';
 const HEADER_BG = 'https://media.base44.com/images/public/6a19e1fc6c5eb736a0763b09/10559d56f_image.png';
 const SERIF = { fontFamily: "'Cormorant Garamond', serif" };
 const SCRIPT = { fontFamily: "'Great Vibes', cursive" };
@@ -297,7 +297,7 @@ export default function PledgeWall() {
           className="absolute inset-0 pointer-events-none"
           style={{
             background:
-              'radial-gradient(ellipse at 50% 100%, rgba(230,180,80,0.12) 0%, rgba(11,11,13,0) 60%)',
+              'radial-gradient(ellipse at 50% 100%, rgba(247,201,72,0.12) 0%, rgba(11,11,13,0) 60%)',
           }}
         />
         <div className="relative z-10 max-w-xl mx-auto">

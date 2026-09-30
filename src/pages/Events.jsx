@@ -9,7 +9,7 @@ import EventDetailModal from '@/components/events/EventDetailModal';
 import NightForDraykeCard from '@/components/home/NightForDraykeCard';
 import LetterToSamieAndAndy from '@/components/events/LetterToSamieAndAndy';
 
-const LOGO_URL = 'https://media.base44.com/images/public/6a19e1fc6c5eb736a0763b09/1824cf861_IMG_5119.png';
+const LOGO_URL = '/brand/logo-512.webp';
 
 export default function Events() {
   const [selectedEvent, setSelectedEvent] = useState(null);

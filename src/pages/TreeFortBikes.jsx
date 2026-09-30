@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import StickyNav from "@/components/home/StickyNav";
 
-const LOGO_URL = "https://media.base44.com/images/public/6a19e1fc6c5eb736a0763b09/1824cf861_IMG_5119.png";
+const LOGO_URL = "/brand/logo-512.webp";
 
 export default function TreeFortBikes() {
   const [visible, setVisible] = useState(false);
@@ -72,15 +72,15 @@ export default function TreeFortBikes() {
         {/* ─── HERO ─────────────────────────────────────────── */}
         <section style={{ position: "relative", minHeight: "100vh", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", padding: "100px 24px 80px", overflow: "hidden", textAlign: "center" }}>
 
-          <div className="tfb-glow" style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%,-50%)", width: "700px", height: "700px", background: "radial-gradient(circle, rgba(230,180,80,0.16) 0%, transparent 68%)", pointerEvents: "none" }} />
+          <div className="tfb-glow" style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%,-50%)", width: "700px", height: "700px", background: "radial-gradient(circle, rgba(247,201,72,0.16) 0%, transparent 68%)", pointerEvents: "none" }} />
 
           {/* Bicycle icon */}
           <div className="tfb-float" style={{ marginBottom: "48px" }}>
-            <svg viewBox="0 0 240 150" width="280" height="175" style={{ filter: "drop-shadow(0 0 36px rgba(230,180,80,0.55))" }}>
+            <svg viewBox="0 0 240 150" width="280" height="175" style={{ filter: "drop-shadow(0 0 36px rgba(247,201,72,0.55))" }}>
               <defs>
                 <radialGradient id="bikeGold" cx="38%" cy="22%" r="72%">
                   <stop offset="0%"   stopColor="#f5d070" />
-                  <stop offset="55%"  stopColor="#e6b450" />
+                  <stop offset="55%"  stopColor="#F7C948" />
                   <stop offset="100%" stopColor="#7a4e0a" />
                 </radialGradient>
               </defs>
@@ -104,21 +104,21 @@ export default function TreeFortBikes() {
           </div>
 
           <div style={fadeStyle(0.1)}>
-            <span style={{ fontFamily: "'Barlow Condensed', sans-serif", fontSize: "11px", fontWeight: 700, letterSpacing: "5px", color: "#e6b450", border: "1px solid rgba(230,180,80,0.45)", padding: "7px 18px", textTransform: "uppercase", borderRadius: "2px", display: "inline-block", marginBottom: "22px" }}>
+            <span style={{ fontFamily: "'Barlow Condensed', sans-serif", fontSize: "11px", fontWeight: 700, letterSpacing: "5px", color: "#F7C948", border: "1px solid rgba(247,201,72,0.45)", padding: "7px 18px", textTransform: "uppercase", borderRadius: "2px", display: "inline-block", marginBottom: "22px" }}>
               Official Partner
             </span>
           </div>
 
           <h1 style={{ ...fadeStyle(0.22), fontFamily: "'Anton', sans-serif", fontSize: "clamp(40px, 8vw, 84px)", lineHeight: 0.95, textTransform: "uppercase", letterSpacing: "2px", marginBottom: "20px" }}>
             TREE FORT<br />
-            <span style={{ color: "#e6b450" }}>BIKES</span>
+            <span style={{ color: "#F7C948" }}>BIKES</span>
           </h1>
 
           <p style={{ ...fadeStyle(0.38), fontFamily: "'Barlow', sans-serif", fontSize: "18px", color: "#8a857c", maxWidth: "560px", lineHeight: 1.7, marginBottom: "16px" }}>
             One Good Word...One Good Deed LLC is proud to partner with Tree Fort Bikes - Ypsilanti's trusted bicycle shop featuring bikes, parts, accessories, and expert repairs for riders of every kind.
           </p>
 
-          <p style={{ ...fadeStyle(0.45), fontFamily: "'Barlow Condensed', sans-serif", fontSize: "15px", color: "#e6b450", letterSpacing: "2px", marginBottom: "12px" }}>
+          <p style={{ ...fadeStyle(0.45), fontFamily: "'Barlow Condensed', sans-serif", fontSize: "15px", color: "#F7C948", letterSpacing: "2px", marginBottom: "12px" }}>
             📍 1866 Whittaker Rd, Ypsilanti, MI 48197
           </p>
           <p style={{ ...fadeStyle(0.5), fontFamily: "'Barlow Condensed', sans-serif", fontSize: "14px", color: "#8a857c", letterSpacing: "1px", marginBottom: "44px" }}>
@@ -131,13 +131,13 @@ export default function TreeFortBikes() {
               target="_blank"
               rel="noopener noreferrer"
               className="tfb-shimmer-btn"
-              style={{ fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 700, fontSize: "15px", letterSpacing: "3px", textTransform: "uppercase", color: "#080808", background: "linear-gradient(135deg, #f0c060 0%, #e6b450 50%, #c9922f 100%)", padding: "16px 40px", borderRadius: "2px", boxShadow: "0 0 40px rgba(230,180,80,0.3), 0 8px 28px rgba(0,0,0,0.6)" }}
+              style={{ fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 700, fontSize: "15px", letterSpacing: "3px", textTransform: "uppercase", color: "#080808", background: "linear-gradient(135deg, #f0c060 0%, #F7C948 50%, #F59E42 100%)", padding: "16px 40px", borderRadius: "2px", boxShadow: "0 0 40px rgba(247,201,72,0.3), 0 8px 28px rgba(0,0,0,0.6)" }}
             >
               Visit Their Website
             </a>
             <a
               href="tel:8883331559"
-              style={{ fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 700, fontSize: "15px", letterSpacing: "3px", textTransform: "uppercase", color: "#e6b450", background: "transparent", border: "1px solid rgba(230,180,80,0.45)", padding: "16px 40px", borderRadius: "2px", textDecoration: "none" }}
+              style={{ fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 700, fontSize: "15px", letterSpacing: "3px", textTransform: "uppercase", color: "#F7C948", background: "transparent", border: "1px solid rgba(247,201,72,0.45)", padding: "16px 40px", borderRadius: "2px", textDecoration: "none" }}
             >
               Call (888) 333-1559
             </a>
@@ -149,11 +149,11 @@ export default function TreeFortBikes() {
         </section>
 
         {/* ─── DIVIDER ───────────────────────────────────────── */}
-        <div style={{ height: "1px", background: "linear-gradient(90deg, transparent, rgba(230,180,80,0.35), transparent)", margin: "0 10%" }} />
+        <div style={{ height: "1px", background: "linear-gradient(90deg, transparent, rgba(247,201,72,0.35), transparent)", margin: "0 10%" }} />
 
         {/* ─── MISSION COPY ──────────────────────────────────── */}
         <section style={{ padding: "110px 24px", maxWidth: "860px", margin: "0 auto", textAlign: "center" }}>
-          <p style={{ fontFamily: "'Barlow Condensed', sans-serif", fontSize: "12px", letterSpacing: "5px", color: "#e6b450", textTransform: "uppercase", marginBottom: "24px" }}>Why This Partnership Matters</p>
+          <p style={{ fontFamily: "'Barlow Condensed', sans-serif", fontSize: "12px", letterSpacing: "5px", color: "#F7C948", textTransform: "uppercase", marginBottom: "24px" }}>Why This Partnership Matters</p>
           <h2 style={{ fontFamily: "'Anton', sans-serif", fontSize: "clamp(32px, 5.5vw, 58px)", lineHeight: 1.05, textTransform: "uppercase", marginBottom: "36px" }}>
             KEEP RIDERS MOVING.<br />KEEP COMMUNITIES MOVING.
           </h2>
@@ -163,20 +163,20 @@ export default function TreeFortBikes() {
         </section>
 
         {/* ─── DIVIDER ───────────────────────────────────────── */}
-        <div style={{ height: "1px", background: "linear-gradient(90deg, transparent, rgba(230,180,80,0.15), transparent)", margin: "0 10%" }} />
+        <div style={{ height: "1px", background: "linear-gradient(90deg, transparent, rgba(247,201,72,0.15), transparent)", margin: "0 10%" }} />
 
         {/* ─── FEATURES ──────────────────────────────────────── */}
         <section style={{ padding: "90px 24px", background: "#0b0b0b" }}>
           <div style={{ maxWidth: "1060px", margin: "0 auto" }}>
-            <p style={{ fontFamily: "'Barlow Condensed', sans-serif", fontSize: "12px", letterSpacing: "5px", color: "#e6b450", textTransform: "uppercase", textAlign: "center", marginBottom: "64px" }}>What Tree Fort Bikes Brings</p>
+            <p style={{ fontFamily: "'Barlow Condensed', sans-serif", fontSize: "12px", letterSpacing: "5px", color: "#F7C948", textTransform: "uppercase", textAlign: "center", marginBottom: "64px" }}>What Tree Fort Bikes Brings</p>
             <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(270px, 1fr))", gap: "3px" }}>
               {[
                 { num: "01", title: "Bikes & Gear", body: "A full range of bicycles and accessories for every rider - from first-timers to seasoned cyclists chasing their next adventure." },
                 { num: "02", title: "Expert Repairs", body: "Skilled mechanics who keep your ride running smooth. Honest work, fair pricing, and the kind of care that earns 288 five-star reviews." },
                 { num: "03", title: "Washtenaw County Proud", body: "Rooted in Paint Creek Crossing, Ypsilanti. A trusted local name serving riders across Washtenaw County and beyond." },
               ].map((f) => (
-                <div key={f.num} className="tfb-feature-card" style={{ padding: "52px 40px", background: "#111", borderTop: "2px solid #e6b450" }}>
-                  <p style={{ fontFamily: "'Barlow Condensed', sans-serif", fontSize: "11px", letterSpacing: "4px", color: "#e6b450", marginBottom: "16px" }}>{f.num}</p>
+                <div key={f.num} className="tfb-feature-card" style={{ padding: "52px 40px", background: "#111", borderTop: "2px solid #F7C948" }}>
+                  <p style={{ fontFamily: "'Barlow Condensed', sans-serif", fontSize: "11px", letterSpacing: "4px", color: "#F7C948", marginBottom: "16px" }}>{f.num}</p>
                   <h3 style={{ fontFamily: "'Anton', sans-serif", fontSize: "22px", textTransform: "uppercase", letterSpacing: "1px", marginBottom: "14px" }}>{f.title}</h3>
                   <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: "15px", color: "#8a857c", lineHeight: 1.75 }}>{f.body}</p>
                 </div>
@@ -187,8 +187,8 @@ export default function TreeFortBikes() {
 
         {/* ─── LOCATION / CTA CARD ──────────────────────────── */}
         <section style={{ padding: "90px 24px", textAlign: "center" }}>
-          <div style={{ maxWidth: "700px", margin: "0 auto", border: "1px solid rgba(230,180,80,0.25)", padding: "60px 48px", borderRadius: "2px", background: "#0d0c0a" }}>
-            <p style={{ fontFamily: "'Barlow Condensed', sans-serif", fontSize: "11px", letterSpacing: "5px", color: "#e6b450", textTransform: "uppercase", marginBottom: "20px" }}>Come Visit Tree Fort Bikes</p>
+          <div style={{ maxWidth: "700px", margin: "0 auto", border: "1px solid rgba(247,201,72,0.25)", padding: "60px 48px", borderRadius: "2px", background: "#0d0c0a" }}>
+            <p style={{ fontFamily: "'Barlow Condensed', sans-serif", fontSize: "11px", letterSpacing: "5px", color: "#F7C948", textTransform: "uppercase", marginBottom: "20px" }}>Come Visit Tree Fort Bikes</p>
             <h3 style={{ fontFamily: "'Anton', sans-serif", fontSize: "clamp(26px, 4vw, 40px)", textTransform: "uppercase", letterSpacing: "1px", marginBottom: "24px" }}>
               Tree Fort Bikes
             </h3>
@@ -201,7 +201,7 @@ export default function TreeFortBikes() {
               </p>
               <a
                 href="tel:8883331559"
-                style={{ fontFamily: "'Barlow Condensed', sans-serif", fontSize: "22px", fontWeight: 700, letterSpacing: "2px", color: "#e6b450", textDecoration: "none", marginTop: "4px" }}
+                style={{ fontFamily: "'Barlow Condensed', sans-serif", fontSize: "22px", fontWeight: 700, letterSpacing: "2px", color: "#F7C948", textDecoration: "none", marginTop: "4px" }}
                 onMouseOver={e => e.target.style.opacity = "0.75"}
                 onMouseOut={e => e.target.style.opacity = "1"}
               >
@@ -212,7 +212,7 @@ export default function TreeFortBikes() {
                   href="https://www.treefortbikes.com"
                   target="_blank"
                   rel="noopener noreferrer"
-                  style={{ fontFamily: "'Barlow Condensed', sans-serif", fontSize: "14px", fontWeight: 700, letterSpacing: "2px", color: "#080808", background: "linear-gradient(135deg, #f0c060 0%, #e6b450 50%, #c9922f 100%)", textDecoration: "none", padding: "12px 28px", borderRadius: "2px", display: "inline-block" }}
+                  style={{ fontFamily: "'Barlow Condensed', sans-serif", fontSize: "14px", fontWeight: 700, letterSpacing: "2px", color: "#080808", background: "linear-gradient(135deg, #f0c060 0%, #F7C948 50%, #F59E42 100%)", textDecoration: "none", padding: "12px 28px", borderRadius: "2px", display: "inline-block" }}
                 >
                   Visit Website →
                 </a>
@@ -220,8 +220,8 @@ export default function TreeFortBikes() {
                   href="https://www.google.com/maps/place/1866+Whittaker+Rd+Ypsilanti+MI+48197"
                   target="_blank"
                   rel="noopener noreferrer"
-                  style={{ fontFamily: "'Barlow Condensed', sans-serif", fontSize: "14px", fontWeight: 700, letterSpacing: "2px", color: "#8a857c", textDecoration: "none", padding: "12px 28px", border: "1px solid rgba(230,180,80,0.3)", borderRadius: "2px" }}
-                  onMouseOver={e => e.target.style.color = "#e6b450"}
+                  style={{ fontFamily: "'Barlow Condensed', sans-serif", fontSize: "14px", fontWeight: 700, letterSpacing: "2px", color: "#8a857c", textDecoration: "none", padding: "12px 28px", border: "1px solid rgba(247,201,72,0.3)", borderRadius: "2px" }}
+                  onMouseOver={e => e.target.style.color = "#F7C948"}
                   onMouseOut={e => e.target.style.color = "#8a857c"}
                 >
                   Get Directions →

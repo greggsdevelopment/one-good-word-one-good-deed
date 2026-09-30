@@ -25,6 +25,7 @@ export default function FoundationBand({
   visual,
   reverse = false,
   glow = '25% 40%',
+  tint = 'var(--rb-yellow)',
 }) {
   const sectionRef = useRef(null);
   const [revealRef, inView] = useInView(0.15);
@@ -38,12 +39,13 @@ export default function FoundationBand({
   return (
     <section
       ref={sectionRef}
-      className="relative bg-ink border-t border-gold/10 overflow-hidden"
+      className="relative bg-black overflow-hidden"
     >
+      <div className="rainbow-rule absolute top-0 inset-x-0 opacity-60" aria-hidden="true" />
       <div
-        className="absolute inset-0 pointer-events-none"
+        className="absolute inset-0 pointer-events-none opacity-[0.16]"
         style={{
-          background: `radial-gradient(ellipse at ${glow}, rgba(230,180,80,0.10) 0%, rgba(11,11,13,0) 58%)`,
+          background: `radial-gradient(ellipse at ${glow}, ${tint} 0%, transparent 55%)`,
         }}
       />
 
@@ -55,7 +57,7 @@ export default function FoundationBand({
         }`}
         style={{
           color: 'transparent',
-          WebkitTextStroke: '1px rgba(230,180,80,0.07)',
+          WebkitTextStroke: '1px rgba(255,255,255,0.07)',
         }}
       >
         {index}
@@ -78,10 +80,10 @@ export default function FoundationBand({
             {/* Parallax lives on its own element so it never fights the reveal */}
             <motion.div style={{ y: parallaxY }}>
               <Link to={to} className="block" aria-label={cta}>
-                <div className="relative p-2 md:p-2.5 border border-gold/25 rounded-sm transition-colors duration-500 group-hover:border-gold/60">
+                <div className="relative p-2 md:p-2.5 rounded-sm rainbow-border glow-hover">
                   {/* Square frame keeps all three bands the same visual weight,
                       whatever shape the asset inside it happens to be. */}
-                  <div className="relative aspect-square overflow-hidden rounded-sm border border-gold/30 bg-black/50">
+                  <div className="relative aspect-square overflow-hidden rounded-sm bg-black/60">
                     {visual || (
                       <img
                         src={image}
@@ -93,8 +95,8 @@ export default function FoundationBand({
                   </div>
 
                   {/* Corner accents */}
-                  <span className="absolute -top-px -left-px w-6 h-6 border-t-2 border-l-2 border-gold transition-all duration-500 group-hover:w-10 group-hover:h-10" aria-hidden="true" />
-                  <span className="absolute -bottom-px -right-px w-6 h-6 border-b-2 border-r-2 border-gold transition-all duration-500 group-hover:w-10 group-hover:h-10" aria-hidden="true" />
+                  <span className="absolute -top-px -left-px w-6 h-6 border-t-2 border-l-2 border-rb-red transition-all duration-500 group-hover:w-10 group-hover:h-10" aria-hidden="true" />
+                  <span className="absolute -bottom-px -right-px w-6 h-6 border-b-2 border-r-2 border-rb-blue transition-all duration-500 group-hover:w-10 group-hover:h-10" aria-hidden="true" />
                 </div>
               </Link>
             </motion.div>

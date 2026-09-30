@@ -6,7 +6,7 @@ import { base44 } from '@/api/base44Client';
 import { format } from 'date-fns';
 import UploadPhotoModal from '@/components/gallery/UploadPhotoModal';
 
-const LOGO_URL = 'https://media.base44.com/images/public/6a19e1fc6c5eb736a0763b09/1824cf861_IMG_5119.png';
+const LOGO_URL = '/brand/logo-512.webp';
 
 const CATEGORIES = ['All', 'School Visit', 'Community Event', 'Workshop', 'Speaking Engagement', 'Other'];
 

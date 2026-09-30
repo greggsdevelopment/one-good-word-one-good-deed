@@ -38,7 +38,7 @@ export default function StoryChapter({ chapter, index, photoUrl, isAdmin, onUplo
     <div className="relative md:grid md:grid-cols-2 md:gap-16 md:items-center" ref={ref}>
       {/* Gold diamond marker on the timeline */}
       <span
-        className="absolute left-4 md:left-1/2 top-10 md:top-1/2 -translate-x-1/2 md:-translate-y-1/2 rotate-45 w-3 h-3 bg-gold shadow-[0_0_10px_rgba(230,180,80,0.6)] z-10"
+        className="absolute left-4 md:left-1/2 top-10 md:top-1/2 -translate-x-1/2 md:-translate-y-1/2 rotate-45 w-3 h-3 bg-gold shadow-[0_0_10px_rgba(247,201,72,0.6)] z-10"
         aria-hidden="true"
       />
 

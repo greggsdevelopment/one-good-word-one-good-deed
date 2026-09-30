@@ -17,33 +17,33 @@
     --card-foreground: 240 6% 5%;
     --popover: 43 33% 94%;
     --popover-foreground: 240 6% 5%;
-    --primary: 40 72% 55%;
+    --primary: 44 91% 63%;
     --primary-foreground: 240 6% 5%;
     --secondary: 240 3% 7%;
     --secondary-foreground: 43 33% 94%;
     --muted: 37 8% 52%;
     --muted-foreground: 37 8% 52%;
-    --accent: 40 60% 48%;
+    --accent: 30 90% 61%;
     --accent-foreground: 240 6% 5%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
     --border: 37 8% 30%;
     --input: 37 8% 30%;
-    --ring: 40 72% 55%;
-    --chart-1: 40 72% 55%;
-    --chart-2: 40 60% 48%;
+    --ring: 44 91% 63%;
+    --chart-1: 44 91% 63%;
+    --chart-2: 30 90% 61%;
     --chart-3: 37 8% 52%;
     --chart-4: 43 33% 94%;
     --chart-5: 240 6% 5%;
     --radius: 0.375rem;
     --sidebar-background: 240 3% 7%;
     --sidebar-foreground: 43 33% 94%;
-    --sidebar-primary: 40 72% 55%;
+    --sidebar-primary: 44 91% 63%;
     --sidebar-primary-foreground: 240 6% 5%;
     --sidebar-accent: 37 8% 15%;
     --sidebar-accent-foreground: 43 33% 94%;
     --sidebar-border: 37 8% 20%;
-    --sidebar-ring: 40 72% 55%;
+    --sidebar-ring: 44 91% 63%;
   }
 
   .dark {
@@ -53,32 +53,32 @@
     --card-foreground: 43 33% 94%;
     --popover: 240 3% 10%;
     --popover-foreground: 43 33% 94%;
-    --primary: 40 72% 55%;
+    --primary: 44 91% 63%;
     --primary-foreground: 240 6% 5%;
     --secondary: 43 33% 94%;
     --secondary-foreground: 240 6% 5%;
     --muted: 37 8% 20%;
     --muted-foreground: 37 8% 52%;
-    --accent: 40 60% 48%;
+    --accent: 30 90% 61%;
     --accent-foreground: 240 6% 5%;
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 0 0% 98%;
     --border: 37 8% 20%;
     --input: 37 8% 20%;
-    --ring: 40 72% 55%;
-    --chart-1: 40 72% 55%;
-    --chart-2: 40 60% 48%;
+    --ring: 44 91% 63%;
+    --chart-1: 44 91% 63%;
+    --chart-2: 30 90% 61%;
     --chart-3: 37 8% 52%;
     --chart-4: 43 33% 94%;
     --chart-5: 240 6% 5%;
     --sidebar-background: 240 3% 5%;
     --sidebar-foreground: 43 33% 94%;
-    --sidebar-primary: 40 72% 55%;
+    --sidebar-primary: 44 91% 63%;
     --sidebar-primary-foreground: 240 6% 5%;
     --sidebar-accent: 37 8% 15%;
     --sidebar-accent-foreground: 43 33% 94%;
     --sidebar-border: 37 8% 15%;
-    --sidebar-ring: 40 72% 55%;
+    --sidebar-ring: 44 91% 63%;
   }
 }
 
@@ -100,4 +100,137 @@
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
   background-repeat: repeat;
   background-size: 256px 256px;
+}
+/* ==========================================================================
+   Brand: the logo's rainbow ring
+   ========================================================================== */
+:root {
+  --rb-red: #EF5350;
+  --rb-orange: #F59E42;
+  --rb-yellow: #F7C948;
+  --rb-green: #94C44A;
+  --rb-blue: #4A9BE8;
+  --rb-purple: #A06CD5;
+  --rainbow: linear-gradient(90deg, var(--rb-red), var(--rb-orange), var(--rb-yellow), var(--rb-green), var(--rb-blue), var(--rb-purple));
+  /* Doubled so it can slide on hover without a visible seam. */
+  --rainbow-loop: linear-gradient(90deg, var(--rb-red), var(--rb-orange), var(--rb-yellow), var(--rb-green), var(--rb-blue), var(--rb-purple), var(--rb-red), var(--rb-orange), var(--rb-yellow));
+  --rainbow-conic: conic-gradient(from 0deg, var(--rb-red), var(--rb-orange), var(--rb-yellow), var(--rb-green), var(--rb-blue), var(--rb-purple), var(--rb-red));
+}
+
+/* Every primary button and accent bar on the site used bg-gold. Give them the
+   ring's rainbow, sliding on hover. Tints like bg-gold/10 are separate classes
+   and stay subtle. */
+.bg-gold {
+  background-image: var(--rainbow-loop);
+  background-size: 200% 100%;
+  background-position: 0% 50%;
+  transition-property: background-position, transform, box-shadow, color, border-color, opacity;
+  transition-duration: 700ms;
+  transition-timing-function: cubic-bezier(.2, .8, .2, 1);
+}
+.bg-gold:hover,
+.group:hover .bg-gold.group-hover-slide {
+  background-position: 100% 50%;
+}
+a.bg-gold, button.bg-gold {
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.06), 0 10px 30px -12px rgba(160, 108, 213, 0.55);
+}
+a.bg-gold:hover, button.bg-gold:hover {
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.12), 0 14px 38px -10px rgba(74, 155, 232, 0.6), 0 0 34px -6px rgba(239, 83, 80, 0.45);
+}
+
+/* Gold words inside headlines become rainbow text. Spans only, so icons that
+   inherit currentColor never disappear. */
+:is(h1, h2) span.text-gold,
+.text-rainbow {
+  background-image: var(--rainbow-loop);
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  animation: rainbow-shift 8s ease-in-out infinite;
+}
+
+/* Thin rainbow line, used as section dividers and nav edge. */
+.rainbow-rule {
+  height: 2px;
+  background-image: var(--rainbow-loop);
+  background-size: 200% 100%;
+  animation: rainbow-shift 10s ease-in-out infinite;
+}
+
+/* Gradient border for any box: add .rainbow-border to a relatively positioned element. */
+.rainbow-border {
+  position: relative;
+  isolation: isolate;
+}
+.rainbow-border::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  padding: 1px;
+  border-radius: inherit;
+  background: var(--rainbow-loop);
+  background-size: 200% 100%;
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0.55;
+  transition: opacity 500ms ease;
+  animation: rainbow-shift 10s ease-in-out infinite;
+  pointer-events: none;
+  z-index: -1;
+}
+.rainbow-border:hover::before,
+.group:hover .rainbow-border::before {
+  opacity: 1;
+}
+
+/* Soft multicolor glow on hover for cards and frames. */
+.glow-hover {
+  transition: box-shadow 600ms ease, transform 600ms ease;
+}
+.glow-hover:hover,
+.group:hover .glow-hover {
+  box-shadow: -18px -10px 50px -24px rgba(239, 83, 80, 0.55), 18px 12px 50px -24px rgba(74, 155, 232, 0.55), 0 0 60px -30px rgba(247, 201, 72, 0.6);
+}
+
+@keyframes rainbow-shift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+@keyframes puzzle-drift {
+  0% { transform: translate3d(0, 0, 0) rotate(0deg); }
+  50% { transform: translate3d(var(--dx, 14px), var(--dy, -22px), 0) rotate(var(--rot, 18deg)); }
+  100% { transform: translate3d(0, 0, 0) rotate(0deg); }
+}
+
+::selection {
+  background: rgba(160, 108, 213, 0.45);
+  color: #fff;
+}
+:focus-visible {
+  outline: 2px solid var(--rb-blue);
+  outline-offset: 2px;
+}
+html {
+  scrollbar-color: var(--rb-purple) #0b0b0d;
+}
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: #0b0b0d; }
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, var(--rb-red), var(--rb-yellow), var(--rb-green), var(--rb-blue), var(--rb-purple));
+  border-radius: 10px;
+  border: 2px solid #0b0b0d;
+}
+
+/* People who ask their device for less motion get a still site. */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
 }

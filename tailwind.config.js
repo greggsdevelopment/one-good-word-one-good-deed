@@ -17,9 +17,21 @@ module.exports = {
       colors: {
         background: 'hsl(var(--background))',
         foreground: 'hsl(var(--foreground))',
+        // "gold" is kept as the token name so every existing class keeps working.
+        // It now carries the logo's yellow; gold-dark is the logo's orange, deepened
+        // so it stays readable as text on the cream sections.
         gold: {
-          DEFAULT: '#e6b450',
-          dark: '#c9922f',
+          DEFAULT: '#F7C948',
+          dark: '#C8501A',
+        },
+        // The six colors of the logo ring, brightened just enough to read on black.
+        rb: {
+          red: '#EF5350',
+          orange: '#F59E42',
+          yellow: '#F7C948',
+          green: '#94C44A',
+          blue: '#4A9BE8',
+          purple: '#A06CD5',
         },
         ink: '#0b0b0d',
         cream: '#f5f1e8',
@@ -82,10 +94,27 @@ module.exports = {
           from: { height: 'var(--radix-accordion-content-height)' },
           to: { height: '0' },
         },
+        marquee: {
+          from: { transform: 'translateX(0)' },
+          to: { transform: 'translateX(-50%)' },
+        },
+        'rainbow-shift': {
+          '0%, 100%': { backgroundPosition: '0% 50%' },
+          '50%': { backgroundPosition: '100% 50%' },
+        },
+        float: {
+          '0%, 100%': { transform: 'translateY(0)' },
+          '50%': { transform: 'translateY(-12px)' },
+        },
       },
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out',
+        'spin-slow': 'spin 18s linear infinite',
+        'spin-slower': 'spin 40s linear infinite',
+        marquee: 'marquee 38s linear infinite',
+        'rainbow-shift': 'rainbow-shift 8s ease-in-out infinite',
+        float: 'float 6s ease-in-out infinite',
       },
     },
   },

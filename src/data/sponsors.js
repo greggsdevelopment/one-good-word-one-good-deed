@@ -11,7 +11,7 @@ export const SPONSORS = [
     location: 'Metro Detroit',
     blurb:
       'Custom wristbands built to spread love and stop hate. Every band a student slides on after an assembly comes from here.',
-    accent: '#e6b450',
+    accent: '#F7C948',
   },
   {
     name: 'Goosehead Insurance',
@@ -81,7 +81,7 @@ export const SPONSORS = [
     location: 'Plymouth, MI',
     blurb:
       'Tom and Gina help this message travel further than the truck can drive, one shirt and one banner at a time.',
-    accent: '#e6b450',
+    accent: '#F7C948',
   },
   {
     name: 'Classic State Wayne Theater',

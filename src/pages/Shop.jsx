@@ -11,7 +11,7 @@ import QuickViewModal from '@/components/shop/QuickViewModal';
 import StickyCartBar from '@/components/shop/StickyCartBar';
 import ShopShowcase from '@/components/shop/ShopShowcase';
 
-const LOGO_URL = 'https://media.base44.com/images/public/6a19e1fc6c5eb736a0763b09/1824cf861_IMG_5119.png';
+const LOGO_URL = '/brand/logo-512.webp';
 const SERIF = { fontFamily: "'Cormorant Garamond', serif" };
 
 const PRODUCTS = [

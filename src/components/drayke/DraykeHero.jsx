@@ -38,7 +38,7 @@ export default function DraykeHero() {
       <div className="absolute inset-0 bg-gradient-to-b from-ink/95 via-ink/80 to-ink" />
       <div
         className="absolute inset-0"
-        style={{ background: 'radial-gradient(ellipse at 50% 42%, rgba(230,180,80,0.14) 0%, rgba(11,11,13,0) 55%)' }}
+        style={{ background: 'radial-gradient(ellipse at 50% 42%, rgba(247,201,72,0.14) 0%, rgba(11,11,13,0) 55%)' }}
       />
 
       {/* Drifting butterflies */}

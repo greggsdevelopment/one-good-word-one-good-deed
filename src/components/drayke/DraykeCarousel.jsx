@@ -32,7 +32,7 @@ export default function DraykeCarousel() {
       {/* Soft gold glow behind the frame */}
       <div
         className="absolute inset-0 pointer-events-none"
-        style={{ background: 'radial-gradient(ellipse at 50% 45%, rgba(230,180,80,0.08) 0%, rgba(11,11,13,0) 60%)' }}
+        style={{ background: 'radial-gradient(ellipse at 50% 45%, rgba(247,201,72,0.08) 0%, rgba(11,11,13,0) 60%)' }}
       />
 
       <div className="relative max-w-5xl mx-auto">
@@ -67,7 +67,7 @@ export default function DraykeCarousel() {
             {/* Soft spotlight glow hugging the frame */}
             <div
               className="absolute -inset-8 pointer-events-none"
-              style={{ background: 'radial-gradient(ellipse at 50% 50%, rgba(230,180,80,0.12) 0%, rgba(11,11,13,0) 70%)' }}
+              style={{ background: 'radial-gradient(ellipse at 50% 50%, rgba(247,201,72,0.12) 0%, rgba(11,11,13,0) 70%)' }}
               aria-hidden="true"
             />
             <div className="relative border border-gold/35">
@@ -158,7 +158,7 @@ export default function DraykeCarousel() {
               <span
                 className={`block rotate-45 transition-all duration-300 ${
                   i === index
-                    ? 'w-2.5 h-2.5 bg-gold shadow-[0_0_8px_rgba(230,180,80,0.7)]'
+                    ? 'w-2.5 h-2.5 bg-gold shadow-[0_0_8px_rgba(247,201,72,0.7)]'
                     : 'w-1.5 h-1.5 bg-cream/25 hover:bg-gold/60'
                 }`}
               />

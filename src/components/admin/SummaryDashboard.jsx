@@ -81,9 +81,9 @@ export default function SummaryDashboard({ bookings = [], pledges = [], messages
             <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" />
             <XAxis dataKey="name" stroke="rgba(245,241,232,0.3)" tick={{ fontSize: 11, fontFamily: 'var(--font-barlow-condensed)' }} />
             <YAxis stroke="rgba(245,241,232,0.3)" tick={{ fontSize: 11 }} allowDecimals={false} />
-            <Tooltip content={<CustomTooltip />} cursor={{ fill: 'rgba(230,180,80,0.05)' }} />
-            <Bar dataKey="Bookings" fill="#e6b450" radius={[3, 3, 0, 0]} />
-            <Bar dataKey="Pledges" fill="#c9922f" radius={[3, 3, 0, 0]} />
+            <Tooltip content={<CustomTooltip />} cursor={{ fill: 'rgba(247,201,72,0.05)' }} />
+            <Bar dataKey="Bookings" fill="#F7C948" radius={[3, 3, 0, 0]} />
+            <Bar dataKey="Pledges" fill="#F59E42" radius={[3, 3, 0, 0]} />
           </BarChart>
         </ResponsiveContainer>
       </div>

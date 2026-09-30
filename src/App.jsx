@@ -3,6 +3,7 @@ import { Toaster as SonnerToaster } from "@/components/ui/sonner"
 import { QueryClientProvider } from '@tanstack/react-query'
 import { queryClientInstance } from '@/lib/query-client'
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
+import { MotionConfig } from 'framer-motion';
 import NotFound from '@/pages/NotFound';
 import { AuthProvider, useAuth } from '@/lib/AuthContext';
 import UserNotRegisteredError from '@/components/UserNotRegisteredError';
@@ -118,7 +119,10 @@ function App() {
         <Router>
           <ScrollToTop />
           <MusicProvider>
-            <AuthenticatedApp />
+            {/* Honors the device's reduce-motion setting for every animation. */}
+            <MotionConfig reducedMotion="user">
+              <AuthenticatedApp />
+            </MotionConfig>
           </MusicProvider>
         </Router>
         <Toaster />

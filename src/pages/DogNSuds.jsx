@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import StickyNav from "@/components/home/StickyNav";
 
-const LOGO_URL = "https://media.base44.com/images/public/6a19e1fc6c5eb736a0763b09/1824cf861_IMG_5119.png";
+const LOGO_URL = "/brand/logo-512.webp";
 
 export default function DogNSuds() {
   const [visible, setVisible] = useState(false);
@@ -72,15 +72,15 @@ export default function DogNSuds() {
         {/* ─── HERO ─────────────────────────────────────────── */}
         <section style={{ position: "relative", minHeight: "100vh", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", padding: "100px 24px 80px", overflow: "hidden", textAlign: "center" }}>
 
-          <div className="dns-glow" style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%,-50%)", width: "700px", height: "700px", background: "radial-gradient(circle, rgba(230,180,80,0.16) 0%, transparent 68%)", pointerEvents: "none" }} />
+          <div className="dns-glow" style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%,-50%)", width: "700px", height: "700px", background: "radial-gradient(circle, rgba(247,201,72,0.16) 0%, transparent 68%)", pointerEvents: "none" }} />
 
           {/* Paw print icon */}
           <div className="dns-float" style={{ marginBottom: "48px" }}>
-            <svg viewBox="0 0 200 200" width="220" height="220" style={{ filter: "drop-shadow(0 0 36px rgba(230,180,80,0.55))" }}>
+            <svg viewBox="0 0 200 200" width="220" height="220" style={{ filter: "drop-shadow(0 0 36px rgba(247,201,72,0.55))" }}>
               <defs>
                 <radialGradient id="pawGold" cx="38%" cy="22%" r="72%">
                   <stop offset="0%"   stopColor="#f5d070" />
-                  <stop offset="55%"  stopColor="#e6b450" />
+                  <stop offset="55%"  stopColor="#F7C948" />
                   <stop offset="100%" stopColor="#7a4e0a" />
                 </radialGradient>
               </defs>
@@ -95,21 +95,21 @@ export default function DogNSuds() {
           </div>
 
           <div style={fadeStyle(0.1)}>
-            <span style={{ fontFamily: "'Barlow Condensed', sans-serif", fontSize: "11px", fontWeight: 700, letterSpacing: "5px", color: "#e6b450", border: "1px solid rgba(230,180,80,0.45)", padding: "7px 18px", textTransform: "uppercase", borderRadius: "2px", display: "inline-block", marginBottom: "22px" }}>
+            <span style={{ fontFamily: "'Barlow Condensed', sans-serif", fontSize: "11px", fontWeight: 700, letterSpacing: "5px", color: "#F7C948", border: "1px solid rgba(247,201,72,0.45)", padding: "7px 18px", textTransform: "uppercase", borderRadius: "2px", display: "inline-block", marginBottom: "22px" }}>
               Official Partner
             </span>
           </div>
 
           <h1 style={{ ...fadeStyle(0.22), fontFamily: "'Anton', sans-serif", fontSize: "clamp(42px, 8vw, 82px)", lineHeight: 0.95, textTransform: "uppercase", letterSpacing: "2px", marginBottom: "20px" }}>
             DOG N SUDS<br />
-            <span style={{ color: "#e6b450" }}>PET GROOMING</span>
+            <span style={{ color: "#F7C948" }}>PET GROOMING</span>
           </h1>
 
           <p style={{ ...fadeStyle(0.38), fontFamily: "'Barlow', sans-serif", fontSize: "18px", color: "#8a857c", maxWidth: "540px", lineHeight: 1.7, marginBottom: "16px" }}>
             One Good Word...One Good Deed LLC is proud to partner with Dog N Suds Pet Grooming - a community staple with over 25 years of loving care for your furry family members.
           </p>
 
-          <p style={{ ...fadeStyle(0.45), fontFamily: "'Barlow Condensed', sans-serif", fontSize: "15px", color: "#e6b450", letterSpacing: "2px", marginBottom: "44px" }}>
+          <p style={{ ...fadeStyle(0.45), fontFamily: "'Barlow Condensed', sans-serif", fontSize: "15px", color: "#F7C948", letterSpacing: "2px", marginBottom: "44px" }}>
             📍 2729 S Wayne Rd, Westland, MI
           </p>
 
@@ -119,7 +119,7 @@ export default function DogNSuds() {
               target="_blank"
               rel="noopener noreferrer"
               className="dns-shimmer-btn"
-              style={{ fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 700, fontSize: "17px", letterSpacing: "3px", textTransform: "uppercase", color: "#080808", background: "linear-gradient(135deg, #f0c060 0%, #e6b450 50%, #c9922f 100%)", padding: "18px 52px", borderRadius: "2px", boxShadow: "0 0 50px rgba(230,180,80,0.38), 0 10px 36px rgba(0,0,0,0.65)" }}
+              style={{ fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 700, fontSize: "17px", letterSpacing: "3px", textTransform: "uppercase", color: "#080808", background: "linear-gradient(135deg, #f0c060 0%, #F7C948 50%, #F59E42 100%)", padding: "18px 52px", borderRadius: "2px", boxShadow: "0 0 50px rgba(247,201,72,0.38), 0 10px 36px rgba(0,0,0,0.65)" }}
             >
               Visit Us on Facebook
             </a>
@@ -135,11 +135,11 @@ export default function DogNSuds() {
         </section>
 
         {/* ─── DIVIDER ───────────────────────────────────────── */}
-        <div style={{ height: "1px", background: "linear-gradient(90deg, transparent, rgba(230,180,80,0.35), transparent)", margin: "0 10%" }} />
+        <div style={{ height: "1px", background: "linear-gradient(90deg, transparent, rgba(247,201,72,0.35), transparent)", margin: "0 10%" }} />
 
         {/* ─── MISSION COPY ──────────────────────────────────── */}
         <section style={{ padding: "110px 24px", maxWidth: "860px", margin: "0 auto", textAlign: "center" }}>
-          <p style={{ fontFamily: "'Barlow Condensed', sans-serif", fontSize: "12px", letterSpacing: "5px", color: "#e6b450", textTransform: "uppercase", marginBottom: "24px" }}>Why This Partnership Matters</p>
+          <p style={{ fontFamily: "'Barlow Condensed', sans-serif", fontSize: "12px", letterSpacing: "5px", color: "#F7C948", textTransform: "uppercase", marginBottom: "24px" }}>Why This Partnership Matters</p>
           <h2 style={{ fontFamily: "'Anton', sans-serif", fontSize: "clamp(32px, 5.5vw, 58px)", lineHeight: 1.05, textTransform: "uppercase", marginBottom: "36px" }}>
             25+ YEARS OF LOVE.<br />ONE COMMUNITY.
           </h2>
@@ -149,20 +149,20 @@ export default function DogNSuds() {
         </section>
 
         {/* ─── DIVIDER ───────────────────────────────────────── */}
-        <div style={{ height: "1px", background: "linear-gradient(90deg, transparent, rgba(230,180,80,0.15), transparent)", margin: "0 10%" }} />
+        <div style={{ height: "1px", background: "linear-gradient(90deg, transparent, rgba(247,201,72,0.15), transparent)", margin: "0 10%" }} />
 
         {/* ─── FEATURES ──────────────────────────────────────── */}
         <section style={{ padding: "90px 24px", background: "#0b0b0b" }}>
           <div style={{ maxWidth: "1060px", margin: "0 auto" }}>
-            <p style={{ fontFamily: "'Barlow Condensed', sans-serif", fontSize: "12px", letterSpacing: "5px", color: "#e6b450", textTransform: "uppercase", textAlign: "center", marginBottom: "64px" }}>What Dog N Suds Offers</p>
+            <p style={{ fontFamily: "'Barlow Condensed', sans-serif", fontSize: "12px", letterSpacing: "5px", color: "#F7C948", textTransform: "uppercase", textAlign: "center", marginBottom: "64px" }}>What Dog N Suds Offers</p>
             <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(270px, 1fr))", gap: "3px" }}>
               {[
                 { num: "01", title: "25+ Years Experience", body: "Over two and a half decades of professional grooming means your pet is in the most trusted hands in Westland." },
                 { num: "02", title: "Community Rooted", body: "A locally owned business that has grown alongside the Westland community - familiar faces who genuinely care." },
                 { num: "03", title: "Full Grooming Services", body: "Baths, cuts, nail trims, and more - everything your furry family member needs to look and feel their best." },
               ].map((f) => (
-                <div key={f.num} className="dns-feature-card" style={{ padding: "52px 40px", background: "#111", borderTop: "2px solid #e6b450" }}>
-                  <p style={{ fontFamily: "'Barlow Condensed', sans-serif", fontSize: "11px", letterSpacing: "4px", color: "#e6b450", marginBottom: "16px" }}>{f.num}</p>
+                <div key={f.num} className="dns-feature-card" style={{ padding: "52px 40px", background: "#111", borderTop: "2px solid #F7C948" }}>
+                  <p style={{ fontFamily: "'Barlow Condensed', sans-serif", fontSize: "11px", letterSpacing: "4px", color: "#F7C948", marginBottom: "16px" }}>{f.num}</p>
                   <h3 style={{ fontFamily: "'Anton', sans-serif", fontSize: "22px", textTransform: "uppercase", letterSpacing: "1px", marginBottom: "14px" }}>{f.title}</h3>
                   <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: "15px", color: "#8a857c", lineHeight: 1.75 }}>{f.body}</p>
                 </div>
@@ -173,8 +173,8 @@ export default function DogNSuds() {
 
         {/* ─── FINAL CTA ─────────────────────────────────────── */}
         <section style={{ padding: "130px 24px", textAlign: "center", position: "relative", overflow: "hidden" }}>
-          <div className="dns-glow" style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%,-50%)", width: "600px", height: "400px", background: "radial-gradient(ellipse, rgba(230,180,80,0.1) 0%, transparent 68%)", pointerEvents: "none" }} />
-          <p style={{ fontFamily: "'Barlow Condensed', sans-serif", fontSize: "12px", letterSpacing: "5px", color: "#e6b450", textTransform: "uppercase", marginBottom: "24px" }}>Ready to Book?</p>
+          <div className="dns-glow" style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%,-50%)", width: "600px", height: "400px", background: "radial-gradient(ellipse, rgba(247,201,72,0.1) 0%, transparent 68%)", pointerEvents: "none" }} />
+          <p style={{ fontFamily: "'Barlow Condensed', sans-serif", fontSize: "12px", letterSpacing: "5px", color: "#F7C948", textTransform: "uppercase", marginBottom: "24px" }}>Ready to Book?</p>
           <h2 style={{ fontFamily: "'Anton', sans-serif", fontSize: "clamp(38px, 7vw, 68px)", textTransform: "uppercase", lineHeight: 1.05, marginBottom: "16px" }}>
             GIVE YOUR PET THE<br />CARE THEY DESERVE
           </h2>
@@ -186,7 +186,7 @@ export default function DogNSuds() {
             target="_blank"
             rel="noopener noreferrer"
             className="dns-shimmer-btn"
-            style={{ fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 700, fontSize: "18px", letterSpacing: "3px", textTransform: "uppercase", color: "#080808", background: "linear-gradient(135deg, #f0c060 0%, #e6b450 50%, #c9922f 100%)", padding: "22px 64px", borderRadius: "2px", boxShadow: "0 0 70px rgba(230,180,80,0.35), 0 14px 48px rgba(0,0,0,0.75)" }}
+            style={{ fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 700, fontSize: "18px", letterSpacing: "3px", textTransform: "uppercase", color: "#080808", background: "linear-gradient(135deg, #f0c060 0%, #F7C948 50%, #F59E42 100%)", padding: "22px 64px", borderRadius: "2px", boxShadow: "0 0 70px rgba(247,201,72,0.35), 0 14px 48px rgba(0,0,0,0.75)" }}
           >
             Connect on Facebook
           </a>

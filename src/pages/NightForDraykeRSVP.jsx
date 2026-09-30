@@ -8,7 +8,7 @@ import StickyNav from '@/components/home/StickyNav';
 import FooterSection from '@/components/home/FooterSection';
 import { useInView } from '@/hooks/useInView';
 
-const LOGO_URL = 'https://media.base44.com/images/public/6a19e1fc6c5eb736a0763b09/1824cf861_IMG_5119.png';
+const LOGO_URL = '/brand/logo-512.webp';
 const SERIF = { fontFamily: "'Cormorant Garamond', serif" };
 
 const inputClass =

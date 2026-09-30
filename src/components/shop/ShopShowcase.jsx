@@ -37,7 +37,7 @@ export default function ShopShowcase({ products, onQuickView, onBrowse }) {
         className="absolute inset-0 pointer-events-none"
         style={{
           background:
-            'radial-gradient(ellipse at 30% 40%, rgba(230,180,80,0.12) 0%, rgba(11,11,13,0) 60%)',
+            'radial-gradient(ellipse at 30% 40%, rgba(247,201,72,0.12) 0%, rgba(11,11,13,0) 60%)',
         }}
       />
 
