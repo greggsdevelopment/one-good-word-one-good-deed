@@ -276,7 +276,8 @@ export function emailBody(record: any): string {
     record.notes ? '' : null,
     record.notes ? `Notes: ${record.notes}` : null,
     '',
-    'Nothing is promised to the donor yet. Accept, schedule or decline it in the Admin Dashboard under Donations.',
+    'Nothing is promised to the donor yet. Accept, schedule or decline it here:',
+    'https://ogwogd.org/admin?tab=donations',
   ];
   return lines.filter((l) => l !== null).join('\r\n');
 }

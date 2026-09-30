@@ -74,7 +74,8 @@ export default async function(req) {
       `Children attending: ${record.children_attending ?? 'Not provided'}`,
       `Message: ${record.message || 'None'}`,
       '',
-      `Submitted: ${record.created_date || new Date().toISOString()}`
+      `Submitted: ${record.created_date || new Date().toISOString()}`,
+      'Open in admin: https://ogwogd.org/admin?tab=events'
     ].join('\r\n');
 
     const rawMessage =

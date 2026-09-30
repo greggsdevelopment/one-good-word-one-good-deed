@@ -2,7 +2,6 @@ import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { base44 } from '@/api/base44Client';
 import { useAuth } from '@/lib/AuthContext';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { Toaster as SonnerToaster } from '@/components/ui/sonner';
 import { mergeDonationSettings, DONATION_SETTINGS_KEY, DONATION_NEEDS_KEY } from '@/lib/donations';
 import IncomingDonations from '@/components/admin/donations/IncomingDonations';
 import InventoryPanel from '@/components/admin/donations/InventoryPanel';
@@ -69,7 +68,6 @@ export default function DonationsTab() {
 
   return (
     <div className="space-y-6">
-      <SonnerToaster position="bottom-center" richColors closeButton duration={3500} />
       <div className="flex items-center justify-between flex-wrap gap-2">
         <h2 className="font-anton text-ink text-2xl tracking-wide">DONATIONS & INVENTORY</h2>
         <span className={`font-barlow-condensed text-xs uppercase tracking-wider px-3 py-1 rounded-full ${accepting ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-700'}`}>

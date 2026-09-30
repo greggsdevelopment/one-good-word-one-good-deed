@@ -73,7 +73,8 @@ export default async function(req) {
       'Pledge:',
       record.pledge_statement || '(no statement provided)',
       '',
-      'Review and approve it in the admin dashboard.'
+      'Review and approve it in the admin dashboard.',
+      'https://ogwogd.org/admin?tab=pledges'
     ].join('\r\n');
 
     const rawMessage =

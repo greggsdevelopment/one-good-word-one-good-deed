@@ -27,6 +27,15 @@
       "type": "string",
       "format": "date-time",
       "description": "ISO timestamp set by the backend after the notification email is sent"
+    },
+    "replied": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether someone has replied"
+    },
+    "admin_notes": {
+      "type": "string",
+      "description": "Internal notes, never shown to the public"
     }
   },
   "required": [

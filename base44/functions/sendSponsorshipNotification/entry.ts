@@ -81,7 +81,8 @@ export default async function(req) {
       record.in_kind ? `In-Kind: ${record.in_kind}` : null,
       record.message ? `Message: ${record.message}` : null,
       '',
-      `Submitted: ${record.created_date || new Date().toISOString()}`
+      `Submitted: ${record.created_date || new Date().toISOString()}`,
+      'Open in admin: https://ogwogd.org/admin?tab=sponsors'
     ].filter((line) => line !== null).join('\r\n');
 
     const rawMessage =

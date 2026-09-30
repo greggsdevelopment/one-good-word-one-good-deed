@@ -8,6 +8,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { toast as sonner } from 'sonner';
 import ReceiveDialog from './ReceiveDialog';
 import { downloadCsv } from './inventoryOps';
+import { SIGNATURE, mailto } from '@/lib/adminData';
 
 const STATUS_STYLE = {
   new: 'bg-amber-100 text-amber-800',
@@ -30,6 +31,37 @@ const fullAddress = (d) => [d.address_line, d.city, [d.state, d.zip].filter(Bool
 const toLocalInput = (iso) => (iso ? format(new Date(iso), "yyyy-MM-dd'T'HH:mm") : '');
 const itemsSummary = (d) => (d.items || []).map((i) => `${i.quantity} x ${i.name || i.category}${i.need_id === 'other' ? ' [NOT ON LIST]' : ''}${i.description && i.description !== i.name ? ` (${i.description})` : ''}, ${i.condition}`).join('; ');
 const hasOffList = (d) => (d.items || []).some((i) => i.need_id === 'other');
+
+const firstName = (d) => (d.donor_name || '').split(' ')[0] || 'there';
+const itemLines = (d) => (d.items || []).map((i) => `  ${i.quantity} x ${i.name || i.category}${i.description && i.description !== i.name ? ` (${i.description})` : ''}`);
+
+function acceptEmail(d, when) {
+  const time = when ? format(new Date(when), "EEEE, MMMM d 'at' h:mm a") : null;
+  return mailto(d.email, 'Yes, we can take your donation', [
+    `Hi ${firstName(d)},`,
+    '',
+    'Thank you. We can take these:',
+    ...itemLines(d),
+    '',
+    d.delivery_method === 'pickup'
+      ? (time ? `We will come pick them up ${time}. If that time does not work, just reply with a better one.` : 'What day and time works for us to come pick them up?')
+      : (time ? `Can you drop them off ${time}? Reply and I will send the exact spot.` : 'What day works for you to drop them off? Reply and I will send the exact spot.'),
+    '',
+    'Every one of these goes straight to a kid or a family who needs it.',
+    SIGNATURE,
+  ].join('\n'));
+}
+
+function declineEmail(d) {
+  return mailto(d.email, 'About your donation offer', [
+    `Hi ${firstName(d)},`,
+    '',
+    'Thank you so much for thinking of us. Right now we are not able to take this donation, either because we are covered on these items or because they are outside what we can hand out to kids.',
+    '',
+    'Our list of what we need changes often, so please check ogwogd.org/donate again soon. We would love your help.',
+    SIGNATURE,
+  ].join('\n'));
+}
 
 function DonationCard({ donation, inventory, needs, recordedBy, onChange }) {
   const [when, setWhen] = useState(toLocalInput(donation.scheduled_for));
@@ -149,9 +181,14 @@ function DonationCard({ donation, inventory, needs, recordedBy, onChange }) {
             >
               <PackageCheck className="w-3.5 h-3.5" /> Received
             </Button>
-            <Button size="sm" variant="ghost" disabled={busy} onClick={() => patch({ status: 'declined' }, 'Declined')} className="font-barlow-condensed uppercase tracking-wider text-xs text-ash gap-1">
-              <X className="w-3.5 h-3.5" /> Decline
-            </Button>
+            <a href={acceptEmail(donation, when ? new Date(when).toISOString() : donation.scheduled_for)}
+              className="inline-flex items-center gap-1.5 h-9 px-3 rounded-md border border-ink/15 font-barlow-condensed uppercase tracking-wider text-xs hover:bg-ink/5">
+              <Mail className="w-3.5 h-3.5" /> Email: yes
+            </a>
+            <a href={declineEmail(donation)} onClick={() => patch({ status: 'declined' }, 'Declined. Send the email that just opened.')}
+              className="inline-flex items-center gap-1.5 h-9 px-3 rounded-md font-barlow-condensed uppercase tracking-wider text-xs text-ash hover:bg-ink/5">
+              <X className="w-3.5 h-3.5" /> Decline and email
+            </a>
             <Button size="sm" variant="ghost" disabled={busy} onClick={() => patch({ status: 'cancelled' }, 'Cancelled')} className="font-barlow-condensed uppercase tracking-wider text-xs text-ash">
               Donor cancelled
             </Button>

@@ -54,7 +54,10 @@ function orderItems(raw: unknown): string[] {
   ];
 }
 
+const ADMIN = 'https://ogwogd.org/admin?tab=';
+
 type Config = {
+  tab: (r: any) => string;
   subject: (r: any) => string;
   body: (r: any) => (string | null)[];
   replyTo?: (r: any) => string | undefined;
@@ -62,6 +65,7 @@ type Config = {
 
 const CONFIG: Record<string, Config> = {
   ContactMessage: {
+    tab: (r) => (r.subject === 'Prayer Request' ? 'inbox:prayer' : 'inbox'),
     subject: (r) =>
       r.subject === 'Prayer Request'
         ? `New Prayer Request - ${r.name || 'Anonymous'}`
@@ -78,11 +82,13 @@ const CONFIG: Record<string, Config> = {
     replyTo: (r) => r.email,
   },
   NewsletterSubscriber: {
+    tab: () => 'newsletter',
     subject: (r) => `New Newsletter Signup - ${r.email || ''}`,
     body: (r) => ['Someone joined the ogwogd.org newsletter list.', '', line('Email', r.email)],
     replyTo: (r) => r.email,
   },
   ResourceSuggestion: {
+    tab: () => 'inbox:suggestions',
     subject: (r) => `New Resource Suggestion - ${r.name || 'Unnamed'}`,
     body: (r) => [
       'Someone suggested a resource for ogwogd.org/resources. Review it before adding it.',
@@ -95,6 +101,7 @@ const CONFIG: Record<string, Config> = {
     ],
   },
   Order: {
+    tab: () => 'orders',
     subject: (r) => `New Shop Order ${r.order_number || ''} - $${Number(r.total || 0).toFixed(2)}`,
     body: (r) => [
       'A paid order came in through the ogwogd.org shop. Time to ship it.',
@@ -154,7 +161,7 @@ export default async function (req: Request) {
 
     const replyTo = config.replyTo?.(record);
     const validReply = replyTo && /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(String(replyTo)) ? safeHeader(replyTo) : '';
-    const text = [...config.body(record), '', `Submitted: ${record.created_date || new Date().toISOString()}`]
+    const text = [...config.body(record), '', `Submitted: ${record.created_date || new Date().toISOString()}`, `Open in admin: ${ADMIN}${config.tab(record)}`]
       .filter((l) => l !== null)
       .join('\r\n');
 

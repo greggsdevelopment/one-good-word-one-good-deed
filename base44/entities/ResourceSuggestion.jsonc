@@ -35,6 +35,20 @@
       "type": "string",
       "format": "date-time",
       "description": "ISO timestamp set by the backend after the notification email is sent"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "new",
+        "added",
+        "dismissed"
+      ],
+      "default": "new",
+      "description": "Whether the suggestion was added to the Resources page"
+    },
+    "admin_notes": {
+      "type": "string",
+      "description": "Internal notes, never shown to the public"
     }
   },
   "required": [

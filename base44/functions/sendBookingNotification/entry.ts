@@ -91,7 +91,8 @@ export default async function(req) {
       'Message:',
       record.message || '(none provided)',
       '',
-      'Review and follow up in the admin dashboard.'
+      'Review and follow up in the admin dashboard.',
+      'https://ogwogd.org/admin?tab=bookings'
     ].filter(Boolean);
 
     const emailBody = lines.join('\r\n');
