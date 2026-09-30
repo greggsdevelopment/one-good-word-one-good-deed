@@ -7,7 +7,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Button } from '@/components/ui/button';
 import {
   LogOut, CalendarCheck, Heart, BookOpen, ShoppingBag, Inbox, ClipboardList, Users, Ticket, Handshake,
-  CalendarDays, Backpack, LayoutDashboard, Search, RefreshCw, Mail,
+  CalendarDays, Backpack, LayoutDashboard, Search, RefreshCw, Mail, MessageCircle,
 } from 'lucide-react';
 import TodayTab from '@/components/admin/TodayTab';
 import InboxTab from '@/components/admin/InboxTab';
@@ -22,6 +22,7 @@ import RaffleTab from '@/components/admin/RaffleTab';
 import SponsorTab from '@/components/admin/SponsorTab';
 import DonationsTab from '@/components/admin/DonationsTab';
 import PeopleTab from '@/components/admin/PeopleTab';
+import ChatsTab from '@/components/admin/ChatsTab';
 import CommandSearch from '@/components/admin/CommandSearch';
 import { isPrayer, readLastSeen, useAdminData, useRefreshAdmin, writeLastSeen } from '@/lib/adminData';
 import { isUpcoming } from '@/lib/rsvpUtils';
@@ -71,13 +72,15 @@ export default function Admin() {
       events: data.events.filter(isUpcoming).length,
       pledges: data.pledges.filter((p) => !p.approved).length,
       stories: data.stories.filter((s) => !s.approved).length,
+      chats: data.chats.filter((c) => c.status === 'needs_reply' || (c.urgent && c.status !== 'resolved')).length,
     };
   }, [data]);
-  const todayCount = counts.inbox + counts.bookings + counts.orders + counts.donations + counts.sponsors + counts.pledges + counts.stories;
+  const todayCount = counts.chats + counts.inbox + counts.bookings + counts.orders + counts.donations + counts.sponsors + counts.pledges + counts.stories;
 
   const tabs = [
     { value: 'today', label: 'Today', icon: LayoutDashboard, n: todayCount, tone: 'bg-gold text-ink' },
     { value: 'inbox', label: 'Inbox', icon: Inbox, n: counts.inbox },
+    { value: 'chats', label: 'Chats', icon: MessageCircle, n: counts.chats, tone: 'bg-violet-100 text-violet-700' },
     { value: 'bookings', label: 'Bookings', icon: CalendarCheck, n: counts.bookings, tone: 'bg-blue-100 text-blue-700' },
     { value: 'orders', label: 'Orders', icon: ClipboardList, n: counts.orders },
     { value: 'donations', label: 'Donations', icon: Backpack, n: counts.donations },
@@ -142,6 +145,7 @@ export default function Admin() {
           </TabsList>
 
           <TabsContent value="today"><TodayTab go={go} lastSeen={lastSeen} firstName={firstName} /></TabsContent>
+          <TabsContent value="chats"><ChatsTab key={sub || 'list'} initialChat={sub || ''} /></TabsContent>
           <TabsContent value="inbox"><InboxTab key={sub || 'messages'} initialView={sub || 'messages'} /></TabsContent>
           <TabsContent value="bookings"><BookingTab /></TabsContent>
           <TabsContent value="orders"><OrdersTab /></TabsContent>

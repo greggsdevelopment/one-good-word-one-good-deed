@@ -9,6 +9,7 @@ import { AuthProvider, useAuth } from '@/lib/AuthContext';
 import UserNotRegisteredError from '@/components/UserNotRegisteredError';
 import ProtectedRoute from '@/components/ProtectedRoute';
 import ScrollToTop from '@/components/ScrollToTop';
+import SupportChat from '@/components/chat/SupportChat';
 import { MusicProvider } from '@/lib/musicContext';
 import Home from '@/pages/Home';
 import RememberDrayke from '@/pages/RememberDrayke';
@@ -122,6 +123,8 @@ function App() {
             {/* Honors the device's reduce-motion setting for every animation. */}
             <MotionConfig reducedMotion="user">
               <AuthenticatedApp />
+              {/* Support assistant bubble, on every public page */}
+              <SupportChat />
             </MotionConfig>
           </MusicProvider>
         </Router>

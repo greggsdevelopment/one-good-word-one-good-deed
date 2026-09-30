@@ -1,7 +1,10 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, Plus, Minus, ShoppingBag, Loader2 } from 'lucide-react';
+import { useHideChatWhile } from '@/lib/chat';
 
 export default function CartDrawer({ open, onClose, cart, onUpdateQty, onRemove, total, onCheckout, loading }) {
+  // Keep the chat bubble off the checkout button while the cart is open.
+  useHideChatWhile(open);
   return (
     <AnimatePresence>
       {open && (

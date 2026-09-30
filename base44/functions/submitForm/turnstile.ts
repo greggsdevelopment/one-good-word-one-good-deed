@@ -1,6 +1,6 @@
 /**
  * Cloudflare Turnstile verification, shared by the public endpoints
- * (submitForm, submitItemDonation, createCheckout). Each function folder keeps
+ * (submitForm, submitItemDonation, createCheckout, supportChat). Each function folder keeps
  * its own copy because Base44 functions cannot import from each other.
  *
  * Secrets on the Base44 app:

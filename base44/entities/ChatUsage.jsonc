@@ -1,0 +1,50 @@
+{
+  "name": "ChatUsage",
+  "type": "object",
+  "properties": {
+    "day": {
+      "type": "string",
+      "description": "Date in America/Detroit, YYYY-MM-DD"
+    },
+    "ai_calls": {
+      "type": "number",
+      "default": 0,
+      "description": "AI answers given that day"
+    },
+    "chats": {
+      "type": "number",
+      "default": 0,
+      "description": "New chats started that day"
+    },
+    "handoffs": {
+      "type": "number",
+      "default": 0,
+      "description": "Visitors who asked for a person that day"
+    }
+  },
+  "required": [
+    "day"
+  ],
+  "rls": {
+    "create": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "read": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}

@@ -1,7 +1,7 @@
 import { useMemo } from 'react';
 import { format, addDays, isSameDay, parseISO, startOfDay } from 'date-fns';
 import {
-  AlertTriangle, ArrowRight, Backpack, CalendarCheck, CalendarDays, Handshake, HandHeart, Heart, Lightbulb,
+  AlertTriangle, ArrowRight, Backpack, MessageCircle, CalendarCheck, CalendarDays, Handshake, HandHeart, Heart, Lightbulb,
   Mail, Package, BookOpen, Sparkles, CheckCircle2, Truck, DollarSign, Users,
 } from 'lucide-react';
 import { businessDaysSince, isPrayer, timeAgo, useAdminData } from '@/lib/adminData';
@@ -20,6 +20,16 @@ function buildQueue(d) {
   const q = [];
   const push = (item) => q.push({ ...item, overdue: item.promise != null && businessDaysSince(item.when) >= item.promise });
 
+  (d.chats || []).filter((x) => x.urgent && x.status !== 'resolved').forEach((x) => push({
+    id: `chu-${x.id}`, tab: `chats:${x.id}`, icon: AlertTriangle, kind: 'Chat safety flag',
+    title: `A chat visitor wrote something that matched the safety check`, sub: 'They were shown 911, 988 and 741741. Review it.',
+    when: x.last_message_at || x.created_date, promise: 0, action: 'Review',
+  }));
+  (d.chats || []).filter((x) => x.status === 'needs_reply' && !x.urgent).forEach((x) => push({
+    id: `ch-${x.id}`, tab: `chats:${x.id}`, icon: MessageCircle, kind: 'Chat',
+    title: `${x.contact_name || 'A visitor'} asked for a person in the chat`, sub: String(x.handoff_note || '').slice(0, 90) || x.contact_email || '',
+    when: x.handoff_at || x.created_date, promise: 2, action: 'Reply',
+  }));
   d.itemDonations.filter((x) => !x.status || x.status === 'new').forEach((x) => push({
     id: `don-${x.id}`, tab: 'donations', icon: Backpack, kind: 'Item donation',
     title: `${x.donor_name} wants to donate ${(x.items || []).reduce((s, i) => s + (Number(i.quantity) || 0), 0)} items`,

@@ -234,3 +234,9 @@ html {
     scroll-behavior: auto !important;
   }
 }
+
+/* Support chat: overlays like the cart drawer or the phone menu hide the bubble. */
+html[data-chat-hide] .ogw-chat-launcher,
+html[data-chat-hide] .ogw-chat-teaser {
+  display: none;
+}

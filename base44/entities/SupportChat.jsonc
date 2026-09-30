@@ -1,0 +1,169 @@
+{
+  "name": "SupportChat",
+  "type": "object",
+  "properties": {
+    "ticket": {
+      "type": "string",
+      "description": "Secret the visitor's browser must present to continue this chat. Server generated, never shown in admin."
+    },
+    "status": {
+      "type": "string",
+      "description": "open = chatting, needs_reply = visitor asked for a person, resolved = handled",
+      "enum": [
+        "open",
+        "needs_reply",
+        "resolved"
+      ],
+      "default": "open"
+    },
+    "messages": {
+      "type": "array",
+      "description": "The conversation, oldest first",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "role": {
+            "type": "string",
+            "enum": [
+              "user",
+              "assistant"
+            ]
+          },
+          "content": {
+            "type": "string"
+          },
+          "at": {
+            "type": "string"
+          },
+          "source": {
+            "type": "string",
+            "description": "ai, quick, fallback, crisis, visitor"
+          },
+          "rating": {
+            "type": "string",
+            "description": "up or down, set by the visitor"
+          }
+        }
+      }
+    },
+    "message_count": {
+      "type": "number",
+      "default": 0,
+      "description": "Messages in this chat"
+    },
+    "ai_replies": {
+      "type": "number",
+      "default": 0,
+      "description": "AI answers used by this chat"
+    },
+    "first_page": {
+      "type": "string",
+      "description": "Page the chat started on"
+    },
+    "last_page": {
+      "type": "string",
+      "description": "Page of the latest message"
+    },
+    "topics": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Topics the chat touched"
+    },
+    "urgent": {
+      "type": "boolean",
+      "default": false,
+      "description": "A message matched the safety check (self-harm, danger or abuse)"
+    },
+    "contact_name": {
+      "type": "string",
+      "description": "Name left in the talk-to-a-person form"
+    },
+    "contact_email": {
+      "type": "string",
+      "description": "Email left in the talk-to-a-person form"
+    },
+    "contact_phone": {
+      "type": "string",
+      "description": "Phone left in the talk-to-a-person form"
+    },
+    "handoff_note": {
+      "type": "string",
+      "description": "What the visitor wants a person to follow up on"
+    },
+    "handoff_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When the visitor asked for a person"
+    },
+    "rating_up": {
+      "type": "number",
+      "default": 0,
+      "description": "Thumbs up count"
+    },
+    "rating_down": {
+      "type": "number",
+      "default": 0,
+      "description": "Thumbs down count"
+    },
+    "last_message_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Time of the newest message"
+    },
+    "ip_hash": {
+      "type": "string",
+      "description": "One-way hash of the visitor network address, only used for rate limits"
+    },
+    "urgent_alert_sent_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When the safety alert email went out"
+    },
+    "notification_sent_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When the handoff email went out"
+    },
+    "admin_notes": {
+      "type": "string",
+      "description": "Internal notes, never shown to the public"
+    },
+    "busy_token": {
+      "type": "string",
+      "description": "Internal lock so one message is processed at a time per chat"
+    },
+    "busy_until": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Internal lock expiry"
+    }
+  },
+  "required": [],
+  "rls": {
+    "create": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "read": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}

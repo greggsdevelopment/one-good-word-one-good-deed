@@ -1,7 +1,10 @@
 import { AnimatePresence, motion } from 'framer-motion';
 import { ShoppingCart, Loader2 } from 'lucide-react';
+import { useLiftChatWhile } from '@/lib/chat';
 
 export default function StickyCartBar({ cartCount, cartTotal, onOpenCart, onCheckout, loading }) {
+  // Raise the chat bubble above this bar while it shows.
+  useLiftChatWhile(cartCount > 0);
   return (
     <AnimatePresence>
       {cartCount > 0 && (

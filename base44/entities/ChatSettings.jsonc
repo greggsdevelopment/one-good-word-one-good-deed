@@ -1,0 +1,64 @@
+{
+  "name": "ChatSettings",
+  "type": "object",
+  "properties": {
+    "enabled": {
+      "type": "boolean",
+      "default": true,
+      "description": "Master switch. When false the chat bubble disappears from the site and the function refuses messages."
+    },
+    "ai_enabled": {
+      "type": "boolean",
+      "default": true,
+      "description": "When false the assistant only gives the built-in answers (no AI credits used)."
+    },
+    "assistant_name": {
+      "type": "string",
+      "description": "Name shown in the chat header",
+      "default": "OGWOGD Guide"
+    },
+    "greeting": {
+      "type": "string",
+      "description": "First line visitors see when they open the chat"
+    },
+    "teaser_enabled": {
+      "type": "boolean",
+      "default": true,
+      "description": "Show the small pop-up nudge next to the chat bubble"
+    },
+    "daily_ai_limit": {
+      "type": "number",
+      "default": 300,
+      "description": "Most AI answers per day across the whole site. Past this the assistant uses built-in answers until tomorrow."
+    },
+    "per_chat_ai_limit": {
+      "type": "number",
+      "default": 25,
+      "description": "Most AI answers in one conversation"
+    },
+    "extra_knowledge": {
+      "type": "string",
+      "description": "Extra facts the assistant may share with visitors. Anyone can read this setting, so only put public information here."
+    }
+  },
+  "required": [],
+  "allowPublicRead": true,
+  "rls": {
+    "create": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "read": null,
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}

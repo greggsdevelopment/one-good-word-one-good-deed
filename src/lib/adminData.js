@@ -17,6 +17,7 @@ export const ADMIN_SOURCES = {
   itemDonations: { key: ['admin-item-donations'], load: () => base44.entities.ItemDonation.list('-created_date', 500) },
   inventory: { key: ['admin-inventory'], load: () => base44.entities.InventoryItem.list('name', 1000) },
   products: { key: ['admin-products'], load: () => base44.entities.Product.list('sort_order', 500) },
+  chats: { key: ['admin-chats'], load: () => base44.entities.SupportChat.list('-created_date', 500) },
 };
 
 const REFRESH_MS = 60_000;

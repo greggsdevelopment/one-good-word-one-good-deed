@@ -5,6 +5,7 @@ import { ChevronDown, Shield, Menu, X } from 'lucide-react';
 import { base44 } from '@/api/base44Client';
 import MusicToggle from '@/components/home/MusicToggle';
 import ScrollProgress from '@/components/fx/ScrollProgress';
+import { useHideChatWhile } from '@/lib/chat';
 
 // The four foundations of the movement. Always visible, never buried.
 const PRIMARY_LINKS = [
@@ -58,6 +59,7 @@ function NavLink({ to, children, active }) {
 export default function StickyNav({ logoUrl }) {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  useHideChatWhile(mobileOpen);
   const [openGroup, setOpenGroup] = useState(null);
   const [mobileOpenGroup, setMobileOpenGroup] = useState(null);
   const [user, setUser] = useState(null);

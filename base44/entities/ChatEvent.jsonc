@@ -1,0 +1,49 @@
+{
+  "name": "ChatEvent",
+  "type": "object",
+  "properties": {
+    "day": {
+      "type": "string",
+      "description": "Date in America/Detroit, YYYY-MM-DD"
+    },
+    "chat_id": {
+      "type": "string",
+      "description": "SupportChat the event belongs to"
+    },
+    "kind": {
+      "type": "string",
+      "enum": [
+        "ai",
+        "handoff_email",
+        "urgent_email"
+      ],
+      "description": "What was spent: an AI answer or a notification email"
+    }
+  },
+  "required": [
+    "day",
+    "kind"
+  ],
+  "rls": {
+    "create": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "read": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}
