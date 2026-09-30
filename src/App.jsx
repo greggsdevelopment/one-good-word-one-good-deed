@@ -1,13 +1,11 @@
-import { Suspense, lazy, useCallback, useEffect, useState } from 'react';
+import { Suspense, lazy, useEffect } from 'react';
 import { Toaster } from "@/components/ui/toaster"
 import { Toaster as SonnerToaster } from "@/components/ui/sonner"
 import { QueryClientProvider } from '@tanstack/react-query'
 import { queryClientInstance } from '@/lib/query-client'
-import { BrowserRouter as Router, Route, Routes, Navigate, useLocation } from 'react-router-dom';
-import { MotionConfig, motion } from 'framer-motion';
-import { useQueryClient } from '@tanstack/react-query';
+import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
+import { MotionConfig } from 'framer-motion';
 import MobileTabBar from '@/components/app/MobileTabBar';
-import PullToRefresh from '@/components/app/PullToRefresh';
 import { AuthProvider, useAuth } from '@/lib/AuthContext';
 import UserNotRegisteredError from '@/components/UserNotRegisteredError';
 import ProtectedRoute from '@/components/ProtectedRoute';
@@ -93,6 +91,9 @@ const PREFETCH = [
   () => import('@/pages/TreeFortBikes'),
 ];
 const PHONE_PREFETCH = 7;
+// The four other tab-bar pages: fetched as soon as the first page has loaded,
+// so tapping a tab never shows a blank screen while its code downloads.
+const TAB_PAGES = 4;
 
 function usePrefetchPages() {
   useEffect(() => {
@@ -114,8 +115,8 @@ function usePrefetchPages() {
       await new Promise((r) => idle(r, { timeout: 2000 }));
     };
     const run = async () => {
-      for (const load of list) {
-        await quiet();
+      for (const [i, load] of list.entries()) {
+        if (i >= TAB_PAGES) await quiet();
         if (cancelled) return;
         try {
           await load();
@@ -126,7 +127,7 @@ function usePrefetchPages() {
     };
     let t = 0;
     const start = () => {
-      t = setTimeout(run, phone ? 3500 : 2500);
+      t = setTimeout(run, 800);
     };
     if (document.readyState === 'complete') start();
     else window.addEventListener('load', start, { once: true });
@@ -143,28 +144,8 @@ function PageFallback() {
   return <div className="min-h-screen bg-black" aria-busy="true" />;
 }
 
-// Pages whose state lives in the page itself (forms, checkout, sign-in).
-const KEEP_ON_REFRESH = /^\/(login|register|forgot-password|reset-password|checkout|donate|sponsorship|rsvp|contact|pledge-wall|portal|account|admin)(\/|$)/i;
-const hasTypedInput = () =>
-  [...document.querySelectorAll('input, textarea')].some((el) => {
-    const type = (el.getAttribute('type') || 'text').toLowerCase();
-    if (['hidden', 'checkbox', 'radio', 'submit', 'button', 'range', 'file'].includes(type)) return false;
-    // React keeps defaultValue in sync with controlled inputs, so any text counts.
-    return Boolean(el.value && el.value.trim());
-  });
-
 const AuthenticatedApp = () => {
   const { authError } = useAuth();
-  const { pathname } = useLocation();
-  const queryClient = useQueryClient();
-  // Pull to refresh: refetch data and remount the current page.
-  const [refreshKey, setRefreshKey] = useState(0);
-  const refresh = useCallback(async () => {
-    // Never wipe something the visitor is typing or paying for: on those
-    // pages, or with any field filled in, only the data is refreshed.
-    if (!KEEP_ON_REFRESH.test(window.location.pathname) && !hasTypedInput()) setRefreshKey((k) => k + 1);
-    await queryClient.invalidateQueries();
-  }, [queryClient]);
 
   // Public pages draw right away. The app settings and login check finish in
   // the background; only the admin area waits for them (see ProtectedRoute).
@@ -177,11 +158,9 @@ const AuthenticatedApp = () => {
 
   return (
     <>
-    <PullToRefresh onRefresh={refresh} />
+    {/* No fade or slide around the pages: on iPhones an animated wrapper makes
+        the fixed header inside it stick mid-page while the animation runs. */}
     <Suspense fallback={<PageFallback />}>
-    {/* A quick fade on every screen change. Opacity only: a transform here
-        would break the fixed headers and bars inside each page. */}
-    <motion.div key={`${pathname}:${refreshKey}`} initial={{ opacity: 0.35 }} animate={{ opacity: 1 }} transition={{ duration: 0.22, ease: 'easeOut' }}>
     <Routes>
       {/* Public pages */}
       <Route path="/" element={<Home />} />
@@ -233,7 +212,6 @@ const AuthenticatedApp = () => {
 
       <Route path="*" element={<NotFound />} />
     </Routes>
-    </motion.div>
     </Suspense>
     </>
   );

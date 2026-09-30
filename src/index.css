@@ -306,10 +306,8 @@ html[data-chat-hide] .ogw-chat-teaser {
 html {
   -webkit-text-size-adjust: 100%;
   text-size-adjust: 100%;
-  touch-action: manipulation; /* no double-tap zoom delay; pinch zoom still works */
 }
 html, body {
-  overscroll-behavior: none; /* no rubber-band bounce or browser pull-to-refresh */
   -webkit-tap-highlight-color: transparent;
 }
 body {
@@ -318,22 +316,7 @@ body {
   padding-left: var(--safe-left);
   padding-right: var(--safe-right);
 }
-/* Touch screens only: app-like, no accidental text selection or long-press
-   callouts. Mouse users can still select and copy anything. */
-@media (hover: none) and (pointer: coarse) {
-  body {
-    -webkit-user-select: none;
-    user-select: none;
-    -webkit-touch-callout: none;
-  }
-}
-/* Anything someone may want to copy stays selectable. */
-input, textarea, [contenteditable="true"], .select-text, .select-text * {
-  -webkit-user-select: text;
-  user-select: text;
-  -webkit-touch-callout: default;
-}
-img, svg, a { -webkit-user-drag: none; }
+
 /* Sticky page headers sit under the status bar area, not behind it. */
 .sticky-safe { top: var(--safe-top) !important; }
 .fixed-top-safe { top: var(--safe-top) !important; }

@@ -1,6 +1,6 @@
 import { useEffect, useLayoutEffect, useRef } from "react";
 import { useLocation, useNavigationType } from "react-router-dom";
-import { rememberTabPath, saveScroll, scrollForEntry, scrollForPath } from "@/lib/appShell";
+import { saveScroll, scrollForEntry } from "@/lib/appShell";
 
 const getHashId = (hash) => {
   const rawId = hash.slice(1);
@@ -20,12 +20,11 @@ let lastY = typeof window !== "undefined" ? window.scrollY : 0;
  * Native-app scroll behavior:
  * - New page: start at the top (or at #section when the link has one).
  * - Back / forward: return to exactly where you were on that page.
- * - Switching tabs on a phone: return to where you were in that tab.
  * Pages load on demand, so every restore retries until the page is tall enough.
  */
 export default function ScrollToTop() {
   const location = useLocation();
-  const { pathname, hash, key, state, search } = location;
+  const { pathname, hash, key } = location;
   const navigationType = useNavigationType();
   const prev = useRef(null);
 
@@ -36,7 +35,7 @@ export default function ScrollToTop() {
       lastY = window.scrollY;
       clearTimeout(t);
       t = setTimeout(() => {
-        if (prev.current) saveScroll(prev.current.key, prev.current.pathname, lastY);
+        if (prev.current) saveScroll(prev.current.key, lastY);
       }, 150);
     };
     window.addEventListener("scroll", onScroll, { passive: true });
@@ -48,9 +47,8 @@ export default function ScrollToTop() {
 
   useLayoutEffect(() => {
     // First, remember where we were on the page we just left.
-    if (prev.current) saveScroll(prev.current.key, prev.current.pathname, lastY);
+    if (prev.current) saveScroll(prev.current.key, lastY);
     prev.current = { key, pathname };
-    rememberTabPath(pathname, search, hash);
 
     let timer;
     const started = Date.now();
@@ -74,14 +72,6 @@ export default function ScrollToTop() {
       const y = scrollForEntry(key);
       if (typeof y === "number") restoreTo(y);
       return () => window.clearTimeout(timer);
-    }
-
-    if (state && state.restoreScroll) {
-      const y = scrollForPath(pathname);
-      if (typeof y === "number") {
-        restoreTo(y);
-        return () => window.clearTimeout(timer);
-      }
     }
 
     if (hash) {
