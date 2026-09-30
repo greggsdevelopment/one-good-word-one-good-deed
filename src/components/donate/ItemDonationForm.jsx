@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { CheckCircle, Mail, Phone, Plus, Trash2, Truck, MapPin, ClipboardCheck, Ban } from 'lucide-react';
 import { useInView } from '@/hooks/useInView';
 import { base44 } from '@/api/base44Client';
+import { getHumanToken } from '@/lib/turnstile';
 import { OTHER_NEED_ID, PICKUP_ORIGIN_LABEL, capFor, conditionsFor } from '@/lib/donations';
 
 const inputClass =
@@ -72,7 +73,9 @@ export default function ItemDonationForm({ settings, needs = [] }) {
     setSubmitting(true);
     setError(null);
     try {
+      const turnstile_token = await getHumanToken('item-donation');
       const payload = {
+        turnstile_token,
         ...form,
         items: lines.map((l) => ({ ...l, quantity: Number(l.quantity) })),
       };
@@ -90,6 +93,7 @@ export default function ItemDonationForm({ settings, needs = [] }) {
         code: data?.error,
         message:
           data?.message ||
+          (err?.humanCheck ? err.message : '') ||
           'Something went wrong sending that. Call (734) 383-3865 or email greggsdevelopment@gmail.com and we will take it down by hand.',
       });
     } finally {

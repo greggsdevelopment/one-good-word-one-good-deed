@@ -12,6 +12,8 @@
  *   dropped, and admin-only fields are forced to safe defaults.
  * - Required fields, lengths, email format, numbers and dates are checked.
  * - A hidden honeypot field catches most bots silently.
+ * - Cloudflare Turnstile: every request must carry a fresh, single-use token
+ *   minted on ogwogd.org for this exact form (see turnstile.ts).
  * - Rate limits: per email address and per form overall, over a 10 minute
  *   window, so a script cannot flood the database or the notification inbox.
  * - Newsletter signups for an address already on the list are a quiet no-op.
@@ -19,7 +21,7 @@
  *   event itself, not from the browser.
  * - Booking references are generated here, not trusted from the browser.
  *
- * Request (POST, JSON): { form: string, data: object, website?: string }
+ * Request (POST, JSON): { form: string, data: object, website?: string, turnstile_token?: string }
  * Responses: 200 { success: true, id, reference? }
  *            400 { error: 'invalid', field, message }
  *            413 { error: 'too_large' }
@@ -28,6 +30,7 @@
 
 import { createClientFromRequest } from 'npm:@base44/sdk@0.8.44';
 import { FORMS, MAX_BODY_BYTES, bookingReference, overLimit, validate } from './logic.ts';
+import { verifyHuman } from './turnstile.ts';
 
 const CORS_HEADERS: Record<string, string> = {
   'Access-Control-Allow-Origin': '*',
@@ -71,6 +74,9 @@ Deno.serve(async (req: Request) => {
   if (!checked.ok) return json({ error: 'invalid', field: checked.field, message: checked.message }, 400);
   const record = checked.record;
 
+  const human = await verifyHuman(req, body?.turnstile_token, `form-${formKey}`);
+  if (!human.ok) return json(human.body, human.status);
+
   const base44 = createClientFromRequest(req);
   const entity = (base44.asServiceRole.entities as any)[def.entity];
 
@@ -93,8 +99,9 @@ Deno.serve(async (req: Request) => {
       }
     }
   } catch (err) {
-    // A failed limit check should not lock real people out; log and continue.
+    // Fail closed: if we cannot confirm the limits, we do not write.
     console.error('submitForm: rate check failed', err);
+    return json({ error: 'try_again', message: 'Something hiccuped on our end. Please try again in a minute.' }, 503);
   }
 
   if (formKey === 'rsvp') {

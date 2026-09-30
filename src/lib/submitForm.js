@@ -1,4 +1,5 @@
 import { base44 } from '@/api/base44Client';
+import { getHumanToken } from '@/lib/turnstile';
 
 /**
  * Sends a public form through the submitForm backend function. The database
@@ -9,9 +10,11 @@ import { base44 } from '@/api/base44Client';
  * to show the visitor on failure.
  */
 export async function submitForm(form, data, { honeypot = '' } = {}) {
+  // Runs Cloudflare's bot check first; throws a readable error if it fails.
+  const turnstile_token = await getHumanToken(`form-${form}`);
   let response;
   try {
-    response = await base44.functions.invoke('submitForm', { form, data, website: honeypot });
+    response = await base44.functions.invoke('submitForm', { form, data, website: honeypot, turnstile_token });
   } catch (err) {
     const payload = err?.response?.data || err?.data || {};
     const error = new Error(

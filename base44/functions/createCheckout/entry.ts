@@ -22,6 +22,8 @@
  * Required secrets on the Base44 app:
  *   STRIPE_SECRET_KEY        - Stripe API key (sk_test_... or sk_live_...)
  *   STRIPE_CHECKOUT_ENABLED  - the string "true" to turn card payment on
+ *   TURNSTILE_SECRET_KEY     - Cloudflare Turnstile secret; when set, every
+ *                              session request needs a valid bot-check token
  */
 
 import Stripe from 'npm:stripe@14.21.0';
@@ -33,6 +35,7 @@ import {
   MAX_QUANTITY_PER_LINE,
   SHIPPING_FLAT_CENTS,
 } from './catalog.ts';
+import { verifyHuman } from './turnstile.ts';
 
 const CORS_HEADERS: Record<string, string> = {
   'Access-Control-Allow-Origin': '*',
@@ -135,6 +138,10 @@ Deno.serve(async (req: Request) => {
       503,
     );
   }
+
+  // Bot check before anything touches Stripe with the app's key.
+  const human = await verifyHuman(req, payload?.turnstile_token, 'checkout');
+  if (!human.ok) return json(human.body, human.status);
 
   const rawItems = payload?.items;
   if (!Array.isArray(rawItems) || rawItems.length === 0) {

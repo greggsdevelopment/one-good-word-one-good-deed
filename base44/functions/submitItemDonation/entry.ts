@@ -38,6 +38,7 @@ import {
   safeHeader,
   validateSubmission,
 } from './logic.ts';
+import { verifyHuman } from './turnstile.ts';
 
 const NOTIFY_TO = 'greggsdevelopment@gmail.com';
 const USER_AGENT = 'ogwogd.org donation pickup check (https://ogwogd.org/donate)';
@@ -184,6 +185,10 @@ Deno.serve(async (req: Request) => {
   }
   const sub = checked.value;
 
+  // Bot check before any geocoding, database reads or email.
+  const human = await verifyHuman(req, body?.turnstile_token, 'item-donation');
+  if (!human.ok) return json(human.body, human.status);
+
   // Flood protection: 3 offers per email and 20 overall per 10 minutes.
   try {
     const cutoff = Date.now() - 10 * 60_000;
@@ -194,7 +199,9 @@ Deno.serve(async (req: Request) => {
       return json({ error: 'rate_limited', message: 'You have sent a few of these already. Please wait a bit, or call (734) 383-3865.' }, 429);
     }
   } catch (err) {
+    // Fail closed: if we cannot confirm the limits, we do not write or email.
     console.error('submitItemDonation: rate check failed', err);
+    return json({ error: 'try_again', message: 'Something hiccuped on our end. Please try again in a minute.' }, 503);
   }
 
   let geo: Geo | null = null;

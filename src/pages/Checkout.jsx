@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { ArrowLeft, Package, Mail, CreditCard, Loader2, CheckCircle, AlertCircle } from 'lucide-react';
 import { base44 } from '@/api/base44Client';
 import { ORDER_EMAIL } from '@/lib/shop-config';
+import { getHumanToken } from '@/lib/turnstile';
 
 // This page never creates an Order record and never decides a price. When card
 // payment is on, it sends { id, size, quantity } to the createCheckout function,
@@ -108,7 +109,9 @@ export default function Checkout() {
     setPayError('');
     setStarting(true);
     try {
+      const turnstile_token = await getHumanToken('checkout');
       const response = await base44.functions.invoke('createCheckout', {
+        turnstile_token,
         items: cart.map((i) => ({
           id: i.product.id,
           size: i.size || '',
@@ -125,6 +128,7 @@ export default function Checkout() {
       const message =
         error?.response?.data?.message ||
         error?.data?.message ||
+        (error?.humanCheck ? error.message : '') ||
         'We could not start checkout. Please order by email below.';
       setPayError(message);
     } finally {
