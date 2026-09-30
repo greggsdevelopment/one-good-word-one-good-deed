@@ -12,10 +12,10 @@ const VIDEO_ID = 'u-4QARnU77A';
 // Skip it on the first play and every loop wrap.
 const START_OFFSET_SECONDS = 2;
 
-// The YouTube player is heavy (about a megabyte of script, and on iPhones it
-// runs on the same thread as the page). It is only loaded when it can be used:
-// on phones when the visitor taps the music button, on computers once the page
-// has settled.
+// The YouTube player is heavy (about a megabyte of script), so it never loads
+// while the page itself is loading. It loads shortly after, on every device,
+// so it is ready before anyone taps the music button: iPhones only allow sound
+// that starts inside the tap itself, so the player must already exist then.
 const isComputer = () => typeof window !== 'undefined' && window.matchMedia?.('(hover: hover) and (pointer: fine)').matches;
 
 export function MusicProvider({ children }) {
@@ -36,12 +36,19 @@ export function MusicProvider({ children }) {
     playingRef.current = playing;
   }, [playing]);
 
-  // Computers: warm the player up quietly once the page is idle.
+  // Warm the player up once the page has finished loading and gone quiet.
   useEffect(() => {
-    if (!isComputer()) return undefined;
     const idle = window.requestIdleCallback || ((cb) => setTimeout(cb, 1));
-    const t = setTimeout(() => idle(() => setWanted(true), { timeout: 4000 }), 5000);
-    return () => clearTimeout(t);
+    let t = 0;
+    const start = () => {
+      t = setTimeout(() => idle(() => setWanted(true), { timeout: 3000 }), isComputer() ? 3000 : 1500);
+    };
+    if (document.readyState === 'complete') start();
+    else window.addEventListener('load', start, { once: true });
+    return () => {
+      clearTimeout(t);
+      window.removeEventListener('load', start);
+    };
   }, []);
 
   const startPlaying = () => {
@@ -160,7 +167,8 @@ export function MusicProvider({ children }) {
   const toggle = () => {
     const player = playerRef.current;
     if (!player || !ready) {
-      // First tap on a phone: load the player, then play as soon as it is ready.
+      // Tapped in the first second or two, before the player finished loading:
+      // play as soon as it is ready.
       if (loading) {
         playOnReadyRef.current = false;
         setLoading(false);
