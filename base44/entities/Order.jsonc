@@ -60,6 +60,11 @@
     "payment_status": {
       "type": "string",
       "description": "Payment status reported by Stripe, e.g. paid"
+    },
+    "notification_sent_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO timestamp set by the backend after the notification email is sent"
     }
   },
   "required": [

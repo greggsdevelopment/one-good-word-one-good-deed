@@ -5,6 +5,11 @@
     "email": {
       "type": "string",
       "description": "Subscriber email address"
+    },
+    "notification_sent_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO timestamp set by the backend after the notification email is sent"
     }
   },
   "required": [
