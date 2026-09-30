@@ -18,10 +18,12 @@ const SCRIPTURES = [
   },
 ];
 
-const rise = (delay, y = 24) => ({
-  initial: { opacity: 0, y },
-  animate: { opacity: 1, y: 0 },
-  transition: { duration: 0.8, delay, ease: [0.2, 0.8, 0.2, 1] },
+// The hero is readable from the very first frame: it settles into place
+// instead of fading in from nothing, so the page never looks empty while it loads.
+const rise = (delay, y = 12) => ({
+  initial: { y },
+  animate: { y: 0 },
+  transition: { duration: 0.55, delay: delay * 0.4, ease: [0.2, 0.8, 0.2, 1] },
 });
 
 export default function HeroSection({ logoUrl, pledgeCount }) {
@@ -35,12 +37,19 @@ export default function HeroSection({ logoUrl, pledgeCount }) {
   return (
     <section id="hero" className="relative min-h-screen flex items-center bg-black overflow-hidden pt-24 pb-20 lg:pt-20">
       {/* Color field: the logo's ring colors as soft light */}
-      <div aria-hidden="true" className="absolute inset-0 pointer-events-none">
-        <div className="absolute -top-40 -left-40 w-[620px] h-[620px] rounded-full blur-[140px] opacity-[0.22]" style={{ background: 'var(--rb-red)' }} />
-        <div className="absolute top-1/4 -right-48 w-[640px] h-[640px] rounded-full blur-[150px] opacity-[0.22]" style={{ background: 'var(--rb-blue)' }} />
-        <div className="absolute -bottom-56 left-1/4 w-[640px] h-[640px] rounded-full blur-[160px] opacity-[0.2]" style={{ background: 'var(--rb-purple)' }} />
-        <div className="absolute top-1/2 left-1/2 w-[420px] h-[420px] rounded-full blur-[140px] opacity-[0.12]" style={{ background: 'var(--rb-yellow)' }} />
-      </div>
+      {/* Soft gradients instead of blurred shapes: same look, no blur for the phone to redraw. */}
+      <div
+        aria-hidden="true"
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background: [
+            'radial-gradient(520px 520px at 8% 6%, rgba(239,83,80,0.20), transparent 70%)',
+            'radial-gradient(560px 560px at 100% 38%, rgba(74,155,232,0.20), transparent 70%)',
+            'radial-gradient(560px 560px at 38% 100%, rgba(160,108,213,0.19), transparent 70%)',
+            'radial-gradient(380px 380px at 52% 55%, rgba(247,201,72,0.10), transparent 70%)',
+          ].join(', '),
+        }}
+      />
       <PuzzleField count={18} seed={11} />
       <SpotlightHero />
       <div className="grain-overlay" style={{ opacity: 0.08 }} />
@@ -49,9 +58,9 @@ export default function HeroSection({ logoUrl, pledgeCount }) {
         <div className="grid lg:grid-cols-[1.1fr_0.9fr] gap-12 lg:gap-10 items-center">
           {/* Logo, first on phones */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.85, rotate: -8 }}
-            animate={{ opacity: 1, scale: 1, rotate: 0 }}
-            transition={{ duration: 1, delay: 0.05, ease: [0.2, 0.8, 0.2, 1] }}
+            initial={{ scale: 0.94, rotate: -4 }}
+            animate={{ scale: 1, rotate: 0 }}
+            transition={{ duration: 0.7, ease: [0.2, 0.8, 0.2, 1] }}
             className="order-1 lg:order-2 flex justify-center"
           >
             <div className="relative w-64 h-64 sm:w-80 sm:h-80 lg:w-[30rem] lg:h-[30rem] animate-float">
@@ -95,7 +104,7 @@ export default function HeroSection({ logoUrl, pledgeCount }) {
               </Link>
               <Link
                 to="/donate"
-                className="rainbow-border w-full sm:w-auto min-h-[56px] inline-flex items-center justify-center gap-2 px-9 py-4 rounded-sm text-cream font-barlow-condensed font-bold text-xl uppercase tracking-wider bg-white/[0.03] hover:bg-white/[0.07] backdrop-blur-sm transition-all duration-300 hover:-translate-y-1"
+                className="rainbow-border w-full sm:w-auto min-h-[56px] inline-flex items-center justify-center gap-2 px-9 py-4 rounded-sm text-cream font-barlow-condensed font-bold text-xl uppercase tracking-wider bg-white/[0.05] hover:bg-white/[0.08] transition-all duration-300 hover:-translate-y-1"
               >
                 <HeartHandshake className="w-5 h-5" /> Donate
               </Link>
@@ -109,14 +118,14 @@ export default function HeroSection({ logoUrl, pledgeCount }) {
 
             {/* Proof + scripture */}
             <motion.div {...rise(0.5)} className="grid sm:grid-cols-[auto_1fr] gap-4 sm:gap-6 items-stretch max-w-xl mx-auto lg:mx-0">
-              <Link to="/pledge-wall" className="rainbow-border rounded-sm bg-white/[0.03] backdrop-blur-sm px-6 py-4 text-center sm:text-left glow-hover">
+              <Link to="/pledge-wall" className="rainbow-border rounded-sm bg-white/[0.05] px-6 py-4 text-center sm:text-left glow-hover">
                 <p className="font-anton text-4xl sm:text-5xl leading-none text-rainbow">
                   <CountUp value={pledgeCount} />
                 </p>
                 <p className="font-barlow-condensed text-cream/60 text-xs tracking-[0.25em] uppercase mt-2">People have taken the pledge</p>
               </Link>
 
-              <div className="rainbow-border rounded-sm bg-white/[0.03] backdrop-blur-sm px-6 py-4 text-center sm:text-left">
+              <div className="rainbow-border rounded-sm bg-white/[0.05] px-6 py-4 text-center sm:text-left">
                 <p className="font-barlow-condensed text-gold text-[10px] tracking-[0.35em] uppercase mb-2">Scripture</p>
                 <div className="relative h-24 sm:h-[5.5rem]">
                   {SCRIPTURES.map((s, i) => (

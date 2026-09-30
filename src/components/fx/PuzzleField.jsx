@@ -1,4 +1,4 @@
-import { useMemo } from 'react';
+import { useEffect, useMemo, useRef } from 'react';
 
 const COLORS = ['var(--rb-red)', 'var(--rb-orange)', 'var(--rb-yellow)', 'var(--rb-green)', 'var(--rb-blue)', 'var(--rb-purple)'];
 
@@ -36,34 +36,41 @@ export default function PuzzleField({ count = 16, seed = 7, className = '', maxO
     }));
   }, [count, seed, maxOpacity]);
 
+  // Drift with the Web Animations API on plain boxes, with fixed numbers: the
+  // browser's compositor runs these off the main thread, so they cost nothing
+  // while scrolling. (Animating inside the SVG, or with CSS variables in the
+  // keyframes, forced a repaint of every piece on every frame.)
+  const root = useRef(null);
+  useEffect(() => {
+    const el = root.current;
+    if (!el || !el.animate) return undefined;
+    if (window.matchMedia?.('(prefers-reduced-motion: reduce)').matches) return undefined;
+    const anims = [...el.children].map((child, i) => {
+      const p = pieces[i];
+      return child.animate(
+        [
+          { transform: 'translate3d(0,0,0) rotate(0deg)' },
+          { transform: `translate3d(${p.dx.toFixed(1)}px, ${p.dy.toFixed(1)}px, 0) rotate(${p.rot.toFixed(1)}deg)` },
+          { transform: 'translate3d(0,0,0) rotate(0deg)' },
+        ],
+        { duration: p.duration * 1000, delay: p.delay * 1000, iterations: Infinity, easing: 'ease-in-out' },
+      );
+    });
+    return () => anims.forEach((a) => a.cancel());
+  }, [pieces]);
+
   return (
-    <div aria-hidden="true" className={`pointer-events-none absolute inset-0 overflow-hidden ${className}`}>
+    <div ref={root} aria-hidden="true" className={`pointer-events-none absolute inset-0 overflow-hidden ${className}`}>
       {pieces.map((p, i) => (
-        <svg
+        <div
           key={i}
-          viewBox="0 0 40 40"
           className="absolute"
-          style={{
-            left: `${p.left}%`,
-            top: `${p.top}%`,
-            width: p.size,
-            height: p.size,
-            opacity: p.opacity,
-            transform: `rotate(${p.start}deg)`,
-          }}
+          style={{ left: `${p.left}%`, top: `${p.top}%`, width: p.size, height: p.size, opacity: p.opacity }}
         >
-          <g
-            style={{
-              transformOrigin: '20px 20px',
-              animation: `puzzle-drift ${p.duration}s ease-in-out ${p.delay}s infinite`,
-              '--dx': `${p.dx}px`,
-              '--dy': `${p.dy}px`,
-              '--rot': `${p.rot}deg`,
-            }}
-          >
+          <svg viewBox="0 0 40 40" width={p.size} height={p.size} style={{ transform: `rotate(${p.start}deg)` }}>
             <path d={PIECE} fill={p.color} />
-          </g>
-        </svg>
+          </svg>
+        </div>
       ))}
     </div>
   );

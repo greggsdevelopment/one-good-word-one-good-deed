@@ -338,3 +338,33 @@ img, svg, a { -webkit-user-drag: none; }
 .sticky-safe { top: var(--safe-top) !important; }
 .fixed-top-safe { top: var(--safe-top) !important; }
 html[data-chat-hide] .ogw-tabbar { display: none; }
+
+/* ==========================================================================
+   Phones and tablets: keep scrolling smooth.
+   - Blurring whatever is behind a sticky header or bar is redrawn on every
+     scroll frame; these bars are 85 to 97 percent opaque, so the blur was
+     barely visible anyway.
+   - The slowly shifting rainbow on headlines, rules and borders repaints
+     that text or edge on every frame. On touch screens it holds still (same
+     colors, no motion); computers keep the shimmer.
+   ========================================================================== */
+@media (hover: none) and (pointer: coarse) {
+  [class*="backdrop-blur"] {
+    -webkit-backdrop-filter: none !important;
+    backdrop-filter: none !important;
+  }
+  :is(h1, h2) span.text-gold,
+  .text-rainbow,
+  .rainbow-rule,
+  .rainbow-border::before {
+    animation: none !important;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  :is(h1, h2) span.text-gold,
+  .text-rainbow,
+  .rainbow-rule,
+  .rainbow-border::before {
+    animation: none !important;
+  }
+}

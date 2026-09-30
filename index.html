@@ -15,16 +15,47 @@
     <meta name="apple-mobile-web-app-title" content="OGWOGD" />
     <meta name="format-detection" content="telephone=no" />
     <link rel="manifest" href="/manifest.json" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Barlow+Condensed:wght@400;500;600;700&family=Barlow:wght@300;400;500;600;700&display=swap" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Great+Vibes&display=swap" media="print" onload="this.media='all'" />
+    <!-- Fonts are served from this site (latin set, SIL Open Font License, see /fonts/OFL-LICENSE.txt):
+         no extra connection to Google before the page can draw. Not preloaded on purpose: on a
+         phone connection that competes with the app script and delays the first paint. -->
     <link rel="preload" as="image" href="/brand/logo-512.webp" type="image/webp" />
+    <style>
+      @font-face{font-family:'Anton';font-style:normal;font-weight:400;font-display:swap;src:url(/fonts/anton-latin-400-normal.woff2) format('woff2')}
+      @font-face{font-family:'Barlow Condensed';font-style:normal;font-weight:400;font-display:swap;src:url(/fonts/barlow-condensed-latin-400-normal.woff2) format('woff2')}
+      @font-face{font-family:'Barlow Condensed';font-style:normal;font-weight:500;font-display:swap;src:url(/fonts/barlow-condensed-latin-500-normal.woff2) format('woff2')}
+      @font-face{font-family:'Barlow Condensed';font-style:normal;font-weight:600;font-display:swap;src:url(/fonts/barlow-condensed-latin-600-normal.woff2) format('woff2')}
+      @font-face{font-family:'Barlow Condensed';font-style:normal;font-weight:700;font-display:swap;src:url(/fonts/barlow-condensed-latin-700-normal.woff2) format('woff2')}
+      @font-face{font-family:'Barlow';font-style:normal;font-weight:300;font-display:swap;src:url(/fonts/barlow-latin-300-normal.woff2) format('woff2')}
+      @font-face{font-family:'Barlow';font-style:normal;font-weight:400;font-display:swap;src:url(/fonts/barlow-latin-400-normal.woff2) format('woff2')}
+      @font-face{font-family:'Barlow';font-style:normal;font-weight:500;font-display:swap;src:url(/fonts/barlow-latin-500-normal.woff2) format('woff2')}
+      @font-face{font-family:'Barlow';font-style:normal;font-weight:600;font-display:swap;src:url(/fonts/barlow-latin-600-normal.woff2) format('woff2')}
+      @font-face{font-family:'Barlow';font-style:normal;font-weight:700;font-display:swap;src:url(/fonts/barlow-latin-700-normal.woff2) format('woff2')}
+      @font-face{font-family:'Cormorant Garamond';font-style:normal;font-weight:400;font-display:swap;src:url(/fonts/cormorant-garamond-latin-400-normal.woff2) format('woff2')}
+      @font-face{font-family:'Cormorant Garamond';font-style:normal;font-weight:500;font-display:swap;src:url(/fonts/cormorant-garamond-latin-500-normal.woff2) format('woff2')}
+      @font-face{font-family:'Cormorant Garamond';font-style:normal;font-weight:600;font-display:swap;src:url(/fonts/cormorant-garamond-latin-600-normal.woff2) format('woff2')}
+      @font-face{font-family:'Cormorant Garamond';font-style:italic;font-weight:400;font-display:swap;src:url(/fonts/cormorant-garamond-latin-400-italic.woff2) format('woff2')}
+      @font-face{font-family:'Cormorant Garamond';font-style:italic;font-weight:500;font-display:swap;src:url(/fonts/cormorant-garamond-latin-500-italic.woff2) format('woff2')}
+      @font-face{font-family:'Great Vibes';font-style:normal;font-weight:400;font-display:swap;src:url(/fonts/great-vibes-latin-400-normal.woff2) format('woff2')}
+      html, body { background: #000; }
+      /* First paint while the app loads: the logo and its ring. It only fades in
+         if loading takes longer than a moment, so fast visits never see it. */
+      #ogw-boot { position: fixed; inset: 0; display: grid; place-items: center; background: #000; }
+      #ogw-boot .ogw-boot-ring { position: relative; width: 136px; height: 136px; opacity: 0; animation: ogw-boot-in .45s ease-out .35s forwards; }
+      #ogw-boot .ogw-boot-ring::before { content: ''; position: absolute; inset: -5px; border-radius: 50%;
+        background: conic-gradient(#EF5350, #F59E42, #F7C948, #94C44A, #4A9BE8, #A06CD5, #EF5350);
+        -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 3px), #000 calc(100% - 3px));
+        mask: radial-gradient(farthest-side, transparent calc(100% - 3px), #000 calc(100% - 3px));
+        animation: ogw-boot-spin 1.6s linear infinite; }
+      #ogw-boot img { width: 100%; height: 100%; border-radius: 50%; display: block; }
+      @keyframes ogw-boot-in { from { opacity: 0; transform: scale(.94); } to { opacity: 1; transform: none; } }
+      @keyframes ogw-boot-spin { to { transform: rotate(360deg); } }
+      @media (prefers-reduced-motion: reduce) { #ogw-boot .ogw-boot-ring, #ogw-boot .ogw-boot-ring::before { animation-duration: .01s; animation-iteration-count: 1; } }
+    </style>
     <title>One Good Word...One Good Deed</title>
     <meta name="description" content="One Good Word...One Good Deed is a Michigan movement against bullying and racism, bringing school programs, community events and a pledge to metro Detroit." />
   </head>
   <body>
-    <div id="root"></div>
+    <div id="root"><div id="ogw-boot" aria-hidden="true"><div class="ogw-boot-ring"><img src="/brand/logo-512.webp" alt="" width="136" height="136" /></div></div></div>
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>

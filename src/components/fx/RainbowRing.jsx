@@ -5,9 +5,9 @@
 export default function RainbowRing({ className = '', blur = 38, opacity = 0.55, thickness = 10 }) {
   return (
     <div aria-hidden="true" className={`pointer-events-none absolute inset-0 ${className}`}>
-      {/* Soft glow */}
+      {/* Soft glow. Still: a blur on a turning element is redrawn every frame. */}
       <div
-        className="absolute -inset-[6%] rounded-full animate-spin-slow"
+        className="absolute -inset-[6%] rounded-full"
         style={{ background: 'var(--rainbow-conic)', filter: `blur(${blur}px)`, opacity }}
       />
       {/* Crisp ring hugging the logo edge */}

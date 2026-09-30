@@ -59,24 +59,27 @@ const ResetPassword = lazy(() => import('@/pages/ResetPassword'));
 
 // After the first page settles, quietly fetch the public pages so clicking
 // around still feels instant. Admin and sign-in pages load only on demand.
+// Most visited first; phones only take the first group.
 const PREFETCH = [
-  () => import('@/pages/Account'),
-  () => import('@/pages/Privacy'),
-  () => import('@/pages/Terms'),
-  () => import('@/pages/RememberDrayke'),
-  () => import('@/pages/Shop'),
-  () => import('@/pages/About'),
-  () => import('@/pages/AboutCody'),
   () => import('@/pages/Programs'),
+  () => import('@/pages/Events'),
   () => import('@/pages/Donate'),
   () => import('@/pages/PledgeWall'),
+  () => import('@/pages/Shop'),
+  () => import('@/pages/RememberDrayke'),
+  () => import('@/pages/Account'),
+  () => import('@/pages/About'),
+  () => import('@/pages/Contact'),
   () => import('@/pages/Gallery'),
   () => import('@/pages/Stories'),
   () => import('@/pages/Resources'),
-  () => import('@/pages/Events'),
+  () => import('@/pages/AboutCody'),
+  () => import('@/pages/HallOfFame'),
+  () => import('@/pages/Sponsorship'),
+  () => import('@/pages/Privacy'),
+  () => import('@/pages/Terms'),
   () => import('@/pages/NightForDraykeRSVP'),
   () => import('@/pages/Checkout'),
-  () => import('@/pages/Contact'),
   () => import('@/pages/WristbandBros'),
   () => import('@/pages/GooseheadInsurance'),
   () => import('@/pages/DogNSuds'),
@@ -88,28 +91,50 @@ const PREFETCH = [
   () => import('@/pages/LivRiteRecovery'),
   () => import('@/pages/ClassicStateWayne'),
   () => import('@/pages/TreeFortBikes'),
-  () => import('@/pages/HallOfFame'),
-  () => import('@/pages/Sponsorship'),
 ];
+const PHONE_PREFETCH = 7;
+
 function usePrefetchPages() {
   useEffect(() => {
+    const conn = navigator.connection;
+    if (conn?.saveData || /(^|-)2g$/.test(conn?.effectiveType || '')) return undefined;
+    const phone = window.matchMedia?.('(hover: none) and (pointer: coarse)').matches;
+    const list = phone ? PREFETCH.slice(0, PHONE_PREFETCH) : PREFETCH;
     let cancelled = false;
+    let lastInput = 0;
+    const touched = () => {
+      lastInput = performance.now();
+    };
+    // Never download or run a page while the visitor is scrolling or touching:
+    // that is exactly when a busy phone stutters.
+    ['scroll', 'touchstart', 'touchmove', 'wheel'].forEach((e) => window.addEventListener(e, touched, { passive: true }));
     const idle = window.requestIdleCallback || ((cb) => setTimeout(cb, 1));
+    const quiet = async () => {
+      while (!cancelled && performance.now() - lastInput < 700) await new Promise((r) => setTimeout(r, 300));
+      await new Promise((r) => idle(r, { timeout: 2000 }));
+    };
     const run = async () => {
-      for (const load of PREFETCH) {
+      for (const load of list) {
+        await quiet();
         if (cancelled) return;
         try {
           await load();
         } catch {
           // offline or a deploy in progress; the page loads when visited
         }
-        await new Promise((r) => idle(r));
       }
     };
-    const t = setTimeout(run, 3000);
+    let t = 0;
+    const start = () => {
+      t = setTimeout(run, phone ? 3500 : 2500);
+    };
+    if (document.readyState === 'complete') start();
+    else window.addEventListener('load', start, { once: true });
     return () => {
       cancelled = true;
       clearTimeout(t);
+      window.removeEventListener('load', start);
+      ['scroll', 'touchstart', 'touchmove', 'wheel'].forEach((e) => window.removeEventListener(e, touched));
     };
   }, []);
 }

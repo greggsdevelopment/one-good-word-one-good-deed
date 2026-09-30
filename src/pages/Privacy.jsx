@@ -83,7 +83,7 @@ const sections = [
         <p>We share information only with the services that run the site for us, and only what each one needs:</p>
         <ul>
           <li><strong>Base44</strong>: hosting, database, sign-in, file storage and the AI behind the chat assistant, which Base44 runs on AI models from providers such as OpenAI, Google and Anthropic.</li>
-          <li><strong>Google</strong>: Gmail, which sends our notification emails; Google Fonts, which provides the site's typefaces; and YouTube, which plays the embedded videos and music.</li>
+          <li><strong>Google</strong>: Gmail, which sends our notification emails, and YouTube, which plays the embedded videos and the background music (the music player loads only when you turn the music on, or on computers once the page has finished loading). Our typefaces are served from our own site.</li>
           <li><strong>Cloudflare Turnstile</strong>: checks that form submissions come from a person, not a bot.</li>
           <li><strong>Stripe</strong>: processes shop payments.</li>
           <li><strong>U.S. Census Bureau and OpenStreetMap</strong>: turn a pickup address into a map location to check the pickup distance.</li>

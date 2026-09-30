@@ -115,7 +115,7 @@ export default function StickyNav({ logoUrl }) {
       style={{ paddingLeft: 'var(--safe-left)', paddingRight: 'var(--safe-right)' }}
       className={`fixed top-0 fixed-top-safe left-0 right-0 z-50 transition-all duration-300 ${
         scrolled
-          ? 'bg-black/85 shadow-lg shadow-black/50 backdrop-blur-xl'
+          ? 'bg-black/90 shadow-lg shadow-black/50 backdrop-blur-xl'
           : 'bg-black/40 backdrop-blur-sm'
       }`}
     >
